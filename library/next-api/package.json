@@ -1,6 +1,6 @@
 {
 	"private": false,
-	"name": "@cmru-comsci-66/database-next-api",
+	"name": "cmru-comsci-66-database-next-api",
 	"version": "1.0.0",
 	"license": "apache-2.0",
 	"author": "Faelayis <48393914+Faelayis@users.noreply.github.com>",
@@ -23,10 +23,10 @@
 		"lint:fix": "eslint . --fix"
 	},
 	"devDependencies": {
-		"@cmru-comsci-66/database": "workspace:*",
 		"@types/node": "20.4.5",
 		"@types/react": "18.2.17",
 		"@types/react-dom": "18.2.7",
+		"cmru-comsci-66-database": "workspace:*",
 		"next": "13.4.12",
 		"node-fetch": "3.3.2",
 		"ts-node": "10.9.1",

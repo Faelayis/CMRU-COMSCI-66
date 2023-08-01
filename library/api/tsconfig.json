@@ -23,7 +23,7 @@
 			"afterDeclarations": true
 		}
 	],
-	"display": "@cmru-comsci-66/api",
+	"display": "cmru-comsci-66-api",
 	"extends": "../tsconfig.base.json",
 	"include": [
 		"src"

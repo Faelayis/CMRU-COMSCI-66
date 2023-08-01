@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
-import { DiscordWebHook } from "@cmru-comsci-66/api";
+import { DiscordWebHook } from "cmru-comsci-66-api";
 
 // Contents
 import BillingImg from "@/assets/bill/bill.jpg";

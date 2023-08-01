@@ -17,7 +17,7 @@
 			"afterDeclarations": true
 		}
 	],
-	"display": "@cmru-comsci-66/database",
+	"display": "cmru-comsci-66-database",
 	"extends": "../tsconfig.base.json",
 	"include": [
 		"src"

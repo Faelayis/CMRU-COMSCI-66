@@ -64,10 +64,10 @@ importers:
 
     client:
         dependencies:
-            "@cmru-comsci-66/api":
+            "cmru-comsci-66-api":
                 specifier: workspace:*
                 version: link:../library/api
-            "@cmru-comsci-66/database":
+            "cmru-comsci-66-database":
                 specifier: workspace:*
                 version: link:../library/database
             "@emotion/react":
@@ -205,7 +205,7 @@ importers:
 
     library/next-api:
         devDependencies:
-            "@cmru-comsci-66/database":
+            "cmru-comsci-66-database":
                 specifier: workspace:*
                 version: link:../database
             "@types/node":
