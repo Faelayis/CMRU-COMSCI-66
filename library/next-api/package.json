@@ -35,6 +35,7 @@
 	},
 	"publishConfig": {
 		"access": "public",
-		"linkDirectory": false
+		"linkDirectory": false,
+		"registry": "https://npm.pkg.github.com"
 	}
 }
