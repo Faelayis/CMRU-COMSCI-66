@@ -103,7 +103,7 @@ jobs:
               if: |
                   always() && github.event.inputs.deploy_package == 'true' &&
                   !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
-              run: ${{ github.event.inputs.bumpversion }}
+              run: pnpm --filter=./library/** ci:bump ${{ github.event.inputs.bumpversion }}
 
             - name: Bump Version (WebSite)
               if: |
