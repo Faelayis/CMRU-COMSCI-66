@@ -49,6 +49,10 @@ web_modules/
 # TypeScript cache
 *.tsbuildinfo
 
+# TypeScript build output
+lib-esm
+client/src/pages/api
+
 # Optional npm cache directory
 .npm
 
@@ -91,7 +95,6 @@ out
 # Nuxt.js build / generate output
 .nuxt
 dist
-lib-esm
 
 # Gatsby files
 .cache/
