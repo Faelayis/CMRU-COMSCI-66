@@ -1,5 +1,5 @@
-import prisma from "cmru-comsci-66-database";
-import type { billing } from "cmru-comsci-66-database/node_modules/@prisma/client/index";
+import prisma from "@cmru-comsci-66/database";
+import type { billing } from "@cmru-comsci-66/database/node_modules/@prisma/client/index";
 import type { GetServerSidePropsResult, NextApiRequest, NextApiResponse } from "next";
 import fetch from "node-fetch";
 

@@ -21,12 +21,12 @@ on:
                     - minor
                     - major
             deploy_web:
-                description: "Deploy WebSite"
+                description: "Includes WebSite"
                 required: false
                 default: false
                 type: boolean
             deploy_package:
-                description: "Deploy Packages"
+                description: "Includes Packages"
                 required: false
                 default: false
                 type: boolean
@@ -125,49 +125,6 @@ jobs:
                   tagging_message: "v${{ steps.package.outputs.version }}"
                   commit_message: "chore(release): publish v${{ steps.package.outputs.version }}"
                   skip_checkout: true
-
-    deploy_package:
-        name: Publish Packages
-        needs: [bumpversion]
-        runs-on: ubuntu-latest
-        if: |
-            always() && github.event.inputs.deploy_package == 'true' &&
-            !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v3
-              with:
-                  ref: ${{ github.ref }}
-
-            - name: Setup PNPM
-              uses: pnpm/action-setup@v2
-              with:
-                  run_install: false
-                  version: ${{ vars.PNPM_VERSION }}
-
-            - name: Setup Node
-              uses: actions/setup-node@v3
-              with:
-                  node-version: ${{ vars.NODE_VERSION }}
-                  cache: pnpm
-
-            - name: Install Dependencies
-              run: pnpm install
-
-            - name: Remove pkg scripts
-              run: pnpm --filter=./library/** pkg delete scripts
-
-            - name: Setup Configuration
-              run: |
-                  pnpm config set 'always-auth' "true"
-
-            - name: Deploy to GitHub Packages
-              run: |
-                  pnpm config set '//npm.pkg.github.com/:_authToken' "${NODE_AUTH_TOKEN}"
-                  pnpm --filter=./library/** publish -r --access=public --registry=https://npm.pkg.github.com/
-                  pnpm config delete '//npm.pkg.github.com/:_authToken'
-              env:
-                  NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
 
     deploy_website:
         name: Publish WebSite

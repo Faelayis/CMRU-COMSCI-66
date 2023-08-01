@@ -1,6 +1,6 @@
 {
 	"private": true,
-	"name": "cmru-comsci-66-client",
+	"name": "@cmru-comsci-66/client",
 	"version": "1.0.0",
 	"scripts": {
 		"build": "next build",
@@ -14,6 +14,8 @@
 		"start": "next start"
 	},
 	"dependencies": {
+		"@cmru-comsci-66/api": "workspace:*",
+		"@cmru-comsci-66/database": "workspace:*",
 		"@emotion/react": "11.11.1",
 		"@emotion/styled": "11.11.0",
 		"@fortawesome/fontawesome-svg-core": "^6.4.0",
@@ -24,8 +26,6 @@
 		"@mui/material": "5.14.2",
 		"@mui/styled-engine-sc": "5.12.0",
 		"@mui/x-date-pickers": "^6.10.1",
-		"cmru-comsci-66-api": "workspace:*",
-		"cmru-comsci-66-database": "workspace:*",
 		"dayjs": "^1.11.9",
 		"fontawesome": "5.6.3",
 		"next": "13.4.12",
