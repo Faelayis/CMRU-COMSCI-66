@@ -1,0 +1,48 @@
+name: Code Formatter
+on:
+    workflow_dispatch:
+    push:
+        paths-ignore:
+            - ".github/**"
+            - ".husky/**"
+            - "*.webm"
+            - "*.jpg"
+            - "*.png"
+
+jobs:
+    format:
+        name: Code Formatting
+        if: github.actor!= 'renovate[bot]'
+        runs-on: ubuntu-latest
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Setup PNPM
+              uses: pnpm/action-setup@v2
+              with:
+                  run_install: false
+                  version: ${{ vars.PNPM_VERSION }}
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ vars.NODE_VERSION }}
+                  cache: pnpm
+
+            - name: Install Dependencies
+              run: pnpm install --ignore-scripts
+
+            - name: Run ESLint
+              run: pnpm run fix
+
+            - name: Run Prettier
+              run: pnpm run prettier
+
+            - name: Automatically Commit Changed
+              uses: stefanzweifel/git-auto-commit-action@v4
+              with:
+                  push_options: "--force"
+                  commit_options: "--no-verify"
+                  commit_message: "chore: code formatting"
+                  skip_checkout: true

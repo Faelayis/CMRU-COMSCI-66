@@ -1,0 +1,185 @@
+name: Publish
+on:
+    workflow_dispatch:
+        inputs:
+            notest:
+                description: "Skip (Test & Fix Problems)"
+                required: false
+                default: false
+                type: boolean
+            nobumpversion:
+                description: "Skip (Bump version)"
+                required: false
+                default: false
+                type: boolean
+            bumpversion:
+                type: choice
+                description: "Bump version"
+                required: true
+                options:
+                    - patch
+                    - minor
+                    - major
+            deploy_web:
+                description: "Deploy WebSite"
+                required: false
+                default: false
+                type: boolean
+            deploy_package:
+                description: "Deploy Packages"
+                required: false
+                default: false
+                type: boolean
+
+jobs:
+    test:
+        name: Test & Fix Problems!
+        runs-on: ubuntu-latest
+        if: ${{ github.event.inputs.notest == 'false' }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+
+            - name: Setup PNPM
+              uses: pnpm/action-setup@v2
+              with:
+                  run_install: false
+                  version: ${{ vars.PNPM_VERSION }}
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ vars.NODE_VERSION }}
+                  cache: pnpm
+
+            - name: Install Dependencies
+              run: pnpm install
+
+            - name: Run ESLint
+              run: pnpm run fix
+
+            - name: Automatically Commit Changed
+              uses: stefanzweifel/git-auto-commit-action@v4
+              with:
+                  push_options: "--force"
+                  commit_options: "--no-verify"
+                  commit_message: "chore(eslint): fix problems"
+                  skip_checkout: true
+
+    bumpversion:
+        name: Bump Version
+        needs: [test]
+        runs-on: ubuntu-latest
+        outputs:
+            outversion: ${{ steps.package.outputs.version }}
+        if: |
+            always() && github.event.inputs.nobumpversion == 'false' &&
+            !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+              with:
+                  fetch-depth: 0
+
+            - name: Setup PNPM
+              uses: pnpm/action-setup@v2
+              with:
+                  run_install: |
+                      - recursive: true
+                        args: [--frozen-lockfile, --strict-peer-dependencies, --ignore-scripts]
+                      - args: [--global, '@jsdevtools/version-bump-prompt']
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ vars.NODE_VERSION }}
+                  cache: pnpm
+
+            - name: Bump Version
+              id: bumpversion
+              run: pnpm bump ${{ github.event.inputs.bumpversion }}
+
+            - name: Bump Version (Packages)
+              if: |
+                  always() && github.event.inputs.deploy_package == 'true' &&
+                  !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
+              run: pnpm --filter=./library/** ci:bump ${{ github.event.inputs.bumpversion }}
+
+            - name: Get Version
+              id: package
+              if: steps.bumpversion.outcome == 'success'
+              uses: Saionaro/extract-package-version@v1.2.1
+
+            - name: Automatically Commit Changed
+              if: steps.package.outcome == 'success'
+              uses: stefanzweifel/git-auto-commit-action@v4
+              with:
+                  push_options: "--force"
+                  commit_options: "--no-verify"
+                  tagging_message: "v${{ steps.package.outputs.version }}"
+                  commit_message: "chore(release): publish v${{ steps.package.outputs.version }}"
+                  skip_checkout: true
+
+    deploy_package:
+        name: Publish Packages
+        needs: [bumpversion]
+        runs-on: ubuntu-latest
+        if: |
+            always() && github.event.inputs.deploy_package == 'true' &&
+            !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+              with:
+                  ref: ${{ github.ref }}
+
+            - name: Setup PNPM
+              uses: pnpm/action-setup@v2
+              with:
+                  run_install: false
+                  version: ${{ vars.PNPM_VERSION }}
+
+            - name: Setup Node
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ vars.NODE_VERSION }}
+                  cache: pnpm
+
+            - name: Install Dependencies
+              run: pnpm install
+
+            - name: Remove pkg scripts
+              run: pnpm --filter=./library/** pkg delete scripts
+
+            - name: Setup Configuration
+              run: |
+                  pnpm config set 'always-auth' "true"
+
+            - name: Deploy to GitHub Packages
+              run: |
+                  pnpm config set '//npm.pkg.github.com/:_authToken' "${NODE_AUTH_TOKEN}"
+                  pnpm --filter=./library/** publish -r --access=public --registry=https://npm.pkg.github.com/
+                  pnpm config delete '//npm.pkg.github.com/:_authToken'
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
+
+    deploy_website:
+        name: Publish WebSite
+        needs: [bumpversion]
+        runs-on: ubuntu-latest
+        if: |
+            always() && github.event.inputs.deploy_web == 'true' &&
+            !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v3
+              with:
+                  ref: ${{ github.ref }}
+
+            - name: Deploy to Vercel
+              uses: amondnet/vercel-action@v25
+              with:
+                  vercel-token: ${{ secrets.VERCEL_TOKEN }}
+                  vercel-args: "--prod"
+                  vercel-org-id: ${{ secrets.ORG_ID }}
+                  vercel-project-id: ${{ secrets.PROJECT_ID }}
