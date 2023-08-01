@@ -1,0 +1,40 @@
+{
+	"private": true,
+	"name": "@cmru-comsci-66/client",
+	"version": "0.1.0",
+	"scripts": {
+		"build": "next build",
+		"clean": "rimraf .next .turbo src/pages/api",
+		"dev": "pnpm run open-browser && next dev",
+		"format": "prettier --write .",
+		"lint": "eslint .",
+		"lint:fix": "eslint --fix",
+		"open-browser": "open-cli http://localhost:3000",
+		"start": "next start"
+	},
+	"dependencies": {
+		"@cmru-comsci-66/api": "workspace:*",
+		"@cmru-comsci-66/database": "workspace:*",
+		"@emotion/react": "11.11.1",
+		"@emotion/styled": "11.11.0",
+		"@fortawesome/fontawesome-svg-core": "^6.4.0",
+		"@fortawesome/free-brands-svg-icons": "^6.4.0",
+		"@fortawesome/react-fontawesome": "^0.2.0",
+		"@mui/icons-material": "5.14.1",
+		"@mui/lab": "5.0.0-alpha.137",
+		"@mui/material": "5.14.2",
+		"@mui/styled-engine-sc": "5.12.0",
+		"@mui/x-date-pickers": "^6.10.1",
+		"dayjs": "^1.11.9",
+		"fontawesome": "5.6.3",
+		"next": "13.4.12",
+		"node-fetch": "3.3.2",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"styled-components": "5.3.1"
+	},
+	"devDependencies": {
+		"@prisma/nextjs-monorepo-workaround-plugin": "^5.0.0",
+		"eslint-config-next": "13.4.12"
+	}
+}
