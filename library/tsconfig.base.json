@@ -1,0 +1,31 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"compilerOptions": {
+		"moduleResolution": "node",
+		"noEmit": false,
+		"module": "ESNext",
+		"target": "ESNext",
+		"allowSyntheticDefaultImports": true,
+		"lib": [
+			"ESNext",
+			"ESNext.AsyncIterable"
+		],
+		"experimentalDecorators": true,
+		"emitDecoratorMetadata": true,
+		"incremental": true,
+		"sourceMap": true,
+		"declaration": true,
+		"noErrorTruncation": true,
+		"forceConsistentCasingInFileNames": true,
+		"composite": true,
+		"types": [
+			"node"
+		],
+		"esModuleInterop": true
+	},
+	"ts-node": {
+		"esm": true,
+		"transpileOnly": true,
+		"experimentalSpecifierResolution": "node"
+	}
+}

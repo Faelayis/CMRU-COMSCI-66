@@ -1,0 +1,80 @@
+{
+	"$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/package.json",
+	"private": true,
+	"name": "cmru-comsci-66",
+	"version": "0.1.0",
+	"license": "apache-2.0",
+	"type": "module",
+	"scripts": {
+		"!up": "pnpm up --latest --recursive --interactive",
+		"api:next": "pnpm --filter=database-next-api",
+		"clean": "pnpm --filter=* clean",
+		"clean:node_modules": "pnpx rimraf@3.0.2 './**/node_modules'",
+		"client": "pnpm --filter=client",
+		"db": "pnpm --filter=database",
+		"dev": "dotenv -e .env -- turbo run dev",
+		"fix": "pnpm --filter=* lint:fix",
+		"format": "prettier --write .",
+		"husky:pre-commit": "pnpm lint-staged",
+		"husky:pre-push": "turbo run husky:pre-push",
+		"preinstall": "npx only-allow pnpm",
+		"lib": "pnpm --filter=library",
+		"lint": "pnpm --filter=* lint",
+		"linux:init": "chmod ug+x .husky/*",
+		"prepare": "run-script-os",
+		"prepare:nix": "husky install && chmod ug+x .husky/*",
+		"prepare:windows": "husky install",
+		"prettier": "pnpm -w --filter=* format --list-different",
+		"prettier:json": "pnpm prettier-package-json --write **/package.json --use-tabs false",
+		"test:build": "pnpm --filter=* postinstall && pnpm --filter=* build"
+	},
+	"workspaces": [
+		"client/**",
+		"library/**"
+	],
+	"devDependencies": {
+		"@jsdevtools/version-bump-prompt": "6.1.0",
+		"@typescript-eslint/eslint-plugin": "6.2.0",
+		"@typescript-eslint/parser": "6.2.0",
+		"dotenv-cli": "7.2.1",
+		"eslint": "8.46.0",
+		"eslint-config-prettier": "8.9.0",
+		"eslint-plugin-prettier": "5.0.0",
+		"eslint-plugin-simple-import-sort": "10.0.0",
+		"eslint-plugin-typescript-sort-keys": "2.3.0",
+		"eslint-plugin-unicorn": "48.0.1",
+		"husky": "8.0.3",
+		"lint-staged": "13.2.3",
+		"open-cli": "7.2.0",
+		"prettier": "3.0.0",
+		"prettier-package-json": "2.8.0",
+		"rimraf": "5.0.1",
+		"run-script-os": "1.1.6",
+		"turbo": "1.10.12"
+	},
+	"engines": {
+		"node": ">=20",
+		"pnpm": ">=8"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "pnpm run --silent husky:pre-commit",
+			"pre-push": "pnpm run --silent husky:pre-push"
+		}
+	},
+	"lint-staged": {
+		"*.json": [
+			"prettier --write"
+		],
+		"package.json": [
+			"prettier-package-json --write --use-tabs false"
+		],
+		"client/**/*.{js,cjs}": [
+			"eslint -c './client/.eslintrc.cjs' --fix"
+		],
+		"*": [
+			"pnpm run prettier --ignore-unknown"
+		]
+	},
+	"packageManager": "pnpm@8.6.10"
+}

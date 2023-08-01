@@ -1,0 +1,64 @@
+{
+	"private": false,
+	"name": "@cmru-comsci-66/api",
+	"version": "0.1.0",
+	"license": "apache-2.0",
+	"author": "Faelayis <48393914+Faelayis@users.noreply.github.com>",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Faelayis/CMRU-COMSCI-66.git",
+		"directory": "library/api"
+	},
+	"type": "module",
+	"exports": {
+		".": {
+			"import": "./lib-esm/library.js",
+			"require": "./dist/library.js"
+		}
+	},
+	"module": "lib-esm/library.js",
+	"files": [
+		"dist",
+		"lib",
+		"lib-esm"
+	],
+	"scripts": {
+		"build:esm": "tsc -m es6 --outDir lib-esm",
+		"build:node": "tsc --build",
+		"ci:bump": "bump",
+		"ci:delete_scripts": "pnpm pkg delete scripts",
+		"clean": "rimraf .turbo dist lib lib-esm tsconfig.tsbuildinfo",
+		"dev": "tsc -w",
+		"dev:webhook": "node --loader ts-node/esm ./test/webhook.ts",
+		"format": "prettier --write .",
+		"postinstall": "pnpm run --silent \"/^build:.*/\"",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix",
+		"test": "node --loader ts-node/esm ./test/webhook.ts"
+	},
+	"typings": "lib-esm/library.d.ts",
+	"dependencies": {
+		"@octokit/graphql-schema": "14.24.1",
+		"@octokit/openapi-types": "18.0.0",
+		"@octokit/rest": "20.0.1",
+		"@octokit/types": "11.1.0",
+		"axios": "1.4.0",
+		"discord-api-types": "0.37.50"
+	},
+	"devDependencies": {
+		"@babel/core": "7.22.9",
+		"@graphql-eslint/eslint-plugin": "3.20.1",
+		"@types/node": "20.4.5",
+		"cross-env": "7.0.3",
+		"graphql": "16.7.1",
+		"ts-loader": "9.4.4",
+		"ts-node": "10.9.1",
+		"tslib": "2.6.1",
+		"typescript": "5.1.6",
+		"typescript-transform-paths": "3.4.6"
+	},
+	"publishConfig": {
+		"access": "public",
+		"linkDirectory": false
+	}
+}

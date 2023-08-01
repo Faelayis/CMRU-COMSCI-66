@@ -1,0 +1,31 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"compilerOptions": {
+		"rootDir": "./core",
+		"lib": [
+			"ESNext",
+			"ESNext.AsyncIterable",
+			"DOM",
+			"DOM.Iterable"
+		],
+		"noEmit": false,
+		"composite": false,
+		"removeComments": true,
+		"incremental": false,
+		"sourceMap": false,
+		"declaration": false,
+		"outDir": "./../../client/src/pages/api",
+		"types": [
+			"react",
+			"react-dom"
+		],
+		"typeRoots": [
+			"node_modules/@types"
+		]
+	},
+	"extends": "../tsconfig.base.json",
+	"display": "@cmru-comsci-66/database-next-api",
+	"include": [
+		"core"
+	]
+}

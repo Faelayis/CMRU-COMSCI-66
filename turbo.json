@@ -1,0 +1,43 @@
+{
+	"$schema": "https://turbo.build/schema.json",
+	"pipeline": {
+		"build": {
+			"dependsOn": ["^build:node", "^build:esm", "^build"],
+			"outputs": ["dist/**", "lib-esm/**", ".next/**"],
+			"cache": false
+		},
+		"build:node": {
+			"dependsOn": ["^build:node"],
+			"outputs": ["dist/**"]
+		},
+		"build:esm": {
+			"dependsOn": ["^build:esm"],
+			"outputs": ["lib-esm/**"]
+		},
+		"prisma:generate": {
+			"outputMode": "errors-only",
+			"cache": false
+		},
+		"test": {
+			"dependsOn": ["^build"],
+			"outputs": []
+		},
+		"husky:pre-push": {
+			"outputMode": "errors-only",
+			"dependsOn": ["lint"],
+			"cache": false
+		},
+		"lint": {
+			"cache": false
+		},
+		"dev": {
+			"cache": true
+		},
+		"start": {
+			"cache": true
+		},
+		"clean": {
+			"cache": false
+		}
+	}
+}

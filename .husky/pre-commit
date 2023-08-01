@@ -1,0 +1,10 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "→ husky (pre-commit)"
+
+if [ $(pnpm -v) ]; then
+   pnpm run --silent husky:pre-commit
+else
+   echo "❌ This project use pnpm." && exit 127
+fi

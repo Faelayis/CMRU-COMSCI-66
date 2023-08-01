@@ -1,0 +1,22 @@
+{
+	"parser": "@typescript-eslint/parser",
+	"parserOptions": {
+		"ecmaVersion": "latest",
+		"sourceType": "module"
+	},
+	"plugins": ["@typescript-eslint", "prettier", "typescript-sort-keys", "simple-import-sort"],
+	"extends": [
+		"eslint:recommended",
+		"plugin:@typescript-eslint/eslint-recommended",
+		"plugin:@typescript-eslint/recommended",
+		"plugin:typescript-sort-keys/recommended",
+		"prettier"
+	],
+	"rules": {
+		"prettier/prettier": "error",
+		"typescript-sort-keys/interface": "error",
+		"typescript-sort-keys/string-enum": "error",
+		"simple-import-sort/imports": "error",
+		"simple-import-sort/exports": "error"
+	}
+}

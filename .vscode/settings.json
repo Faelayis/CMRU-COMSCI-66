@@ -1,0 +1,25 @@
+{
+	"npm.runSilent": true,
+	"npm.packageManager": "pnpm",
+	"typescript.suggest.autoImports": true,
+	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+	"deepscan.enable": true,
+	"files.exclude": {
+		"**/node_modules/": true
+	},
+	"editor.codeActionsOnSave": {
+		"source.fixAll.eslint": true
+	},
+	"[typescriptreact]": {
+		"editor.defaultFormatter": "esbenp.prettier-vscode"
+	},
+	"[shellscript]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format"
+	},
+	"[javascript]": {
+		"editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+	},
+	"[dotenv]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format"
+	}
+}
