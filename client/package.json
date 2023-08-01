@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@cmru-comsci-66/client",
-	"version": "0.1.0",
+	"version": "1.0.0",
 	"scripts": {
 		"build": "next build",
 		"ci:bump": "bump",
