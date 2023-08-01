@@ -10,6 +10,9 @@
 		"directory": "library/next-api"
 	},
 	"type": "module",
+	"files": [
+		"core"
+	],
 	"scripts": {
 		"build": "tsc --build",
 		"ci:bump": "bump",
@@ -31,6 +34,7 @@
 		"typescript-transform-paths": "3.4.6"
 	},
 	"publishConfig": {
+		"@faelayis:registry": "https://npm.pkg.github.com",
 		"access": "public",
 		"linkDirectory": false
 	}

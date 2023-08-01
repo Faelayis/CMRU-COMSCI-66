@@ -58,6 +58,7 @@
 		"typescript-transform-paths": "3.4.6"
 	},
 	"publishConfig": {
+		"@faelayis:registry": "https://npm.pkg.github.com",
 		"access": "public",
 		"linkDirectory": false
 	}
