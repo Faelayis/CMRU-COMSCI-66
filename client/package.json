@@ -4,6 +4,7 @@
 	"version": "0.1.0",
 	"scripts": {
 		"build": "next build",
+		"ci:bump": "bump",
 		"clean": "rimraf .next .turbo src/pages/api",
 		"dev": "pnpm run open-browser && next dev",
 		"format": "prettier --write .",

@@ -103,7 +103,13 @@ jobs:
               if: |
                   always() && github.event.inputs.deploy_package == 'true' &&
                   !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
-              run: pnpm --filter=./library/** ci:bump ${{ github.event.inputs.bumpversion }}
+              run: ${{ github.event.inputs.bumpversion }}
+
+            - name: Bump Version (WebSite)
+              if: |
+                  always() && github.event.inputs.deploy_web == 'true' &&
+                  !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
+              run: pnpm --filter=./client ci:bump ${{ github.event.inputs.bumpversion }}
 
             - name: Get Version
               id: package
