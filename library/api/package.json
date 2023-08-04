@@ -38,7 +38,7 @@
 	},
 	"typings": "lib-esm/library.d.ts",
 	"dependencies": {
-		"@octokit/graphql-schema": "14.24.1",
+		"@octokit/graphql-schema": "14.25.0",
 		"@octokit/openapi-types": "18.0.0",
 		"@octokit/rest": "20.0.1",
 		"@octokit/types": "11.1.0",

@@ -133,8 +133,8 @@ importers:
   library/api:
     dependencies:
       '@octokit/graphql-schema':
-        specifier: 14.24.1
-        version: 14.24.1
+        specifier: 14.25.0
+        version: 14.25.0
       '@octokit/openapi-types':
         specifier: 18.0.0
         version: 18.0.0
@@ -1453,8 +1453,8 @@ packages:
       universal-user-agent: 6.0.0
     dev: false
 
-  /@octokit/graphql-schema@14.24.1:
-    resolution: {integrity: sha512-MK/axY/v3D6EEnahL5zEXezuyJBKtEHZTiBOEwBw7McO/FFKx8WAmdsQXUeMxKIFnUwufAQr8QVAqVk+8uUm7A==}
+  /@octokit/graphql-schema@14.25.0:
+    resolution: {integrity: sha512-wVkHTxDozsxAjP5UwyndKlCGiPTnBGd3TuG283uTluugq7RAHzZiWo0OjDEfr3793L1Al7W5oPgwedFgDNTaLQ==}
     dependencies:
       graphql: 16.7.1
       graphql-tag: 2.12.6(graphql@16.7.1)
