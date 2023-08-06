@@ -76,5 +76,5 @@
 			"pnpm run prettier --ignore-unknown"
 		]
 	},
-	"packageManager": "pnpm@8.6.11"
+	"packageManager": "pnpm@8.6.12"
 }
