@@ -45,7 +45,7 @@ export async function api(): Promise<GetServerSidePropsResult<unknown>> {
 	try {
 		const currentDate = new Date().toISOString(),
 			keys = await prisma.discord_webhook.findMany(),
-			response = await fetch(`${process.env.API_URL ?? `http://localhost:${process.env.PORT}`}/api/billings`),
+			response = await fetch(`${process.env.API_URL ?? `http://localhost:${process.env.PORT}`}` + "/api/billings"),
 			data = (await response.json()) as PropertiesToString<billing>[];
 
 		const mapData = data
