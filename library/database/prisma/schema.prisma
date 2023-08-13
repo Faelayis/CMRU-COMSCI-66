@@ -9,72 +9,73 @@ datasource db {
    url      = env("DATABASE_URL")
 }
 
-model user {
-   id       Int     @id @default(autoincrement())
-   title    String?
-   username String?
-   password String?
-
-   studentListId Int?
-   StudentList   StudentList?
-
-   created_at DateTime @default(now())
-
-   @@map("Users")
-}
-
-enum billing_time {
+enum BillingTime {
    once
    week
    month
    year
 }
 
-enum billing_type {
+enum BillingType {
    event
    force
    general
    public
 }
 
-model billing {
-   id    Int          @id @default(autoincrement())
-   types billing_type @default(general)
+model User {
+   id       Int     @id @default(autoincrement())
+   title    String?
+   username String?
+   password String?
 
-   name        String
-   description String?
-   price       Int
-   time        billing_time?
+   studentList StudentList?
+   created_at  DateTime     @default(now())
 
-   start_at DateTime?
-   end_at   DateTime?
-
-   discord_webhook   discord_webhook? @relation(fields: [discord_webhookId], references: [id])
-   discord_webhookId BigInt?
-
-   @@map("Billings")
+   @@map("Users")
 }
 
-model discord_webhook {
+model DiscordWebhook {
    id    BigInt @id
    token String
 
-   billing billing[]
+   billing Billing[]
 
    @@index(id)
    @@map("Discord Webhook")
 }
 
+model Billing {
+   id    Int         @id @default(autoincrement())
+   types BillingType @default(general)
+
+   name        String
+   description String?
+   price       Int           @default(0)
+   time        BillingTime?
+   paid        StudentList[]
+
+   start_at DateTime?
+   end_at   DateTime?
+
+   discord_webhook   DiscordWebhook? @relation(fields: [discord_webhookId], references: [id])
+   discord_webhookId BigInt?
+
+   @@map("Billings")
+}
+
 model StudentList {
-   id   Int   @id @unique
-   user user? @relation(fields: [id], references: [id])
+   id Int @id @unique
 
    section Int
    name    String
    status  String?
+   paid    Billing[]
 
-   created_at DateTime?
-   update_at  DateTime?
+   update_at DateTime? @updatedAt
+
+   user   User? @relation(fields: [userId], references: [id])
+   userId Int?  @unique
 
    @@map("Student List")
 }

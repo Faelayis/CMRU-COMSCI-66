@@ -1,5 +1,5 @@
 import prisma from "@cmru-comsci-66/database";
-import type { billing } from "@cmru-comsci-66/database/node_modules/@prisma/client/index";
+import type { Billing } from "@cmru-comsci-66/database/node_modules/@prisma/client/index";
 import type { GetServerSidePropsResult, NextApiRequest, NextApiResponse } from "next";
 import fetch from "node-fetch";
 
@@ -44,9 +44,9 @@ export default async function handle(request: NextApiRequest, response: NextApiR
 export async function api(): Promise<GetServerSidePropsResult<unknown>> {
 	try {
 		const currentDate = new Date().toISOString(),
-			keys = await prisma.discord_webhook.findMany(),
+			keys = await prisma.discordWebhook.findMany(),
 			response = await fetch(`${process.env.API_URL ?? `http://localhost:${process.env.PORT}`}` + "/api/billings"),
-			data = (await response.json()) as PropertiesToString<billing>[];
+			data = (await response.json()) as PropertiesToString<Billing>[];
 
 		const mapData = data
 			.filter((item) => {
