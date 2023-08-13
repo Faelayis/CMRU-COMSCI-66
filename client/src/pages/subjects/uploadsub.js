@@ -1,11 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
-import { Card, Container, TextField, Typography, Button } from "@mui/material";
+import {
+	Card,
+	Container,
+	TextField,
+	Typography,
+	Button,
+	Autocomplete,
+} from "@mui/material";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { Subject } from "@/data/data";
 
 export default function Uploadsub() {
+	const [dropdown, setDropDown] = useState("");
 	return (
 		<div>
 			<Head>
@@ -77,6 +86,25 @@ export default function Uploadsub() {
 							label="งานที่ 3"
 							autoComplete="content 3"
 							autoFocus
+						/>
+						<Typography component="h1" variant="h6" textAlign="left">
+							รายวิชา
+						</Typography>
+						<Autocomplete
+							margin="normal"
+							required
+							fullWidth
+							disablePortal
+							id="dropdown"
+							value={dropdown}
+							options={Subject}
+							sx={{ mt: 2 }}
+							getOptionLabel={(option) => option.title}
+							renderInput={(params) => <TextField {...params} label="วิชา" />}
+							onChange={(_e, v) => {
+								v?.price ? setPrice(v.price) : setPrice(null);
+								setDropDown(v);
+							}}
 						/>
 						<Typography component="h1" variant="h6" textAlign="left">
 							วันที่สั่ง
