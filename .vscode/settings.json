@@ -5,7 +5,12 @@
 	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
 	"deepscan.enable": true,
 	"files.exclude": {
-		"**/node_modules/": true
+		"**/node_modules/": true,
+		"**/lib-esm/": true,
+		"**/.turbo/": true,
+		"**/.next/": true,
+		"**/dist/": true,
+		"**/tsconfig.tsbuildinfo/": true
 	},
 	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": true
