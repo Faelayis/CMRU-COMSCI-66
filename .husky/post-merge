@@ -1,0 +1,14 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "→ husky (post-merge)"
+
+if [ $(pnpm -v) ]; then
+   if [ $(pnpm git-pull-run -V) ]; then
+      pnpm git-pull-run --pattern "**/pnpm-lock.yaml" --command "pnpm install"
+   else
+      pnpx git-pull-run --pattern "**/pnpm-lock.yaml" --command "pnpm install"
+   fi
+else
+   echo "❌ This project use pnpm." && exit 127
+fi
