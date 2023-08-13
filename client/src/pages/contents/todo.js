@@ -45,9 +45,8 @@ export default function ToDo() {
 								>
 									<Image
 										src={Section1Img}
-										width={250}
-										height={250}
-										style={{ width: "auto", height: "auto" }}
+										width={450}
+										height={350}
 										alt="Profile"
 										className="responsive-img"
 										priority
@@ -68,9 +67,8 @@ export default function ToDo() {
 								>
 									<Image
 										src={Section2Img}
-										width={250}
+										width={450}
 										height={250}
-										style={{ width: "auto", height: "auto" }}
 										alt="Profile"
 										className="responsive-img"
 										priority
