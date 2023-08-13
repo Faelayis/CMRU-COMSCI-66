@@ -11,6 +11,9 @@
 		"clean": "pnpm --filter=* clean",
 		"clean:node_modules": "pnpx rimraf@3.0.2 './**/node_modules'",
 		"client": "pnpm --filter=client",
+		"copy": "run-script-os",
+		"copy:nix": "cp .env library/database 2> /dev/null || true",
+		"copy:windows": "cp .\\.env .\\library\\database 2> nul || true",
 		"db": "pnpm --filter=database",
 		"dev": "dotenv -e .env -- turbo run dev",
 		"fix": "pnpm --filter=* lint:fix",
@@ -21,7 +24,7 @@
 		"lib": "pnpm --filter=library",
 		"lint": "pnpm --filter=* lint",
 		"linux:init": "chmod ug+x .husky/*",
-		"prepare": "run-script-os",
+		"prepare": "run-script-os && pnpm run --silent copy",
 		"prepare:nix": "husky install && chmod ug+x .husky/*",
 		"prepare:windows": "husky install",
 		"prettier": "pnpm -w --filter=* format --list-different",
@@ -56,6 +59,15 @@
 	"engines": {
 		"node": ">=20",
 		"pnpm": ">=8"
+	},
+	"copyFiles": [
+		{
+			"from": ".env",
+			"to": "./library/database/.env"
+		}
+	],
+	"copyFilesSettings": {
+		"whenFileExists": "overwrite"
 	},
 	"husky": {
 		"hooks": {
