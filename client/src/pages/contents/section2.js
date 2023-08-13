@@ -2,7 +2,6 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Card, CardContent, Container, Typography, Grid } from "@mui/material";
-import { Subject } from "@/data/data";
 
 const pages = [
 	"Multimedia",
