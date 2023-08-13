@@ -23,6 +23,11 @@ enum BillingType {
    public
 }
 
+enum ContentType {
+   OnSite
+   Online
+}
+
 model User {
    id       Int     @id @default(autoincrement())
    title    String?
@@ -78,4 +83,47 @@ model StudentList {
    userId Int?  @unique
 
    @@map("Student List")
+}
+
+model Subject {
+   id         Int    @id @default(autoincrement())
+   sec        Int    @default(0)
+   coursecode String @default("COM 0000-00")
+
+   title          String?
+   instructorName String?
+   instructor     Instructor? @relation(fields: [instructorName], references: [name])
+
+   content Content[]
+   url     String[]
+
+   image    String?
+   updateAt DateTime @updatedAt
+}
+
+model Instructor {
+   id   Int    @id @default(autoincrement())
+   name String @unique
+
+   image   String?
+   contact String?
+
+   metadata Subject[]
+}
+
+model Content {
+   id   Int         @id @default(autoincrement())
+   type ContentType @default(OnSite)
+
+   name        String?
+   description String?
+
+   startDate String?
+   endDate   String?
+
+   createdAt DateTime @default(now())
+   updateAt  DateTime @updatedAt
+
+   metadataId Int?
+   metadata   Subject? @relation(fields: [metadataId], references: [id])
 }
