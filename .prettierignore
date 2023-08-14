@@ -13,8 +13,8 @@ lib-esm
 # turbo
 .turbo
 
-# Ignore files for PNPM, NPM and YARN
-pnpm-lock.yaml
+# # Ignore files for PNPM, NPM and YARN
+# pnpm-lock.yaml
 
 # Build Database API
 client/src/pages/api

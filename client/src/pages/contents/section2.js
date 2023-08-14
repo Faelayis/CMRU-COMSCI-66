@@ -11,8 +11,13 @@ const pages = [
 	"Holisticcare",
 	"Thai",
 ];
+import { api } from "../api/subject";
 
-export default function Section2() {
+export async function getServerSideProps() {
+	return api();
+}
+
+export default function Section2({ subject }) {
 	const handleToPage = (page) => {
 		window.location.href = `/subjects/${page.toLowerCase()}`;
 	};
@@ -49,7 +54,7 @@ export default function Section2() {
 						เว็บไซต์นี้สร้างขึ้นเพื่อติดตามงานที่ได้รับมอบหมายของ Section 2
 					</Typography>
 					<Grid container spacing={4} p={5}>
-						{Subject.map(
+						{subject.map(
 							(
 								item,
 								index, // เพิ่มตัวแปร index ที่นี่
@@ -85,7 +90,7 @@ export default function Section2() {
 												รหัสวิชา: {item.coursecode}
 											</Typography>
 											<Typography className="text-indent">
-												อาจารย์ผู้สอน: {item.instructor}
+												อาจารย์ผู้สอน: {item.instructorName}
 											</Typography>
 										</CardContent>
 									</Card>
