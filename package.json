@@ -86,7 +86,7 @@
 			"eslint -c './client/.eslintrc.cjs' --fix"
 		],
 		"*": [
-			"pnpm run prettier --ignore-unknown"
+			"prettier --write --ignore-unknown"
 		]
 	},
 	"packageManager": "pnpm@8.6.12"
