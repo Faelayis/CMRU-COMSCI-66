@@ -136,3 +136,6 @@ dist
 
 # turbo
 .turbo
+
+# Documentation Generator
+docs-db
