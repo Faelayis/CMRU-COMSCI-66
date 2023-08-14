@@ -96,7 +96,7 @@ export default function Uploadsub() {
 							disablePortal
 							id="dropdown"
 							value={dropdown}
-							options={Subject}
+							// options={Subject}
 							sx={{ mt: 2 }}
 							getOptionLabel={(option) => option.title}
 							renderInput={(params) => <TextField {...params} label="วิชา" />}
