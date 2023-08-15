@@ -11,9 +11,18 @@ import {
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { API } from "../api/subject";
 
-export default function Uploadsub() {
+export async function getServerSideProps() {
+	return API();
+}
+
+/**
+ * @param {{ subject: import('../api/subject').Types}} props
+ */
+export default function Uploadsub({ subject }) {
 	const [dropdown, setDropDown] = useState("");
+
 	return (
 		<div>
 			<Head>
@@ -96,7 +105,7 @@ export default function Uploadsub() {
 							disablePortal
 							id="dropdown"
 							value={dropdown}
-							// options={Subject}
+							options={subject}
 							sx={{ mt: 2 }}
 							getOptionLabel={(option) => option.title}
 							renderInput={(params) => <TextField {...params} label="วิชา" />}

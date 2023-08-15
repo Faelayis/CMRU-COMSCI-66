@@ -31,7 +31,7 @@ export default async function handle(request: NextApiRequest, response: NextApiR
 	}
 }
 
-export async function api(): Promise<GetServerSidePropsResult<unknown>> {
+export async function API(): Promise<GetServerSidePropsResult<{ subject: PropertiesToString<Subject>[] }>> {
 	try {
 		const response = await fetch(
 				`${process.env.NODE_ENV === "development" ? `http://localhost:${process.env["PORT" || "npm_package_scripts_PORT"]}` : process.env.API_URL}` + "/api/subject",
@@ -48,3 +48,6 @@ export async function api(): Promise<GetServerSidePropsResult<unknown>> {
 		};
 	}
 }
+
+export type Types = Subject[];
+export type StringTypes = Array<{ [K in keyof Subject]: string }>;
