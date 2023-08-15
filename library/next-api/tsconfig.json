@@ -11,9 +11,9 @@
 		"noEmit": false,
 		"composite": false,
 		"removeComments": true,
-		"incremental": false,
+		"incremental": true,
 		"sourceMap": false,
-		"declaration": false,
+		"declaration": true,
 		"outDir": "./../../client/src/pages/api",
 		"types": [
 			"react",

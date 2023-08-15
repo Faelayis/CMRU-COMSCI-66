@@ -14,17 +14,19 @@ import {
 import Swal from "sweetalert2";
 import Head from "next/head";
 import Image from "next/image";
+import { API } from "../api/billings";
 import { DiscordWebHook } from "@cmru-comsci-66/api";
 
 // Contents
 import BillingImg from "@/assets/bill/bill.jpg";
 
-import { api } from "../api/billings";
-
 export async function getServerSideProps() {
-	return api();
+	return API();
 }
 
+/**
+ * @param {{ billing: import('../api/billings').MappedBillingTypes}} props
+ */
 export default function Finance({ billing }) {
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [fullname, setFullname] = useState("");

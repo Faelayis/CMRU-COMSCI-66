@@ -5,6 +5,13 @@ import fetch from "node-fetch";
 
 import { PropertiesToString } from "./types";
 
+interface MappedBilling {
+	id: string;
+	label: string;
+	price: string;
+	token: string;
+}
+
 /* eslint-disable unicorn/no-null */
 
 /**
@@ -20,12 +27,22 @@ export default async function handle(request: NextApiRequest, response: NextApiR
 	try {
 		switch (request.method) {
 			case "GET": {
+				const currentDate = new Date().toISOString();
 				const result = await prisma.billing.findMany({
-						// where: {
-						// 	end_at: {
-						// 		gte: new Date().toISOString(),
-						// 	},
-						// },
+						where: {
+							OR: [
+								{
+									end_at: {
+										gte: currentDate,
+									},
+								},
+								{
+									start_at: {
+										lte: currentDate,
+									},
+								},
+							],
+						},
 					}),
 					resultBillingStringified = result.map((item) => ({
 						...item,
@@ -41,16 +58,15 @@ export default async function handle(request: NextApiRequest, response: NextApiR
 	}
 }
 
-export async function api(): Promise<GetServerSidePropsResult<unknown>> {
+export async function API(): Promise<GetServerSidePropsResult<{ billing: MappedBilling[] }>> {
 	try {
 		const currentDate = new Date().toISOString(),
-			keys = await prisma.discordWebhook.findMany(),
 			response = await fetch(
 				`${process.env.NODE_ENV === "development" ? `http://localhost:${process.env["PORT" || "npm_package_scripts_PORT"]}` : process.env.API_URL}` + "/api/billings",
 			),
 			data = (await response.json()) as PropertiesToString<Billing>[];
 
-		const mapData = data
+		const mapData: MappedBilling[] = data
 			.filter((item) => {
 				if (item.start_at && item.end_at) {
 					return item.start_at <= currentDate && item.end_at >= currentDate;
@@ -60,12 +76,14 @@ export async function api(): Promise<GetServerSidePropsResult<unknown>> {
 					return item.end_at >= currentDate;
 				}
 			})
-			.map((item) => ({
-				id: item.discord_webhookId ?? null,
-				price: item.price,
-				token: keys.find((key) => key.id.toString() === item?.discord_webhookId?.toString())?.token ?? null,
-				label: item.name,
-			}));
+			.map((item) => {
+				return {
+					id: item.discord_webhookId,
+					price: item.price,
+					token: `${findTokenByKeyId(BigInt(item.discord_webhookId))}`,
+					label: item.name,
+				};
+			});
 
 		return {
 			props: { billing: mapData },
@@ -77,3 +95,23 @@ export async function api(): Promise<GetServerSidePropsResult<unknown>> {
 		};
 	}
 }
+
+async function findTokenByKeyId(id: bigint): Promise<string | null> {
+	try {
+		const discordWebhook = await prisma.discordWebhook.findUnique({
+			where: { id },
+			select: {
+				token: true,
+			},
+		});
+
+		return discordWebhook?.token ?? null;
+	} catch (error) {
+		console.error("Error fetching token by ID:", error);
+		throw error;
+	}
+}
+
+export type Types = Billing[];
+export type StringTypes = Array<{ [K in keyof Billing]: string }>;
+export type MappedBillingTypes = MappedBilling[];

@@ -2,6 +2,7 @@ import React from "react";
 import Head from "next/head";
 import Image from "next/image";
 import { Card, CardContent, Container, Typography, Grid } from "@mui/material";
+import { API } from "../api/subject";
 
 const pages = [
 	"Multimedia",
@@ -11,12 +12,14 @@ const pages = [
 	"Holisticcare",
 	"Thai",
 ];
-import { api } from "../api/subject";
 
 export async function getServerSideProps() {
-	return api();
+	return API();
 }
 
+/**
+ * @param {{ subject: import('../api/subject').Types}} props
+ */
 export default function Section2({ subject }) {
 	const handleToPage = (page) => {
 		window.location.href = `/subjects/${page.toLowerCase()}`;
