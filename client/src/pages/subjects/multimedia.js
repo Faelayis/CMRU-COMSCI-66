@@ -1,11 +1,11 @@
-import React from "react";
+import { Card, CardContent, Container, Grid, Typography } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
-import { Card, CardContent, Container, Typography, Grid } from "@mui/material";
-import { MultiData } from "@/data/data";
+import React from "react";
 
 // Contents
 import MultimediaIns from "/src/assets/instructor/chai.jpg";
+import { MultiData } from "@/data/data";
 
 export default function Multimedia() {
 	return (

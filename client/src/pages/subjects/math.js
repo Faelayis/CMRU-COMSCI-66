@@ -1,11 +1,11 @@
-import React from "react";
+import { Card, CardContent, Container, Grid, Typography } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
-import { Card, CardContent, Container, Typography, Grid } from "@mui/material";
-import { ComMatData } from "@/data/data";
+import React from "react";
 
 // Contents
 import mathIns from "/src/assets/instructor/kajana-150x150.jpg";
+import { ComMatData } from "@/data/data";
 
 export default function Math() {
 	return (
