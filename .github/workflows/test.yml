@@ -29,23 +29,3 @@ jobs:
 
             - name: Run Test Build
               run: pnpm run test:build
-
-    deploy:
-        name: Publish WebSite (Preview)
-        needs: [test]
-        runs-on: ubuntu-latest
-        steps:
-            - name: Checkout
-              uses: actions/checkout@v3
-              with:
-                  ref: ${{ github.ref }}
-
-            - name: Deploy to Vercel
-              uses: amondnet/vercel-action@v25
-              with:
-                  vercel-token: ${{ secrets.VERCEL_TOKEN }}
-                  vercel-args: "--prebuilt"
-                  vercel-org-id: ${{ secrets.ORG_ID }}
-                  vercel-project-id: ${{ secrets.PROJECT_ID }}
-                  alias-domains: |
-                      cmru-comsci-66-dev-pr-{{PR_NUMBER}}.vercel.app
