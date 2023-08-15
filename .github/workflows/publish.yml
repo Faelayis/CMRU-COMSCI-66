@@ -63,6 +63,12 @@ jobs:
             - name: Run ESLint
               run: pnpm run fix
 
+            - name: Run NextJS Build
+              if: |
+                  always() && github.event.inputs.deploy_web == 'true' &&
+                  !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
+              run: pnpm --filter=@cmru-comsci-66/client build
+
             - name: Automatically Commit Changed
               uses: stefanzweifel/git-auto-commit-action@v4
               with:
