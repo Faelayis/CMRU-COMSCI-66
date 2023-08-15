@@ -1,9 +1,9 @@
 // Subject Image
-import MultimediaImg from "../assets/subjects/Multimedia.jpg";
-import MathImg from "../assets/subjects/Math.jpg";
-import Program from "../assets/subjects/Program.jpg";
 import Digital from "../assets/subjects/digital-literacy.png";
 import HolisticcareImg from "../assets/subjects/Holisticcare.jpg";
+import MathImg from "../assets/subjects/Math.jpg";
+import MultimediaImg from "../assets/subjects/Multimedia.jpg";
+import Program from "../assets/subjects/Program.jpg";
 import ThaiImg from "../assets/subjects/thai.jpg";
 
 // Subject

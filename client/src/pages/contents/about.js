@@ -1,4 +1,11 @@
-import React from "react";
+// Icon
+import {
+	faDiscord,
+	faFacebook,
+	faGithub,
+	faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	Card,
 	CardActions,
@@ -8,19 +15,11 @@ import {
 	Typography,
 } from "@mui/material";
 import Image from "next/image";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
 
-// Icon
-import {
-	faFacebook,
-	faDiscord,
-	faYoutube,
-	faGithub,
-} from "@fortawesome/free-brands-svg-icons";
-
+import FirstImg from "@/assets/about/First.jpg";
 // Contents
 import ZismailImg from "@/assets/about/Zismail.jpg";
-import FirstImg from "@/assets/about/First.jpg";
 
 export default function About() {
 	return (

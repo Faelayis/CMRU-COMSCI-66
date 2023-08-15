@@ -1,11 +1,11 @@
-import React from "react";
+import { Card, CardContent, Container, Grid, Typography } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
-import { Card, CardContent, Container, Typography, Grid } from "@mui/material";
-import { ThaiData } from "@/data/data";
+import React from "react";
 
 // Contents
 import ThaiIns from "/src/assets/instructor/kitipong.jpg";
+import { ThaiData } from "@/data/data";
 
 export default function Thai() {
 	return (

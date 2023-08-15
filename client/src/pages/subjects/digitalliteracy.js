@@ -1,11 +1,11 @@
-import React from "react";
+import { Card, CardContent, Container, Grid, Typography } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
-import { Card, CardContent, Container, Typography, Grid } from "@mui/material";
-import { DigitalData } from "@/data/data";
+import React from "react";
 
 // Contents
 import DigitalIns from "/src/assets/instructor/Searee.jpg";
+import { DigitalData } from "@/data/data";
 
 export default function Digitalliteracy() {
 	return (

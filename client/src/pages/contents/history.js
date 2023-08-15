@@ -1,6 +1,6 @@
 import { Card, Container, Typography } from "@mui/material";
-import Image from "next/image";
 import Head from "next/head";
+import Image from "next/image";
 import React from "react";
 
 // Contents

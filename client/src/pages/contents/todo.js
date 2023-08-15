@@ -1,7 +1,7 @@
-import React from "react";
 import { Card, CardContent, Container, Grid, Typography } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
+import React from "react";
 
 // Contents
 import Section1Img from "@/assets/section/section1.png";

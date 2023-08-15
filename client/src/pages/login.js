@@ -1,6 +1,6 @@
-import React from "react";
-import Head from "next/head";
 import { Card, Container, Typography } from "@mui/material";
+import Head from "next/head";
+import React from "react";
 
 export default function login() {
 	return (
