@@ -3,7 +3,7 @@
  */
 module.exports = {
 	root: true,
-	extends: ["next/core-web-vitals", "prettier"],
+	extends: ["next/core-web-vitals", "prettier", "../.eslintrc"],
 	plugins: ["prettier"],
 	ignorePatterns: ["node_modules", "dist"],
 	parserOptions: {
@@ -12,6 +12,7 @@ module.exports = {
 		},
 	},
 	rules: {
-		"prettier/prettier": "warn",
+		"no-unused-vars": "warn",
+		"no-undef": "off",
 	},
 };
