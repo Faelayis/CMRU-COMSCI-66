@@ -34,7 +34,7 @@ export default async function handle(request: NextApiRequest, response: NextApiR
 export async function API(): Promise<GetServerSidePropsResult<{ subject: PropertiesToString<Subject>[] }>> {
 	try {
 		const response = await fetch(
-				`${process.env.NODE_ENV === "development" ? `http://localhost:${process.env["npm_package_scripts_PORT"]}` : process.env.API_URL}` + "/api/billings",
+				`${process.env.NODE_ENV === "development" ? `http://localhost:${process.env["npm_package_scripts_PORT"]}` : process.env.API_URL}` + "/api/subject",
 			),
 			data = (await response.json()) as PropertiesToString<Subject>[];
 
@@ -42,7 +42,7 @@ export async function API(): Promise<GetServerSidePropsResult<{ subject: Propert
 			props: { subject: data },
 		};
 	} catch (error) {
-		console.error("Error fetching or billing mapping data:", error);
+		console.error("Error fetching or subject data:", error);
 		return {
 			props: { subject: null },
 		};
