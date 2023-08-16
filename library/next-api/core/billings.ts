@@ -83,9 +83,9 @@ export async function API(): Promise<GetServerSidePropsResult<{ billing: MappedB
 			})
 			.map((item, index) => {
 				return {
-					id: item.discord_webhookId ?? process.env.default_webhook_id,
+					id: item.discord_webhookId ?? process.env.DISCORD_WEBHOOK_ID,
 					price: item.price,
-					token: discordWebhook[index]?.token?.toString() ?? process.env.default_webhook_token,
+					token: discordWebhook[index]?.token?.toString() ?? process.env.DISCORD_WEBHOOK_TOKEN,
 					label: item.name,
 				};
 			});
