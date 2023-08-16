@@ -34,7 +34,7 @@ export default async function handle(request: NextApiRequest, response: NextApiR
 export async function API(): Promise<GetServerSidePropsResult<{ subject: PropertiesToString<Subject>[] }>> {
 	try {
 		const response = await fetch(
-				`${process.env.NODE_ENV === "development" ? `http://localhost:${process.env["PORT" || "npm_package_scripts_PORT"]}` : process.env.API_URL}` + "/api/subject",
+				`${process.env.NODE_ENV === "development" ? `http://localhost:${process.env["npm_package_scripts_PORT"]}` : process.env.API_URL}` + "/api/billings",
 			),
 			data = (await response.json()) as PropertiesToString<Subject>[];
 
