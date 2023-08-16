@@ -1,16 +1,16 @@
+import { UploadOutlined } from "@ant-design/icons";
 import { DiscordWebHook } from "@cmru-comsci-66/api";
 import {
 	Autocomplete,
 	Box,
-	Button,
 	Card,
 	CardContent,
 	Container,
 	Grid,
-	Input,
 	TextField,
 	Typography,
 } from "@mui/material";
+import { Button, Space, Upload } from "antd";
 import Head from "next/head";
 import Image from "next/image";
 import React, { useState } from "react";
@@ -38,26 +38,33 @@ export default function Finance({ billing }) {
 	const [billings] = useState(billing);
 	const [isCooldown, setIsCooldown] = useState(false);
 
-	const handleFileChange = (event) => {
-		const file = event.target.files[0];
-		setSelectedFile(file);
-	};
-
 	const handleSubmit = async (event) => {
 		event.preventDefault();
+
+		if (!fullname || !studentid || !price || !dropdown) {
+			Swal.fire({
+				icon: "warning",
+				title: "ข้อมูลไม่ครบถ้วน",
+				text: "กรุณากรอกข้อมูลให้ครบถ้วนก่อนที่จะส่งข้อมูล",
+			});
+			return;
+		}
 
 		if (isCooldown) {
 			Swal.fire({
 				icon: "warning",
 				title: "Cooldown",
-				text: "กรุณารอสักครู่ก่อนที่จะส่งข้อมูลอีกครั้ง",
+				text: "ใจเย็นสิ๊ อย่า สแปมสิ",
 			});
 			return;
 		}
 
 		setIsCooldown(true);
 
-		const webhook = new DiscordWebHook(dropdown?.id, dropdown?.token);
+		const webhook = new DiscordWebHook(
+			dropdown?.id ?? process.env.DISCORD_WEBHOOK_ID,
+			dropdown?.token ?? process.env.DISCORD_WEBHOOK_TOKEN,
+		);
 
 		try {
 			await webhook.Send(selectedFile, { fullname, price, studentid, note });
@@ -70,7 +77,7 @@ export default function Finance({ billing }) {
 			Swal.fire({
 				icon: "error",
 				title: "Error",
-				text: "เกิดข้อผิดพลาดในการส่งข้อมูล",
+				text: "API เน่าส่งใหม่ภายหลังนะจ๊ะ",
 			});
 		}
 
@@ -87,7 +94,7 @@ export default function Finance({ billing }) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<Container maxWidth="md" sx={{ pt: 15, pb: 5 }}>
+			<Container fullWidth sx={{ pt: 15, pb: 5 }}>
 				<Card>
 					<Container sx={{ pt: 3 }} className="finance">
 						<Typography
@@ -98,9 +105,17 @@ export default function Finance({ billing }) {
 						>
 							Finance
 						</Typography>
+						<Typography
+							component="h1"
+							variant="h6"
+							textAlign="center"
+							style={{ color: "white" }}
+						>
+							ข้อมูลของท่านจะถูกเก็บรักษา
+						</Typography>
 
 						<Grid container spacing={3} p={5}>
-							<Grid item md={6} sm={12}>
+							<Grid item md={4} sm={12}>
 								<Card
 									sx={{
 										height: "100%",
@@ -109,31 +124,19 @@ export default function Finance({ billing }) {
 										cursor: "pointer",
 									}}
 								>
-									{/* ใส่ไฟล์ที่คุณเลือกไว้ใน Image ที่คุณต้องการแสดง */}
-									{selectedFile ? (
-										<Image
-											src={URL.createObjectURL(selectedFile)}
-											alt="Selected File"
-											width={250}
-											height={250}
-											style={{ width: "100%", height: "auto" }}
-										/>
-									) : (
-										<Image
-											src={BillingImg}
-											width={250}
-											height={250}
-											style={{ width: "auto", height: "auto" }}
-											alt="Profile"
-											className="responsive-img"
-											priority
-										/>
-									)}
-									{/* Input สำหรับอัปโหลดไฟล์ */}
+									<Image
+										src={BillingImg}
+										width={250}
+										height={250}
+										style={{ width: "auto", height: "auto" }}
+										alt="Profile"
+										className="responsive-img"
+										priority
+									/>
 								</Card>
 							</Grid>
 
-							<Grid item md={6} sm={12}>
+							<Grid item md={4} sm={12}>
 								<Card
 									sx={{
 										height: "100%",
@@ -200,12 +203,6 @@ export default function Finance({ billing }) {
 												value={note}
 												onChange={(e) => setNote(e.target.value)}
 											/>
-											{/* ใช้ selectedFile เป็น value ของ Input */}
-											<Input
-												type="file"
-												onChange={handleFileChange}
-												style={{ margin: "16px 0" }}
-											/>
 											<Autocomplete
 												margin="normal"
 												required
@@ -223,14 +220,61 @@ export default function Finance({ billing }) {
 													setDropDown(v);
 												}}
 											/>
-											<Button
-												type="submit"
-												fullWidth
-												variant="contained"
-												sx={{ mt: 3, mb: 2 }}
+										</Box>
+									</CardContent>
+								</Card>
+							</Grid>
+
+							<Grid item md={4} sm={12}>
+								<Card
+									sx={{
+										height: "100%",
+										display: "flex",
+										flexDirection: "column",
+										cursor: "pointer",
+									}}
+								>
+									<CardContent sx={{ flexGrow: 1 }}>
+										<Box
+											component="form"
+											sx={{ mt: 1 }}
+											onSubmit={handleSubmit}
+										>
+											<Typography
+												component="h1"
+												variant="h4"
+												textAlign="center"
 											>
-												Submit
-											</Button>
+												อัพโหลดข้อมูล
+											</Typography>
+											<Upload
+												action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+												listType="picture"
+												beforeUpload={(file) => {
+													setSelectedFile(file);
+													return false; // ไม่อนุญาตให้อัพโหลดไฟล์ทันที
+												}}
+											>
+												<Button icon={<UploadOutlined />}>Upload</Button>
+											</Upload>
+
+											<Space
+												direction="vertical"
+												style={{
+													width: "100%",
+													textAlign: "center",
+													marginTop: "1rem",
+												}}
+											>
+												<Button
+													type="primary"
+													block
+													variant="contained"
+													htmlType="submit"
+												>
+													Submit
+												</Button>
+											</Space>
 										</Box>
 									</CardContent>
 								</Card>

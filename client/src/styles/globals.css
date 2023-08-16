@@ -54,3 +54,18 @@ body {
 	padding-left: 5px;
 	align-items: flex-start;
 }
+.zis {
+	margin-top: 5px;
+	align-items: center;
+}
+
+/* tile uploaded pictures */
+.upload-list-inline .ant-upload-list-item {
+	float: left;
+	width: 200px;
+	margin-inline-end: 8px;
+}
+
+.ant-upload-rtl.upload-list-inline .ant-upload-list-item {
+	float: right;
+}
