@@ -60,7 +60,12 @@ export default async function handle(request: NextApiRequest, response: NextApiR
 
 export async function API(): Promise<GetServerSidePropsResult<{ billing: MappedBilling[] }>> {
 	try {
-		const currentDate = new Date().toISOString(),
+		const discordWebhook = await prisma.discordWebhook.findMany({
+				select: {
+					token: true,
+				},
+			}),
+			currentDate = new Date().toISOString(),
 			response = await fetch(
 				`${process.env.NODE_ENV === "development" ? `http://localhost:${process.env["npm_package_scripts_PORT"]}` : process.env.API_URL}` + "/api/billings",
 			),
@@ -76,11 +81,11 @@ export async function API(): Promise<GetServerSidePropsResult<{ billing: MappedB
 					return item.end_at >= currentDate;
 				}
 			})
-			.map((item) => {
+			.map((item, index) => {
 				return {
-					id: item.discord_webhookId,
+					id: item.discord_webhookId ?? process.env.default_webhook_id,
 					price: item.price,
-					token: `${findTokenByKeyId(BigInt(item.discord_webhookId))}`,
+					token: discordWebhook[index]?.token?.toString() ?? process.env.default_webhook_token,
 					label: item.name,
 				};
 			});
@@ -93,22 +98,6 @@ export async function API(): Promise<GetServerSidePropsResult<{ billing: MappedB
 		return {
 			props: { billing: null },
 		};
-	}
-}
-
-async function findTokenByKeyId(id: bigint): Promise<string | null> {
-	try {
-		const discordWebhook = await prisma.discordWebhook.findUnique({
-			where: { id },
-			select: {
-				token: true,
-			},
-		});
-
-		return discordWebhook?.token ?? null;
-	} catch (error) {
-		console.error("Error fetching token by ID:", error);
-		throw error;
 	}
 }
 
