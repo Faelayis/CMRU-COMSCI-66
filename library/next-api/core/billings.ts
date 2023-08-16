@@ -62,7 +62,7 @@ export async function API(): Promise<GetServerSidePropsResult<{ billing: MappedB
 	try {
 		const currentDate = new Date().toISOString(),
 			response = await fetch(
-				`${process.env.NODE_ENV === "development" ? `http://localhost:${process.env["PORT" || "npm_package_scripts_PORT"]}` : process.env.API_URL}` + "/api/billings",
+				`${process.env.NODE_ENV === "development" ? `http://localhost:${process.env["npm_package_scripts_PORT"]}` : process.env.API_URL}` + "/api/billings",
 			),
 			data = (await response.json()) as PropertiesToString<Billing>[];
 
