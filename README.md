@@ -7,7 +7,7 @@
 
 ## 📝 License
 
-Copyright © 2023 [Faelayis](https://github.com/Faelayis) & [zismaildev](https://github.com/Faelayis).<br>
+Copyright © 2023 [Faelayis](https://github.com/Faelayis) & [zismaildev](https://github.com/ZismailDev).<br>
 This project is [Apache License 2.0](https://github.com/Faelayis/CMRU-COMSCI-66/blob/main/LICENSE) licensed.
 
 ---
