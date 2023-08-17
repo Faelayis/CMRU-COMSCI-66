@@ -6,8 +6,10 @@ echo "→ husky (post-merge)"
 if [ $(pnpm -v) ]; then
    if [ $(pnpm git-pull-run -V) ]; then
       pnpm git-pull-run --pattern "**/pnpm-lock.yaml" --command "pnpm install"
+      pnpm git-pull-run --pattern "library/**" --command "pnpm run api:build"
    else
       pnpx git-pull-run --pattern "**/pnpm-lock.yaml" --command "pnpm install"
+      pnpx git-pull-run --pattern "library/**" --command "pnpm run api:build"
    fi
 else
    echo "❌ This project use pnpm." && exit 127
