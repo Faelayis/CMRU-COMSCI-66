@@ -66,20 +66,27 @@ export default function Finance({ billing }) {
 			dropdown?.token ?? process.env.DISCORD_WEBHOOK_TOKEN,
 		);
 
-		try {
-			await webhook.Send(selectedFile, { fullname, price, studentid, note });
-			Swal.fire({
-				icon: "success",
-				title: "Success",
-				text: "ข้อมูลถูกส่งเรียบร้อยแล้ว",
+		await webhook
+			.Send(selectedFile, { fullname, price, studentid, note })
+			.then((data) => {
+				console.log(data);
+				if (data?.status === 204) {
+					Swal.fire({
+						icon: "success",
+						title: "เสร็จสิ้น",
+						text: "ข้อมูลถูกส่งเรียบร้อยแล้ว",
+					});
+				} else {
+					Swal.fire({
+						icon: "error",
+						title: `พบข้อผิดพลาด`,
+						text: "API เน่าส่งใหม่ภายหลังนะจ๊ะ",
+						footer: `${data.code !== 0 ? `${data.code}: ` : ""}${
+							data.message
+						} `,
+					});
+				}
 			});
-		} catch (error) {
-			Swal.fire({
-				icon: "error",
-				title: "Error",
-				text: "API เน่าส่งใหม่ภายหลังนะจ๊ะ",
-			});
-		}
 
 		setTimeout(() => {
 			setIsCooldown(false);
