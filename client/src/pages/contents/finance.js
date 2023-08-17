@@ -114,8 +114,8 @@ export default function Finance({ billing }) {
 							ข้อมูลของท่านจะถูกเก็บรักษา
 						</Typography>
 
-						<Grid container spacing={3} p={5}>
-							<Grid item md={4} sm={12}>
+						<Grid container spacing={3}>
+							<Grid item md={4} xs={12}>
 								<Card
 									sx={{
 										height: "100%",
@@ -136,7 +136,7 @@ export default function Finance({ billing }) {
 								</Card>
 							</Grid>
 
-							<Grid item md={4} sm={12}>
+							<Grid item md={4} xs={12}>
 								<Card
 									sx={{
 										height: "100%",
@@ -225,7 +225,7 @@ export default function Finance({ billing }) {
 								</Card>
 							</Grid>
 
-							<Grid item md={4} sm={12}>
+							<Grid item md={4} xs={12} sx={{ pb: 5 }}>
 								<Card
 									sx={{
 										height: "100%",
