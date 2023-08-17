@@ -10,19 +10,81 @@ import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import Head from "next/head";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import Swal from "sweetalert2";
 
-import { API } from "../api/subject";
+import { fetchSubjects } from "../api/subject"; // แก้ไข path เป็นที่ตรงกับตำแหน่งของไฟล์ apiSubject.js
 
-export async function getServerSideProps() {
-	return API();
-}
+export default function Uploadsub() {
+	const [formData, setFormData] = useState({
+		title: "",
+		content1: "",
+		content2: "",
+		content3: "",
+		orderDate: null,
+		dueDate: null,
+		subject_id: null,
+	});
 
-/**
- * @param {{ subject: import('../api/subject').Types}} props
- */
-export default function Uploadsub({ subject }) {
-	const [dropdown, setDropDown] = useState("");
+	const [subjects, setSubjects] = useState([]);
+
+	useEffect(() => {
+		async function fetchSubjectData() {
+			try {
+				const data = await fetchSubjects();
+				setSubjects(data);
+			} catch (error) {
+				console.error("Error fetching subjects:", error);
+			}
+		}
+
+		fetchSubjectData();
+	}, []);
+
+	const handleInputChange = (event) => {
+		const { id, value } = event.target;
+		setFormData((prevFormData) => ({
+			...prevFormData,
+			[id]: value,
+		}));
+	};
+
+	const handleDateChange = (date, field) => {
+		setFormData((prevFormData) => ({
+			...prevFormData,
+			[field]: date,
+		}));
+	};
+
+	const handleSubmit = async (event) => {
+		event.preventDefault();
+
+		if (!formData.subject_id) {
+			Swal.fire({
+				icon: "warning",
+				title: "ข้อมูลไม่ครบถ้วน",
+				text: "กรุณากรอกข้อมูลให้ครบถ้วนก่อนที่จะส่งข้อมูล",
+			});
+			return;
+		}
+
+		try {
+			// ทำอย่างอื่นที่คุณต้องการเมื่อกด Submit ข้อมูล
+			// ...
+
+			Swal.fire({
+				icon: "success",
+				title: "Success",
+				text: "ข้อมูลถูกส่งเรียบร้อยแล้ว",
+			});
+		} catch (error) {
+			Swal.fire({
+				icon: "error",
+				title: "Error",
+				text: "เกิดข้อผิดพลาดในการส่งข้อมูล โปรดลองอีกครั้ง",
+			});
+		}
+	};
 
 	return (
 		<div>
@@ -40,15 +102,13 @@ export default function Uploadsub({ subject }) {
 							Upload Subject Info
 						</Typography>
 						<Typography component="h1" variant="h5" textAlign="center">
-							ยินดีต้อนหรับผู้รับผิดชอบในการ
+							ยินดีต้อนรับผู้รับผิดชอบในการ
 							อัพโหลดข้อมูลงานที่ได้รับมอบหมายให้เพื่อนใน Section 1 Section 2
 						</Typography>
 						<Typography component="h1" variant="h5" textAlign="center">
 							กรอกข้อมูล รายวิชา
 						</Typography>
-						<Typography component="h1" variant="h6" textAlign="left">
-							หัวเรื่อง
-						</Typography>
+
 						<TextField
 							type="text"
 							margin="normal"
@@ -58,7 +118,10 @@ export default function Uploadsub({ subject }) {
 							label="หัวเรื่อง"
 							autoComplete="title"
 							autoFocus
+							onChange={handleInputChange}
+							value={formData.title}
 						/>
+
 						<Typography component="h1" variant="h6" textAlign="left">
 							งานที่ 1
 						</Typography>
@@ -71,7 +134,10 @@ export default function Uploadsub({ subject }) {
 							label="งานที่ 1"
 							autoComplete="content1"
 							autoFocus
+							onChange={handleInputChange}
+							value={formData.content1}
 						/>
+
 						<Typography component="h1" variant="h6" textAlign="left">
 							งานที่ 2
 						</Typography>
@@ -82,8 +148,10 @@ export default function Uploadsub({ subject }) {
 							id="content2"
 							label="งานที่ 2"
 							autoComplete="content2"
-							autoFocus
+							onChange={handleInputChange}
+							value={formData.content2}
 						/>
+
 						<Typography component="h1" variant="h6" textAlign="left">
 							งานที่ 3
 						</Typography>
@@ -93,45 +161,59 @@ export default function Uploadsub({ subject }) {
 							fullWidth
 							id="content3"
 							label="งานที่ 3"
-							autoComplete="content 3"
-							autoFocus
+							autoComplete="content3"
+							onChange={handleInputChange}
+							value={formData.content3}
 						/>
+
 						<Typography component="h1" variant="h6" textAlign="left">
-							รายวิชา
+							วิชา
 						</Typography>
 						<Autocomplete
 							margin="normal"
 							required
 							fullWidth
 							disablePortal
-							id="dropdown"
-							value={dropdown}
-							options={subject}
+							id="subject_id"
+							value={formData.subject_id}
+							options={subjects}
 							sx={{ mt: 2 }}
 							getOptionLabel={(option) => option.title}
 							renderInput={(params) => <TextField {...params} label="วิชา" />}
-							onChange={(_e, v) => {
-								v?.price ? setPrice(v.price) : setPrice(null);
-								setDropDown(v);
-							}}
+							onChange={(_e, v) =>
+								setFormData((prevFormData) => ({
+									...prevFormData,
+									subject_id: v ? v.id : null,
+								}))
+							}
 						/>
+
 						<Typography component="h1" variant="h6" textAlign="left">
 							วันที่สั่ง
 						</Typography>
 						<LocalizationProvider dateAdapter={AdapterDayjs}>
-							<DatePicker />
+							<DatePicker
+								value={formData.orderDate}
+								onChange={(date) => handleDateChange(date, "orderDate")}
+							/>
 						</LocalizationProvider>
+
 						<Typography component="h1" variant="h6" textAlign="left">
 							กำหนดส่งงานวันที่
 						</Typography>
 						<LocalizationProvider dateAdapter={AdapterDayjs}>
-							<DatePicker />
+							<DatePicker
+								value={formData.dueDate}
+								onChange={(date) => handleDateChange(date, "dueDate")}
+							/>
 						</LocalizationProvider>
+
 						<Button
 							type="submit"
 							fullWidth
 							variant="contained"
 							sx={{ mt: 3, mb: 2 }}
+							onClick={handleSubmit}
 						>
 							อัพโหลดข้อมูล
 						</Button>
