@@ -59,38 +59,48 @@ export default function Finance({ billing }) {
 			return;
 		}
 
-		setIsCooldown(true);
+		setIsCooldown(process.env.NODE_ENV !== "development");
 
 		const webhook = new DiscordWebHook(
 			dropdown?.id ?? process.env.DISCORD_WEBHOOK_ID,
 			dropdown?.token ?? process.env.DISCORD_WEBHOOK_TOKEN,
 		);
 
-		await webhook
-			.Send(selectedFile, { fullname, price, studentid, note })
-			.then((data) => {
-				console.log(data);
-				if (data?.status === 204) {
-					Swal.fire({
-						icon: "success",
-						title: "เสร็จสิ้น",
-						text: "ข้อมูลถูกส่งเรียบร้อยแล้ว",
-					});
-				} else {
-					Swal.fire({
-						icon: "error",
-						title: `พบข้อผิดพลาด`,
-						text: "API เน่าส่งใหม่ภายหลังนะจ๊ะ",
-						footer: `${data.code !== 0 ? `${data.code}: ` : ""}${
-							data.message
-						} `,
-					});
-				}
+		try {
+			await webhook
+				.Send(selectedFile, { fullname, price, studentid, note })
+				.then((data) => {
+					if (data?.status === 204 || (data?.webhook_id && data?.channel_id)) {
+						Swal.fire({
+							icon: "success",
+							title: "เสร็จสิ้น",
+							text: "ข้อมูลถูกส่งเรียบร้อยแล้ว",
+						});
+					} else {
+						Swal.fire({
+							icon: "error",
+							title: `พบข้อผิดพลาด`,
+							text: "WebHook เน่าส่งใหม่ภายหลังนะจ๊ะ",
+							footer: `${data.code !== 0 ? `${data.code}: ` : ""}${
+								data.message
+							} `,
+						});
+					}
+				});
+		} catch (error) {
+			Swal.fire({
+				icon: "error",
+				title: `พบข้อผิดพลาด`,
+				text: error.notify ? error.notify : null,
+				footer: `${error.code}: ${error.message} `,
 			});
+		}
 
-		setTimeout(() => {
-			setIsCooldown(false);
-		}, 5000); // ระยะเวลา cooldown (มิลลิวินาที)
+		if (process.env.NODE_ENV !== "development") {
+			setTimeout(() => {
+				setIsCooldown(false);
+			}, 5000); // ระยะเวลา cooldown (มิลลิวินาที)
+		}
 	};
 
 	return (
@@ -180,6 +190,7 @@ export default function Finance({ billing }) {
 												margin="normal"
 												required
 												fullWidth
+												maxLength={8}
 												id="studentid"
 												label="รหัสนักศึกษา"
 												autoComplete="studentid"

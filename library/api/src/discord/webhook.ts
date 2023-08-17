@@ -4,6 +4,7 @@ import { RESTPostAPIWebhookWithTokenJSONBody } from "discord-api-types/v10";
 import { discord as baseconfig } from "../axios/config/base.js";
 import { interceptors } from "../axios/function/interceptors.js";
 import { DdMmYyyy } from "../utils/format-date.js";
+import { generate } from "../utils/student-id.js";
 
 export class DiscordWebHook extends Axios {
 	constructor(webhook_id, webhook_token, config?: AxiosRequestConfig) {
@@ -53,6 +54,7 @@ export class DiscordWebHook extends Axios {
 			"payload_json",
 			JSON.stringify({
 				username: "📃 สลิปโอนเงิน",
+				avatar_url: `https://reg.cmru.ac.th/registrar/getstudentimageftp.asp?id=${generate(studentid)}`,
 				embeds: [
 					{
 						image: { url: `attachment://${formData.get("file")?.["name"]?.replace(/\s+/g, "_")}` },
