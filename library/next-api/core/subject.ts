@@ -1,11 +1,24 @@
 import prisma from "@cmru-comsci-66/database";
 import type { Subject } from "@cmru-comsci-66/database/node_modules/@prisma/client/index";
 import type { GetServerSidePropsResult, NextApiRequest, NextApiResponse } from "next";
-import fetch from "node-fetch";
 
-import { PropertiesToString } from "./types";
-
-/* eslint-disable unicorn/no-null */
+/**
+ * @desc get billing data use prisma
+ * @example
+ * await findBilling();
+ * @returns {Promise<Subject[]>}
+ */
+async function findSubject() {
+	try {
+		return prisma.subject.findMany({
+			orderBy: {
+				id: "asc",
+			},
+		});
+	} catch (error) {
+		console.error("Prisma Error fetching subject data:", error);
+	}
+}
 
 /**
  * @desc GET /api/subject
@@ -14,13 +27,13 @@ import { PropertiesToString } from "./types";
  *	.then((response) => response.json())
  *	.then((data) => data);
  * @returns {Promise<NextApiResponse>}
+ * @link http://localhost:3000/api/subject
  */
-
 export default async function handle(request: NextApiRequest, response: NextApiResponse) {
 	try {
 		switch (request.method) {
 			case "GET": {
-				const result = await prisma.subject.findMany();
+				const result = await findSubject();
 
 				return response.status(200).json(result);
 			}
@@ -31,12 +44,17 @@ export default async function handle(request: NextApiRequest, response: NextApiR
 	}
 }
 
-export async function API(): Promise<GetServerSidePropsResult<{ subject: PropertiesToString<Subject>[] }>> {
+/**
+ * @desc MainScript for getServerSideProps()
+ * @example
+ * export async function getServerSideProps() {
+ * 	return API();
+ * }
+ * @returns {Promise<GetServerSidePropsResult<{ billing: MappedBilling[] }>>}
+ */
+export async function API(): Promise<GetServerSidePropsResult<{ subject: Subject[] }>> {
 	try {
-		const response = await fetch(
-				`${process.env.NODE_ENV === "development" ? `http://localhost:${process.env["npm_package_scripts_PORT"]}` : process.env.API_URL}` + "/api/subject",
-			),
-			data = (await response.json()) as PropertiesToString<Subject>[];
+		const data = await findSubject();
 
 		return {
 			props: { subject: data },
@@ -44,7 +62,7 @@ export async function API(): Promise<GetServerSidePropsResult<{ subject: Propert
 	} catch (error) {
 		console.error("Error fetching or subject data:", error);
 		return {
-			props: { subject: null },
+			props: { subject: [] },
 		};
 	}
 }

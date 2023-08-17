@@ -1,9 +1,10 @@
 import prisma from "@cmru-comsci-66/database";
-import type { Billing } from "@cmru-comsci-66/database/node_modules/@prisma/client/index";
+import type { Billing, Prisma } from "@cmru-comsci-66/database/node_modules/@prisma/client/index";
 import type { GetServerSidePropsResult, NextApiRequest, NextApiResponse } from "next";
-import fetch from "node-fetch";
 
-import { PropertiesToString } from "./types";
+interface findBillingArguments {
+	includeWebhook?: boolean;
+}
 
 interface MappedBilling {
 	id: string;
@@ -12,7 +13,47 @@ interface MappedBilling {
 	token: string;
 }
 
-/* eslint-disable unicorn/no-null */
+/**
+ * @desc get billing data use prisma
+ * @example
+ * await findBilling();
+ * @returns {Promise<NextApiResponse>}
+ */
+async function findBilling(config?: findBillingArguments) {
+	try {
+		const currentDate = new Date().toISOString();
+		let includeQuery: Prisma.BillingInclude = {};
+
+		if (config.includeWebhook) {
+			includeQuery = {
+				discord_webhook: { select: { token: true } },
+			};
+		}
+
+		return prisma.billing.findMany({
+			include: includeQuery,
+			where: {
+				OR: [
+					{
+						end_at: {
+							gte: currentDate,
+						},
+					},
+					{
+						start_at: {
+							lte: currentDate,
+						},
+					},
+				],
+			},
+			orderBy: {
+				id: "asc",
+			},
+		});
+	} catch (error) {
+		console.error("Prisma Error fetching billing data:", error);
+	}
+}
 
 /**
  * @desc GET /api/billings
@@ -21,33 +62,17 @@ interface MappedBilling {
  *	.then((response) => response.json())
  *	.then((data) => data);
  * @returns {Promise<NextApiResponse>}
+ * @link http://localhost:3000/api/billings
  */
-
 export default async function handle(request: NextApiRequest, response: NextApiResponse) {
 	try {
 		switch (request.method) {
 			case "GET": {
-				const currentDate = new Date().toISOString();
-				const result = await prisma.billing.findMany({
-						where: {
-							OR: [
-								{
-									end_at: {
-										gte: currentDate,
-									},
-								},
-								{
-									start_at: {
-										lte: currentDate,
-									},
-								},
-							],
-						},
-					}),
-					resultBillingStringified = result.map((item) => ({
-						...item,
-						discord_webhookId: item?.discord_webhookId?.toString() ?? null,
-					}));
+				const result = await findBilling({});
+				const resultBillingStringified = result.map((item) => ({
+					...item,
+					discord_webhookId: BigInt(item.discord_webhookId).toString(),
+				}));
 
 				return response.status(200).json(resultBillingStringified);
 			}
@@ -58,18 +83,18 @@ export default async function handle(request: NextApiRequest, response: NextApiR
 	}
 }
 
+/**
+ * @desc MainScript for getServerSideProps()
+ * @example
+ * export async function getServerSideProps() {
+ * 	return API();
+ * }
+ * @returns {Promise<GetServerSidePropsResult<{ billing: MappedBilling[] }>>}
+ */
 export async function API(): Promise<GetServerSidePropsResult<{ billing: MappedBilling[] }>> {
 	try {
-		const discordWebhook = await prisma.discordWebhook.findMany({
-				select: {
-					token: true,
-				},
-			}),
-			currentDate = new Date().toISOString(),
-			response = await fetch(
-				`${process.env.NODE_ENV === "development" ? `http://localhost:${process.env["npm_package_scripts_PORT"]}` : process.env.API_URL}` + "/api/billings",
-			),
-			data = (await response.json()) as PropertiesToString<Billing>[];
+		const currentDate = new Date(),
+			data = await findBilling({ includeWebhook: true });
 
 		const mapData: MappedBilling[] = data
 			.filter((item) => {
@@ -80,13 +105,14 @@ export async function API(): Promise<GetServerSidePropsResult<{ billing: MappedB
 				} else if (item.end_at) {
 					return item.end_at >= currentDate;
 				}
+				return false;
 			})
-			.map((item, index) => {
+			.map((item) => {
 				return {
-					id: item.discord_webhookId ?? process.env.DISCORD_WEBHOOK_ID,
-					price: item.price,
-					token: discordWebhook[index]?.token?.toString() ?? process.env.DISCORD_WEBHOOK_TOKEN,
 					label: item.name,
+					price: item.price.toString(),
+					id: BigInt(item.discord_webhookId).toString() ?? process.env.DISCORD_WEBHOOK_ID,
+					token: item.discord_webhook?.token ?? process.env.DISCORD_WEBHOOK_TOKEN,
 				};
 			});
 
@@ -96,7 +122,7 @@ export async function API(): Promise<GetServerSidePropsResult<{ billing: MappedB
 	} catch (error) {
 		console.error("Error fetching or billing mapping data:", error);
 		return {
-			props: { billing: null },
+			props: { billing: [] },
 		};
 	}
 }
