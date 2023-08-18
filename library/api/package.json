@@ -29,6 +29,7 @@
 		"ci:delete_scripts": "pnpm pkg delete scripts",
 		"clean": "rimraf .turbo dist lib lib-esm tsconfig.tsbuildinfo",
 		"dev": "tsc -w",
+		"dev:debug": "tsc -w",
 		"dev:webhook": "node --loader ts-node/esm ./test/webhook.ts",
 		"format": "prettier --write .",
 		"postinstall": "pnpm run --silent \"/^build:.*/\"",

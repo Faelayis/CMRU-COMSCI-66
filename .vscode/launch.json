@@ -1,0 +1,54 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Library: debug",
+			"type": "node-terminal",
+			"request": "launch",
+			"envFile": "${workspaceFolder}/.env",
+			"command": "pnpm --filter=./library/** dev:debug"
+		},
+		{
+			"name": "Next.js: debug client-side",
+			"type": "chrome",
+			"request": "launch",
+			"url": "http://localhost:3000"
+		},
+		{
+			"name": "Next.js: debug",
+			"type": "node-terminal",
+			"request": "launch",
+			"command": "pnpm --filter=./client/ dev:debug",
+			"envFile": "${workspaceFolder}/.env",
+			"serverReadyAction": {
+				"killOnServerStop": true,
+				"pattern": "started server on .+, url: (https?://.+)",
+				"uriFormat": "%s",
+				"action": "debugWithChrome"
+			}
+		},
+		{
+			"name": "Prisma Studio",
+			"type": "node-terminal",
+			"request": "launch",
+			"command": "pnpm --filter=./library/database dev",
+			"envFile": "${workspaceFolder}/.env",
+			"env": {
+				"BROWSER": "none"
+			},
+			"serverReadyAction": {
+				"killOnServerStop": true,
+				"pattern": "Prisma Studio is up on (http?://.+)",
+				"uriFormat": "%s",
+				"action": "openExternally"
+			}
+		}
+	],
+	"compounds": [
+		{
+			"name": "Run Workspace",
+			"stopAll": true,
+			"configurations": ["Next.js: debug", "Library: debug", "Prisma Studio"]
+		}
+	]
+}
