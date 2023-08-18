@@ -3,19 +3,25 @@ import type { Subject } from "@cmru-comsci-66/database/node_modules/@prisma/clie
 import type { GetServerSidePropsResult, NextApiRequest, NextApiResponse } from "next";
 
 /**
- * @desc get billing data use prisma
+ * @desc get subject data
  * @example
- * await findBilling();
+ * await findSubject();
  * @returns {Promise<Subject[]>}
  */
 async function findSubject() {
 	try {
-		return prisma.subject.findMany({
-			orderBy: {
-				id: "asc",
-			},
-		});
+		return prisma.subject
+			.findMany({
+				orderBy: {
+					id: "asc",
+				},
+			})
+			.then((data) => {
+				prisma.$disconnect();
+				return data;
+			});
 	} catch (error) {
+		prisma.$disconnect();
 		console.error("Prisma Error fetching subject data:", error);
 	}
 }
