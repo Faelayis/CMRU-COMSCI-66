@@ -2,10 +2,6 @@ import prisma from "@cmru-comsci-66/database";
 import type { Billing, Prisma } from "@cmru-comsci-66/database/node_modules/@prisma/client/index";
 import type { GetServerSidePropsResult, NextApiRequest, NextApiResponse } from "next";
 
-interface findBillingArguments {
-	includeWebhook?: boolean;
-}
-
 interface MappedBilling {
 	id: string;
 	label: string;
@@ -14,43 +10,42 @@ interface MappedBilling {
 }
 
 /**
- * @desc get billing data use prisma
+ * @desc get billing data
  * @example
  * await findBilling();
  * @returns {Promise<NextApiResponse>}
  */
-async function findBilling(config?: findBillingArguments) {
+async function findBilling(select?: Prisma.BillingSelect) {
 	try {
 		const currentDate = new Date().toISOString();
-		let includeQuery: Prisma.BillingInclude = {};
 
-		if (config.includeWebhook) {
-			includeQuery = {
-				discord_webhook: { select: { token: true } },
-			};
-		}
-
-		return prisma.billing.findMany({
-			include: includeQuery,
-			where: {
-				OR: [
-					{
-						end_at: {
-							gte: currentDate,
+		return prisma.billing
+			.findMany({
+				select: select || undefined,
+				where: {
+					OR: [
+						{
+							end_at: {
+								gte: currentDate,
+							},
 						},
-					},
-					{
-						start_at: {
-							lte: currentDate,
+						{
+							start_at: {
+								lte: currentDate,
+							},
 						},
-					},
-				],
-			},
-			orderBy: {
-				id: "asc",
-			},
-		});
+					],
+				},
+				orderBy: {
+					id: "asc",
+				},
+			})
+			.then((data) => {
+				prisma.$disconnect();
+				return data;
+			});
 	} catch (error) {
+		prisma.$disconnect();
 		console.error("Prisma Error fetching billing data:", error);
 	}
 }
@@ -61,14 +56,14 @@ async function findBilling(config?: findBillingArguments) {
  * fetch("/api/billings")
  *	.then((response) => response.json())
  *	.then((data) => data);
- * @returns {Promise<NextApiResponse>}
+ * @returns {Promise<void>}
  * @link http://localhost:3000/api/billings
  */
 export default async function handle(request: NextApiRequest, response: NextApiResponse) {
 	try {
 		switch (request.method) {
 			case "GET": {
-				const result = await findBilling({});
+				const result = await findBilling();
 				const resultBillingStringified = result.map((item) => ({
 					...item,
 					discord_webhookId: BigInt(item.discord_webhookId).toString(),
@@ -94,7 +89,19 @@ export default async function handle(request: NextApiRequest, response: NextApiR
 export async function API(): Promise<GetServerSidePropsResult<{ billing: MappedBilling[] }>> {
 	try {
 		const currentDate = new Date(),
-			data = await findBilling({ includeWebhook: true });
+			data = await findBilling({
+				name: true,
+				price: true,
+				start_at: true,
+				end_at: true,
+				discord_webhookId: true,
+				discord_webhook: {
+					select: {
+						id: true,
+						token: true,
+					},
+				},
+			});
 
 		const mapData: MappedBilling[] = data
 			.filter((item) => {
