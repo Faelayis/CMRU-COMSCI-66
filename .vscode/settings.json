@@ -3,6 +3,7 @@
 	"npm.packageManager": "pnpm",
 	"typescript.suggest.autoImports": true,
 	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+	"debug.console.closeOnEnd": true,
 	"deepscan.enable": true,
 	"files.exclude": {
 		"**/node_modules/": true,

@@ -18,6 +18,7 @@
 		"ci:bump": "bump",
 		"clean": "rimraf .turbo",
 		"dev": "tsc -w",
+		"dev:debug": "tsc -w",
 		"postinstall": "pnpm run --silent build",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix"
