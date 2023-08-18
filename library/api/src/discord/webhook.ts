@@ -47,7 +47,7 @@ export class DiscordWebHook extends Axios {
 	 */
 	public Send = (file: FormDataEntryValue, details: { fullname: string; note: string; price: string; studentid: string }) => {
 		const formData = new FormData(),
-			{ studentid, fullname, price, note } = details;
+			{ studentid = "-", fullname = "-", price = "-", note = "-" } = details;
 
 		formData.append("file", file);
 		formData.append(
@@ -62,22 +62,22 @@ export class DiscordWebHook extends Axios {
 						fields: [
 							{
 								name: "รหัสนักศีกษา",
-								value: `${studentid || "-"}`,
+								value: studentid,
 								inline: true,
 							},
 							{
 								name: "ชื่อ",
-								value: `${fullname || "-"}`,
+								value: fullname,
 								inline: true,
 							},
 							{
 								name: "จำนวนเงิน",
-								value: `${price || "-"}`,
+								value: price,
 								inline: true,
 							},
 							{
 								name: "หมายเหตุ",
-								value: `${note || "-"}`,
+								value: note,
 								inline: true,
 							},
 						],

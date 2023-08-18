@@ -50,14 +50,14 @@ export default async function handle(request: NextApiRequest, response: NextApiR
  * export async function getServerSideProps() {
  * 	return API();
  * }
- * @returns {Promise<GetServerSidePropsResult<{ billing: MappedBilling[] }>>}
+ * @returns {Promise<GetServerSidePropsResult<{ subject: Array<{ [K in keyof Subject]: string }> }>>}
  */
-export async function API(): Promise<GetServerSidePropsResult<{ subject: Subject[] }>> {
+export async function API(): Promise<GetServerSidePropsResult<{ subject: Array<{ [K in keyof Subject]: string }> }>> {
 	try {
 		const data = await findSubject();
 
 		return {
-			props: { subject: data },
+			props: { subject: JSON.parse(JSON.stringify(data ?? [])) },
 		};
 	} catch (error) {
 		console.error("Error fetching or subject data:", error);
