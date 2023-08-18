@@ -163,8 +163,8 @@ importers:
         specifier: 1.4.0
         version: 1.4.0
       discord-api-types:
-        specifier: 0.37.53
-        version: 0.37.53
+        specifier: 0.37.54
+        version: 0.37.54
     devDependencies:
       '@babel/core':
         specifier: 7.22.10
@@ -3638,8 +3638,8 @@ packages:
       path-type: 4.0.0
     dev: true
 
-  /discord-api-types@0.37.53:
-    resolution: {integrity: sha512-N6uUgv50OyP981Mfxrrt0uxcqiaNr0BDaQIoqfk+3zM2JpZtwU9v7ce1uaFAP53b2xSDvcbrk80Kneui6XJgGg==}
+  /discord-api-types@0.37.54:
+    resolution: {integrity: sha512-xNO6yzEMfpVSVUa6lOOzgLDy3Gyd8yuBAozGQdjpW9VjRq2Ccboz4FhTrd5v4Hw7pbkCKwnHvddjIYrX0INkUQ==}
     dev: false
 
   /doctrine@2.1.0:

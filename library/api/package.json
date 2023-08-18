@@ -44,7 +44,7 @@
 		"@octokit/rest": "20.0.1",
 		"@octokit/types": "11.1.0",
 		"axios": "1.4.0",
-		"discord-api-types": "0.37.53"
+		"discord-api-types": "0.37.54"
 	},
 	"devDependencies": {
 		"@babel/core": "7.22.10",
