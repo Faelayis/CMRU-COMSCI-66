@@ -19,7 +19,7 @@ export async function getServerSideProps() {
 }
 
 /**
- * @param {{ subject: import('../api/subject').Types}} props
+ * @param {{ subject: import('../api/subject').StringTypes}} props
  */
 export default function Section2({ subject }) {
 	const handleToPage = (page) => {
