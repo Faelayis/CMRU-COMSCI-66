@@ -1,6 +1,12 @@
 {
 	"overrides": [
 		{
+			"files": ".eslintrc",
+			"options": {
+				"parser": "json"
+			}
+		},
+		{
 			"files": "tsconfig*.json",
 			"options": {
 				"parser": "json-stringify"

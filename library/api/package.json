@@ -40,7 +40,6 @@
 	"typings": "lib-esm/library.d.ts",
 	"dependencies": {
 		"@octokit/graphql-schema": "14.27.2",
-		"@octokit/openapi-types": "18.0.0",
 		"@octokit/rest": "20.0.1",
 		"@octokit/types": "11.1.0",
 		"axios": "1.4.0",
@@ -50,7 +49,6 @@
 		"@babel/core": "7.22.10",
 		"@graphql-eslint/eslint-plugin": "3.20.1",
 		"@types/node": "20.5.1",
-		"cross-env": "7.0.3",
 		"graphql": "16.8.0",
 		"ts-loader": "9.4.4",
 		"ts-node": "10.9.1",
