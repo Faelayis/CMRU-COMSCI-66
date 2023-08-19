@@ -11,7 +11,7 @@
 		"noEmit": false,
 		"composite": false,
 		"removeComments": true,
-		"incremental": true,
+		"incremental": false,
 		"sourceMap": false,
 		"declaration": true,
 		"outDir": "./../../client/src/pages/api",

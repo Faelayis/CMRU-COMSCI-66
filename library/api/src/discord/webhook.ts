@@ -47,7 +47,7 @@ export class DiscordWebHook extends Axios {
 	 */
 	public Send = (file: FormDataEntryValue, details: { fullname: string; note: string; price: string; studentid: string }) => {
 		const formData = new FormData(),
-			{ studentid = "-", fullname = "-", price = "-", note = "-" } = details;
+			{ fullname = "-", note = "-", price = "-", studentid = "-" } = details;
 
 		formData.append("file", file);
 		formData.append(

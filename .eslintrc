@@ -3,15 +3,15 @@
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
-	"plugins": ["prettier", "simple-import-sort", "import"],
-	"extends": ["prettier", "eslint:recommended"],
+	"plugins": ["import", "simple-import-sort", "prettier"],
+	"extends": ["eslint:recommended", "prettier"],
 	"rules": {
-		"prettier/prettier": "warn",
-		"simple-import-sort/imports": "error",
-		"simple-import-sort/exports": "error",
 		"import/first": "error",
 		"import/newline-after-import": "error",
-		"import/no-duplicates": "error"
+		"import/no-duplicates": "error",
+		"simple-import-sort/imports": "error",
+		"simple-import-sort/exports": "error",
+		"prettier/prettier": "warn"
 	},
 	"overrides": [
 		{
@@ -22,21 +22,28 @@
 				"es6": true
 			},
 			"rules": {
-				"simple-import-sort/imports": "warn",
-				"simple-import-sort/exports": "warn",
 				"import/first": "warn",
 				"import/newline-after-import": "warn",
-				"import/no-duplicates": "warn"
+				"import/no-duplicates": "warn",
+				"simple-import-sort/imports": "warn",
+				"simple-import-sort/exports": "warn",
+				"prettier/prettier": "warn"
 			}
 		},
 		{
 			"files": ["*.ts", "*.d.ts"],
 			"parser": "@typescript-eslint/parser",
-			"plugins": ["@typescript-eslint", "typescript-sort-keys"],
-			"extends": ["plugin:@typescript-eslint/eslint-recommended", "plugin:@typescript-eslint/recommended", "plugin:typescript-sort-keys/recommended"],
+			"plugins": ["typescript-sort-keys", "sort-destructure-keys"],
+			"extends": [
+				"plugin:import/typescript",
+				"plugin:@typescript-eslint/eslint-recommended",
+				"plugin:@typescript-eslint/recommended",
+				"plugin:typescript-sort-keys/recommended"
+			],
 			"rules": {
 				"typescript-sort-keys/interface": "error",
-				"typescript-sort-keys/string-enum": "error"
+				"typescript-sort-keys/string-enum": "error",
+				"sort-destructure-keys/sort-destructure-keys": "error"
 			}
 		}
 	]
