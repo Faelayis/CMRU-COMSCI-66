@@ -4,6 +4,9 @@
 		"rootDir": "./src",
 		"outDir": "./dist",
 		"allowJs": true,
+		"lib": [
+			"DOM"
+		],
 		"typeRoots": [
 			"node_modules/@types"
 		]
