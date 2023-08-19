@@ -2,8 +2,9 @@
 
 ## Prerequisites
 
--   Node.js 18 [LST](https://nodejs.org/en/download)
--   pnpm 8
+-   [Git](https://git-scm.com)
+-   [Node.js](https://nodejs.org/en/download)
+-   [pnpm](https://pnpm.io)
 
 ## 📝 License
 
