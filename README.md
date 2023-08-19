@@ -2,8 +2,8 @@
 
 ## Prerequisites
 
--   node >=20
--   pnpm >=8
+-   Node.js 18 [LST](https://nodejs.org/en/download)
+-   pnpm 8
 
 ## 📝 License
 
