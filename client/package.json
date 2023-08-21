@@ -38,7 +38,7 @@
 		"react-bootstrap": "2.8.0",
 		"react-dom": "18.2.0",
 		"styled-components": "5.3.11",
-		"sweetalert2": "11.7.26",
+		"sweetalert2": "11.7.27",
 		"swr": "2.2.1"
 	},
 	"devDependencies": {
