@@ -5,10 +5,10 @@ echo "→ husky (post-merge)"
 
 if [ $(pnpm -v) ]; then
    if [ $(pnpm git-pull-run -V) ]; then
-      pnpm git-pull-run --pattern "**/pnpm-lock.yaml" --command "pnpm install"
+      pnpm git-pull-run --pattern "**/pnpm-lock.yaml" --command "pnpm install --ignore-scripts"
       pnpm git-pull-run --pattern "library/**" --command "pnpm run postinstall"
    else
-      pnpx git-pull-run --pattern "**/pnpm-lock.yaml" --command "pnpm install"
+      pnpx git-pull-run --pattern "**/pnpm-lock.yaml" --command "pnpm install --ignore-scripts"
       pnpx git-pull-run --pattern "library/**" --command "pnpm run postinstall"
    fi
 else
