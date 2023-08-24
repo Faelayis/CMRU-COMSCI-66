@@ -46,7 +46,7 @@
 		"discord-api-types": "0.37.54"
 	},
 	"devDependencies": {
-		"@babel/core": "7.22.10",
+		"@babel/core": "7.22.11",
 		"@graphql-eslint/eslint-plugin": "3.20.1",
 		"@types/node": "20.5.3",
 		"graphql": "16.8.0",
