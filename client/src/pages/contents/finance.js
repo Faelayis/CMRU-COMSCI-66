@@ -31,7 +31,7 @@ export async function getServerSideProps() {
 export default function Finance({ billing }) {
 	const [selectedFile, setSelectedFile] = useState(null);
 	const [fullname, setFullname] = useState("");
-	const [studentid, setStudentId] = useState("");
+	const [studentid, setStudentId] = useState("66143"); // เริ่มต้นด้วยค่า 66143
 	const [note, setNote] = useState("");
 	const [price, setPrice] = useState("");
 	const [dropdown, setDropDown] = useState("");
@@ -186,16 +186,17 @@ export default function Finance({ billing }) {
 												onChange={(e) => setFullname(e.target.value)}
 											/>
 											<TextField
-												type="text"
+												type="number"
 												margin="normal"
 												required
 												fullWidth
-												maxLength={8}
+												inputProps={{ maxLength: 8 }}
 												id="studentid"
 												label="รหัสนักศึกษา"
 												autoComplete="studentid"
 												autoFocus
 												value={studentid}
+												defaultValue={studentid} // กำหนดค่าเริ่มต้นให้กับ TextField
 												onChange={(e) => setStudentId(e.target.value)}
 											/>
 											<TextField
@@ -270,17 +271,16 @@ export default function Finance({ billing }) {
 												listType="picture"
 												beforeUpload={(file) => {
 													setSelectedFile(file);
-													return false; // ไม่อนุญาตให้อัพโหลดไฟล์ทันที
+													return false;
 												}}
 											>
 												<Button icon={<UploadOutlined />}>Upload</Button>
 											</Upload>
 
-											<Space
-												direction="vertical"
-												style={{
-													width: "100%",
-													textAlign: "center",
+											<Box
+												sx={{
+													display: "flex",
+													justifyContent: "center",
 													marginTop: "1rem",
 												}}
 											>
@@ -292,7 +292,7 @@ export default function Finance({ billing }) {
 												>
 													Submit
 												</Button>
-											</Space>
+											</Box>
 										</Box>
 									</CardContent>
 								</Card>
