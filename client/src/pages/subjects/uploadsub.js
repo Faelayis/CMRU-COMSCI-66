@@ -13,7 +13,8 @@ import Head from "next/head";
 import React, { useEffect, useState } from "react";
 import Swal from "sweetalert2";
 
-import { fetchSubjects } from "../api/subject"; // แก้ไข path เป็นที่ตรงกับตำแหน่งของไฟล์ apiSubject.js
+// เพิ่ม import สำหรับ API
+import { API } from "../api/subject";
 
 export default function Uploadsub() {
 	const [formData, setFormData] = useState({
@@ -31,8 +32,8 @@ export default function Uploadsub() {
 	useEffect(() => {
 		async function fetchSubjectData() {
 			try {
-				const data = await fetchSubjects();
-				setSubjects(data);
+				const data = await API(); // ใช้ API ที่เราได้จากการ import
+				setSubjects(data.subject);
 			} catch (error) {
 				console.error("Error fetching subjects:", error);
 			}
@@ -176,9 +177,9 @@ export default function Uploadsub() {
 							disablePortal
 							id="subject_id"
 							value={formData.subject_id}
-							options={subjects}
+							options={subjects || []} // ตรวจสอบและกำหนดค่าเริ่มต้นให้เป็น Array ถ้า subjects เป็น undefined
 							sx={{ mt: 2 }}
-							getOptionLabel={(option) => option.title}
+							getOptionLabel={(option) => option.label}
 							renderInput={(params) => <TextField {...params} label="วิชา" />}
 							onChange={(_e, v) =>
 								setFormData((prevFormData) => ({
