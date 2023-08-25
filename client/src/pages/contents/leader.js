@@ -1,10 +1,11 @@
-import { Card, Container, Typography } from "@mui/material";
+import { Card, CardContent, Container, Grid, Typography } from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
 
 // Contents
 import GroupImg from "@/assets/index-content/group.jpg";
+import { LeaderData, SquadLeader } from "@/data/data";
 
 export default function Leader() {
 	return (
@@ -15,20 +16,66 @@ export default function Leader() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<Container maxWidth="mb" sx={{ pt: 15, pb: 5 }}>
-				<Card>
-					<Container sx={{ pt: 3 }}>
+			<Container sx={{ pt: 15, pb: 5 }}>
+				<Card p={5}>
+					<Container sx={{ pt: 3 }} className="Leaders">
 						<Typography component="h1" variant="h4" textAlign="center">
-							Welcome To 7 ผู้นำ Page
+							7 Leaders
 						</Typography>
-						<Image
-							src={GroupImg}
-							width={1200}
-							height={650}
-							className="responsive-img"
-							alt="Group"
-							priority
-						/>
+						<Typography component="h1" variant="h6" textAlign="center">
+							7 ผู้นำ วิทยาการคอมพิวเตอร์ 66 และหัวหน้าหมู่เรียน
+						</Typography>
+
+						<Grid container spacing={4} p={5}>
+							{LeaderData.map((item, index) => (
+								<Grid item key={index} xs={12} md={12}>
+									<Card
+										sx={{
+											height: "100%",
+											display: "flex",
+											flexDirection: "column",
+										}}
+										className="hover-zoom"
+									>
+										<CardContent sx={{ flexGrow: 1 }}>
+											<Typography gutterBottom variant="h5" component="h2">
+												{item.fname}
+											</Typography>
+											<Typography className="text-indent">
+												ตำแหน่ง : {item.roles}
+											</Typography>
+										</CardContent>
+									</Card>
+								</Grid>
+							))}
+						</Grid>
+
+						<Grid container spacing={4} p={5}>
+							{SquadLeader.map((item, index) => (
+								<Grid item key={index} xs={12} md={6}>
+									<Card
+										sx={{
+											height: "100%",
+											display: "flex",
+											flexDirection: "column",
+										}}
+										className="hover-zoom"
+									>
+										<CardContent sx={{ flexGrow: 1 }}>
+											<Typography gutterBottom variant="h5" component="h2">
+												{item.fname}
+											</Typography>
+											<Typography className="text-indent">
+												รหัสหมู่เรียน : {item.studygroup}
+											</Typography>
+											<Typography className="text-indent">
+												หัวหน้าหมู่เรียนห้อง : {item.section}
+											</Typography>
+										</CardContent>
+									</Card>
+								</Grid>
+							))}
+						</Grid>
 					</Container>
 				</Card>
 			</Container>

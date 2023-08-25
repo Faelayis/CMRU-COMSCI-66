@@ -31,6 +31,14 @@ input[type="number"] {
 	background-image: url(https://images.unsplash.com/photo-1605246811037-7a815fa646e4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=387&q=80);
 }
 
+.Leaders {
+	max-width: auto;
+	height: auto;
+	color: whitesmoke;
+	background-attachment: fixed;
+	background-image: url(https://images.unsplash.com/photo-1563191911-e65f8655ebf9?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80);
+}
+
 /* Zoom In #1 */
 .hover-zoom {
 	-webkit-transform: scale(1);

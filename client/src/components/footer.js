@@ -6,11 +6,17 @@ import Typography from "@mui/material/Typography";
 import * as React from "react";
 
 function handleToPage(page) {
+	window.location.href = `/contents/${page.toLowerCase()}`;
+}
+
+function handleToSubject(page) {
 	window.location.href = `/subjects/${page.toLowerCase()}`;
 }
 
 function Footer() {
-	const pageLinks = [
+	const pageLinks = ["todo", "leader", "finance", "history", "about"];
+
+	const subLinks = [
 		"multimedia",
 		"math",
 		"desigeprogram",
@@ -66,12 +72,7 @@ function Footer() {
 							</ul>
 						</Grid>
 						<Grid item xs={12} sm={6} md={3}>
-							<Typography
-								variant="h6"
-								color="text.primary"
-								gutterBottom
-								sx={{ textAlign: "center", mb: 2 }}
-							>
+							<Typography variant="h6" color="text.primary" gutterBottom>
 								Page
 							</Typography>
 							<ul>
@@ -82,6 +83,25 @@ function Footer() {
 											variant="subtitle1"
 											color="text.secondary"
 											onClick={() => handleToPage(page)}
+										>
+											{page}
+										</Link>
+									</li>
+								))}
+							</ul>
+						</Grid>
+						<Grid item xs={12} sm={6} md={3}>
+							<Typography variant="h6" color="text.primary" gutterBottom>
+								subject
+							</Typography>
+							<ul>
+								{subLinks.map((page) => (
+									<li key={page}>
+										<Link
+											href="#"
+											variant="subtitle1"
+											color="text.secondary"
+											onClick={() => handleToSubject(page)}
 										>
 											{page}
 										</Link>
