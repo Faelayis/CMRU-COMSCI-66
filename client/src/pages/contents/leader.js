@@ -4,6 +4,7 @@ import Image from "next/image";
 import React from "react";
 
 // Contents
+import ZismailImg from "@/assets/about/Zismail.jpg";
 import GroupImg from "@/assets/index-content/group.jpg";
 import { LeaderData, SquadLeader } from "@/data/data";
 
@@ -26,9 +27,15 @@ export default function Leader() {
 							7 ผู้นำ วิทยาการคอมพิวเตอร์ 66 และหัวหน้าหมู่เรียน
 						</Typography>
 
+						<Typography component="h1" variant="h5" style={{ color: "blue" }}>
+							7 ผู้นำ
+						</Typography>
+						<Typography component="h1" variant="h6" style={{ color: "blue" }}>
+							7 ผู้นำ
+						</Typography>
 						<Grid container spacing={4} p={5}>
 							{LeaderData.map((item, index) => (
-								<Grid item key={index} xs={12} md={12}>
+								<Grid item key={index} xs={12} md={3}>
 									<Card
 										sx={{
 											height: "100%",
@@ -37,6 +44,11 @@ export default function Leader() {
 										}}
 										className="hover-zoom"
 									>
+										<Image
+											src={ZismailImg}
+											alt="about-zismail"
+											className="responsive-img"
+										/>
 										<CardContent sx={{ flexGrow: 1 }}>
 											<Typography gutterBottom variant="h5" component="h2">
 												{item.fname}
@@ -50,9 +62,15 @@ export default function Leader() {
 							))}
 						</Grid>
 
+						<Typography component="h1" variant="h5" style={{ color: "blue" }}>
+							หัวหน้าหมู่เรียน
+						</Typography>
+						<Typography component="h1" variant="h6" style={{ color: "blue" }}>
+							7 ผู้นำ
+						</Typography>
 						<Grid container spacing={4} p={5}>
 							{SquadLeader.map((item, index) => (
-								<Grid item key={index} xs={12} md={6}>
+								<Grid item key={index} xs={12} md={3}>
 									<Card
 										sx={{
 											height: "100%",
@@ -61,6 +79,11 @@ export default function Leader() {
 										}}
 										className="hover-zoom"
 									>
+										<Image
+											src={ZismailImg}
+											alt="about-zismail"
+											className="responsive-img"
+										/>
 										<CardContent sx={{ flexGrow: 1 }}>
 											<Typography gutterBottom variant="h5" component="h2">
 												{item.fname}
