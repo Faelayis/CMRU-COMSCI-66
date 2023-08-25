@@ -156,7 +156,7 @@ export default function Finance() {
 			</Head>
 			<Container fullWidth sx={{ pt: 15, pb: 5 }}>
 				<Card>
-					<Container sx={{ pt: 3 }} className="finance">
+					<Container sx={{ pt: 3, pb: 5 }} className="finance">
 						<Typography
 							component="h1"
 							variant="h4"
@@ -316,7 +316,7 @@ export default function Finance() {
 									</CardContent>
 								</Card>
 							</Grid>
-							<Grid item md={4} xs={12} sx={{ pb: 5 }}>
+							<Grid item md={4} xs={12}>
 								<Card
 									sx={{
 										height: "100%",

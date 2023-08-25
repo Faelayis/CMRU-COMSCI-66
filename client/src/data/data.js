@@ -52,11 +52,54 @@ export const Subject = [
 	},
 ];
 
-export const DeveloperData = [
+export const LeaderData = [
 	{
 		id: 1,
-		fname: "ณัฐพงษ์ ปันธิยะ",
-		studentid: "66143420",
+		roles: "ประธาน",
+		fname: "หนึ่ง",
+	},
+	{
+		id: 2,
+		roles: "รองประธาน",
+		fname: "นัท",
+	},
+	{
+		id: 3,
+		roles: "เลขา",
+		fname: "เชียร์",
+	},
+	{
+		id: 4,
+		roles: "สถานที่",
+		fname: "โจ้",
+	},
+	{
+		id: 5,
+		roles: "สันทนาการ",
+		fname: "ลูเซีย",
+	},
+	{
+		id: 6,
+		roles: "พยาบาล",
+		fname: "ไตเติ้ล",
+	},
+	{
+		id: 7,
+		roles: "สวัสดิการ",
+		fname: "กิน",
+	},
+];
+
+export const SquadLeader = [
+	{
+		fname: "ไตเติ้ล",
+		studygroup: "วค66.วท.บ.4.1",
+		section: "1",
+	},
+	{
+		fname: "กาย",
+		studygroup: "วค66.วท.บ.4.2",
+		section: "2",
 	},
 ];
 
