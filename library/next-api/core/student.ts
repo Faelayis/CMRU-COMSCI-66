@@ -83,7 +83,7 @@ interface MappedStudentLite {
  */
 export function useStudent() {
 	try {
-		const { data, error, isLoading } = SWR(`${process.env.NODE_ENV === "development" ? `http://localhost:${process.env.port}` : ""}` + "/api/student", (...arguments_) =>
+		const { data, error, isLoading } = SWR("/api/student", (...arguments_) =>
 			fetch(...arguments_, {
 				method: "get",
 				headers: {

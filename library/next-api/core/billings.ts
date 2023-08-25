@@ -120,15 +120,13 @@ export default async function handle(request: NextApiRequest, response: NextApiR
  */
 export function useBillings() {
 	try {
-		const { data, error, isLoading } = SWR(
-			`${process.env.NODE_ENV === "development" ? `http://localhost:${process.env.port}` : process.env.API_URL}` + "/api/billings",
-			(...arguments_) =>
-				fetch(...arguments_, {
-					method: "get",
-					headers: {
-						"use-webhook": "true",
-					},
-				}).then((response) => response.json()),
+		const { data, error, isLoading } = SWR("/api/billings", (...arguments_) =>
+			fetch(...arguments_, {
+				method: "get",
+				headers: {
+					"use-webhook": "true",
+				},
+			}).then((response) => response.json()),
 		);
 
 		return {
