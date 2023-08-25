@@ -62,16 +62,16 @@ export default function About() {
 									</CardContent>
 									<CardActions className="social">
 										<a
-											href="https://github.com/Faelayis" // แก้ไข URL ให้ตรงกับลิงก์ของ Discord ของคุณ
-											target="_blank" // เปิดลิงก์ในหน้าต่างใหม่
-											rel="noopener noreferrer" // ควรใส่เมื่อใช้ target="_blank" เพื่อป้องกันปัญหาความปลอดภัย
+											href="https://github.com/Faelayis"
+											target="_blank"
+											rel="noopener noreferrer"
 										>
 											<FontAwesomeIcon icon={faGithub} />
 										</a>
 										<a
-											href="https://www.youtube.com/channel/UCWn6665c7dwmh6G7gUJl1PA" // แก้ไข URL ให้ตรงกับลิงก์ของ Discord ของคุณ
-											target="_blank" // เปิดลิงก์ในหน้าต่างใหม่
-											rel="noopener noreferrer" // ควรใส่เมื่อใช้ target="_blank" เพื่อป้องกันปัญหาความปลอดภัย
+											href="https://www.youtube.com/channel/UCWn6665c7dwmh6G7gUJl1PA"
+											target="_blank"
+											rel="noopener noreferrer"
 										>
 											<FontAwesomeIcon icon={faYoutube} />
 										</a>
@@ -104,30 +104,30 @@ export default function About() {
 									</CardContent>
 									<CardActions className="social">
 										<a
-											href="https://discord.gg/ZRR4fvpgmM" // แก้ไข URL ให้ตรงกับลิงก์ของ Discord ของคุณ
-											target="_blank" // เปิดลิงก์ในหน้าต่างใหม่
-											rel="noopener noreferrer" // ควรใส่เมื่อใช้ target="_blank" เพื่อป้องกันปัญหาความปลอดภัย
+											href="https://discord.gg/ZRR4fvpgmM"
+											target="_blank"
+											rel="noopener noreferrer"
 										>
 											<FontAwesomeIcon icon={faDiscord} />
 										</a>
 										<a
-											href="https://web.facebook.com/Zismail_Kung-534513747501473" // แก้ไข URL ให้ตรงกับลิงก์ของ Discord ของคุณ
-											target="_blank" // เปิดลิงก์ในหน้าต่างใหม่
-											rel="noopener noreferrer" // ควรใส่เมื่อใช้ target="_blank" เพื่อป้องกันปัญหาความปลอดภัย
+											href="https://web.facebook.com/Zismail_Kung-534513747501473"
+											target="_blank"
+											rel="noopener noreferrer"
 										>
 											<FontAwesomeIcon icon={faFacebook} />
 										</a>
 										<a
-											href="https://github.com/zismaildev" // แก้ไข URL ให้ตรงกับลิงก์ของ Discord ของคุณ
-											target="_blank" // เปิดลิงก์ในหน้าต่างใหม่
-											rel="noopener noreferrer" // ควรใส่เมื่อใช้ target="_blank" เพื่อป้องกันปัญหาความปลอดภัย
+											href="https://github.com/zismaildev"
+											target="_blank"
+											rel="noopener noreferrer"
 										>
 											<FontAwesomeIcon icon={faGithub} />
 										</a>
 										<a
-											href="https://www.youtube.com/channel/UCzewwrLueNmJRRu-OMjGRnA" // แก้ไข URL ให้ตรงกับลิงก์ของ Discord ของคุณ
-											target="_blank" // เปิดลิงก์ในหน้าต่างใหม่
-											rel="noopener noreferrer" // ควรใส่เมื่อใช้ target="_blank" เพื่อป้องกันปัญหาความปลอดภัย
+											href="https://www.youtube.com/channel/UCzewwrLueNmJRRu-OMjGRnA"
+											target="_blank"
+											rel="noopener noreferrer"
 										>
 											<FontAwesomeIcon icon={faYoutube} />
 										</a>
