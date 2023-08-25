@@ -5,6 +5,18 @@ body {
 	background-image: url(https://wallpaperaccess.com/full/1567665.png);
 }
 
+/* input number arrows disabled */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type="number"] {
+	-moz-appearance: textfield;
+}
+/* end */
+
 .responsive-img {
 	max-width: 100%;
 	height: auto;

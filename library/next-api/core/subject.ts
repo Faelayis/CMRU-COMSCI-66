@@ -43,6 +43,10 @@ export default async function handle(request: NextApiRequest, response: NextApiR
 
 				return response.status(200).json(result);
 			}
+
+			default: {
+				return response.status(405).json({ error: "Method Not Allowed" });
+			}
 		}
 	} catch (error) {
 		console.error("Error fetching billing data:", error);
