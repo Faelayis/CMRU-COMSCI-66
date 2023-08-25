@@ -1,6 +1,7 @@
 import prisma from "@cmru-comsci-66/database";
 import type { Billing, Prisma } from "@cmru-comsci-66/database/node_modules/@prisma/client/index";
 import type { GetServerSidePropsResult, NextApiRequest, NextApiResponse } from "next";
+import SWR from "swr";
 
 interface MappedBilling {
 	id: string;
@@ -63,18 +64,80 @@ export default async function handle(request: NextApiRequest, response: NextApiR
 	try {
 		switch (request.method) {
 			case "GET": {
-				const result = await findBilling();
-				const resultBillingStringified = result.map((item) => ({
-					...item,
-					discord_webhookId: BigInt(item.discord_webhookId).toString(),
-				}));
+				if (request.headers["use-webhook"] === "true") {
+					const result = await findBilling({
+							name: true,
+							price: true,
+							start_at: true,
+							end_at: true,
+							discord_webhookId: true,
+							discord_webhook: {
+								select: {
+									id: true,
+									token: true,
+								},
+							},
+						}),
+						resultMapped = result.map((item) => {
+							return {
+								label: item.name,
+								price: item.price.toString(),
+								id: BigInt(item.discord_webhookId).toString() ?? process.env.DISCORD_WEBHOOK_ID,
+								token: item.discord_webhook?.token ?? process.env.DISCORD_WEBHOOK_TOKEN,
+							};
+						});
 
-				return response.status(200).json(resultBillingStringified);
+					return response.status(200).json(resultMapped);
+				} else {
+					const result = await findBilling(),
+						resultBillingStringified = result.map((item) => ({
+							...item,
+							discord_webhookId: BigInt(item.discord_webhookId).toString(),
+						}));
+
+					return response.status(200).json(resultBillingStringified);
+				}
+			}
+
+			default: {
+				return response.status(405).json({ error: "Method Not Allowed" });
 			}
 		}
 	} catch (error) {
 		console.error("Error fetching billing data:", error);
 		return response.status(500).json({ error: "Internal Server Error" });
+	}
+}
+
+/**
+ * fetching billings data using SWR.
+ *
+ * @returns {{
+ *   billings: MappedBilling[],
+ *   isLoading: Boolean,
+ *   isError: Error
+ * }}
+ */
+export function useBillings() {
+	try {
+		const { data, error, isLoading } = SWR(
+			`${process.env.NODE_ENV === "development" ? `http://localhost:${process.env.port}` : process.env.API_URL}` + "/api/billings",
+			(...arguments_) =>
+				fetch(...arguments_, {
+					method: "get",
+					headers: {
+						"use-webhook": "true",
+					},
+				}).then((response) => response.json()),
+		);
+
+		return {
+			billings: data as MappedBilling[],
+			isLoading,
+			isError: error,
+		};
+	} catch (error) {
+		console.error("Error useSWR:", error);
 	}
 }
 

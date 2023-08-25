@@ -10,42 +10,85 @@ import {
 	TextField,
 	Typography,
 } from "@mui/material";
-import { Button, Space, Upload } from "antd";
+import CircularProgress from "@mui/material/CircularProgress";
+import { Button, Upload } from "antd";
 import Head from "next/head";
 import Image from "next/image";
 import React, { useState } from "react";
 import Swal from "sweetalert2";
 
-// Contents
 import BillingImg from "@/assets/bill/bill.jpg";
 
-import { API } from "../api/billings";
+import { useBillings } from "../api/billings";
+import { useStudent } from "../api/student";
 
-export async function getServerSideProps() {
-	return API();
-}
-
-/**
- * @param {{ billing: import('../api/billings').MappedBillingTypes}} props
- */
-export default function Finance({ billing }) {
-	const [selectedFile, setSelectedFile] = useState(null);
+export default function Finance() {
+	const {
+		billings,
+		isLoading: billingsIsLoading,
+		isError: billingsIsError,
+	} = useBillings();
+	const {
+		student,
+		isLoading: studentIsLoading,
+		isError: studentIsError,
+	} = useStudent();
 	const [fullname, setFullname] = useState("");
-	const [studentid, setStudentId] = useState("66143"); // เริ่มต้นด้วยค่า 66143
-	const [note, setNote] = useState("");
+	const [studentid, setStudentId] = useState("");
 	const [price, setPrice] = useState("");
+	const [pricePlace, setPricePlace] = useState("0");
+	const [note, setNote] = useState("");
+	const [selectedFile, setSelectedFile] = useState(null);
 	const [dropdown, setDropDown] = useState("");
-	const [billings] = useState(billing);
 	const [isCooldown, setIsCooldown] = useState(false);
+
+	const swrIsError = billingsIsError || studentIsError;
+
+	if (swrIsError) {
+		Swal.fire({
+			icon: "error",
+			title: `พบข้อผิดพลาด`,
+			footer: `${
+				swrIsError.code ?? swrIsError.status
+					? `${swrIsError.code ?? swrIsError.status}:`
+					: ""
+			} ${swrIsError.message} `,
+		});
+
+		return <div></div>;
+	}
+
+	if (billingsIsLoading || studentIsLoading)
+		return (
+			<Container fullWidth sx={{ pt: 15, pb: 5 }}>
+				<Box
+					display="flex"
+					justifyContent="center"
+					alignItems="center"
+					sx={{ display: "flex" }}
+				>
+					<CircularProgress color="info" thickness={4.5} size={100} />
+				</Box>
+			</Container>
+		);
 
 	const handleSubmit = async (event) => {
 		event.preventDefault();
 
-		if (!fullname || !studentid || !price || !dropdown) {
+		if (!studentid || !price || !dropdown || !selectedFile) {
 			Swal.fire({
 				icon: "warning",
 				title: "ข้อมูลไม่ครบถ้วน",
 				text: "กรุณากรอกข้อมูลให้ครบถ้วนก่อนที่จะส่งข้อมูล",
+			});
+			return;
+		}
+
+		if (!selectedFile.type.startsWith("image/")) {
+			Swal.fire({
+				icon: "warning",
+				title: "ข้อมูลไม่ถูกต้อง",
+				text: "กรุณาส่งไฟล์สลิปประเภทรูปภาพ",
 			});
 			return;
 		}
@@ -99,7 +142,7 @@ export default function Finance({ billing }) {
 		if (process.env.NODE_ENV !== "development") {
 			setTimeout(() => {
 				setIsCooldown(false);
-			}, 5000); // ระยะเวลา cooldown (มิลลิวินาที)
+			}, 5000);
 		}
 	};
 
@@ -122,15 +165,6 @@ export default function Finance({ billing }) {
 						>
 							Finance
 						</Typography>
-						<Typography
-							component="h1"
-							variant="h6"
-							textAlign="center"
-							style={{ color: "white" }}
-						>
-							ข้อมูลของท่านจะถูกเก็บรักษา
-						</Typography>
-
 						<Grid container spacing={3}>
 							<Grid item md={4} xs={12}>
 								<Card
@@ -143,8 +177,8 @@ export default function Finance({ billing }) {
 								>
 									<Image
 										src={BillingImg}
-										width={250}
-										height={250}
+										width={1000}
+										height={1000}
 										style={{ width: "auto", height: "auto" }}
 										alt="Profile"
 										className="responsive-img"
@@ -152,7 +186,6 @@ export default function Finance({ billing }) {
 									/>
 								</Card>
 							</Grid>
-
 							<Grid item md={4} xs={12}>
 								<Card
 									sx={{
@@ -175,15 +208,37 @@ export default function Finance({ billing }) {
 											>
 												ข้อมูลการชำระเงิน
 											</Typography>
-											<TextField
+											<Autocomplete
 												margin="normal"
 												fullWidth
 												id="fullname"
 												label="ขื่อ-สกุล"
-												autoComplete="name"
 												autoFocus
+												Autocomplete={true}
+												options={student
+													.map((item) => {
+														return {
+															label: item.name,
+															section: item.section,
+														};
+													})
+													.sort()}
 												value={fullname}
-												onChange={(e) => setFullname(e.target.value)}
+												renderInput={(params) => (
+													<TextField {...params} label="ขื่อ-สกุล" />
+												)}
+												onChange={(e, value) => {
+													const checkStudent = student?.filter((d) =>
+														d.name.match(value?.label),
+													)[0];
+
+													setFullname(value?.label ?? "");
+													if (checkStudent && value) {
+														setStudentId(checkStudent.id.toString());
+													} else {
+														setStudentId("");
+													}
+												}}
 											/>
 											<TextField
 												type="number"
@@ -196,8 +251,23 @@ export default function Finance({ billing }) {
 												autoComplete="studentid"
 												autoFocus
 												value={studentid}
-												defaultValue={studentid} // กำหนดค่าเริ่มต้นให้กับ TextField
-												onChange={(e) => setStudentId(e.target.value)}
+												placeholder="66143XXX หรือ XXX"
+												defaultValue={studentid}
+												onChange={(e) => {
+													const value = e.target.value;
+													const checkStudent = student?.filter(
+														(d) =>
+															d.id.toString() ===
+															(value.length <= 3 ? `66143${value}` : value),
+													)[0];
+
+													setStudentId(value.slice(0, 8));
+													if (checkStudent && value) {
+														setFullname(checkStudent.name.toString());
+													} else {
+														setFullname("");
+													}
+												}}
 											/>
 											<TextField
 												type="text"
@@ -209,6 +279,7 @@ export default function Finance({ billing }) {
 												autoComplete="price"
 												autoFocus
 												value={price}
+												placeholder={pricePlace}
 												onChange={(e) => setPrice(e.target.value)}
 											/>
 											<TextField
@@ -234,8 +305,10 @@ export default function Finance({ billing }) {
 												renderInput={(params) => (
 													<TextField {...params} label="กิจกรรม" />
 												)}
-												onChange={(_e, v) => {
-													v?.price ? setPrice(v.price) : setPrice(null);
+												onChange={(e, v) => {
+													v?.price
+														? (setPrice(v.price), setPricePlace(v.price))
+														: (setPrice(""), setPricePlace("0"));
 													setDropDown(v);
 												}}
 											/>
@@ -243,7 +316,6 @@ export default function Finance({ billing }) {
 									</CardContent>
 								</Card>
 							</Grid>
-
 							<Grid item md={4} xs={12} sx={{ pb: 5 }}>
 								<Card
 									sx={{
@@ -267,16 +339,20 @@ export default function Finance({ billing }) {
 												อัพโหลดข้อมูล
 											</Typography>
 											<Upload
-												action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
 												listType="picture"
 												beforeUpload={(file) => {
 													setSelectedFile(file);
 													return false;
 												}}
 											>
-												<Button icon={<UploadOutlined />}>Upload</Button>
+												<Button
+													variant="contained"
+													color="primary"
+													icon={<UploadOutlined />}
+												>
+													เพิ่มสลิป
+												</Button>
 											</Upload>
-
 											<Box
 												sx={{
 													display: "flex",
@@ -290,7 +366,7 @@ export default function Finance({ billing }) {
 													variant="contained"
 													htmlType="submit"
 												>
-													Submit
+													ส่ง
 												</Button>
 											</Box>
 										</Box>
