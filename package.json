@@ -55,7 +55,7 @@
 		"prettier-package-json": "2.8.0",
 		"rimraf": "5.0.1",
 		"run-script-os": "1.1.6",
-		"turbo": "1.10.12"
+		"turbo": "1.10.13"
 	},
 	"engines": {
 		"node": ">=18",
