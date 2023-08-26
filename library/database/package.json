@@ -31,7 +31,7 @@
 		"clean": "rimraf dist .turbo lib lib-esm tsconfig.tsbuildinfo prisma/client",
 		"dev": "dotenv -e ../../.env -- prisma studio",
 		"generate": "dotenv -e ../../.env -- prisma generate",
-		"postinstall": "pnpm run --silent generate && pnpm --silent run \"/^build:.*/\"",
+		"postinstall": "pnpm run generate && pnpm run --silent \"/^build:.*/\"",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix",
 		"prisma:generate": "prisma generate",
