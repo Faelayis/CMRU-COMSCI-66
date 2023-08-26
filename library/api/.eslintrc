@@ -1,14 +1,4 @@
 {
 	"root": true,
-	"extends": ["../.eslintrc.base"],
-	"overrides": [
-		{
-			"files": ["*.graphql"],
-			"parser": "@graphql-eslint/eslint-plugin",
-			"plugins": ["@graphql-eslint"],
-			"rules": {
-				"prettier/prettier": "warn"
-			}
-		}
-	]
+	"extends": ["../.eslintrc.base"]
 }
