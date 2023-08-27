@@ -35,7 +35,7 @@
 		"react-dom": "18.2.0",
 		"styled-components": "6.0.7",
 		"sweetalert2": "11.7.27",
-		"swr": "2.2.1"
+		"swr": "2.2.2"
 	},
 	"devDependencies": {
 		"@prisma/nextjs-monorepo-workaround-plugin": "5.2.0",
