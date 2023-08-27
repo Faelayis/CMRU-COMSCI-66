@@ -39,7 +39,7 @@
 	},
 	"typings": "lib-esm/library.d.ts",
 	"dependencies": {
-		"axios": "1.4.0",
+		"axios": "1.5.0",
 		"discord-api-types": "0.37.55"
 	},
 	"devDependencies": {
