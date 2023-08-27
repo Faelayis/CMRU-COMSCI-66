@@ -1,4 +1,11 @@
-import { Card, CardContent, Container, Grid, Typography } from "@mui/material";
+import {
+	Avatar,
+	Card,
+	CardContent,
+	Container,
+	Grid,
+	Typography,
+} from "@mui/material";
 import Head from "next/head";
 import Image from "next/image";
 import React from "react";
@@ -44,10 +51,10 @@ export default function Leader() {
 										}}
 										className="hover-zoom"
 									>
-										<Image
+										<Avatar
+											alt="Remy Sharp"
 											src={ZismailImg}
-											alt="about-zismail"
-											className="responsive-img"
+											sx={{ width: 56, height: 56 }}
 										/>
 										<CardContent sx={{ flexGrow: 1 }}>
 											<Typography gutterBottom variant="h5" component="h2">

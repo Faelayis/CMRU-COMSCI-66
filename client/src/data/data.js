@@ -6,6 +6,8 @@ import MultimediaImg from "../assets/subjects/Multimedia.jpg";
 import Program from "../assets/subjects/Program.jpg";
 import ThaiImg from "../assets/subjects/thai.jpg";
 
+// Lea
+
 // Subject
 export const Subject = [
 	{
