@@ -7,12 +7,12 @@
 	"type": "module",
 	"scripts": {
 		"build": "pnpm lib:build && pnpm --parallel --filter=./client build",
-		"clean": "turbo daemon clean && pnpm --filter=* clean && git clean -f -d",
+		"clean": "turbo daemon clean && pnpm --filter=* clean",
+		"clear": "git clean -f -d",
 		"client": "pnpm --filter=client",
 		"copy": "copyfiles .env ./library/database",
 		"dev": "dotenv -e .env -- turbo run dev",
 		"fix": "pnpm --filter=* lint:fix",
-		"lint": "pnpm --filter=* lint",
 		"format": "prettier --write .",
 		"husky:pre-commit": "pnpm lint-staged",
 		"husky:pre-push": "turbo run husky:pre-push",
@@ -22,6 +22,7 @@
 		"lib:build": "pnpm --filter=./library/** \"/^build*/\"",
 		"lib:db": "pnpm --filter=./library/database",
 		"lib:next-api": "pnpm --filter=./library/next-api",
+		"lint": "pnpm --filter=* lint",
 		"pkg:clean": "pnpx rimraf@3.0.2 ./**/node_modules",
 		"pkg:update": "pnpm up --latest --recursive --interactive",
 		"prepare": "run-script-os && pnpm run --silent copy && pnpm turbo daemon clean",
@@ -55,6 +56,7 @@
 		"prettier-package-json": "2.8.0",
 		"rimraf": "5.0.1",
 		"run-script-os": "1.1.6",
+		"ts-node": "10.9.1",
 		"turbo": "1.10.13"
 	},
 	"engines": {
@@ -81,7 +83,14 @@
 			"prettier --write --ignore-unknown"
 		]
 	},
-	"packageManager": "pnpm@8.6.12",
+	"packageManager": "pnpm@8.7.0",
+	"pnpm": {
+		"peerDependencyRules": {
+			"allowAny": [
+				"@typescript-eslint/parser"
+			]
+		}
+	},
 	"prisma": {
 		"schema": "./library/database/prisma/schema.prisma"
 	}

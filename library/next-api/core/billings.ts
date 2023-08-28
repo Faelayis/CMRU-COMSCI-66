@@ -11,7 +11,7 @@ interface MappedBilling {
 }
 
 /**
- * @desc get billing data
+ * @desc รับข้อมูลการเรียกเก็บเงิน
  * @example
  * await findBilling();
  * @returns {Promise<NextApiResponse>}
@@ -110,7 +110,7 @@ export default async function handle(request: NextApiRequest, response: NextApiR
 }
 
 /**
- * fetching billings data using SWR.
+ * ดึงข้อมูลการเรียกเก็บเงินโดยใช้ SWR
  *
  * @returns {{
  *   billings: MappedBilling[],
@@ -140,7 +140,7 @@ export function useBillings() {
 }
 
 /**
- * @desc MainScript for getServerSideProps()
+ * @desc function for getServerSideProps()
  * @example
  * export async function getServerSideProps() {
  * 	return API();

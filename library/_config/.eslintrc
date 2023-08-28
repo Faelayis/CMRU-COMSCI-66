@@ -7,5 +7,6 @@
 		"sourceType": "module"
 	},
 	"plugins": ["unicorn"],
-	"extends": ["../.eslintrc", "plugin:unicorn/all"]
+	"extends": ["./../../.eslintrc", "plugin:unicorn/all"],
+	"ignorePatterns": ["prisma/client", "esm", "cjs"]
 }

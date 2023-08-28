@@ -1,3 +1,2 @@
-dist
-lib
-lib-esm
+cjs
+esm

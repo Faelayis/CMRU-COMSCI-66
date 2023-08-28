@@ -2,7 +2,7 @@
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"compilerOptions": {
 		"rootDir": "./src",
-		"outDir": "./dist",
+		"outDir": "./esm",
 		"allowJs": true,
 		"lib": [
 			"DOM"
@@ -11,23 +11,9 @@
 			"node_modules/@types"
 		]
 	},
-	"plugins": [
-		{
-			"transform": "typescript-transform-paths"
-		},
-		{
-			"transform": "typescript-transform-paths",
-			"afterDeclarations": true
-		}
-	],
 	"display": "@cmru-comsci-66/database",
-	"extends": "../tsconfig.base.json",
+	"extends": "../_config/tsconfig.json",
 	"include": [
 		"src"
-	],
-	"ts-node": {
-		"require": [
-			"typescript-transform-paths/register"
-		]
-	}
+	]
 }

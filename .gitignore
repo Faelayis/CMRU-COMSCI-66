@@ -50,7 +50,8 @@ web_modules/
 *.tsbuildinfo
 
 # TypeScript build output
-lib-esm
+esm
+cjs
 client/src/pages/api
 
 # Optional npm cache directory
@@ -137,5 +138,5 @@ dist
 # turbo
 .turbo
 
-# Documentation Generator
-docs-db
+# Prisma output
+prisma/client
