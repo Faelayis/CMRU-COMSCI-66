@@ -2,17 +2,17 @@
 	"$schema": "https://turbo.build/schema.json",
 	"pipeline": {
 		"build": {
-			"dependsOn": ["^build:node", "^build:esm", "^build"],
-			"outputs": ["dist/**", "lib-esm/**", ".next/**"],
+			"dependsOn": ["^build:cjs", "^build:esm", "^build"],
+			"outputs": ["cjs/**", "esm/**", "/**", ".next/**"],
 			"cache": false
 		},
-		"build:node": {
-			"dependsOn": ["^build:node"],
-			"outputs": ["dist/**"]
+		"build:cjs": {
+			"dependsOn": ["^build:cjs"],
+			"outputs": ["cjs/**"]
 		},
 		"build:esm": {
 			"dependsOn": ["^build:esm"],
-			"outputs": ["lib-esm/**"]
+			"outputs": ["esm/**"]
 		},
 		"test": {
 			"dependsOn": ["^build"],

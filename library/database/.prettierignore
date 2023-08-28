@@ -1,2 +1,3 @@
-.husky
 prisma/client
+cjs
+esm

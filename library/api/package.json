@@ -12,42 +12,38 @@
 	"type": "module",
 	"exports": {
 		".": {
-			"import": "./lib-esm/library.js",
-			"require": "./dist/library.js"
+			"import": "./esm/library.js",
+			"default": "./esm/library.js",
+			"require": "./cjs/library.js"
 		}
 	},
-	"module": "lib-esm/library.js",
+	"module": "cjs/library.js",
 	"files": [
-		"dist",
-		"lib",
-		"lib-esm"
+		"cjs",
+		"esm"
 	],
 	"scripts": {
-		"build:esm": "tsc -m es6 --outDir lib-esm",
-		"build:node": "tsc --build",
+		"build:cjs": "tsc -b ./tsconfig.cjs.json",
+		"build:esm": "tsc --build",
 		"ci:bump": "bump",
 		"ci:delete_scripts": "pnpm pkg delete scripts",
-		"clean": "rimraf .turbo dist lib lib-esm tsconfig.tsbuildinfo",
+		"clean": "rimraf cjs esm .turbo tsconfig*.tsbuildinfo",
 		"dev": "tsc -w",
 		"dev:debug": "tsc -w",
-		"dev:webhook": "node --loader ts-node/esm ./test/webhook.ts",
 		"format": "prettier --write .",
 		"postinstall": "pnpm run --silent \"/^build:.*/\"",
 		"lint": "eslint .",
-		"lint:fix": "eslint . --fix",
-		"test": "node --loader ts-node/esm ./test/webhook.ts"
+		"lint:fix": "eslint . --fix"
 	},
-	"typings": "lib-esm/library.d.ts",
+	"typings": "esm/library.d.ts",
 	"dependencies": {
-		"axios": "1.4.0",
+		"@cmru-comsci-66/utils": "workspace:*",
+		"axios": "1.5.0",
 		"discord-api-types": "0.37.55"
 	},
 	"devDependencies": {
 		"@types/node": "20.5.3",
-		"ts-loader": "9.4.4",
-		"ts-node": "10.9.1",
-		"typescript": "5.1.6",
-		"typescript-transform-paths": "3.4.6"
+		"typescript": "5.1.6"
 	},
 	"publishConfig": {
 		"access": "public",

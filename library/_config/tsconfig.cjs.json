@@ -1,0 +1,13 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"compilerOptions": {
+		"module": "CommonJS",
+		"experimentalDecorators": false,
+		"emitDecoratorMetadata": false,
+		"incremental": false,
+		"declaration": false,
+		"noErrorTruncation": false,
+		"forceConsistentCasingInFileNames": false,
+		"composite": false
+	}
+}

@@ -1,10 +1,10 @@
+import { student } from "@cmru-comsci-66/utils";
 import { Axios, AxiosRequestConfig } from "axios";
 import { RESTPostAPIWebhookWithTokenJSONBody } from "discord-api-types/v10";
 
 import { discord as baseconfig } from "../axios/config/base.js";
 import { interceptors } from "../axios/function/interceptors.js";
 import { DdMmYyyy } from "../utils/format-date.js";
-import { generate } from "../utils/student-id.js";
 
 export class DiscordWebHook extends Axios {
 	constructor(webhook_id, webhook_token, config?: AxiosRequestConfig) {
@@ -37,13 +37,13 @@ export class DiscordWebHook extends Axios {
 	 *   price: "100",
 	 *   studentid: "66143XXX",
 	 * });
-	 * @param {RESTPostAPIWebhookWithTokenFormDataBody} formData - The form data to send.
-	 * @param {object} details - Additional details for the message.
-	 * @param {string} details.fullname - The full name of the user.
-	 * @param {string} details.note - An optional note for the message.
-	 * @param {string} details.price - The price of the transaction.
-	 * @param {string} details.studentid - The student ID.
-	 * @returns {Promise<ReturnTypeOfSend>} - The result of the API call.
+	 * @param {RESTPostAPIWebhookWithTokenFormDataBody} formData - ข้อมูลแบบฟอร์มที่จะส่ง
+	 * @param {object} details - รายละเอียดเพิ่มเติมสำหรับข้อความ
+	 * @param {string} details.fullname - ชื่อของผู้ใช้
+	 * @param {string} details.note - หมายเหตุเพิ่มเติมสำหรับข้อความ (ถ้ามี)
+	 * @param {string} details.price - ราคา
+	 * @param {string} details.studentid - รหัสนักศึกษา
+	 * @returns {Promise<ReturnTypeOfSend>}
 	 */
 	public Send = (file: FormDataEntryValue, details: { fullname: string; note: string; price: string; studentid: string }) => {
 		const formData = new FormData(),
@@ -54,7 +54,7 @@ export class DiscordWebHook extends Axios {
 			"payload_json",
 			JSON.stringify({
 				username: "📃 สลิปโอนเงิน",
-				avatar_url: `https://reg.cmru.ac.th/registrar/getstudentimageftp.asp?id=${generate(studentid)}`,
+				avatar_url: `https://reg.cmru.ac.th/registrar/getstudentimageftp.asp?id=${student.id.generate(studentid)}`,
 				embeds: [
 					{
 						image: { url: `attachment://${formData.get("file")?.["name"]?.replace(/\s+/g, "_")}` },

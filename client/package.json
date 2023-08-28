@@ -6,7 +6,7 @@
 		"PORT": "3000",
 		"build": "next build",
 		"ci:bump": "bump",
-		"clean": "rimraf .next .turbo src/pages/api",
+		"clean": "rimraf .next .turbo",
 		"dev": "pnpm run open-browser && next dev",
 		"dev:debug": "next dev",
 		"format": "prettier --write .",
@@ -33,6 +33,7 @@
 		"node-fetch": "3.3.2",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
+		"sharp": "0.32.5",
 		"styled-components": "6.0.7",
 		"sweetalert2": "11.7.27",
 		"swr": "2.2.1"

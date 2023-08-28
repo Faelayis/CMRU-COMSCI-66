@@ -7,8 +7,8 @@ node_modules
 # Workspaces
 .next
 dist
-lib
-lib-esm
+esm
+cjs
 
 # turbo
 .turbo
