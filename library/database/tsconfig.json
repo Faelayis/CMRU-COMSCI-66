@@ -12,7 +12,7 @@
 		]
 	},
 	"display": "@cmru-comsci-66/database",
-	"extends": "../_config/tsconfig.json",
+	"extends": "../.config/tsconfig.json",
 	"include": [
 		"src"
 	]

@@ -24,7 +24,7 @@
 		]
 	},
 	"extends": [
-		"../_config/tsconfig.json"
+		"../.config/tsconfig.json"
 	],
 	"display": "@cmru-comsci-66/database-next-api",
 	"include": [
