@@ -1,0 +1,48 @@
+{
+	"private": false,
+	"name": "@cmru-comsci-66/utils",
+	"version": "1.0.0",
+	"license": "apache-2.0",
+	"author": "Faelayis <48393914+Faelayis@users.noreply.github.com>",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/Faelayis/CMRU-COMSCI-66.git",
+		"directory": "library/utils"
+	},
+	"type": "module",
+	"exports": {
+		".": {
+			"import": "./esm/library.js",
+			"default": "./esm/library.js",
+			"require": "./cjs/library.js"
+		}
+	},
+	"module": "cjs/library.js",
+	"files": [
+		"cjs",
+		"esm"
+	],
+	"scripts": {
+		"build:cjs": "tsc -b ./tsconfig.cjs.json",
+		"build:esm": "tsc --build",
+		"ci:bump": "bump",
+		"ci:delete_scripts": "pnpm pkg delete scripts",
+		"clean": "rimraf cjs esm .turbo tsconfig*.tsbuildinfo",
+		"dev": "tsc -w",
+		"dev:debug": "tsc -w",
+		"format": "prettier --write .",
+		"postinstall": "pnpm run --silent \"/^build:.*/\"",
+		"lint": "eslint .",
+		"lint:fix": "eslint . --fix"
+	},
+	"typings": "esm/library.d.ts",
+	"devDependencies": {
+		"@types/node": "20.5.3",
+		"typescript": "5.1.6"
+	},
+	"publishConfig": {
+		"access": "public",
+		"linkDirectory": false,
+		"registry": "https://npm.pkg.github.com"
+	}
+}
