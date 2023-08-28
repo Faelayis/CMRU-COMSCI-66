@@ -13,7 +13,7 @@
 		]
 	},
 	"display": "@cmru-comsci-66/utils",
-	"extends": "../_config/tsconfig.json",
+	"extends": "../.config/tsconfig.json",
 	"include": [
 		"src"
 	]

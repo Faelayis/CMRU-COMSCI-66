@@ -1,4 +1,4 @@
 {
 	"root": true,
-	"extends": ["../_config/.eslintrc"]
+	"extends": ["../.config/.eslintrc"]
 }

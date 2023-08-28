@@ -5,6 +5,6 @@
 	},
 	"extends": [
 		"./tsconfig.json",
-		"../_config/tsconfig.cjs.json"
+		"../.config/tsconfig.cjs.json"
 	]
 }
