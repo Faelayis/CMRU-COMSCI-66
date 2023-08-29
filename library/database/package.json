@@ -28,7 +28,7 @@
 		"build:esm": "tsc --build",
 		"ci:bump": "bump",
 		"ci:delete_scripts": "pnpm pkg delete scripts",
-		"clean": "rimraf cjs esm .turbo tsconfig.tsbuildinfo prisma/client",
+		"clean": "rimraf cjs esm .turbo *.tsbuildinfo prisma/client",
 		"dev": "dotenv -e ../../.env -- prisma studio",
 		"generate": "dotenv -e ../../.env -- prisma generate",
 		"postinstall": "pnpm run generate && pnpm run --silent \"/^build:.*/\"",

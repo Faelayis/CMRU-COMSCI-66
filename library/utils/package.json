@@ -27,7 +27,7 @@
 		"build:esm": "tsc --build",
 		"ci:bump": "bump",
 		"ci:delete_scripts": "pnpm pkg delete scripts",
-		"clean": "rimraf cjs esm .turbo tsconfig*.tsbuildinfo",
+		"clean": "rimraf cjs esm .turbo *.tsbuildinfo",
 		"dev": "tsc -w",
 		"dev:debug": "tsc -w",
 		"format": "prettier --write .",
