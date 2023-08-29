@@ -17,6 +17,7 @@
 	"dependencies": {
 		"@cmru-comsci-66/api": "workspace:*",
 		"@cmru-comsci-66/database": "workspace:*",
+		"@next-auth/prisma-adapter": "1.0.7",
 		"@nextui-org/react": "2.1.7",
 		"autoprefixer": "10.4.15",
 		"eslint": "8.48.0",
