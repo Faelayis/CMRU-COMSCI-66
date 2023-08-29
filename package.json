@@ -29,7 +29,8 @@
 		"prepare:nix": "husky install && chmod ug+x .husky/*",
 		"prepare:windows": "husky install",
 		"prettier": "pnpm -w --filter=* format --list-different",
-		"prettier:json": "pnpm prettier-package-json --write **/package.json --use-tabs false"
+		"prettier:json": "pnpm prettier-package-json --write **/package.json --use-tabs false",
+		"start": "dotenv -e .env -- turbo run start"
 	},
 	"workspaces": [
 		"client/**",
