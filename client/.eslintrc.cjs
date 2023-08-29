@@ -3,15 +3,32 @@
  */
 module.exports = {
 	root: true,
-	extends: ["next/core-web-vitals", "prettier", "../.eslintrc"],
-	plugins: ["prettier"],
+	extends: [
+		"next/core-web-vitals",
+		"prettier",
+		"plugin:react/recommended",
+		"plugin:tailwindcss/recommended",
+		"../.eslintrc",
+	],
+	overrides: [
+		{
+			files: ["*.js", "*.jsx", "*.ts", "*.tsx"],
+			parser: "@typescript-eslint/parser",
+		},
+	],
+	plugins: ["prettier", "react", "tailwindcss"],
 	ignorePatterns: ["node_modules", "src/pages/api"],
 	parserOptions: {
+		ecmaFeatures: {
+			jsx: false,
+		},
 		babelOptions: {
 			presets: [require.resolve("next/babel")],
 		},
 	},
 	rules: {
+		"react/react-in-jsx-scope": "off",
+		"react/prop-types": "off",
 		"no-unused-vars": "warn",
 		"no-undef": "off",
 	},
