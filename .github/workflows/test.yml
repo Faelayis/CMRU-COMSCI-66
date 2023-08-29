@@ -28,4 +28,4 @@ jobs:
               run: pnpm run lint
 
             - name: Run Test Build
-              run: pnpm run test:build
+              run: pnpm run build
