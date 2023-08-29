@@ -38,11 +38,11 @@ enum ContentType {
 }
 
 model User {
-   id    String   @id @default(cuid())
-   title String?
-   name  String?
-   image String?
-   role  RoleType @default(unknown)
+   id       String   @id @default(cuid())
+   name     String?
+   nickname String?
+   image    String?
+   role     RoleType @default(unknown)
 
    email         String?   @unique
    emailVerified DateTime?
@@ -50,7 +50,8 @@ model User {
    accounts Account[]
    sessions Session[]
 
-   studentId Int[]
+   studentId Int?
+   student   StudentList? @relation(fields: [studentId], references: [id])
 
    updateAt   DateTime @updatedAt
    created_at DateTime @default(now())
@@ -134,7 +135,7 @@ model StudentList {
    status  String?
    paid    Billing[]
 
-   connectedUser String[]
+   connectedUser User[]
 
    update_at DateTime? @updatedAt
 
