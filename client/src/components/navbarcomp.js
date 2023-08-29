@@ -18,16 +18,6 @@ import { AcmeLogo } from "./acmelogo";
 
 export default function NavbarComp() {
 	const { data: session } = useSession();
-
-	const handleItemClick = (text) => {
-		if (text === "Home") {
-			window.location.href = "/";
-		} else {
-			window.location.href = `/contents/${text
-				.toLowerCase()
-				.replace(" ", "-")}`;
-		}
-	};
 	return (
 		<Navbar>
 			<NavbarBrand>
@@ -37,28 +27,24 @@ export default function NavbarComp() {
 				</Link>
 			</NavbarBrand>
 
-			<NavbarContent className="hidden sm:flex gap-4" justify="start">
+			<NavbarContent className="hidden gap-4 sm:flex" justify="start">
 				<NavbarItem>
-					<Link color="foreground" onClick={() => handleItemClick("ToDo")}>
+					<Link color="foreground" href="/contents/todo">
 						ToDo
 					</Link>
 				</NavbarItem>
 				<NavbarItem isActive>
-					<Link
-						onClick={() => handleItemClick("Finance")}
-						aria-current="page"
-						color="secondary"
-					>
+					<Link color="secondary" href="/contents/finance">
 						Finance
 					</Link>
 				</NavbarItem>
 				<NavbarItem>
-					<Link color="foreground" onClick={() => handleItemClick("Leaders")}>
+					<Link color="foreground" href="/contents/leaders">
 						Leaders
 					</Link>
 				</NavbarItem>
 				<NavbarItem>
-					<Link color="foreground" onClick={() => handleItemClick("About")}>
+					<Link color="foreground" href="/contents/about">
 						About
 					</Link>
 				</NavbarItem>
@@ -83,12 +69,13 @@ export default function NavbarComp() {
 								<p className="font-semibold">Signed in as</p>
 								<p className="font-semibold">{session.user.email}</p>
 							</DropdownItem>
+							<DropdownItem key="role">Role</DropdownItem>
 							<DropdownItem key="settings">My Settings</DropdownItem>
-							<DropdownItem key="team_settings">Team Settings</DropdownItem>
-							<DropdownItem key="analytics">Analytics</DropdownItem>
-							<DropdownItem key="system">System</DropdownItem>
-							<DropdownItem key="configurations">Configurations</DropdownItem>
-							<DropdownItem key="help_and_feedback">
+							<DropdownItem
+								key="help_and_feedback"
+								href="/help"
+								color="warning"
+							>
 								Help & Feedback
 							</DropdownItem>
 							<DropdownItem

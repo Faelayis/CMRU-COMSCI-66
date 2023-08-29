@@ -2,41 +2,43 @@ import React from "react";
 
 export default function FooterComp() {
 	return (
-		<footer class="bg-white dark:bg-gray-900">
-			<div class="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-				<div class="md:flex md:justify-between">
-					<div class="mb-6 md:mb-0">
-						<a href="https://flowbite.com/" class="flex items-center">
+		<footer className="bg-white dark:bg-gray-900">
+			<div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
+				<div className="md:flex md:justify-between">
+					<div className="mb-6 md:mb-0">
+						<a href="/" className="flex items-center">
 							<img
 								src="https://flowbite.com/docs/images/logo.svg"
-								class="h-8 mr-3"
+								className="mr-3 h-8"
 								alt="FlowBite Logo"
 							/>
-							<span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+							<span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
 								CMRU COMSCI 66
 							</span>
 						</a>
 					</div>
-					<div class="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-3">
+					<div className="grid grid-cols-2 gap-8 sm:grid-cols-3 sm:gap-6">
 						<div>
-							<h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
+							<h2 className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
 								Team
 							</h2>
-							<ul class="text-gray-500 dark:text-gray-400 font-medium">
-								<li class="mb-4">
+							<ul className="font-medium text-gray-500 dark:text-gray-400">
+								<li className="mb-4">
 									<a
 										target="_blank"
 										href="https://mofuproject.vercel.app/"
-										class="hover:underline"
+										className="hover:underline"
+										rel="noreferrer"
 									>
 										MofuNetive
 									</a>
 								</li>
-								<li class="mb-4">
+								<li className="mb-4">
 									<a
 										target="_blank"
 										href="https://github.com/Faelayis"
-										class="hover:underline"
+										className="hover:underline"
+										rel="noreferrer"
 									>
 										Faelayis
 									</a>
@@ -45,63 +47,101 @@ export default function FooterComp() {
 									<a
 										target="_blank"
 										href="https://github.com/zismaildev"
-										class="hover:underline"
+										className="hover:underline"
+										rel="noreferrer"
 									>
 										Zismail-Dev
 									</a>
 								</li>
 							</ul>
 						</div>
+						{/** Pages */}
 						<div>
-							<h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-								Follow us
+							<h2 className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
+								Page
 							</h2>
-							<ul class="text-gray-500 dark:text-gray-400 font-medium">
-								<li class="mb-4">
-									<a
-										href="https://github.com/themesberg/flowbite"
-										class="hover:underline "
-									>
-										Github
+							<ul className="font-medium text-gray-500 dark:text-gray-400">
+								<li className="mb-4">
+									<a href="/" className="hover:underline ">
+										Home
 									</a>
 								</li>
-								<li>
-									<a
-										href="https://discord.gg/4eeurUVvTy"
-										class="hover:underline"
-									>
-										Discord
+								<li className="mb-4">
+									<a href="/contents/todo" className="hover:underline ">
+										ToDo
+									</a>
+								</li>
+								<li className="mb-4">
+									<a href="/contents/finance" className="hover:underline ">
+										Finance
+									</a>
+								</li>
+								<li className="mb-4">
+									<a href="/contents/leaders" className="hover:underline ">
+										Leaders
+									</a>
+								</li>
+								<li className="mb-4">
+									<a href="/contents/about" className="hover:underline ">
+										about
 									</a>
 								</li>
 							</ul>
 						</div>
+						{/** Subjects */}
 						<div>
-							<h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">
-								Legal
+							<h2 className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
+								Subjects
 							</h2>
-							<ul class="text-gray-500 dark:text-gray-400 font-medium">
-								<li class="mb-4">
-									<a href="#" class="hover:underline">
-										Privacy Policy
+							<ul className="font-medium text-gray-500 dark:text-gray-400">
+								<li className="mb-4">
+									<a href="/subjects/multi" className="hover:underline">
+										Multimedia Technology
 									</a>
 								</li>
-								<li>
-									<a href="#" class="hover:underline">
-										Terms &amp; Conditions
+								<li className="mb-4">
+									<a href="/subjects/math" className="hover:underline">
+										Computer Mathematics
+									</a>
+								</li>
+								<li className="mb-4">
+									<a href="/subjects/desingprogram" className="hover:underline">
+										Principles of Computer
+									</a>
+								</li>
+								<li className="mb-4">
+									<a
+										href="/subjects/digitalliteracy"
+										className="hover:underline"
+									>
+										Digital literacy
+									</a>
+								</li>
+								<li className="mb-4">
+									<a href="/subjects/holisticcare" className="hover:underline">
+										Holistic care
+									</a>
+								</li>
+								<li className="mb-4">
+									<a href="/subjects/thai" className="hover:underline">
+										Thai
 									</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 				</div>
-				<hr class="my-6 border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-				<div class="sm:flex sm:items-center sm:justify-between">
-					<span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
+				<hr className="my-6 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-8" />
+				<div className="sm:flex sm:items-center sm:justify-between">
+					<span className="text-sm text-gray-500 dark:text-gray-400 sm:text-center">
 						© 2023{" "}
-						<a href="https://flowbite.com/" class="hover:underline">
+						<a href="https://flowbite.com/" className="hover:underline">
 							cmru-comsci-66
 						</a>
 						. All Rights Reserved.
+					</span>
+					<span className="text-sm text-gray-500 dark:text-gray-400 sm:text-center">
+						เพิ่มข้อความเวอร์ชั่น ตัวเล็กๆ ว่า v1.X.X ให้หน่อย
 					</span>
 					{/** 
           <div class="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
