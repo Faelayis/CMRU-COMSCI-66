@@ -28,4 +28,4 @@ jobs:
               run: pnpm run lint
 
             - name: Run Test Build
-              run: pnpm run build
+              run: pnpm lib:db prisma:generate && pnpm run build
