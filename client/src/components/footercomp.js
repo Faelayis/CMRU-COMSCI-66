@@ -1,3 +1,4 @@
+import { Link } from "@nextui-org/react";
 import React from "react";
 
 export default function FooterComp() {
@@ -6,7 +7,7 @@ export default function FooterComp() {
 			<div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
 				<div className="md:flex md:justify-between">
 					<div className="mb-6 md:mb-0">
-						<a href="/" className="flex items-center">
+						<Link href="/" className="flex items-center">
 							<img
 								src="https://flowbite.com/docs/images/logo.svg"
 								className="mr-3 h-8"
@@ -15,7 +16,7 @@ export default function FooterComp() {
 							<span className="self-center whitespace-nowrap text-2xl font-semibold dark:text-white">
 								CMRU COMSCI 66
 							</span>
-						</a>
+						</Link>
 					</div>
 					<div className="grid grid-cols-2 gap-8 sm:grid-cols-3 sm:gap-6">
 						<div>
@@ -24,34 +25,34 @@ export default function FooterComp() {
 							</h2>
 							<ul className="font-medium text-gray-500 dark:text-gray-400">
 								<li className="mb-4">
-									<a
+									<Link
 										target="_blank"
 										href="https://mofuproject.vercel.app/"
 										className="hover:underline"
 										rel="noreferrer"
 									>
 										MofuNetive
-									</a>
+									</Link>
 								</li>
 								<li className="mb-4">
-									<a
+									<Link
 										target="_blank"
 										href="https://github.com/Faelayis"
 										className="hover:underline"
 										rel="noreferrer"
 									>
 										Faelayis
-									</a>
+									</Link>
 								</li>
 								<li>
-									<a
+									<Link
 										target="_blank"
 										href="https://github.com/zismaildev"
 										className="hover:underline"
 										rel="noreferrer"
 									>
 										Zismail-Dev
-									</a>
+									</Link>
 								</li>
 							</ul>
 						</div>
@@ -62,29 +63,29 @@ export default function FooterComp() {
 							</h2>
 							<ul className="font-medium text-gray-500 dark:text-gray-400">
 								<li className="mb-4">
-									<a href="/" className="hover:underline ">
+									<Link href="/" className="hover:underline ">
 										Home
-									</a>
+									</Link>
 								</li>
 								<li className="mb-4">
-									<a href="/contents/todo" className="hover:underline ">
+									<Link href="/contents/todo" className="hover:underline ">
 										ToDo
-									</a>
+									</Link>
 								</li>
 								<li className="mb-4">
-									<a href="/contents/finance" className="hover:underline ">
+									<Link href="/contents/finance" className="hover:underline ">
 										Finance
-									</a>
+									</Link>
 								</li>
 								<li className="mb-4">
-									<a href="/contents/leaders" className="hover:underline ">
+									<Link href="/contents/leaders" className="hover:underline ">
 										Leaders
-									</a>
+									</Link>
 								</li>
 								<li className="mb-4">
-									<a href="/contents/about" className="hover:underline ">
+									<Link href="/contents/about" className="hover:underline ">
 										about
-									</a>
+									</Link>
 								</li>
 							</ul>
 						</div>
@@ -95,37 +96,43 @@ export default function FooterComp() {
 							</h2>
 							<ul className="font-medium text-gray-500 dark:text-gray-400">
 								<li className="mb-4">
-									<a href="/subjects/multi" className="hover:underline">
+									<Link href="/subjects/multi" className="hover:underline">
 										Multimedia Technology
-									</a>
+									</Link>
 								</li>
 								<li className="mb-4">
-									<a href="/subjects/math" className="hover:underline">
+									<Link href="/subjects/math" className="hover:underline">
 										Computer Mathematics
-									</a>
+									</Link>
 								</li>
 								<li className="mb-4">
-									<a href="/subjects/desingprogram" className="hover:underline">
+									<Link
+										href="/subjects/desingprogram"
+										className="hover:underline"
+									>
 										Principles of Computer
-									</a>
+									</Link>
 								</li>
 								<li className="mb-4">
-									<a
+									<Link
 										href="/subjects/digitalliteracy"
 										className="hover:underline"
 									>
 										Digital literacy
-									</a>
+									</Link>
 								</li>
 								<li className="mb-4">
-									<a href="/subjects/holisticcare" className="hover:underline">
+									<Link
+										href="/subjects/holisticcare"
+										className="hover:underline"
+									>
 										Holistic care
-									</a>
+									</Link>
 								</li>
 								<li className="mb-4">
-									<a href="/subjects/thai" className="hover:underline">
+									<Link href="/subjects/thai" className="hover:underline">
 										Thai
-									</a>
+									</Link>
 								</li>
 							</ul>
 						</div>
@@ -135,9 +142,9 @@ export default function FooterComp() {
 				<div className="sm:flex sm:items-center sm:justify-between">
 					<span className="text-sm text-gray-500 dark:text-gray-400 sm:text-center">
 						© 2023{" "}
-						<a href="https://flowbite.com/" className="hover:underline">
+						<Link href="https://flowbite.com/" className="hover:underline">
 							cmru-comsci-66
-						</a>
+						</Link>
 						. All Rights Reserved.
 					</span>
 					<span className="text-sm text-gray-500 dark:text-gray-400 sm:text-center">

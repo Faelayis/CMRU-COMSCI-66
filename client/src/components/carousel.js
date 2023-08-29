@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 export default function carousel() {
@@ -10,35 +11,35 @@ export default function carousel() {
 			>
 				<div className="relative h-56 overflow-hidden rounded-lg md:h-96">
 					<div className="hidden duration-700 ease-in-out" data-carousel-item>
-						<img
+						<Image
 							src="/docs/images/carousel/carousel-1.svg"
 							className="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
 							alt="carousel-1"
 						/>
 					</div>
 					<div className="hidden duration-700 ease-in-out" data-carousel-item>
-						<img
+						<Image
 							src="/docs/images/carousel/carousel-2.svg"
 							className="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
 							alt="carousel-2"
 						/>
 					</div>
 					<div className="hidden duration-700 ease-in-out" data-carousel-item>
-						<img
+						<Image
 							src="/docs/images/carousel/carousel-3.svg"
 							className="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
 							alt="carousel-3"
 						/>
 					</div>
 					<div className="hidden duration-700 ease-in-out" data-carousel-item>
-						<img
+						<Image
 							src="/docs/images/carousel/carousel-4.svg"
 							className="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
 							alt="carousel-4"
 						/>
 					</div>
 					<div className="hidden duration-700 ease-in-out" data-carousel-item>
-						<img
+						<Image
 							src="/docs/images/carousel/carousel-5.svg"
 							className="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
 							alt="carousel-5"
