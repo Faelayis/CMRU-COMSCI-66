@@ -25,13 +25,13 @@ export default NextAuth({
 			async profile(profile: GoogleProfile) {
 				const user: User = {
 					id: profile.sub,
-					title: undefined,
 					name: profile.name,
+					nickname: undefined,
 					image: profile.picture,
 					role: undefined,
 					email: profile.email,
 					emailVerified: undefined,
-					studentId: [],
+					studentId: undefined,
 					created_at: undefined,
 					updateAt: undefined,
 				};
@@ -39,9 +39,16 @@ export default NextAuth({
 				if (profile.hd === "g.cmru.ac.th") {
 					user.role = "viewer" as $Enums.RoleType;
 
-					if (!user.studentId.includes(Number(profile.email.split("@")[0]))) {
-						user.role = "user" as $Enums.RoleType;
-						user.studentId.push(Number(profile.email.split("@")[0]));
+					try {
+						const studentId = Number(profile.email?.split("@")[0] || 0),
+							student = await prisma.studentList.findUniqueOrThrow({ where: { id: studentId } });
+
+						if (studentId && student) {
+							user.role = "user" as $Enums.RoleType;
+							user.studentId = studentId;
+						}
+					} catch (error) {
+						console.error(error);
 					}
 				}
 
