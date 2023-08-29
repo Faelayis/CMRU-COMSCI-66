@@ -17,7 +17,7 @@
 		"husky:pre-commit": "pnpm lint-staged",
 		"husky:pre-push": "turbo run husky:pre-push",
 		"preinstall": "npx only-allow pnpm",
-		"lib": "pnpm --filter=library",
+		"lib": "pnpm --parallel --filter=./library/** ",
 		"lib:api": "pnpm --filter=./library/api",
 		"lib:build": "pnpm --filter=./library/** \"/^build*/\"",
 		"lib:db": "pnpm --filter=./library/database",
