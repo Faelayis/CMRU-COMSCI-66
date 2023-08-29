@@ -52,7 +52,6 @@ web_modules/
 # TypeScript build output
 esm
 cjs
-client/src/pages/api
 
 # Optional npm cache directory
 .npm
@@ -140,3 +139,5 @@ dist
 
 # Prisma output
 prisma/client
+client/src/pages/api/*.d.ts
+client/src/pages/api/*.js

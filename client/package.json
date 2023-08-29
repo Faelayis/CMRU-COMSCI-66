@@ -1,5 +1,4 @@
 {
-	"private": true,
 	"name": "@cmru-comsci-66/client",
 	"version": "1.2.2",
 	"scripts": {
@@ -18,25 +17,19 @@
 	"dependencies": {
 		"@cmru-comsci-66/api": "workspace:*",
 		"@cmru-comsci-66/database": "workspace:*",
-		"@emotion/react": "11.11.1",
-		"@emotion/styled": "11.11.0",
-		"@fortawesome/free-brands-svg-icons": "6.4.2",
-		"@fortawesome/react-fontawesome": "0.2.0",
-		"@mui/icons-material": "5.14.6",
-		"@mui/material": "5.14.6",
-		"@mui/x-date-pickers": "6.12.0",
-		"antd": "5.8.4",
-		"dayjs": "1.11.9",
-		"fontawesome": "5.6.3",
+		"@nextui-org/react": "2.1.7",
+		"autoprefixer": "10.4.15",
+		"eslint": "8.48.0",
+		"framer-motion": "10.16.1",
 		"next": "13.4.19",
-		"next-auth": "^4.23.1",
+		"next-auth": "4.23.1",
 		"node-fetch": "3.3.2",
+		"postcss": "8.4.28",
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"sharp": "0.32.5",
-		"styled-components": "6.0.7",
-		"sweetalert2": "11.7.27",
-		"swr": "2.2.1"
+		"swr": "2.2.2",
+		"tailwindcss": "3.3.3"
 	},
 	"devDependencies": {
 		"@prisma/nextjs-monorepo-workaround-plugin": "5.2.0",
