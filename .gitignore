@@ -139,5 +139,6 @@ dist
 
 # Prisma output
 prisma/client
-client/src/pages/api/*.d.ts
-client/src/pages/api/*.js
+
+# Next.js build api by library/next-api
+client/src/pages/api/

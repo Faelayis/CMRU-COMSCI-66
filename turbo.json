@@ -3,7 +3,7 @@
 	"pipeline": {
 		"build": {
 			"dependsOn": ["^build:cjs", "^build:esm", "^build"],
-			"outputs": ["cjs/**", "esm/**", "/**", ".next/**"],
+			"outputs": ["cjs/**", "esm/**", "/**", ".next/**", "!.next/cache/**"],
 			"cache": false
 		},
 		"build:cjs": {
@@ -27,10 +27,12 @@
 			"cache": false
 		},
 		"dev": {
-			"cache": true
+			"cache": true,
+			"persistent": true
 		},
 		"start": {
-			"cache": true
+			"dependsOn": ["^build"],
+			"cache": false
 		},
 		"clean": {
 			"cache": false

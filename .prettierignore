@@ -13,8 +13,8 @@ cjs
 # turbo
 .turbo
 
-# Ignore files for PNPM, NPM and YARN
+# Ignore files for PNPM
 **/pnpm-lock.yaml
 
-# Build Database API
-client/src/pages/api
+# Next.js build api by library/next-api
+client/src/pages/api/

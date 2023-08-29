@@ -1,6 +1,9 @@
+# Next.js build output
 .DS_Store
 .next
-src/pages/api
 
-# Ignore files for PNPM, NPM and YARN
+# Next.js build api by library/next-api
+src/pages/api/
+
+# Ignore files for PNPM
 pnpm-lock.yaml
