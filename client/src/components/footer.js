@@ -259,7 +259,7 @@ export default function FooterComp() {
 										</ul>
 
 										<ul className="py-2">
-											<ui className="font-bold ">ไลบรารี่</ui>{" "}
+											<ui className="font-bold ">ไลบรารี</ui>{" "}
 											<ul className="mx-6 list-outside list-disc ">
 												<li>
 													API{" "}
