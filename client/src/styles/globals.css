@@ -20,4 +20,30 @@ body {
 	padding: 0;
 	margin: 0;
 	background-image: linear-gradient(120deg, #f0d045, #030303);
+	font-family: "LINE Seed Sans Regular";
+}
+
+@font-face {
+	font-family: "LINE Seed Sans Regular";
+	src: url("/fonts/LINESeedSansTH/Regular.woff");
+}
+
+@font-face {
+	font-family: "LINE Seed Sans Thin";
+	src: url("/fonts/LINESeedSansTH/Thin.woff");
+}
+
+@font-face {
+	font-family: "LINE Seed Sans Bold";
+	src: url("/fonts/LINESeedSansTH/Bold.woff");
+}
+
+@font-face {
+	font-family: "LINE Seed Sans ExtraBold";
+	src: url("/fonts/LINESeedSansTH/ExtraBold.woff");
+}
+
+@font-face {
+	font-family: "LINE Seed Sans Heavy";
+	src: url("/fonts/LINESeedSansTH/Heavy.woff");
 }
