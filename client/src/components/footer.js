@@ -150,8 +150,11 @@ export default function FooterComp() {
 						</Link>
 						. All Rights Reserved.
 					</span>
-					<span className="text-sm text-gray-500 dark:text-gray-400 sm:text-center">
-						v{publicRuntimeConfig.appVersion.project}
+					<span className="text-sm text-gray-500 dark:text-gray-400 sm:text-right">
+						v{publicRuntimeConfig.appVersion.client}
+						<p>
+							<small>{publicRuntimeConfig.appVersion.date}</small>
+						</p>
 					</span>
 					{/** 
           <div class="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
