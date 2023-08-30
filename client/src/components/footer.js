@@ -192,7 +192,7 @@ export default function FooterComp() {
 						</a>
 					</span>
 					<span className="text-center text-gray-500  dark:text-gray-400 sm:text-center">
-						<p>© วิทยาการคอมพิวเตอร์ รุ่น 66 สงวนลิขสิทธิ์ พ.ศ.2566</p>
+						<p>© CMRU วิทยาการคอมพิวเตอร์ รุ่น 66 สงวนลิขสิทธิ์ พ.ศ.2566</p>
 					</span>
 					<span
 						href="#"
