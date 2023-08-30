@@ -1,10 +1,22 @@
-import { Image, Link } from "@nextui-org/react";
+import {
+	Button,
+	Image,
+	Link,
+	Modal,
+	ModalBody,
+	ModalContent,
+	ModalFooter,
+	ModalHeader,
+	ModalProvider,
+	useDisclosure,
+} from "@nextui-org/react";
 import getConfig from "next/config";
 import React from "react";
 
 const { publicRuntimeConfig } = getConfig();
 
 export default function FooterComp() {
+	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	return (
 		<footer className="bg-white dark:bg-gray-900">
 			<div className="mx-auto w-full max-w-screen-xl select-none p-4 py-6 lg:py-1">
@@ -182,12 +194,110 @@ export default function FooterComp() {
 					<span className="text-center text-gray-500  dark:text-gray-400 sm:text-center">
 						<p>© วิทยาการคอมพิวเตอร์ รุ่น 66 สงวนลิขสิทธิ์ พ.ศ.2566</p>
 					</span>
-					<span className="text-center text-gray-500  dark:text-gray-400 sm:text-right">
-						<p>v{publicRuntimeConfig.appVersion.client}</p>
+					<span
+						href="#"
+						className="cursor-pointer text-center  text-gray-500 dark:text-gray-400 sm:text-right  "
+						onClick={onOpen}
+					>
+						<p>v{publicRuntimeConfig.appVersion.project}</p>
 						<p>
-							<small>{publicRuntimeConfig.appVersion.date}</small>
+							<small>{publicRuntimeConfig.appVersion.date.short}</small>
 						</p>
 					</span>
+
+					<Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+						<ModalContent className="select-none">
+							{() => (
+								<>
+									<ModalHeader className="flex flex-col ">
+										เวอร์ชั่น {publicRuntimeConfig.appVersion.project}
+									</ModalHeader>
+									<ModalBody>
+										<ul>
+											<ui className="font-bold ">เว็บไซต์</ui> <ui></ui>
+											<small>
+												{publicRuntimeConfig.appVersion.client.version}
+											</small>
+											<ul className="mx-2 list-outside list-none">
+												<li>
+													<ul>
+														<li>
+															┗ เฟรมเวิร์ก
+															<ul className="mx-10 list-outside list-disc">
+																<li>
+																	NextJS{" "}
+																	<small>
+																		{
+																			publicRuntimeConfig.appVersion.client
+																				.nextjs
+																		}
+																	</small>
+																</li>
+																<li>
+																	NextUI{" "}
+																	<small>
+																		{
+																			publicRuntimeConfig.appVersion.client
+																				.nextui
+																		}
+																	</small>
+																</li>
+																<li>
+																	Tailwind{" "}
+																	<small>
+																		{
+																			publicRuntimeConfig.appVersion.client
+																				.tailwind
+																		}
+																	</small>
+																</li>
+															</ul>
+														</li>
+													</ul>
+												</li>
+											</ul>
+										</ul>
+
+										<ul className="py-2">
+											<ui className="font-bold ">ไลบรารี่</ui>{" "}
+											<ul className="mx-6 list-outside list-disc ">
+												<li>
+													API{" "}
+													<small>
+														{publicRuntimeConfig.appVersion.library.api}
+													</small>
+												</li>
+												<li>
+													Next-API{" "}
+													<small>
+														{publicRuntimeConfig.appVersion.library["next-api"]}
+													</small>
+												</li>
+												<li>
+													Database{" "}
+													<small>
+														{publicRuntimeConfig.appVersion.library.database}
+													</small>
+												</li>
+												<li>
+													Utils{" "}
+													<small>
+														{publicRuntimeConfig.appVersion.library.utils}
+													</small>
+												</li>
+											</ul>
+										</ul>
+									</ModalBody>
+									<ModalFooter>
+										<div className="text-right">
+											<p className="font-bold">อัปเดทล่าสุด</p>
+											<p>{publicRuntimeConfig.appVersion.date.full}</p>
+										</div>
+									</ModalFooter>
+								</>
+							)}
+						</ModalContent>
+					</Modal>
 				</div>
 				<div className="lg:my-5" />
 			</div>

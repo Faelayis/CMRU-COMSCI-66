@@ -10,11 +10,29 @@ const nextConfig = {
 	},
 	publicRuntimeConfig: {
 		appVersion: {
-			client: process.env["npm_package_version"],
-			date: new Intl.DateTimeFormat("th-th", {
-				dateStyle: "medium",
-				timeStyle: "short",
-			}).format(),
+			project: require("../package.json").version,
+			client: {
+				version: require("./package.json").version,
+				nextjs: require("./package.json").dependencies["next"],
+				nextui: require("./package.json").dependencies["@nextui-org/react"],
+				tailwind: require("./package.json").dependencies["tailwindcss"],
+			},
+			library: {
+				api: require("../library/api/package.json").version,
+				utils: require("../library/utils/package.json").version,
+				database: require("../library/database/package.json").version,
+				"next-api": require("../library/next-api/package.json").version,
+			},
+			date: {
+				short: new Intl.DateTimeFormat("th-th", {
+					dateStyle: "medium",
+					timeStyle: "short",
+				}).format(),
+				full: new Intl.DateTimeFormat("th-th", {
+					dateStyle: "full",
+					timeStyle: "short",
+				}).format(),
+			},
 		},
 	},
 	webpack: (config, { isServer }) => {
