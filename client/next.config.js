@@ -10,9 +10,11 @@ const nextConfig = {
 	},
 	publicRuntimeConfig: {
 		appVersion: {
-			project:
-				process.env["npm_package_version"] ||
-				` ${new Date().toLocaleDateString("th-th").toLocaleString()}`,
+			client: process.env["npm_package_version"],
+			date: new Intl.DateTimeFormat("th-th", {
+				dateStyle: "medium",
+				timeStyle: "short",
+			}).format(),
 		},
 	},
 	webpack: (config, { isServer }) => {
