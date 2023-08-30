@@ -14,10 +14,11 @@ import {
 import { signIn, signOut, useSession } from "next-auth/react";
 import React from "react";
 
-import { AcmeLogo } from "./acmelogo";
+import { AcmeLogo } from "./logo";
 
 export default function NavbarComp() {
 	const { data: session } = useSession();
+
 	return (
 		<Navbar>
 			<NavbarBrand>
@@ -69,7 +70,7 @@ export default function NavbarComp() {
 								<p className="font-semibold">Signed in as</p>
 								<p className="font-semibold">{session.user.email}</p>
 							</DropdownItem>
-							<DropdownItem key="role">Role</DropdownItem>
+							<DropdownItem key="role"></DropdownItem>
 							<DropdownItem key="settings">My Settings</DropdownItem>
 							<DropdownItem
 								key="help_and_feedback"

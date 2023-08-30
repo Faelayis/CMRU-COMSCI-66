@@ -8,11 +8,17 @@ const nextConfig = {
 				? process.env["npm_package_scripts_PORT"] || process.env["PORT"]
 				: null,
 	},
+	publicRuntimeConfig: {
+		appVersion: {
+			project:
+				process.env["npm_package_version"] ||
+				` ${new Date().toLocaleDateString("th-th").toLocaleString()}`,
+		},
+	},
 	webpack: (config, { isServer }) => {
 		if (isServer) {
 			config.plugins = [...config.plugins, new PrismaPlugin()];
 		}
-
 		return config;
 	},
 };

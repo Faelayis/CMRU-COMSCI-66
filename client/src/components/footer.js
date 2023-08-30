@@ -1,5 +1,8 @@
 import { Image, Link } from "@nextui-org/react";
+import getConfig from "next/config";
 import React from "react";
+
+const { publicRuntimeConfig } = getConfig();
 
 export default function FooterComp() {
 	return (
@@ -143,12 +146,12 @@ export default function FooterComp() {
 					<span className="text-sm text-gray-500 dark:text-gray-400 sm:text-center">
 						© 2023{" "}
 						<Link href="https://flowbite.com/" className="hover:underline">
-							cmru-comsci-66
+							CMRU Computer Science 66
 						</Link>
 						. All Rights Reserved.
 					</span>
 					<span className="text-sm text-gray-500 dark:text-gray-400 sm:text-center">
-						เพิ่มข้อความเวอร์ชั่น ตัวเล็กๆ ว่า v1.X.X ให้หน่อย
+						v{publicRuntimeConfig.appVersion.project}
 					</span>
 					{/** 
           <div class="flex mt-4 space-x-5 sm:justify-center sm:mt-0">
