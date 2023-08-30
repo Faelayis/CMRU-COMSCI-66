@@ -15,6 +15,8 @@ export default function carousel() {
 							src="/docs/images/carousel/carousel-1.svg"
 							className="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
 							alt="carousel-1"
+							width={1280}
+							height={400}
 						/>
 					</div>
 					<div className="hidden duration-700 ease-in-out" data-carousel-item>
@@ -22,6 +24,8 @@ export default function carousel() {
 							src="/docs/images/carousel/carousel-2.svg"
 							className="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
 							alt="carousel-2"
+							width={1280}
+							height={400}
 						/>
 					</div>
 					<div className="hidden duration-700 ease-in-out" data-carousel-item>
@@ -29,6 +33,8 @@ export default function carousel() {
 							src="/docs/images/carousel/carousel-3.svg"
 							className="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
 							alt="carousel-3"
+							width={1280}
+							height={400}
 						/>
 					</div>
 					<div className="hidden duration-700 ease-in-out" data-carousel-item>
@@ -36,6 +42,8 @@ export default function carousel() {
 							src="/docs/images/carousel/carousel-4.svg"
 							className="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
 							alt="carousel-4"
+							width={1280}
+							height={400}
 						/>
 					</div>
 					<div className="hidden duration-700 ease-in-out" data-carousel-item>
@@ -43,6 +51,8 @@ export default function carousel() {
 							src="/docs/images/carousel/carousel-5.svg"
 							className="absolute left-1/2 top-1/2 block w-full -translate-x-1/2 -translate-y-1/2"
 							alt="carousel-5"
+							width={1280}
+							height={400}
 						/>
 					</div>
 				</div>

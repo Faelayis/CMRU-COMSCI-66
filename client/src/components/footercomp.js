@@ -1,4 +1,4 @@
-import { Link } from "@nextui-org/react";
+import { Image, Link } from "@nextui-org/react";
 import React from "react";
 
 export default function FooterComp() {
@@ -8,7 +8,7 @@ export default function FooterComp() {
 				<div className="md:flex md:justify-between">
 					<div className="mb-6 md:mb-0">
 						<Link href="/" className="flex items-center">
-							<img
+							<Image
 								src="https://flowbite.com/docs/images/logo.svg"
 								className="mr-3 h-8"
 								alt="FlowBite Logo"
