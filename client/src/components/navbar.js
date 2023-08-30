@@ -1,3 +1,5 @@
+import { faGoogle } from "@fortawesome/free-brands-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
 	Avatar,
 	Button,
@@ -31,22 +33,12 @@ export default function NavbarComp() {
 			<NavbarContent className="hidden gap-4 sm:flex" justify="start">
 				<NavbarItem>
 					<Link color="foreground" href="/contents/todo">
-						ToDo
+						สิ่งที่ต้องทำ
 					</Link>
 				</NavbarItem>
 				<NavbarItem isActive>
 					<Link color="secondary" href="/contents/finance">
-						Finance
-					</Link>
-				</NavbarItem>
-				<NavbarItem>
-					<Link color="foreground" href="/contents/leaders">
-						Leaders
-					</Link>
-				</NavbarItem>
-				<NavbarItem>
-					<Link color="foreground" href="/contents/about">
-						About
+						การเงิน
 					</Link>
 				</NavbarItem>
 			</NavbarContent>
@@ -67,32 +59,38 @@ export default function NavbarComp() {
 						</DropdownTrigger>
 						<DropdownMenu aria-label="Profile Actions" variant="flat">
 							<DropdownItem key="profile" className="h-14 gap-2">
-								<p className="font-semibold">Signed in as</p>
+								<p className="font-semibold">เข้าสู่ระบบโดย</p>
 								<p className="font-semibold">{session.user.email}</p>
 							</DropdownItem>
-							<DropdownItem key="role"></DropdownItem>
-							<DropdownItem key="settings">My Settings</DropdownItem>
+							<DropdownItem key="settings">การตั้งค่า</DropdownItem>
 							<DropdownItem
 								key="help_and_feedback"
 								href="/help"
 								color="warning"
 							>
-								Help & Feedback
+								ความช่วยเหลือและข้อเสนอแนะ
 							</DropdownItem>
 							<DropdownItem
 								key="logout"
 								onClick={() => signOut()}
 								color="danger"
 							>
-								Log Out
+								ออกจากระบบ
 							</DropdownItem>
 						</DropdownMenu>
 					</Dropdown>
 				</NavbarContent>
 			) : (
 				<NavbarItem>
-					<Button color="success" onClick={() => signIn()} variant="flat">
-						Sign In
+					<Button
+						color="primary"
+						variant="faded"
+						onClick={() => signIn("google")}
+						startContent={
+							<FontAwesomeIcon icon={faGoogle} className="h-4 w-4" />
+						}
+					>
+						เข้าสู่ระบบ
 					</Button>
 				</NavbarItem>
 			)}
