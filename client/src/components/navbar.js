@@ -12,6 +12,9 @@ import {
 	NavbarBrand,
 	NavbarContent,
 	NavbarItem,
+	NavbarMenu,
+	NavbarMenuItem,
+	NavbarMenuToggle,
 } from "@nextui-org/react";
 import { signIn, signOut, useSession } from "next-auth/react";
 import React from "react";
@@ -20,9 +23,15 @@ import { AcmeLogo } from "./logo";
 
 export default function NavbarComp() {
 	const { data: session } = useSession();
+	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
 	return (
-		<Navbar>
+		<Navbar isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
+			<NavbarContent className="sm:hidden" justify="start">
+				<NavbarMenuToggle
+					aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+				/>
+			</NavbarContent>
 			<NavbarBrand>
 				<Link href="/" color="foreground">
 					<AcmeLogo />
@@ -99,6 +108,38 @@ export default function NavbarComp() {
 					</Button>
 				</NavbarItem>
 			)}
+			<NavbarMenu>
+				<NavbarMenuItem>
+					<Link
+						className="w-full"
+						color="foreground"
+						href="/contents/todo"
+						size="lg"
+					>
+						Todo
+					</Link>
+				</NavbarMenuItem>
+				<NavbarMenuItem>
+					<Link
+						className="w-full"
+						color="warning"
+						href="/contents/finance"
+						size="lg"
+					>
+						Finance
+					</Link>
+				</NavbarMenuItem>
+				<NavbarMenuItem>
+					<Link
+						className="w-full"
+						color="foreground"
+						href="/contents/about"
+						size="lg"
+					>
+						About
+					</Link>
+				</NavbarMenuItem>
+			</NavbarMenu>
 		</Navbar>
 	);
 }
