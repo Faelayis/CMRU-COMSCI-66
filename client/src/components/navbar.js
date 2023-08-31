@@ -41,6 +41,11 @@ export default function NavbarComp() {
 						การเงิน
 					</Link>
 				</NavbarItem>
+				<NavbarItem>
+					<Link color="foreground" href="/contents/about">
+						เกี่ยวกับเรา
+					</Link>
+				</NavbarItem>
 			</NavbarContent>
 
 			{session ? (
