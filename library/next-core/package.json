@@ -1,22 +1,19 @@
 {
 	"private": true,
-	"name": "@cmru-comsci-66/next-api",
-	"version": "1.4.0",
+	"name": "@cmru-comsci-66/next-core",
+	"version": "2.0.0",
 	"license": "apache-2.0",
 	"author": "Faelayis <48393914+Faelayis@users.noreply.github.com>",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/Faelayis/CMRU-COMSCI-66.git",
-		"directory": "library/next-api"
+		"directory": "library/next-core"
 	},
 	"type": "module",
-	"files": [
-		"*.ts"
-	],
 	"scripts": {
 		"build": "tsc --build",
 		"ci:bump": "bump",
-		"clean": "rimraf .turbo ./../../client/src/pages/api",
+		"clean": "rimraf .turbo esm ./../../client/src/pages/api ./../../client/src/pages/swal",
 		"dev": "tsc -w",
 		"dev:debug": "tsc -w",
 		"postinstall": "pnpm run --silent build",
@@ -24,16 +21,10 @@
 		"lint:fix": "eslint . --fix"
 	},
 	"devDependencies": {
-		"@cmru-comsci-66/database": "workspace:*",
-		"@next-auth/prisma-adapter": "../../client/node_modules/@next-auth/prisma-adapter",
 		"@types/node": "20.5.3",
 		"@types/nodemailer": "6.4.4",
 		"@types/react": "18.2.20",
 		"@types/react-dom": "18.2.7",
-		"next": "../../client/node_modules/next",
-		"next-auth": "../../client/node_modules/next-auth",
-		"node-fetch": "../../client/node_modules/node-fetch",
-		"swr": "../../client/node_modules/swr",
 		"typescript": "5.1.6"
 	},
 	"publishConfig": {

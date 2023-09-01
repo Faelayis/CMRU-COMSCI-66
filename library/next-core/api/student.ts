@@ -4,7 +4,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import SWR from "swr";
 
 /**
- * @desc รับข้อมูลนักศึกษา
+ * @desc GET student data
  * @example
  * await findStudent();
  * @returns {Promise<StudentList[]>}
@@ -73,7 +73,7 @@ interface MappedStudentLite {
 }
 
 /**
- * ดึงข้อมูลนักศึกษาโดยใช้ SWR
+ * Get student data using SWR
  *
  * @returns {{
  *   student: MappedStudentLite[],

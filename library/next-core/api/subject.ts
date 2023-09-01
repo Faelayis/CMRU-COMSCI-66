@@ -3,7 +3,7 @@ import type { Subject } from "@cmru-comsci-66/database/node_modules/@prisma/clie
 import type { GetServerSidePropsResult, NextApiRequest, NextApiResponse } from "next";
 
 /**
- * @desc รับข้อมูลการบ้าน
+ * @desc Get subject data
  * @example
  * await findSubject();
  * @returns {Promise<Subject[]>}

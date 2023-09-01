@@ -137,6 +137,9 @@ importers:
       sharp:
         specifier: 0.32.5
         version: 0.32.5
+      sweetalert2:
+        specifier: 11.7.27
+        version: 11.7.27
       swr:
         specifier: 2.2.2
         version: 2.2.2(react@18.2.0)
@@ -198,14 +201,8 @@ importers:
         specifier: 5.1.6
         version: 5.1.6
 
-  library/next-api:
+  library/next-core:
     devDependencies:
-      '@cmru-comsci-66/database':
-        specifier: workspace:*
-        version: link:../database
-      '@next-auth/prisma-adapter':
-        specifier: ../../client/node_modules/@next-auth/prisma-adapter
-        version: link:../../client/node_modules/@next-auth/prisma-adapter
       '@types/node':
         specifier: 20.5.3
         version: 20.5.3
@@ -218,18 +215,6 @@ importers:
       '@types/react-dom':
         specifier: 18.2.7
         version: 18.2.7
-      next:
-        specifier: ../../client/node_modules/next
-        version: link:../../client/node_modules/next
-      next-auth:
-        specifier: ../../client/node_modules/next-auth
-        version: link:../../client/node_modules/next-auth
-      node-fetch:
-        specifier: ../../client/node_modules/node-fetch
-        version: link:../../client/node_modules/node-fetch
-      swr:
-        specifier: ../../client/node_modules/swr
-        version: link:../../client/node_modules/swr
       typescript:
         specifier: 5.1.6
         version: 5.1.6
@@ -7209,6 +7194,10 @@ packages:
   /supports-preserve-symlinks-flag@1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+
+  /sweetalert2@11.7.27:
+    resolution: {integrity: sha512-QbRXGQn1sb7HEhzA/K2xtWIwQHh/qkSbb1w6jYcTql2xy17876lTREEt1D4X6Q0x2wHtfUjKJ+Cb8IVkRoq7DQ==}
+    dev: false
 
   /swr@2.2.2(react@18.2.0):
     resolution: {integrity: sha512-CbR41AoMD4TQBQw9ic3GTXspgfM9Y8Mdhb5Ob4uIKXhWqnRLItwA5fpGvB7SmSw3+zEjb0PdhiEumtUvYoQ+bQ==}

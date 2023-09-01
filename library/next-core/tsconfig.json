@@ -1,0 +1,64 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"compilerOptions": {
+		"outDir": "./esm",
+		"lib": [
+			"ESNext",
+			"ESNext.AsyncIterable",
+			"DOM",
+			"DOM.Iterable"
+		],
+		"noEmit": false,
+		"composite": false,
+		"removeComments": true,
+		"incremental": true,
+		"sourceMap": false,
+		"paths": {
+			"next-auth": [
+				"../../client/node_modules/next-auth"
+			],
+			"next-auth/*": [
+				"../../client/node_modules/next-auth/*"
+			],
+			"node-fetch": [
+				"../../client/node_modules/node-fetch"
+			],
+			"swr": [
+				"../../client/node_modules/swr"
+			],
+			"sweetalert2": [
+				"../../client/node_modules/sweetalert2"
+			],
+			"@next-auth/prisma-adapter": [
+				"../../client/node_modules/@next-auth/prisma-adapter"
+			],
+			"next": [
+				"../../client/node_modules/next"
+			],
+			"@cmru-comsci-66/database": [
+				"../database"
+			],
+			"@cmru-comsci-66/database/*": [
+				"../database/node_modules/@prisma/client/index"
+			]
+		},
+		"declaration": true,
+		"types": [
+			"react",
+			"react-dom"
+		],
+		"typeRoots": [
+			"node_modules/@types"
+		]
+	},
+	"references": [
+		{
+			"path": "api/"
+		},
+		{
+			"path": "swal/"
+		}
+	],
+	"extends": "../.config/tsconfig.json",
+	"display": "@cmru-comsci-66/next-core"
+}

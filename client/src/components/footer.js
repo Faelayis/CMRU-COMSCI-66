@@ -268,9 +268,13 @@ export default function FooterComp() {
 													</small>
 												</li>
 												<li>
-													Next-API{" "}
+													Next-Core{" "}
 													<small>
-														{publicRuntimeConfig.appVersion.library["next-api"]}
+														{
+															publicRuntimeConfig.appVersion.library[
+																"next-core"
+															]
+														}
 													</small>
 												</li>
 												<li>

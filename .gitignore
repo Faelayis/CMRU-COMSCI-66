@@ -140,5 +140,6 @@ dist
 # Prisma output
 prisma/client
 
-# Next.js build api by library/next-api
+# Next.js build core by library/next-core
 client/src/pages/api/
+client/src/pages/swal/

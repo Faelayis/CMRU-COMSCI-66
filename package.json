@@ -21,7 +21,7 @@
 		"lib:api": "pnpm --filter=./library/api",
 		"lib:build": "pnpm --filter=./library/** \"/^build*/\"",
 		"lib:db": "pnpm --filter=./library/database",
-		"lib:next-api": "pnpm --filter=./library/next-api",
+		"lib:next-core": "pnpm --filter=./library/next-core",
 		"lint": "pnpm --filter=* lint",
 		"pkg:clean": "pnpx rimraf@3.0.2 ./**/node_modules",
 		"pkg:update": "pnpm up --latest --recursive --interactive",

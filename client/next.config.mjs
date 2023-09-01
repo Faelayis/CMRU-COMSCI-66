@@ -32,8 +32,8 @@ const nextConfig = {
 				database: JSON.parse(
 					fs.readFileSync("../library/database/package.json"),
 				).version,
-				"next-api": JSON.parse(
-					fs.readFileSync("../library/next-api/package.json"),
+				"next-core": JSON.parse(
+					fs.readFileSync("../library/next-core/package.json"),
 				).version,
 			},
 			date: {

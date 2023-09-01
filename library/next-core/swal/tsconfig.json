@@ -1,0 +1,10 @@
+{
+	"$schema": "https://json.schemastore.org/tsconfig",
+	"compilerOptions": {
+		"outDir": "../../../client/src/pages/swal",
+		"incremental": true,
+		"composite": true
+	},
+	"extends": "../tsconfig.json",
+	"display": "@cmru-comsci-66/next-core-swal"
+}

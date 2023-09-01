@@ -2,8 +2,9 @@
 .DS_Store
 .next
 
-# Next.js build api by library/next-api
+# Next.js build core by library/next-core
 src/pages/api/
+src/pages/swal/
 
 # Ignore files for PNPM
 pnpm-lock.yaml
