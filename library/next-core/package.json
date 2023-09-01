@@ -14,8 +14,8 @@
 		"build": "tsc --build",
 		"ci:bump": "bump",
 		"clean": "rimraf .turbo esm ./../../client/src/pages/api ./../../client/src/pages/swal",
-		"dev": "tsc -w",
-		"dev:debug": "tsc -w",
+		"dev": "tsc --build -w",
+		"dev:debug": "tsc --build -w",
 		"postinstall": "pnpm run --silent build",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix"
