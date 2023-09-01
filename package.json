@@ -7,7 +7,7 @@
 	"type": "module",
 	"scripts": {
 		"build": "pnpm lib:build && pnpm --parallel --filter=./client build",
-		"clean": "turbo daemon clean && pnpm --filter=* clean",
+		"clean": "node ./script/clean-temp.js && pnpm --filter=* clean",
 		"clear": "git clean -f -d",
 		"client": "pnpm --filter=client",
 		"copy": "copyfiles .env ./library/database",
@@ -41,6 +41,7 @@
 		"@typescript-eslint/eslint-plugin": "6.4.1",
 		"@typescript-eslint/parser": "6.4.1",
 		"copyfiles": "2.4.1",
+		"del": "7.1.0",
 		"dotenv-cli": "7.3.0",
 		"eslint": "8.47.0",
 		"eslint-config-prettier": "9.0.0",
