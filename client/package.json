@@ -41,7 +41,7 @@
 	},
 	"devDependencies": {
 		"@prisma/nextjs-monorepo-workaround-plugin": "5.2.0",
-		"@types/node": "20.5.3",
+		"@types/node": "20.5.8",
 		"eslint-config-next": "13.4.19",
 		"eslint-plugin-react": "7.33.2",
 		"eslint-plugin-tailwindcss": "3.13.0",
