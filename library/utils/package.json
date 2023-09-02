@@ -37,7 +37,7 @@
 	},
 	"typings": "esm/library.d.ts",
 	"devDependencies": {
-		"@types/node": "20.5.3",
+		"@types/node": "20.5.8",
 		"typescript": "5.1.6"
 	},
 	"publishConfig": {

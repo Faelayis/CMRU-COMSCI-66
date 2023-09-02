@@ -24,7 +24,7 @@
 		"@cmru-comsci-66/api": "workspace:*",
 		"@cmru-comsci-66/database": "workspace:*",
 		"@cmru-comsci-66/utils": "workspace:*",
-		"@types/node": "20.5.3",
+		"@types/node": "20.5.8",
 		"@types/nodemailer": "6.4.4",
 		"@types/react": "18.2.20",
 		"@types/react-dom": "18.2.7",
