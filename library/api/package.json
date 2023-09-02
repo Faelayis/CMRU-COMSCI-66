@@ -39,7 +39,7 @@
 	"dependencies": {
 		"@cmru-comsci-66/utils": "workspace:*",
 		"axios": "1.5.0",
-		"discord-api-types": "0.37.55"
+		"discord-api-types": "0.37.56"
 	},
 	"devDependencies": {
 		"@types/node": "20.5.8",

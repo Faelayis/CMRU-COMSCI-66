@@ -178,8 +178,8 @@ importers:
         specifier: 1.5.0
         version: 1.5.0
       discord-api-types:
-        specifier: 0.37.55
-        version: 0.37.55
+        specifier: 0.37.56
+        version: 0.37.56
     devDependencies:
       '@types/node':
         specifier: 20.5.8
@@ -4033,8 +4033,8 @@ packages:
       path-type: 4.0.0
     dev: true
 
-  /discord-api-types@0.37.55:
-    resolution: {integrity: sha512-XIf8AELxg76AH1WzrgB5ziFyIxSs4tLK1XGjFs4oE6t7M7r1B0Chdylaz76ALhvRXAUBGHGFXu/pKAa5Q+LbQg==}
+  /discord-api-types@0.37.56:
+    resolution: {integrity: sha512-Ih3wj0ZTaQxaJRqUEXHMIXfXB86bwMGC0wc2nNsyCJqeo3lC4qnxXtFIsC+IGI46+dSIinuayCAZ6sLEEM02Bw==}
     dev: false
 
   /dlv@1.1.3:
