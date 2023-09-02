@@ -13,7 +13,7 @@
 	"scripts": {
 		"build": "tsc --build",
 		"ci:bump": "bump",
-		"clean": "del-cli --force .turbo esm ./../../client/src/pages/api ./../../client/src/pages/swal",
+		"clean": "del-cli --force .turbo esm ./../../client/src/pages/api ./../../client/src/lib/swal",
 		"dev": "tsc --build -w",
 		"dev:debug": "tsc --build -w",
 		"postinstall": "pnpm run --silent build",

@@ -1,7 +1,7 @@
 {
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"compilerOptions": {
-		"outDir": "../../../client/src/pages/swal",
+		"outDir": "../../../client/src/lib/swal",
 		"incremental": true,
 		"composite": true
 	},

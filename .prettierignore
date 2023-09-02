@@ -18,4 +18,4 @@ cjs
 
 # Next.js build core by library/next-core
 client/src/pages/api/
-client/src/pages/swal/
+client/src/lib/swal/
