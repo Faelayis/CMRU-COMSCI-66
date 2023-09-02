@@ -13,7 +13,7 @@
 	"scripts": {
 		"build": "tsc --build",
 		"ci:bump": "bump",
-		"clean": "rimraf .turbo esm ./../../client/src/pages/api ./../../client/src/pages/swal",
+		"clean": "del-cli --force .turbo esm ./../../client/src/pages/api ./../../client/src/pages/swal",
 		"dev": "tsc --build -w",
 		"dev:debug": "tsc --build -w",
 		"postinstall": "pnpm run --silent build",
@@ -21,6 +21,9 @@
 		"lint:fix": "eslint . --fix"
 	},
 	"devDependencies": {
+		"@cmru-comsci-66/api": "workspace:*",
+		"@cmru-comsci-66/database": "workspace:*",
+		"@cmru-comsci-66/utils": "workspace:*",
 		"@types/node": "20.5.3",
 		"@types/nodemailer": "6.4.4",
 		"@types/react": "18.2.20",

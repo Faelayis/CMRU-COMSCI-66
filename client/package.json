@@ -5,7 +5,7 @@
 		"PORT": "3000",
 		"build": "next build",
 		"ci:bump": "bump",
-		"clean": "rimraf .next .turbo",
+		"clean": "del-cli .next .turbo",
 		"dev": "pnpm run open-browser && next dev",
 		"dev:debug": "next dev",
 		"format": "prettier --write .",
