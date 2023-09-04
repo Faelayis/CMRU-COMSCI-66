@@ -73,7 +73,7 @@ importers:
         version: 1.1.6
       ts-node:
         specifier: 10.9.1
-        version: 10.9.1(@types/node@20.5.8)(typescript@5.2.2)
+        version: 10.9.1(@types/node@20.5.9)(typescript@5.2.2)
       turbo:
         specifier: 1.10.13
         version: 1.10.13
@@ -154,8 +154,8 @@ importers:
         specifier: 5.2.0
         version: 5.2.0
       '@types/node':
-        specifier: 20.5.8
-        version: 20.5.8
+        specifier: 20.5.9
+        version: 20.5.9
       eslint-config-next:
         specifier: 13.4.19
         version: 13.4.19(eslint@8.48.0)(typescript@5.2.2)
@@ -182,8 +182,8 @@ importers:
         version: 0.37.56
     devDependencies:
       '@types/node':
-        specifier: 20.5.8
-        version: 20.5.8
+        specifier: 20.5.9
+        version: 20.5.9
       typescript:
         specifier: 5.2.2
         version: 5.2.2
@@ -198,8 +198,8 @@ importers:
         version: 5.2.0
     devDependencies:
       '@types/node':
-        specifier: 20.5.8
-        version: 20.5.8
+        specifier: 20.5.9
+        version: 20.5.9
       typescript:
         specifier: 5.2.2
         version: 5.2.2
@@ -216,8 +216,8 @@ importers:
         specifier: workspace:*
         version: link:../utils
       '@types/node':
-        specifier: 20.5.8
-        version: 20.5.8
+        specifier: 20.5.9
+        version: 20.5.9
       '@types/nodemailer':
         specifier: 6.4.4
         version: 6.4.4
@@ -234,8 +234,8 @@ importers:
   library/utils:
     devDependencies:
       '@types/node':
-        specifier: 20.5.8
-        version: 20.5.8
+        specifier: 20.5.9
+        version: 20.5.9
       typescript:
         specifier: 5.2.2
         version: 5.2.2
@@ -2876,13 +2876,13 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/node@20.5.8:
-    resolution: {integrity: sha512-eajsR9aeljqNhK028VG0Wuw+OaY5LLxYmxeoXynIoE6jannr9/Ucd1LL0hSSoafk5LTYG+FfqsyGt81Q6Zkybw==}
+  /@types/node@20.5.9:
+    resolution: {integrity: sha512-PcGNd//40kHAS3sTlzKB9C9XL4K0sTup8nbG5lC14kzEteTNuAFh9u5nA0o5TWnSG2r/JNPRXFVcHJIIeRlmqQ==}
 
   /@types/nodemailer@6.4.4:
     resolution: {integrity: sha512-Ksw4t7iliXeYGvIQcSIgWQ5BLuC/mljIEbjf615svhZL10PE9t+ei8O9gDaD3FPCasUJn9KTLwz2JFJyiiyuqw==}
     dependencies:
-      '@types/node': 20.5.8
+      '@types/node': 20.5.9
     dev: true
 
   /@types/normalize-package-data@2.4.1:
@@ -6450,7 +6450,7 @@ packages:
     dependencies:
       lilconfig: 2.1.0
       postcss: 8.4.28
-      ts-node: 10.9.1(@types/node@20.5.8)(typescript@5.2.2)
+      ts-node: 10.9.1(@types/node@20.5.9)(typescript@5.2.2)
       yaml: 2.3.1
 
   /postcss-nested@6.0.1(postcss@8.4.28):
@@ -7536,7 +7536,7 @@ packages:
   /ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
-  /ts-node@10.9.1(@types/node@20.5.8)(typescript@5.2.2):
+  /ts-node@10.9.1(@types/node@20.5.9)(typescript@5.2.2):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -7555,7 +7555,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.5.8
+      '@types/node': 20.5.9
       acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3
