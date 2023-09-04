@@ -1,7 +1,7 @@
 {
 	"private": false,
 	"name": "@cmru-comsci-66/utils",
-	"version": "1.2.0",
+	"version": "1.2.1",
 	"license": "apache-2.0",
 	"author": "Faelayis <48393914+Faelayis@users.noreply.github.com>",
 	"repository": {
@@ -37,7 +37,7 @@
 	},
 	"typings": "esm/library.d.ts",
 	"devDependencies": {
-		"@types/node": "20.5.8",
+		"@types/node": "20.5.9",
 		"typescript": "5.2.2"
 	},
 	"publishConfig": {
