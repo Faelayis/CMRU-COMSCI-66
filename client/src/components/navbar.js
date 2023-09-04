@@ -20,6 +20,7 @@ import { signIn, signOut, useSession } from "next-auth/react";
 import React from "react";
 
 import { AcmeLogo } from "./logo";
+import ModelComp from "./modelcomp";
 
 export default function NavbarComp() {
 	const { data: session } = useSession();
@@ -35,19 +36,16 @@ export default function NavbarComp() {
 			<NavbarBrand>
 				<Link href="/" color="foreground">
 					<AcmeLogo />
-					<p className="font-bold text-inherit">CMRU COMSCI 66</p>
+					<p className="hidden font-bold text-inherit sm:inline">
+						CMRU COMSCI 66
+					</p>
 				</Link>
 			</NavbarBrand>
 
 			<NavbarContent className="hidden gap-4 sm:flex" justify="start">
-				<NavbarItem>
-					<Link color="foreground" href="/contents/todo">
-						สิ่งที่ต้องทำ
-					</Link>
-				</NavbarItem>
 				<NavbarItem isActive>
-					<Link color="secondary" href="/contents/finance">
-						การเงิน
+					<Link color="secondary" href="/contents/todo">
+						สิ่งที่ต้องทำ
 					</Link>
 				</NavbarItem>
 				<NavbarItem>
@@ -59,6 +57,7 @@ export default function NavbarComp() {
 
 			{session ? (
 				<NavbarContent as="div" justify="end">
+					<ModelComp />
 					<Dropdown placement="bottom-end">
 						<DropdownTrigger>
 							<Avatar
@@ -117,16 +116,6 @@ export default function NavbarComp() {
 						size="lg"
 					>
 						Todo
-					</Link>
-				</NavbarMenuItem>
-				<NavbarMenuItem>
-					<Link
-						className="w-full"
-						color="warning"
-						href="/contents/finance"
-						size="lg"
-					>
-						Finance
 					</Link>
 				</NavbarMenuItem>
 				<NavbarMenuItem>
