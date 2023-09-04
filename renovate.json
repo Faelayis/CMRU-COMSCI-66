@@ -3,5 +3,5 @@
 	"extends": ["config:base"],
 	"dependencyDashboard": false,
 	"automerge": false,
-	"bumpVersion": "patch",
+	"bumpVersion": "patch"
 }
