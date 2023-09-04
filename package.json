@@ -85,7 +85,7 @@
 			"prettier --write --ignore-unknown"
 		]
 	},
-	"packageManager": "pnpm@8.7.0",
+	"packageManager": "pnpm@8.7.1",
 	"pnpm": {
 		"peerDependencyRules": {
 			"allowAny": [
