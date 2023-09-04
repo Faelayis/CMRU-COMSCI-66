@@ -25,16 +25,16 @@ on:
                     - patch
                     - minor
                     - major
-            includes_web:
-                description: "Includes WebSite"
-                required: false
-                default: false
-                type: boolean
-            includes_package:
-                description: "Includes Packages"
-                required: false
-                default: false
-                type: boolean
+            # includes_web:
+            #     description: "Includes WebSite"
+            #     required: false
+            #     default: false
+            #     type: boolean
+            # includes_package:
+            #     description: "Includes Packages"
+            #     required: false
+            #     default: false
+            #     type: boolean
 
 jobs:
     test:
@@ -110,17 +110,17 @@ jobs:
               id: bumpversion
               run: pnpm bump ${{ github.event.inputs.bumpversion }}
 
-            - name: Bump Version (Packages)
-              if: |
-                  always() && github.event.inputs.includes_package == 'true' &&
-                  !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
-              run: pnpm --filter=./library/** ci:bump ${{ github.event.inputs.bumpversion }}
+            # - name: Bump Version (Packages)
+            #   if: |
+            #       always() && github.event.inputs.includes_package == 'true' &&
+            #       !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
+            #   run: pnpm --filter=./library/** ci:bump ${{ github.event.inputs.bumpversion }}
 
-            - name: Bump Version (WebSite)
-              if: |
-                  always() && github.event.inputs.includes_web == 'true' &&
-                  !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
-              run: pnpm --filter=./client ci:bump ${{ github.event.inputs.bumpversion }}
+            # - name: Bump Version (WebSite)
+            #   if: |
+            #       always() && github.event.inputs.includes_web == 'true' &&
+            #       !contains(needs.*.result, 'failure') && !contains(needs.*.result, 'cancelled')
+            #   run: pnpm --filter=./client ci:bump ${{ github.event.inputs.bumpversion }}
 
             - name: Get Version
               id: package
