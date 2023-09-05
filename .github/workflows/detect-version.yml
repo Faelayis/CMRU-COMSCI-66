@@ -10,7 +10,7 @@ jobs:
         steps:
             - uses: actions/checkout@v4
               with:
-                  fetch-depth: 2
+                  fetch-depth: 0
             - uses: salsify/action-detect-and-tag-new-version@v2
               with:
                   create-tag: true
