@@ -14,3 +14,4 @@ jobs:
             - uses: salsify/action-detect-and-tag-new-version@v2
               with:
                   create-tag: true
+                  tag-annotation-template: ""
