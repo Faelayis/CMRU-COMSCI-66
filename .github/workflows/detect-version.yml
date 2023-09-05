@@ -1,7 +1,5 @@
 name: Detect and Tag New Version
-on:
-    workflow_dispatch:
-    push:
+on: [workflow_dispatch, push]
 
 jobs:
     tag-new-versions:
@@ -10,8 +8,8 @@ jobs:
         steps:
             - uses: actions/checkout@v4
               with:
-                  fetch-depth: 0
+                  fetch-depth: 2
             - uses: salsify/action-detect-and-tag-new-version@v2
               with:
                   create-tag: true
-                  tag-annotation-template: ""
+                  tag-annotation-template: " "
