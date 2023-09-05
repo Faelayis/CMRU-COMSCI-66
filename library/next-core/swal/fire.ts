@@ -1,5 +1,27 @@
-import Swal from "sweetalert2";
+import Swal, { SweetAlertOptions } from "sweetalert2";
 
-export function alert() {
-	Swal.fire("Hello World.");
+import { HandleError } from "./error";
+
+export function alert(options?: SweetAlertOptions, event?: HandleError) {
+	if (event) {
+		console.log(event.name);
+		Swal.fire({
+			icon: "error",
+			title: `พบข้อผิดพลาด`,
+			text: event.notify || undefined,
+			footer: `${event.code ?? event.status ? `${event.code ?? event.status}:` : ""} ${event.message || event.base.message} `,
+		});
+
+		console.error(event);
+	} else {
+		Swal.fire(
+			Object.assign(
+				{},
+				{
+					title: "hello world",
+				} as SweetAlertOptions,
+				options,
+			),
+		);
+	}
 }

@@ -1,6 +1,7 @@
 {
 	"$schema": "https://json.schemastore.org/tsconfig",
 	"compilerOptions": {
+		"baseUrl": ".",
 		"outDir": "./esm",
 		"lib": [
 			"ESNext",
@@ -8,23 +9,39 @@
 			"DOM",
 			"DOM.Iterable"
 		],
+		"disableReferencedProjectLoad": false,
 		"noEmit": false,
 		"composite": false,
 		"removeComments": true,
 		"incremental": true,
-		"sourceMap": false,
+		"sourceMap": true,
 		"paths": {
+			"@lib/base/*": [
+				"../../client/src/lib/base/*"
+			],
+			"@lib/swal/*": [
+				"../../client/src/lib/swal/*"
+			],
+			"@api/*": [
+				"../../client/src/pages/api/*"
+			],
+			"axios": [
+				"../api/node_modules/axios"
+			],
+			"swr": [
+				"../../client/node_modules/swr"
+			],
+			"next": [
+				"../../client/node_modules/next"
+			],
+			"node-fetch": [
+				"../../client/node_modules/node-fetch"
+			],
 			"next-auth": [
 				"../../client/node_modules/next-auth"
 			],
 			"next-auth/*": [
 				"../../client/node_modules/next-auth/*"
-			],
-			"node-fetch": [
-				"../../client/node_modules/node-fetch"
-			],
-			"swr": [
-				"../../client/node_modules/swr"
 			],
 			"sweetalert2": [
 				"../../client/node_modules/sweetalert2"
@@ -32,31 +49,44 @@
 			"@next-auth/prisma-adapter": [
 				"../../client/node_modules/@next-auth/prisma-adapter"
 			],
-			"next": [
-				"../../client/node_modules/next"
+			"@cmru-comsci-66/api": [
+				"../api"
 			],
 			"@cmru-comsci-66/database": [
 				"../database"
 			],
 			"@cmru-comsci-66/database/*": [
 				"../database/node_modules/@prisma/client/index"
+			],
+			"@cmru-comsci-66/utils": [
+				"../utils"
 			]
 		},
 		"declaration": true,
 		"types": [
+			"node",
 			"react",
 			"react-dom"
 		],
 		"typeRoots": [
 			"node_modules/@types"
+		],
+		"plugins": [
+			{
+				"transform": "typescript-transform-paths",
+				"afterDeclarations": true
+			}
 		]
 	},
 	"references": [
 		{
-			"path": "api/"
+			"path": "./swal/tsconfig.json"
 		},
 		{
-			"path": "swal/"
+			"path": "./api/tsconfig.json"
+		},
+		{
+			"path": "./base/tsconfig.json"
 		}
 	],
 	"extends": "../.config/tsconfig.json",

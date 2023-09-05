@@ -4,7 +4,7 @@
 
 # Next.js build core by library/next-core
 src/pages/api/
-src/lib/swal/
+src/lib/
 
 # Ignore files for PNPM
 pnpm-lock.yaml

@@ -142,4 +142,4 @@ prisma/client
 
 # Next.js build core by library/next-core
 client/src/pages/api/
-client/src/lib/swal/
+client/src/lib

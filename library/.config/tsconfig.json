@@ -6,6 +6,7 @@
 		"module": "ESNext",
 		"target": "ESNext",
 		"allowSyntheticDefaultImports": true,
+		"importHelpers": true,
 		"lib": [
 			"ESNext",
 			"ESNext.AsyncIterable"

@@ -32,6 +32,6 @@ export const id = {
 			}
 		}
 
-		throw new Student_id_Error("INVALID_STUDENT_ID_FORMAT", "รูปแบบรหัสนักศึกษาไม่ถูกต้อง", { notify: "กรุณาใส่รหัสนักศึกษาให้ถูกต้อง 66143420 หรือ 420" });
+		throw new Student_id_Error("INVALID_STUDENT_ID_FORMAT", "รูปแบบรหัสนักศึกษาไม่ถูกต้อง", { notify: "กรุณาใส่รหัสนักศึกษาให้ถูกต้อง 66143XXX หรือ 123" });
 	},
 };

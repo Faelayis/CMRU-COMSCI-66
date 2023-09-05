@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@cmru-comsci-66/next-core",
-	"version": "2.0.1",
+	"version": "2.1.0",
 	"license": "apache-2.0",
 	"author": "Faelayis <48393914+Faelayis@users.noreply.github.com>",
 	"repository": {
@@ -12,11 +12,13 @@
 	"type": "module",
 	"scripts": {
 		"build": "tsc --build",
+		"build:api": "tsc --build ./api/tsconfig.json",
+		"build:swal": "tsc --build ./swal/tsconfig.json",
 		"ci:bump": "bump",
-		"clean": "del-cli --force .turbo esm ./../../client/src/pages/api ./../../client/src/lib/swal",
+		"clean": "del-cli --force .turbo esm ./../../client/src/pages/api ./../../client/src/lib",
 		"dev": "tsc --build -w",
 		"dev:debug": "tsc --build -w",
-		"postinstall": "pnpm run --silent build",
+		"postinstall": "pnpm run --silent \"/^build:.*/\"",
 		"lint": "eslint .",
 		"lint:fix": "eslint . --fix"
 	},
