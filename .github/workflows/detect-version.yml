@@ -1,9 +1,12 @@
 name: Detect and Tag New Version
-on: [workflow_dispatch, pull_request, push]
+on:
+    workflow_dispatch:
+    push:
 
 jobs:
     tag-new-versions:
         runs-on: ubuntu-latest
+        if: ${{ github.actor != 'github-actions[bot]' }}
         steps:
             - uses: actions/checkout@v4
               with:
@@ -11,4 +14,3 @@ jobs:
             - uses: salsify/action-detect-and-tag-new-version@v2
               with:
                   create-tag: true
-                  tag-annotation-template: ""
