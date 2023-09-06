@@ -5,14 +5,15 @@ on:
         paths-ignore:
             - ".github/**"
             - ".husky/**"
-            - "*.webm"
+            - "*.woff"
             - "*.jpg"
             - "*.png"
+            - "*.ico"
 
 jobs:
     format:
         name: Prettier
-        if: ${{ github.actor != 'renovate[bot]' }}
+        if: ${{ github.event_name == 'push' && github.actor != 'renovate[bot]' }}
         runs-on: ubuntu-latest
         steps:
             - name: Checkout
