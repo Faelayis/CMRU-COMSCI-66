@@ -17,7 +17,7 @@ module.exports = {
 		},
 	],
 	plugins: ["prettier", "react", "tailwindcss"],
-	ignorePatterns: ["node_modules", "src/pages/api"],
+	ignorePatterns: ["node_modules", "src/pages/api", "src/lib"],
 	parserOptions: {
 		ecmaFeatures: {
 			jsx: false,
