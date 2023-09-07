@@ -15,7 +15,7 @@
 	},
 	"overrides": [
 		{
-			"files": ["*.js", "*.c.js"],
+			"files": ["*.mjs", "*.js", "*.c.js"],
 			"env": {
 				"browser": true,
 				"node": true,

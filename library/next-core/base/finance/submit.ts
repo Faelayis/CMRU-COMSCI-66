@@ -35,10 +35,10 @@ export class Handle {
 
 	private initialize() {
 		this.value = {
-			studentid: "",
-			fullname: "1",
-			price: "1",
-			note: "1",
+			studentid: undefined,
+			fullname: undefined,
+			price: undefined,
+			note: undefined,
 			file: undefined,
 		};
 	}
@@ -74,7 +74,7 @@ export class Handle {
 	}
 
 	public send() {
-		if (!this.value.file || !this.value.fullname || !this.value.studentid || !this.value.price || !this.value.note) {
+		if (!this.value.file || !this.value.fullname || !this.value.studentid || !this.value.price) {
 			return alert({
 				icon: "warning",
 				title: "ข้อมูลไม่ครบถ้วน",
