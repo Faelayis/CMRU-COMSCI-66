@@ -1,5 +1,11 @@
 {
-	"version": "0.2.0",
+	"compounds": [
+		{
+			"name": "Run Workspace",
+			"stopAll": true,
+			"configurations": ["Next.js: debug", "Library: debug", "Prisma Studio"]
+		}
+	],
 	"configurations": [
 		{
 			"name": "Library: debug",
@@ -43,11 +49,5 @@
 			}
 		}
 	],
-	"compounds": [
-		{
-			"name": "Run Workspace",
-			"stopAll": true,
-			"configurations": ["Next.js: debug", "Library: debug", "Prisma Studio"]
-		}
-	]
+	"version": "0.2.0"
 }

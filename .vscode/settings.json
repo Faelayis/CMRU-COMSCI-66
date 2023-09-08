@@ -1,11 +1,18 @@
 {
-	"npm.runSilent": true,
-	"npm.packageManager": "pnpm",
-	"typescript.suggest.autoImports": true,
-	"editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
-	"editor.formatOnSave": true,
+	"[dotenv]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format"
+	},
+	"[shellscript]": {
+		"editor.defaultFormatter": "foxundermoon.shell-format"
+	},
 	"debug.console.closeOnEnd": true,
 	"deepscan.enable": true,
+	"editor.codeActionsOnSave": {
+		"source.organizeImports": true,
+		"source.fixAll.eslint": true
+	},
+	"editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+	"editor.formatOnSave": true,
 	"files.exclude": {
 		"**/node_modules/": true,
 		"**/.turbo/": true,
@@ -14,14 +21,7 @@
 		"**/esm/": true,
 		"**/tsconfig*.tsbuildinfo/": true
 	},
-	"editor.codeActionsOnSave": {
-		"source.organizeImports": true,
-		"source.fixAll.eslint": true
-	},
-	"[shellscript]": {
-		"editor.defaultFormatter": "foxundermoon.shell-format"
-	},
-	"[dotenv]": {
-		"editor.defaultFormatter": "foxundermoon.shell-format"
-	}
+	"npm.packageManager": "pnpm",
+	"npm.runSilent": true,
+	"typescript.suggest.autoImports": true
 }
