@@ -2,7 +2,8 @@
 	"npm.runSilent": true,
 	"npm.packageManager": "pnpm",
 	"typescript.suggest.autoImports": true,
-	"editor.defaultFormatter": "dbaeumer.vscode-eslint",
+	"editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+	"editor.formatOnSave": true,
 	"debug.console.closeOnEnd": true,
 	"deepscan.enable": true,
 	"files.exclude": {
@@ -14,13 +15,8 @@
 		"**/tsconfig*.tsbuildinfo/": true
 	},
 	"editor.codeActionsOnSave": {
+		"source.organizeImports": true,
 		"source.fixAll.eslint": true
-	},
-	"[typescriptreact]": {
-		"editor.defaultFormatter": "esbenp.prettier-vscode"
-	},
-	"[javascript]": {
-		"editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
 	},
 	"[shellscript]": {
 		"editor.defaultFormatter": "foxundermoon.shell-format"

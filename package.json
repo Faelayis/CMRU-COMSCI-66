@@ -57,6 +57,7 @@
 		"open-cli": "7.2.0",
 		"prettier": "3.0.3",
 		"prettier-package-json": "2.8.0",
+		"prettier-plugin-sort-json": "^3.0.1",
 		"run-script-os": "1.1.6",
 		"ts-node": "10.9.1",
 		"tslib": "2.6.2",
@@ -82,9 +83,7 @@
 		"client/**/*.{js,cjs}": [
 			"eslint -c './client/.eslintrc.cjs' --fix"
 		],
-		"*": [
-			"prettier --write --ignore-unknown"
-		]
+		"**/*": "prettier --write --ignore-unknown"
 	},
 	"packageManager": "pnpm@8.7.4",
 	"pnpm": {
