@@ -13,7 +13,6 @@ import {
 	NavbarContent,
 	NavbarItem,
 	NavbarMenu,
-	NavbarMenuItem,
 	NavbarMenuToggle,
 } from "@nextui-org/react";
 import { signIn, signOut, useSession } from "next-auth/react";
@@ -42,7 +41,7 @@ export default function NavbarComp() {
 				</Link>
 			</NavbarBrand>
 
-			<NavbarContent className="hidden gap-4 sm:flex" justify="start">
+			{/* <NavbarContent className="hidden gap-4 sm:flex" justify="start">
 				<NavbarItem isActive>
 					<Link color="secondary" href="/contents/todo">
 						สิ่งที่ต้องทำ
@@ -53,7 +52,7 @@ export default function NavbarComp() {
 						เกี่ยวกับเรา
 					</Link>
 				</NavbarItem>
-			</NavbarContent>
+			</NavbarContent> */}
 
 			{session ? (
 				<NavbarContent as="div" justify="end">
@@ -108,7 +107,7 @@ export default function NavbarComp() {
 				</NavbarItem>
 			)}
 			<NavbarMenu>
-				<NavbarMenuItem>
+				{/* <NavbarMenuItem>
 					<Link
 						className="w-full"
 						color="foreground"
@@ -127,7 +126,7 @@ export default function NavbarComp() {
 					>
 						About
 					</Link>
-				</NavbarMenuItem>
+				</NavbarMenuItem> */}
 			</NavbarMenu>
 		</Navbar>
 	);

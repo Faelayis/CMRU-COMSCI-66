@@ -1,5 +1,11 @@
+import { useBillings } from "@api/billings";
+import { useStudent } from "@api/student";
+import { Handle } from "@lib/base/finance/submit";
 import {
 	Button,
+	Card,
+	CircularProgress,
+	Image,
 	Input,
 	Modal,
 	ModalBody,
@@ -10,10 +16,47 @@ import {
 	SelectItem,
 	useDisclosure,
 } from "@nextui-org/react";
-import React from "react";
+import { useRef, useState } from "react";
 
 export default function ModelComp() {
+	const {
+		billings,
+		isLoading: billingsIsLoading,
+		isError: billingsIsError,
+	} = useBillings();
+	const {
+		student,
+		isLoading: studentIsLoading,
+		isError: studentIsError,
+	} = useStudent();
+
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
+	const [selectedFile, setSelectedFile] = useState();
+	const [fullname, setFullname] = useState("");
+	const [studentid, setStudentId] = useState("");
+	const [price, setPrice] = useState("");
+	const [pricePlace, setPricePlace] = useState();
+	const [note, setNote] = useState("");
+	const [dropdown, setDropDown] = useState("");
+
+	const inputRef = useRef(),
+		handleOpenFileInput = () => {
+			inputRef.current.click();
+		};
+
+	if (billingsIsLoading || studentIsLoading) {
+		return <CircularProgress />;
+	}
+
+	const handleSubmit = async () => {
+		const data = new Handle();
+		data.fullname = fullname;
+		data.studentid = studentid;
+		data.price = price;
+		data.note = note;
+		data.files = selectedFile;
+		data.send();
+	};
 
 	return (
 		<>
@@ -32,23 +75,108 @@ export default function ModelComp() {
 							</ModalHeader>
 							<ModalBody>
 								<div className="flex w-full flex-col gap-4">
-									<Select label="Name" placeholder="ชื่อนามสกุล">
-										<SelectItem></SelectItem>
-									</Select>
-									<Input label="Student ID" placeholder="รหัสนักศึกษา" />
-									<Input label="Price" placeholder="จำนวนเงิน" />
-									<Input label="Note" placeholder="หมายเหตุ" />
-									<Select label="Uploadfile" placeholder="สลิป">
-										<SelectItem></SelectItem>
-									</Select>
-									<Select label="Events" placeholder="กิจกรรม">
-										<SelectItem></SelectItem>
-									</Select>
-									<Button
-										radius="full"
-										className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+									<Select
+										disablePortal
+										label="ชื่อนามสกุล"
+										value={fullname}
+										onChange={(e) => {
+											const checkStudent = student?.filter((d) =>
+												d.name.match(e.target.value),
+											)[0];
+
+											setFullname(e.target.value);
+											if (checkStudent && e.target.value) {
+												setStudentId(checkStudent.id.toString());
+											} else {
+												setStudentId("");
+											}
+										}}
 									>
-										ส่งข้อมูล
+										{student?.map((list) => (
+											<SelectItem key={list.name} value={list.name}>
+												{list.name}
+											</SelectItem>
+										))}
+									</Select>
+									<Input
+										disablePortal
+										label="รหัสนักศึกษา"
+										value={studentid}
+										onChange={(e) => {
+											const value = e.target.value;
+											const checkStudent = student?.filter(
+												(d) =>
+													d.id.toString() ===
+													(value.length <= 3 ? `66143${value}` : value),
+											)[0];
+
+											setStudentId(value.slice(0, 8));
+											if (checkStudent && value) {
+												setFullname(checkStudent.name.toString());
+											} else {
+												setFullname("");
+											}
+										}}
+									/>
+									<Input
+										disablePortal
+										label="จำนวนเงิน"
+										placeholder={pricePlace}
+										value={price}
+										onChange={(e) => setPrice(e.target.value)}
+									/>
+									<Input
+										label="หมายเหตุ"
+										onChange={(e) => setNote(e.target.value)}
+									/>
+									<Select
+										label="กิจกรรม"
+										onChange={(e) => {
+											const value = billings.find(
+												(n) => n.label === e.target.value,
+											);
+
+											value
+												? (setPrice(value.price), setPricePlace(value.price))
+												: (setPrice(""), setPricePlace());
+
+											setDropDown(e.target.value);
+										}}
+									>
+										{billings?.map((list) => (
+											<SelectItem key={list.label} value={list.label}>
+												{list.label}
+											</SelectItem>
+										))}
+									</Select>
+
+									{selectedFile ? (
+										<Card className="relative col-span-12 h-[300px] sm:col-span-4">
+											<Image
+												removeWrapper
+												alt="slip"
+												className="z-0 h-full w-full object-contain"
+												src={URL.createObjectURL(selectedFile)}
+											/>
+										</Card>
+									) : undefined}
+
+									<input
+										ref={inputRef}
+										type="file"
+										id="file-input"
+										accept="image/*"
+										hidden
+										onChange={(e) => setSelectedFile(e.target.files[0])}
+									/>
+
+									<Button
+										htmlFor="file-input"
+										onClick={handleOpenFileInput}
+										radius="full"
+										className="bg-gradient-to-tr text-black shadow-lg"
+									>
+										อัพโหลดสลิป
 									</Button>
 								</div>
 							</ModalBody>
@@ -58,7 +186,7 @@ export default function ModelComp() {
 								</Button>
 								<Button
 									className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
-									onPress={onClose}
+									onPress={handleSubmit}
 								>
 									ส่งข้อมูล
 								</Button>

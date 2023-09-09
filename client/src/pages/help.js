@@ -1,6 +1,5 @@
 import { Card } from "@nextui-org/react";
 import Head from "next/head";
-import React from "react";
 
 export default function Help() {
 	return (

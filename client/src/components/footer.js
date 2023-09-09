@@ -1,17 +1,12 @@
 import {
-	Button,
-	Image,
-	Link,
 	Modal,
 	ModalBody,
 	ModalContent,
 	ModalFooter,
 	ModalHeader,
-	ModalProvider,
 	useDisclosure,
 } from "@nextui-org/react";
 import getConfig from "next/config";
-import React from "react";
 
 const { publicRuntimeConfig } = getConfig();
 
@@ -21,122 +16,9 @@ export default function FooterComp() {
 		<footer className="bg-white dark:bg-gray-900">
 			<div className="mx-auto w-full max-w-screen-xl select-none p-4 py-6 lg:py-1">
 				<hr className="my-3 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-8" />
-				<div className="items-center md:flex md:justify-center">
-					<div className="grid grid-cols-2 place-items-stretch gap-8 sm:grid-cols-3 sm:gap-6">
-						{/** Subjects */}
-						<div>
-							<h2 className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
-								Subjects
-							</h2>
-							<ul className="font-medium text-gray-500 dark:text-gray-400">
-								<li className="mb-4">
-									<Link href="/subjects/multi" className="hover:underline">
-										เทคโนโลยีมัลติมีเดีย
-									</Link>
-								</li>
-								<li className="mb-4">
-									<Link href="/subjects/math" className="hover:underline">
-										คณิตศาสตร์คอมพิวเตอร์
-									</Link>
-								</li>
-								<li className="mb-4">
-									<Link
-										href="/subjects/desingprogram"
-										className="hover:underline"
-									>
-										หลักการออกแบบคอมพิวเตอร์
-									</Link>
-								</li>
-								<li className="mb-4">
-									<Link
-										href="/subjects/digitalliteracy"
-										className="hover:underline"
-									>
-										ความรู้ด้านดิจิทัล
-									</Link>
-								</li>
-								<li className="mb-4">
-									<Link
-										href="/subjects/holisticcare"
-										className="hover:underline"
-									>
-										การดูแลแบบองค์รวม
-									</Link>
-								</li>
-								<li className="mb-4">
-									<Link href="/subjects/thai" className="hover:underline">
-										ภาษาไทย
-									</Link>
-								</li>
-							</ul>
-						</div>
-						{/** Pages */}
-						<div>
-							<h2 className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
-								อื่นๆ
-							</h2>
-							<ul className="font-medium text-gray-500 dark:text-gray-400">
-								<li className="mb-4">
-									<Link href="/contents/todo" className="hover:underline ">
-										สิ่งที่ต้องทำ
-									</Link>
-								</li>
-								<li className="mb-4">
-									<Link href="/contents/finance" className="hover:underline ">
-										การเงิน
-									</Link>
-								</li>
-								<li className="mb-4">
-									<Link href="/contents/about" className="hover:underline ">
-										เกี่ยวกับ
-									</Link>
-								</li>
-							</ul>
-						</div>
 
-						{/** Team */}
-						<div>
-							<h2 className="mb-6 text-sm font-semibold uppercase text-gray-900 dark:text-white">
-								ทีม
-							</h2>
-							<ul className="font-medium text-gray-500 dark:text-gray-400">
-								<li className="mb-4">
-									<Link
-										target="_blank"
-										href="https://mofuproject.vercel.app/"
-										className="hover:underline"
-										rel="noreferrer"
-									>
-										MofuNetive
-									</Link>
-								</li>
-								<li className="mb-4">
-									<Link
-										target="_blank"
-										href="https://github.com/Faelayis"
-										className="hover:underline"
-										rel="noreferrer"
-									>
-										Faelayis
-									</Link>
-								</li>
-								<li>
-									<Link
-										target="_blank"
-										href="https://github.com/zismaildev"
-										className="hover:underline"
-										rel="noreferrer"
-									>
-										Zismail-Dev
-									</Link>
-								</li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<hr className="my-6 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-5" />
-				<div className="sm:flex sm:items-center sm:justify-between">
-					<span className="flex items-center justify-center space-x-5 text-center lg:my-5">
+				<div className="m-8 sm:flex sm:items-center sm:justify-between">
+					<span className="m-2 flex items-center justify-center space-x-5 text-center lg:my-5">
 						<a
 							href="https://www.facebook.com/CMRUCOMPUTER"
 							className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
@@ -196,7 +78,7 @@ export default function FooterComp() {
 					</span>
 					<span
 						href="#"
-						className="cursor-pointer text-center  text-gray-500 dark:text-gray-400 sm:text-right  "
+						className="m-1 cursor-pointer text-center  text-gray-500 dark:text-gray-400 sm:text-right  "
 						onClick={onOpen}
 					>
 						<p>v{publicRuntimeConfig.appVersion.project}</p>
