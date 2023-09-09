@@ -22,6 +22,7 @@
 		"lib:build": "pnpm --filter=./library/** \"/^build*/\"",
 		"lib:db": "pnpm --filter=./library/database",
 		"lib:next-core": "pnpm --filter=./library/next-core",
+		"lib:utils": "pnpm --filter=./library/utils",
 		"lint": "pnpm --filter=* lint",
 		"pkg:clean": "pnpx del-cli@latest ./**/node_modules",
 		"pkg:update": "pnpm up --latest --recursive --interactive",
