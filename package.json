@@ -2,7 +2,7 @@
 	"$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/package.json",
 	"private": true,
 	"name": "cmru-comsci-66",
-	"version": "1.4.4",
+	"version": "1.4.5",
 	"license": "apache-2.0",
 	"type": "module",
 	"scripts": {
@@ -44,7 +44,7 @@
 		"del": "7.1.0",
 		"del-cli": "5.1.0",
 		"dotenv-cli": "7.3.0",
-		"eslint": "8.48.0",
+		"eslint": "8.49.0",
 		"eslint-config-prettier": "9.0.0",
 		"eslint-plugin-prettier": "5.0.0",
 		"eslint-plugin-simple-import-sort": "10.0.0",
