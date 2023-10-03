@@ -1,12 +1,10 @@
-import React from "react";
-
 import Footer from "./footer";
-import NavigationBar from "./navbar";
+import NavbarComp from "./navbar";
 
 export default function PreviderComp({ children }) {
 	return (
 		<div>
-			<NavigationBar />
+			<NavbarComp />
 			{children}
 			<Footer />
 		</div>

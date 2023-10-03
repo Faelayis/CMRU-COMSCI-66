@@ -5,7 +5,6 @@ import {
 	Button,
 	Card,
 	CircularProgress,
-	Image,
 	Input,
 	Modal,
 	ModalBody,
@@ -16,6 +15,7 @@ import {
 	SelectItem,
 	useDisclosure,
 } from "@nextui-org/react";
+import Image from "next/image";
 import { useRef, useState } from "react";
 
 export default function ModelComp() {
@@ -66,12 +66,36 @@ export default function ModelComp() {
 			>
 				จ่ายเงิน
 			</Button>
-			<Modal isOpen={isOpen} onOpenChange={onOpenChange} isDismissable={false}>
+			<Modal
+				backdrop="opaque"
+				isOpen={isOpen}
+				onOpenChange={onOpenChange}
+				motionProps={{
+					variants: {
+						enter: {
+							y: 0,
+							opacity: 1,
+							transition: {
+								duration: 0.3,
+								ease: "easeOut",
+							},
+						},
+						exit: {
+							y: -20,
+							opacity: 0,
+							transition: {
+								duration: 0.2,
+								ease: "easeIn",
+							},
+						},
+					},
+				}}
+			>
 				<ModalContent>
 					{(onClose) => (
 						<>
 							<ModalHeader className="flex flex-col gap-1">
-								โปรดตรวจสอบข้อมูลของท่านก่อนส่งข้อมูล
+								จ่ายเงินค่ากิจกรรม
 							</ModalHeader>
 							<ModalBody>
 								<div className="flex w-full flex-col gap-4">
