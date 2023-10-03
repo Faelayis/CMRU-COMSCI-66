@@ -12,7 +12,7 @@ on:
 
 jobs:
     format:
-        name: Prettier
+        name: ESLint & Prettier
         if: ${{ github.event_name == 'push' && github.actor != 'renovate[bot]' }}
         runs-on: ubuntu-latest
         steps:
@@ -22,7 +22,8 @@ jobs:
             - name: Setup PNPM
               uses: pnpm/action-setup@v2
               with:
-                  run_install: false
+                  run_install: |
+                      - args: [--ignore-scripts, --fix-lockfile, --frozen-lockfile]
                   version: ${{ vars.PNPM_VERSION }}
 
             - name: Setup Node
@@ -30,9 +31,6 @@ jobs:
               with:
                   node-version: ${{ vars.NODE_VERSION }}
                   cache: pnpm
-
-            - name: Install Dependencies
-              run: pnpm install --ignore-scripts --frozen-lockfile
 
             - name: Run ESLint
               run: pnpm run fix
@@ -45,5 +43,5 @@ jobs:
               with:
                   push_options: "--force"
                   commit_options: "--no-verify"
-                  commit_message: "chore: code formatting"
+                  commit_message: "chore: fix problems"
                   skip_checkout: true
