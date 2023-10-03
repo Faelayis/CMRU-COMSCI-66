@@ -1,62 +1,65 @@
-import { faFacebookF, faGithub } from "@fortawesome/free-brands-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Card, Image } from "@nextui-org/react";
+import {
+	Avatar,
+	Card,
+	CardBody,
+	CardFooter,
+	CardHeader,
+} from "@nextui-org/react";
 import Head from "next/head";
-import Link from "next/link";
 
 export default function about() {
 	const leadersData = [
 		{
-			name: "John Doe",
-			role: "Software Engineer",
+			name: "หนึ่ง",
+			role: "ประธาน",
 			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
 			facebookLink: "https://www.facebook.com/johndoe",
 			githubLink: "https://github.com/johndoe",
 		},
 		{
-			name: "Jane Smith",
-			role: "Product Manager",
+			name: "นัท",
+			role: "รองประธาน",
 			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
 			facebookLink: "https://www.facebook.com/janesmith",
 			githubLink: "https://github.com/janesmith",
 		},
 		{
-			name: "John Doe",
-			role: "Software Engineer",
+			name: "เชียร์",
+			role: "เลขา",
 			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
 			facebookLink: "https://www.facebook.com/johndoe",
 			githubLink: "https://github.com/johndoe",
 		},
 		{
-			name: "Jane Smith",
-			role: "Product Manager",
+			name: "ลูเซีย",
+			role: "สันทนาการ",
 			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
 			facebookLink: "https://www.facebook.com/janesmith",
 			githubLink: "https://github.com/janesmith",
 		},
 		{
-			name: "John Doe",
-			role: "Software Engineer",
+			name: "กิน",
+			role: "สวัสดิการ",
 			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
 			facebookLink: "https://www.facebook.com/johndoe",
 			githubLink: "https://github.com/johndoe",
 		},
 		{
-			name: "Jane Smith",
-			role: "Product Manager",
+			name: "ไตเติ้ล",
+			role: "พยาบาล",
 			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
 			facebookLink: "https://www.facebook.com/janesmith",
 			githubLink: "https://github.com/janesmith",
 		},
 		{
-			name: "John Doe",
-			role: "Software Engineer",
+			name: "โจ",
+			role: "สถานที่",
 			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
 			facebookLink: "https://www.facebook.com/johndoe",
@@ -66,16 +69,16 @@ export default function about() {
 
 	const SecterleadersData = [
 		{
-			name: "John Doe",
-			role: "Software Engineer",
+			name: "Title",
+			role: "วค66.วท.บ.4.1",
 			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
 			facebookLink: "https://www.facebook.com/johndoe",
 			githubLink: "https://github.com/johndoe",
 		},
 		{
-			name: "Jane Smith",
-			role: "Product Manager",
+			name: "Guy",
+			role: "วค66.วท.บ.4.2",
 			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
 			facebookLink: "https://www.facebook.com/janesmith",
@@ -125,6 +128,7 @@ export default function about() {
 			githubLink: "https://github.com/janesmith",
 		},
 	];
+
 	return (
 		<div>
 			<Head>
@@ -156,40 +160,57 @@ export default function about() {
 					</div>
 					{/*  Leaders */}
 					<div className="px-8 py-6">
-						<h1 className="mb-4 text-2xl font-bold">7 Leader</h1>
-						<p className="mb-8 text-gray-500">7 ผู้นำ วิทยาการคอมพิวเตอร์ 66</p>
-						<div className="grid grid-cols-3 gap-8">
+						<h1 className="mb-4 text-2xl font-bold">Developers</h1>
+						<p className="mb-8 text-gray-500">Team Website Developers</p>
+						<div className="grid gap-8 sm:grid-cols-1 md:grid-cols-3">
 							{leadersData.map((leader, index) => (
 								<div
 									key={index}
 									className="flex space-x-4 rounded-md bg-gray-100 p-4"
 								>
-									<Image
-										src={leader.avatar}
-										alt={leader.name}
-										className="h-16 w-16 rounded-full"
-									/>
-									<div className="grow">
-										<h3 className="text-lg font-semibold">{leader.name}</h3>
-										<p className="text-gray-500">{leader.role}</p>
-										<p className="text-gray-500">{leader.sharp}</p>
-									</div>
-									<div className="flex items-center space-x-2">
-										<Link
-											target="_blank"
-											href={leader.facebookLink}
-											className="text-black hover:text-red-500"
-										>
-											<FontAwesomeIcon icon={faFacebookF} className="h-4 w-4" />
-										</Link>
-										<Link
-											target="_blank"
-											href={leader.githubLink}
-											className="text-black hover:text-red-500"
-										>
-											<FontAwesomeIcon icon={faGithub} className="h-4 w-4" />
-										</Link>
-									</div>
+									<Card className="max-w-[340px]">
+										<CardHeader className="justify-between">
+											<div className="flex gap-5">
+												<Avatar
+													isBordered
+													radius="full"
+													size="md"
+													src={leader.avatar}
+												/>
+												<div className="flex flex-col items-start justify-center gap-1">
+													<h4 className="text-small text-default-600 font-semibold leading-none">
+														{leader.name}
+													</h4>
+													<h5 className="text-small text-default-400 tracking-tight">
+														@zoeylang
+													</h5>
+												</div>
+											</div>
+										</CardHeader>
+										<CardBody className="text-small text-default-400 px-3 py-0">
+											<p>
+												Frontend developer and UI/UX enthusiast. Join me on this
+												coding adventure!
+											</p>
+											<span className="pt-2">{leader.role}</span>
+										</CardBody>
+										<CardFooter className="gap-3">
+											<div className="flex gap-1">
+												<p className="text-default-400 text-small font-semibold">
+													4
+												</p>
+												<p className=" text-default-400 text-small">
+													Following
+												</p>
+											</div>
+											<div className="flex gap-1">
+												<p className="text-default-400 text-small font-semibold">
+													97.1K
+												</p>
+												<p className="text-default-400 text-small">Followers</p>
+											</div>
+										</CardFooter>
+									</Card>
 								</div>
 							))}
 						</div>
@@ -197,106 +218,129 @@ export default function about() {
 						<div className="mt-7">
 							<h1 className="mb-4 text-2xl font-bold">Section Leader</h1>
 							<p className="mb-8 text-gray-500">หัวหน้าหมู่เรียน</p>
-							<div className="grid grid-cols-3 gap-8">
-								{SecterleadersData.map((leader, index) => (
+							<div className="grid gap-8 sm:grid-cols-1 md:grid-cols-3">
+								{SecterleadersData.map((secterleaders, index) => (
 									<div
 										key={index}
 										className="flex space-x-4 rounded-md bg-gray-100 p-4"
 									>
-										<Image
-											src={leader.avatar}
-											alt={leader.name}
-											className="h-16 w-16 rounded-full"
-										/>
-										<div className="grow">
-											<h3 className="text-lg font-semibold">{leader.name}</h3>
-											<p className="text-gray-500">{leader.role}</p>
-											<p className="text-gray-500">{leader.sharp}</p>
-										</div>
-										<div className="flex items-center space-x-2">
-											<Link
-												target="_blank"
-												href={leader.facebookLink}
-												className="text-black hover:text-red-500"
-											>
-												<FontAwesomeIcon
-													icon={faFacebookF}
-													className="h-4 w-4"
-												/>
-											</Link>
-											<Link
-												target="_blank"
-												href={leader.githubLink}
-												className="text-black hover:text-red-500"
-											>
-												<FontAwesomeIcon icon={faGithub} className="h-4 w-4" />
-											</Link>
-										</div>
-									</div>
-								))}
-							</div>
-						</div>
-						{/* Developers */}
-						<div className="mt-7">
-							<h1 className="mb-4 text-2xl font-bold">Developers</h1>
-							<p className="mb-8 text-gray-500">
-								7 ผู้นำ วิทยาการคอมพิวเตอร์ 66
-							</p>
-							<div className="grid grid-cols-3 gap-8">
-								{DeveloperData.map((developer, index) => (
-									<div
-										key={index}
-										className="flex space-x-4 rounded-md bg-gray-100 p-4"
-									>
-										<Image
-											src={developer.avatar}
-											alt={developer.name}
-											className="h-16 w-16 rounded-full"
-										/>
-										<div className="grow">
-											<h3 className="text-lg font-semibold">
-												{developer.name}
-											</h3>
-											<p className="text-gray-500">{developer.role}</p>
-											<p className="text-gray-500">{developer.sharp}</p>
-										</div>
-										<div className="flex items-center space-x-2">
-											<Link
-												target="_blank"
-												href={developer.facebookLink}
-												className="text-black hover:text-red-500"
-											>
-												<FontAwesomeIcon
-													icon={faFacebookF}
-													className="h-4 w-4"
-												/>
-											</Link>
-											<Link
-												target="_blank"
-												href={developer.githubLink}
-												className="text-black hover:text-red-500"
-											>
-												<FontAwesomeIcon icon={faGithub} className="h-4 w-4" />
-											</Link>
-										</div>
+										<Card className="max-w-[340px]">
+											<CardHeader className="justify-between">
+												<div className="flex gap-5">
+													<Avatar
+														isBordered
+														radius="full"
+														size="md"
+														src={secterleaders.avatar}
+													/>
+													<div className="flex flex-col items-start justify-center gap-1">
+														<h4 className="text-small text-default-600 font-semibold leading-none">
+															{secterleaders.name}
+														</h4>
+														<h5 className="text-small text-default-400 tracking-tight">
+															@zoeylang
+														</h5>
+													</div>
+												</div>
+											</CardHeader>
+											<CardBody className="text-small text-default-400 px-3 py-0">
+												<p>
+													Frontend developer and UI/UX enthusiast. Join me on
+													this coding adventure!
+												</p>
+												<span className="pt-2">{secterleaders.role}</span>
+											</CardBody>
+											<CardFooter className="gap-3">
+												<div className="flex gap-1">
+													<p className="text-default-400 text-small font-semibold">
+														4
+													</p>
+													<p className=" text-default-400 text-small">
+														Following
+													</p>
+												</div>
+												<div className="flex gap-1">
+													<p className="text-default-400 text-small font-semibold">
+														97.1K
+													</p>
+													<p className="text-default-400 text-small">
+														Followers
+													</p>
+												</div>
+											</CardFooter>
+										</Card>
 									</div>
 								))}
 							</div>
 						</div>
 
-						{/* Test */}
+						{/* Developers */}
 						<div className="mt-7">
-							<h1 className="mb-4 text-2xl font-bold">Test</h1>
-							<p className="mb-8 text-gray-500">
-								7 ผู้นำ วิทยาการคอมพิวเตอร์ 66
-							</p>
-							{/* <div className="grid grid-cols-3 gap-8">
+							<h1 className="mb-4 text-2xl font-bold">Developers</h1>
+							<p className="mb-8 text-gray-500">Team Website Developers</p>
+							<div className="grid gap-8 sm:grid-cols-1 md:grid-cols-3">
 								{DeveloperData.map((developer, index) => (
-									<Card>
-										<div></div>
-									</Card>
+									<div
+										key={index}
+										className="flex space-x-4 rounded-md bg-gray-100 p-4"
+									>
+										<Card className="max-w-[340px]">
+											<CardHeader className="justify-between">
+												<div className="flex gap-5">
+													<Avatar
+														isBordered
+														radius="full"
+														size="md"
+														src={developer.avatar}
+													/>
+													<div className="flex flex-col items-start justify-center gap-1">
+														<h4 className="text-small text-default-600 font-semibold leading-none">
+															{developer.name}
+														</h4>
+														<h5 className="text-small text-default-400 tracking-tight">
+															@zoeylang
+														</h5>
+													</div>
+												</div>
+											</CardHeader>
+											<CardBody className="text-small text-default-400 px-3 py-0">
+												<p>
+													Frontend developer and UI/UX enthusiast. Join me on
+													this coding adventure!
+												</p>
+												<span className="pt-2">
+													{developer.role}
+													<span
+														className="py-2"
+														aria-label="computer"
+														role="img"
+													>
+														💻
+													</span>
+												</span>
+											</CardBody>
+											<CardFooter className="gap-3">
+												<div className="flex gap-1">
+													<p className="text-default-400 text-small font-semibold">
+														4
+													</p>
+													<p className=" text-default-400 text-small">
+														Following
+													</p>
+												</div>
+												<div className="flex gap-1">
+													<p className="text-default-400 text-small font-semibold">
+														97.1K
+													</p>
+													<p className="text-default-400 text-small">
+														Followers
+													</p>
+												</div>
+											</CardFooter>
+										</Card>
+									</div>
 								))}
-							</div> */}
+							</div>
 						</div>
 					</div>
 				</Card>
