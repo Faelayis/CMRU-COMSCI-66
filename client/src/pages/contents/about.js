@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card, Image } from "@nextui-org/react";
 import Head from "next/head";
 import Link from "next/link";
-import React from "react";
 
 export default function about() {
 	const leadersData = [
@@ -283,6 +282,21 @@ export default function about() {
 									</div>
 								))}
 							</div>
+						</div>
+
+						{/* Test */}
+						<div className="mt-7">
+							<h1 className="mb-4 text-2xl font-bold">Test</h1>
+							<p className="mb-8 text-gray-500">
+								7 ผู้นำ วิทยาการคอมพิวเตอร์ 66
+							</p>
+							{/* <div className="grid grid-cols-3 gap-8">
+								{DeveloperData.map((developer, index) => (
+									<Card>
+										<div></div>
+									</Card>
+								))}
+							</div> */}
 						</div>
 					</div>
 				</Card>

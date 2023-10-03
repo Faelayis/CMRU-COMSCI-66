@@ -149,6 +149,9 @@ importers:
       sweetalert2:
         specifier: 11.7.27
         version: 11.7.27
+      swiper:
+        specifier: 10.3.1
+        version: 10.3.1
       swr:
         specifier: 2.2.2
         version: 2.2.2(react@18.2.0)
@@ -7301,6 +7304,11 @@ packages:
 
   /sweetalert2@11.7.27:
     resolution: {integrity: sha512-QbRXGQn1sb7HEhzA/K2xtWIwQHh/qkSbb1w6jYcTql2xy17876lTREEt1D4X6Q0x2wHtfUjKJ+Cb8IVkRoq7DQ==}
+    dev: false
+
+  /swiper@10.3.1:
+    resolution: {integrity: sha512-24Wk3YUdZHxjc9faID97GTu6xnLNia+adMt6qMTZG/HgdSUt4fS0REsGUXJOgpTED0Amh/j+gRGQxsLayJUlBQ==}
+    engines: {node: '>= 4.7.0'}
     dev: false
 
   /swr@2.2.2(react@18.2.0):
