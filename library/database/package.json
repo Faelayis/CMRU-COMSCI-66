@@ -6,7 +6,7 @@
 	"author": "Faelayis <48393914+Faelayis@users.noreply.github.com>",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Faelayis/CMRU-COMSCI-66.git",
+		"url": "https://github.com/CMRU-Computer-Science-66/CMRU-COMSCI-66.git",
 		"directory": "library/database"
 	},
 	"type": "module",
