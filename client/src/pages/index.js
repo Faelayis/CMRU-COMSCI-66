@@ -1,4 +1,3 @@
-import { Image } from "@nextui-org/react";
 import Head from "next/head";
 
 import CarouselComp from "@/components/carousel";
@@ -12,7 +11,6 @@ export default function index() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<CarouselComp />
 			<div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
 				<div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
 					<svg
@@ -51,13 +49,16 @@ export default function index() {
 						</p>
 					</div>
 					<div className="relative mt-16 h-80 lg:mt-8">
-						<Image
+						<div className="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10">
+							<CarouselComp />
+						</div>
+						{/* <Image
 							className="absolute left-0 top-0 w-[57rem] max-w-none rounded-md bg-white/5 ring-1 ring-white/10"
 							src="https://images.unsplash.com/photo-1542831371-29b0f74f9713?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
 							alt="App screenshot"
 							width={1824}
 							height={1080}
-						/>
+						/> */}
 					</div>
 				</div>
 			</div>

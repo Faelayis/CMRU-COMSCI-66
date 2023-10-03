@@ -27,6 +27,7 @@ export default function NavbarComp() {
 	const menuItems = [
 		{ label: "Todo", url: "/contents/todo" },
 		{ label: "About", url: "/contents/about" },
+		{ label: "Gallery", url: "/contents/gallery" },
 	];
 
 	return (
@@ -51,6 +52,11 @@ export default function NavbarComp() {
 				<NavbarItem isActive>
 					<Link href="/contents/about" aria-current="page" color="secondary">
 						About Us
+					</Link>
+				</NavbarItem>
+				<NavbarItem>
+					<Link href="/contents/gallery" color="foreground">
+						Gallery
 					</Link>
 				</NavbarItem>
 			</NavbarContent>
@@ -79,6 +85,9 @@ export default function NavbarComp() {
 									<p className="font-semibold">role</p>
 								</DropdownItem>
 								<DropdownItem key="settings">การตั้งค่า</DropdownItem>
+								<DropdownItem key="help_and_feedback" href="#">
+									Dashboard
+								</DropdownItem>
 								<DropdownItem
 									key="help_and_feedback"
 									href="/help"
