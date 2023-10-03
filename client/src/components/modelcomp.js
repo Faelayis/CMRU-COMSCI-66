@@ -37,7 +37,7 @@ export default function ModelComp() {
 	const [price, setPrice] = useState("");
 	const [pricePlace, setPricePlace] = useState();
 	const [note, setNote] = useState("");
-	const [dropdown, setDropDown] = useState("");
+	const [event, setEvent] = useState("");
 
 	const inputRef = useRef(),
 		handleOpenFileInput = () => {
@@ -54,6 +54,7 @@ export default function ModelComp() {
 		data.studentid = studentid;
 		data.price = price;
 		data.note = note;
+		data.event = event;
 		data.files = selectedFile;
 		data.send();
 	};
@@ -164,7 +165,7 @@ export default function ModelComp() {
 												? (setPrice(value.price), setPricePlace(value.price))
 												: (setPrice(""), setPricePlace());
 
-											setDropDown(e.target.value);
+											setEvent(value);
 										}}
 									>
 										{billings?.map((list) => (
@@ -181,6 +182,8 @@ export default function ModelComp() {
 												alt="slip"
 												className="z-0 h-full w-full object-contain"
 												src={URL.createObjectURL(selectedFile)}
+												width={300}
+												height={300}
 											/>
 										</Card>
 									) : undefined}

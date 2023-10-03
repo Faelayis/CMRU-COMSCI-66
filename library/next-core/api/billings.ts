@@ -196,5 +196,6 @@ export async function API(): Promise<GetServerSidePropsResult<{ billing: MappedB
 }
 
 export type Types = Billing[];
+export type ObjectTypes = MappedBilling;
 export type StringTypes = Array<{ [K in keyof Billing]: string }>;
 export type MappedBillingTypes = MappedBilling[];
