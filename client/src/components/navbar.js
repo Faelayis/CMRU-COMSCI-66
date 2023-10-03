@@ -82,7 +82,10 @@ export default function NavbarComp() {
 								<DropdownItem key="profile" className="h-14 gap-2">
 									<p className="font-semibold">เข้าสู่ระบบโดย</p>
 									<p className="font-semibold">{session.user.email}</p>
-									<p className="font-semibold">role</p>
+									<code className="font-semibold">
+										{session.user.role?.charAt(0).toUpperCase() +
+											session.user.role?.slice(1)}
+									</code>
 								</DropdownItem>
 								<DropdownItem key="settings">การตั้งค่า</DropdownItem>
 								<DropdownItem key="help_and_feedback" href="#">
