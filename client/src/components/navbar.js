@@ -44,11 +44,6 @@ export default function NavbarComp() {
 
 			{/** center contents */}
 			<NavbarContent className="hidden gap-4 sm:flex" justify="center">
-				<NavbarItem>
-					<Link color="foreground" href="/contents/todo">
-						Todo
-					</Link>
-				</NavbarItem>
 				<NavbarItem isActive>
 					<Link href="/contents/about" aria-current="page" color="secondary">
 						About Us
@@ -57,6 +52,11 @@ export default function NavbarComp() {
 				<NavbarItem>
 					<Link href="/contents/gallery" color="foreground">
 						Gallery
+					</Link>
+				</NavbarItem>
+				<NavbarItem>
+					<Link color="foreground" href="/contents/todo">
+						Todo
 					</Link>
 				</NavbarItem>
 			</NavbarContent>
@@ -80,18 +80,24 @@ export default function NavbarComp() {
 							</DropdownTrigger>
 							<DropdownMenu aria-label="Profile Actions" variant="flat">
 								<DropdownItem key="profile" className="h-14 gap-2">
-									<p className="font-semibold">เข้าสู่ระบบโดย</p>
+									<p className="font-semibold">
+										เข้าสู่ระบบโดย{" "}
+										<code className="font-semibold">
+											{session.user.role?.charAt(0).toUpperCase() +
+												session.user.role?.slice(1)}
+										</code>
+									</p>
 									<p className="font-semibold">{session.user.email}</p>
-									<code className="font-semibold">
-										{session.user.role?.charAt(0).toUpperCase() +
-											session.user.role?.slice(1)}
-									</code>
 								</DropdownItem>
-								<DropdownItem key="settings">การตั้งค่า</DropdownItem>
+								<DropdownItem key="settings">
+									<Link href="/" isDisabled={false} color="foreground">
+										การตั้งค่า
+									</Link>
+								</DropdownItem>
 								{session.user.role === "developer" && (
 									<DropdownItem key="dashboard">
 										<Link href="/admin/dashboard" color="foreground">
-											Dashboard
+											แดชบอร์ด
 										</Link>
 									</DropdownItem>
 								)}

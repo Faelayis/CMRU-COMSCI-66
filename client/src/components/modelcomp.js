@@ -16,6 +16,7 @@ import {
 	useDisclosure,
 } from "@nextui-org/react";
 import Image from "next/image";
+import { useSession } from "next-auth/react";
 import { useRef, useState } from "react";
 
 export default function ModelComp() {
@@ -29,15 +30,24 @@ export default function ModelComp() {
 		isLoading: studentIsLoading,
 		isError: studentIsError,
 	} = useStudent();
-
+	const { data: session } = useSession();
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const [selectedFile, setSelectedFile] = useState();
-	const [fullname, setFullname] = useState("");
-	const [studentid, setStudentId] = useState("");
+	const [fullname, setFullname] = useState(session.user?.email ?? "");
+	const [studentid, setStudentId] = useState(session.user?.studentId ?? "");
 	const [price, setPrice] = useState("");
 	const [pricePlace, setPricePlace] = useState();
 	const [note, setNote] = useState("");
 	const [event, setEvent] = useState("");
+
+	// const [tags, setTags] = useState([]);
+
+	// const handleClose = (tagToRemove) => {
+	// 	setTags(tags.filter((tag) => tag !== tagToRemove));
+	// 	if (tags.length === 1) {
+	// 		setTags(initialFruits);
+	// 	}
+	// };
 
 	const inputRef = useRef(),
 		handleOpenFileInput = () => {
@@ -101,49 +111,81 @@ export default function ModelComp() {
 							</ModalHeader>
 							<ModalBody>
 								<div className="flex w-full flex-col gap-4">
-									<Select
-										disablePortal
-										label="ชื่อนามสกุล"
-										value={fullname}
-										onChange={(e) => {
-											const checkStudent = student?.filter((d) =>
-												d.name.match(e.target.value),
-											)[0];
+									{session.user?.studentId ? undefined : (
+										<div className="flex w-full flex-col gap-4">
+											<Select
+												disablePortal
+												label="ชื่อนามสกุล"
+												value={fullname}
+												onChange={(e) => {
+													const checkStudent = student?.filter((d) =>
+														d.name.match(e.target.value),
+													)[0];
 
-											setFullname(e.target.value);
-											if (checkStudent && e.target.value) {
-												setStudentId(checkStudent.id.toString());
-											} else {
-												setStudentId("");
-											}
+													setFullname(e.target.value);
+													if (checkStudent && e.target.value) {
+														setStudentId(checkStudent.id.toString());
+													} else {
+														setStudentId("");
+													}
+												}}
+											>
+												{student?.map((list) => (
+													<SelectItem key={list.name} value={list.name}>
+														{list.name}
+													</SelectItem>
+												))}
+											</Select>
+
+											<Input
+												disablePortal
+												label="รหัสนักศึกษา"
+												value={studentid}
+												onChange={(e) => {
+													const value = e.target.value;
+													const checkStudent = student?.filter(
+														(d) =>
+															d.id.toString() ===
+															(value.length <= 3 ? `66143${value}` : value),
+													)[0];
+
+													setStudentId(value.slice(0, 8));
+													if (checkStudent && value) {
+														setFullname(checkStudent.name.toString());
+													} else {
+														setFullname("");
+													}
+												}}
+											/>
+										</div>
+									)}
+									{/* <div>
+										{tags.map((tag, index) => (
+											<Chip
+												className="gap-2"
+												key={index}
+												radius="sm"
+												onClose={() => handleClose(tag)}
+												variant="faded"
+											>
+												{tag}
+											</Chip>
+										))}
+									</div>
+
+									<Button
+										className="bg-gradient-to-tr text-black "
+										radius="sm"
+										size="sm"
+										variant="faded"
+										onClick={() => {
+											tags.push("Dwa");
+											setTags(tags);
 										}}
 									>
-										{student?.map((list) => (
-											<SelectItem key={list.name} value={list.name}>
-												{list.name}
-											</SelectItem>
-										))}
-									</Select>
-									<Input
-										disablePortal
-										label="รหัสนักศึกษา"
-										value={studentid}
-										onChange={(e) => {
-											const value = e.target.value;
-											const checkStudent = student?.filter(
-												(d) =>
-													d.id.toString() ===
-													(value.length <= 3 ? `66143${value}` : value),
-											)[0];
+										<p className="font-extrabold">+</p>
+									</Button> */}
 
-											setStudentId(value.slice(0, 8));
-											if (checkStudent && value) {
-												setFullname(checkStudent.name.toString());
-											} else {
-												setFullname("");
-											}
-										}}
-									/>
 									<Input
 										disablePortal
 										label="จำนวนเงิน"
