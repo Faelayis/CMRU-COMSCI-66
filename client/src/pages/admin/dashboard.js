@@ -3,10 +3,13 @@ import { Card } from "@nextui-org/react";
 import Head from "next/head";
 import { useSession } from "next-auth/react";
 
+import UsageComp from "@/components/admin/usage";
+
+// Contents
+
 export default function Dashboard() {
 	const { data: session } = useSession();
 
-	// ตรวจสอบว่า session มีค่าและมีบทบาทเป็น "developer" หรือไม่
 	const isDeveloper = session?.user?.role === "developer";
 
 	return (
@@ -17,7 +20,7 @@ export default function Dashboard() {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/favicon.ico" />
 			</Head>
-			<div className="mx-auto max-w-7xl p-5 py-24 sm:px-6 sm:py-32 lg:px-8">
+			<div className="max-w-8xl mx-auto p-5 py-24 sm:px-6 sm:py-32 lg:px-8">
 				{isDeveloper ? (
 					<Card
 						style={{
@@ -29,9 +32,17 @@ export default function Dashboard() {
 						}}
 					>
 						<h1 style={{ fontSize: "2.5rem", marginTop: "15px" }}>Dashboard</h1>
+						<p>
+							welcome {session.user.role} {session.user.name}
+						</p>
+						<UsageComp />
 					</Card>
 				) : (
-					<p>คุณไม่มีสิทธิ์เข้าถึงหน้านี้</p>
+					<div className="text-center">
+						<h2 className="mt-3 p-5 text-center text-3xl font-bold tracking-tight sm:text-4xl">
+							คุณไม่มีสิทธ์เข้าถึงหน้านี้
+						</h2>
+					</div>
 				)}
 			</div>
 		</div>
