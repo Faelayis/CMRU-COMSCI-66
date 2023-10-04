@@ -71,6 +71,7 @@ export default function ModelComp() {
 				backdrop="opaque"
 				isOpen={isOpen}
 				onOpenChange={onOpenChange}
+				scrollBehavior="outside"
 				motionProps={{
 					variants: {
 						enter: {

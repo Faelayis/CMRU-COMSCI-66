@@ -88,15 +88,17 @@ export default function NavbarComp() {
 									</code>
 								</DropdownItem>
 								<DropdownItem key="settings">การตั้งค่า</DropdownItem>
-								<DropdownItem key="help_and_feedback" href="#">
-									Dashboard
-								</DropdownItem>
-								<DropdownItem
-									key="help_and_feedback"
-									href="/help"
-									color="warning"
-								>
-									ความช่วยเหลือและข้อเสนอแนะ
+								{session.user.role === "developer" && (
+									<DropdownItem key="dashboard">
+										<Link href="/admin/dashboard" color="foreground">
+											Dashboard
+										</Link>
+									</DropdownItem>
+								)}
+								<DropdownItem key="help_and_feedback" color="warning">
+									<Link href="/help" color="foreground">
+										ความช่วยเหลือและข้อเสนอแนะ
+									</Link>
 								</DropdownItem>
 								<DropdownItem
 									key="logout"
