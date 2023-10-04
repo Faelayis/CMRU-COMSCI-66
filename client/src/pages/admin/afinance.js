@@ -17,7 +17,7 @@ export default function Afinance() {
 					labelPlacement="outside"
 					startContent={
 						<div className="pointer-events-none flex items-center">
-							<span className="text-default-400 text-small">$</span>
+							<span className="text-small text-default-400">$</span>
 						</div>
 					}
 				/>
