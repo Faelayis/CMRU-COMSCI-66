@@ -76,7 +76,7 @@ importers:
         version: 1.1.6
       ts-node:
         specifier: 10.9.1
-        version: 10.9.1(@types/node@20.8.2)(typescript@5.2.2)
+        version: 10.9.1(@types/node@20.8.3)(typescript@5.2.2)
       tslib:
         specifier: 2.6.2
         version: 2.6.2
@@ -88,13 +88,13 @@ importers:
     dependencies:
       '@cmru-comsci-66/api':
         specifier: 1.2.4
-        version: link:../library/api
+        version: 1.2.4
       '@cmru-comsci-66/database':
         specifier: workspace:*
         version: link:../library/database
       '@cmru-comsci-66/utils':
         specifier: 1.2.4
-        version: link:../library/utils
+        version: 1.2.4
       '@fortawesome/fontawesome-svg-core':
         specifier: 6.4.2
         version: 6.4.2
@@ -163,8 +163,8 @@ importers:
         specifier: 5.4.1
         version: 5.4.1
       '@types/node':
-        specifier: 20.8.2
-        version: 20.8.2
+        specifier: 20.8.3
+        version: 20.8.3
       eslint-config-next:
         specifier: 13.5.4
         version: 13.5.4(eslint@8.50.0)(typescript@5.2.2)
@@ -182,7 +182,7 @@ importers:
     dependencies:
       '@cmru-comsci-66/utils':
         specifier: 1.2.4
-        version: link:../utils
+        version: 1.2.4
       axios:
         specifier: 1.5.1
         version: 1.5.1
@@ -191,8 +191,8 @@ importers:
         version: 0.37.60
     devDependencies:
       '@types/node':
-        specifier: 20.8.2
-        version: 20.8.2
+        specifier: 20.8.3
+        version: 20.8.3
       typescript:
         specifier: 5.2.2
         version: 5.2.2
@@ -207,8 +207,8 @@ importers:
         version: 5.4.1
     devDependencies:
       '@types/node':
-        specifier: 20.8.2
-        version: 20.8.2
+        specifier: 20.8.3
+        version: 20.8.3
       typescript:
         specifier: 5.2.2
         version: 5.2.2
@@ -225,8 +225,8 @@ importers:
         specifier: workspace:*
         version: link:../utils
       '@types/node':
-        specifier: 20.8.2
-        version: 20.8.2
+        specifier: 20.8.3
+        version: 20.8.3
       '@types/nodemailer':
         specifier: 6.4.4
         version: 6.4.4
@@ -243,8 +243,8 @@ importers:
   library/utils:
     devDependencies:
       '@types/node':
-        specifier: 20.8.2
-        version: 20.8.2
+        specifier: 20.8.3
+        version: 20.8.3
       typescript:
         specifier: 5.2.2
         version: 5.2.2
@@ -293,6 +293,20 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.0
+
+  /@cmru-comsci-66/api@1.2.4:
+    resolution: {integrity: sha512-OWLEbxe9wXMXean8eMoMnL9YZ50YVVb5VSsYuOEF2TN+vFJqgbCUhv4up0wdvq2TwKuw/GaChTzuIGyRu8sVpw==}
+    dependencies:
+      '@cmru-comsci-66/utils': 1.2.4
+      axios: 1.5.1
+      discord-api-types: 0.37.60
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@cmru-comsci-66/utils@1.2.4:
+    resolution: {integrity: sha512-oOVumPr96SagJm1S7dR+VYSaoIF39/vLzm52nBviQFIufGdAgbmr6kYt7wtO9lLCqFAF4UciXHavr2ITqSp/mg==}
+    dev: false
 
   /@cspotcode/source-map-support@0.8.1:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -2884,13 +2898,13 @@ packages:
     resolution: {integrity: sha512-jhuKLIRrhvCPLqwPcx6INqmKeiA5EWrsCOPhrlFSrbrmU4ZMPjj5Ul/oLCMDO98XRUIwVm78xICz4EPCektzeQ==}
     dev: true
 
-  /@types/node@20.8.2:
-    resolution: {integrity: sha512-Vvycsc9FQdwhxE3y3DzeIxuEJbWGDsnrxvMADzTDF/lcdR9/K+AQIeAghTQsHtotg/q0j3WEOYS/jQgSdWue3w==}
+  /@types/node@20.8.3:
+    resolution: {integrity: sha512-jxiZQFpb+NlH5kjW49vXxvxTjeeqlbsnTAdBTKpzEdPs9itay7MscYXz3Fo9VYFEsfQ6LJFitHad3faerLAjCw==}
 
   /@types/nodemailer@6.4.4:
     resolution: {integrity: sha512-Ksw4t7iliXeYGvIQcSIgWQ5BLuC/mljIEbjf615svhZL10PE9t+ei8O9gDaD3FPCasUJn9KTLwz2JFJyiiyuqw==}
     dependencies:
-      '@types/node': 20.8.2
+      '@types/node': 20.8.3
     dev: true
 
   /@types/normalize-package-data@2.4.1:
@@ -6293,7 +6307,7 @@ packages:
     dependencies:
       lilconfig: 2.1.0
       postcss: 8.4.31
-      ts-node: 10.9.1(@types/node@20.8.2)(typescript@5.2.2)
+      ts-node: 10.9.1(@types/node@20.8.3)(typescript@5.2.2)
       yaml: 2.3.1
 
   /postcss-nested@6.0.1(postcss@8.4.31):
@@ -7366,7 +7380,7 @@ packages:
   /ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
 
-  /ts-node@10.9.1(@types/node@20.8.2)(typescript@5.2.2):
+  /ts-node@10.9.1(@types/node@20.8.3)(typescript@5.2.2):
     resolution: {integrity: sha512-NtVysVPkxxrwFGUUxGYhfux8k78pQB3JqYBXlLRZgdGUqTO5wU/UyHop5p70iEbGhB7q5KmiZiU0Y3KlJrScEw==}
     hasBin: true
     peerDependencies:
@@ -7385,7 +7399,7 @@ packages:
       '@tsconfig/node12': 1.0.11
       '@tsconfig/node14': 1.0.3
       '@tsconfig/node16': 1.0.4
-      '@types/node': 20.8.2
+      '@types/node': 20.8.3
       acorn: 8.10.0
       acorn-walk: 8.2.0
       arg: 4.1.3

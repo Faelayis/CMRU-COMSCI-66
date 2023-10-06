@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@cmru-comsci-66/database",
-	"version": "1.5.4",
+	"version": "1.5.5",
 	"license": "apache-2.0",
 	"author": "Faelayis <48393914+Faelayis@users.noreply.github.com>",
 	"repository": {
@@ -44,7 +44,7 @@
 		"prisma": "5.4.1"
 	},
 	"devDependencies": {
-		"@types/node": "20.8.2",
+		"@types/node": "20.8.3",
 		"typescript": "5.2.2"
 	},
 	"publishConfig": {
