@@ -1,9 +1,10 @@
 import { useBillings } from "@api/billings";
-import { useStudent } from "@api/student";
+import { ObjectTypes, useStudent } from "@api/student";
 import { Handle } from "@lib/base/finance/submit";
 import {
 	Button,
 	Card,
+	CardHeader,
 	CircularProgress,
 	Input,
 	Modal,
@@ -18,6 +19,9 @@ import {
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRef, useState } from "react";
+
+/** @type {ObjectTypes} */
+let checkStudent;
 
 export default function ModelComp() {
 	const {
@@ -50,9 +54,13 @@ export default function ModelComp() {
 		return <CircularProgress />;
 	}
 
+	if (session.user?.studentId) {
+		checkStudent = student?.find((list) => list.id === session.user?.studentId);
+	}
+
 	const handleSubmit = async () => {
 		const data = new Handle();
-		data.fullname = fullname;
+		data.fullname = fullname || checkStudent.name;
 		data.studentid = studentid;
 		data.price = price || (event?.price ?? pricePlace);
 		data.note = note;
@@ -108,7 +116,43 @@ export default function ModelComp() {
 							</ModalHeader>
 							<ModalBody>
 								<div className="flex w-full flex-col gap-4">
-									{session.user?.studentId ? undefined : (
+									{session.user?.studentId ? (
+										<Card className="py-4">
+											<CardHeader className="flex-col items-start px-4 pb-0 pt-1">
+												{checkStudent ? (
+													<>
+														<h4 className="text-large font-bold">
+															{checkStudent.name.replace(
+																/นาย|นางสาว/g,
+																(match) => {
+																	if (match === "นาย") {
+																		return "นาย ";
+																	} else {
+																		return "นางสาว ";
+																	}
+																},
+															)}
+														</h4>
+														<p className="text-tiny font-bold uppercase">
+															รหัส {checkStudent.id} ห้อง {checkStudent.section}
+														</p>
+														<small className="text-default-600">
+															บัญชีนี้ได้เชื่อมต่อกับรหัสนักศึกษาแล้ว
+														</small>
+													</>
+												) : (
+													<>
+														<h4 className="text-large font-bold">
+															ข้อมูลที่เชื่อมต่อกับรหัสนักศึกษาไม่ถูกต้อง
+														</h4>
+														<p className="text-tiny font-bold">
+															บัญชี {session.user?.email}
+														</p>
+													</>
+												)}
+											</CardHeader>
+										</Card>
+									) : (
 										<div className="flex w-full flex-col gap-4">
 											<Select
 												disablePortal
@@ -161,7 +205,8 @@ export default function ModelComp() {
 										</div>
 									)}
 
-									{fullname && studentid ? (
+									{(session.user?.studentId && checkStudent) ||
+									(fullname && studentid) ? (
 										<>
 											<Select
 												isRequired={!event}
@@ -177,7 +222,7 @@ export default function ModelComp() {
 													value
 														? (setPrice(value.price),
 														  setPricePlace(value.price))
-														: (setPrice(""), setPricePlace());
+														: (setPrice(), setPricePlace());
 
 													setEvent(value);
 												}}
@@ -258,12 +303,15 @@ export default function ModelComp() {
 									<Button color="danger" variant="light" onPress={onClose}>
 										ยกเลิก
 									</Button>
-									<Button
-										className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
-										onPress={handleSubmit}
-									>
-										ส่งข้อมูล
-									</Button>
+									{(session.user?.studentId && checkStudent) ||
+									(fullname && studentid) ? (
+										<Button
+											className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+											onPress={handleSubmit}
+										>
+											ส่งข้อมูล
+										</Button>
+									) : undefined}
 								</div>
 							</ModalFooter>
 						</>

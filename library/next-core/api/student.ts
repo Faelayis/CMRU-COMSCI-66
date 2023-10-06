@@ -102,4 +102,5 @@ export function useStudent() {
 	}
 }
 export type Types = StudentList[];
+export type ObjectTypes = MappedStudentLite;
 export type StringTypes = Array<{ [K in keyof StudentList]: string }>;
