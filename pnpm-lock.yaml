@@ -87,7 +87,7 @@ importers:
   client:
     dependencies:
       '@cmru-comsci-66/api':
-        specifier: 1.2.3
+        specifier: 1.2.4
         version: link:../library/api
       '@cmru-comsci-66/database':
         specifier: workspace:*
