@@ -12,7 +12,8 @@ jobs:
             - name: Setup PNPM
               uses: pnpm/action-setup@v2
               with:
-                  run_install: false
+                  run_install: |
+                      - args: [--ignore-scripts, --frozen-lockfile]
                   version: ${{ vars.PNPM_VERSION }}
 
             - name: Setup Node
@@ -20,9 +21,6 @@ jobs:
               with:
                   node-version: ${{ vars.NODE_VERSION }}
                   cache: pnpm
-
-            - name: Install Dependencies
-              run: pnpm install --ignore-scripts
 
             - name: Run ESLint
               run: pnpm run lint

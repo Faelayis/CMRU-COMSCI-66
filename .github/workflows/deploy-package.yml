@@ -47,7 +47,7 @@ jobs:
             - name: Deploy to GitHub Packages
               run: |
                   pnpm config set '//npm.pkg.github.com/:_authToken' "${AUTH_TOKEN}"
-                  pnpm --filter=@cmru-comsci-66/* publish -r --access=public --registry=https://npm.pkg.github.com/
+                  pnpm --filter=@cmru-comsci-66/* publish -r --access=public --registry=https://npm.pkg.github.com/CMRU-Computer-Science-66
                   pnpm config delete '//npm.pkg.github.com/:_authToken'
               env:
                   AUTH_TOKEN: ${{ secrets.GH_TOKEN }}
