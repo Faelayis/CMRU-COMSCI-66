@@ -33,8 +33,7 @@
 		"typescript": "5.2.2"
 	},
 	"publishConfig": {
-		"access": "public",
-		"linkDirectory": false,
-		"registry": "https://npm.pkg.github.com"
+		"access": "restricted",
+		"linkDirectory": false
 	}
 }
