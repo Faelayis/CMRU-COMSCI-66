@@ -26,14 +26,14 @@
 		"build:cjs": "tsc -b ./tsconfig.cjs.json",
 		"build:esm": "tsc -b ./tsconfig.json",
 		"ci:bump": "bump",
-		"ci:delete_scripts": "pnpm pkg delete scripts",
 		"clean": "del-cli cjs esm .turbo *.tsbuildinfo",
 		"dev": "tsc -w",
 		"dev:debug": "tsc -w",
 		"format": "prettier --write .",
 		"postinstall": "pnpm run --silent \"/^build:.*/\"",
 		"lint": "eslint .",
-		"lint:fix": "eslint . --fix"
+		"lint:fix": "eslint . --fix",
+		"prepublish": "pnpm pkg delete scripts"
 	},
 	"typings": "esm/library.d.ts",
 	"devDependencies": {

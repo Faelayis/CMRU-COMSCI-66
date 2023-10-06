@@ -26,18 +26,18 @@
 		"build:cjs": "tsc -b ./tsconfig.cjs.json",
 		"build:esm": "tsc -b ./tsconfig.json",
 		"ci:bump": "bump",
-		"ci:delete_scripts": "pnpm pkg delete scripts",
 		"clean": "del-cli cjs esm .turbo *.tsbuildinfo",
 		"dev": "tsc -w",
 		"dev:debug": "tsc -w",
 		"format": "prettier --write .",
 		"postinstall": "pnpm run --silent \"/^build:.*/\"",
 		"lint": "eslint .",
-		"lint:fix": "eslint . --fix"
+		"lint:fix": "eslint . --fix",
+		"prepublish": "pnpm pkg delete scripts"
 	},
 	"typings": "esm/library.d.ts",
 	"dependencies": {
-		"@cmru-comsci-66/utils": "workspace:*",
+		"@cmru-comsci-66/utils": "1.2.4",
 		"axios": "1.5.1",
 		"discord-api-types": "0.37.59"
 	},

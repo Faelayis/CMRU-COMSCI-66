@@ -36,6 +36,14 @@ jobs:
               run: |
                   pnpm config set 'always-auth' "true"
 
+            - name: Deploy to npmjs
+              run: |
+                  pnpm config set '//registry.npmjs.org/:_authToken' "${AUTH_TOKEN}"
+                  pnpm --filter=@cmru-comsci-66/* publish -r --access=public --registry=https://registry.npmjs.org/
+                  pnpm config delete '//registry.npmjs.org/:_authToken'
+              env:
+                  AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
             - name: Deploy to GitHub Packages
               run: |
                   pnpm config set '//npm.pkg.github.com/:_authToken' "${AUTH_TOKEN}"
