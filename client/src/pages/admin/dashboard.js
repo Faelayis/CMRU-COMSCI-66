@@ -5,8 +5,6 @@ import { useSession } from "next-auth/react";
 
 import UsageComp from "@/components/admin/usage";
 
-// Contents
-
 export default function Dashboard() {
 	const { data: session } = useSession();
 
@@ -31,10 +29,15 @@ export default function Dashboard() {
 							padding: "5px",
 						}}
 					>
-						<h1 style={{ fontSize: "2.5rem", marginTop: "15px" }}>Dashboard</h1>
-						<p>
-							welcome {session.user.role} {session.user.name}
-						</p>
+						<h1
+							style={{
+								fontSize: "2.5rem",
+								marginTop: "15px",
+								marginBottom: "15px",
+							}}
+						>
+							Dashboard
+						</h1>
 						<UsageComp />
 					</Card>
 				) : (

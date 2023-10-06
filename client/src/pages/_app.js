@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import "@/styles/globals.css";
 
 import { NextUIProvider } from "@nextui-org/react";

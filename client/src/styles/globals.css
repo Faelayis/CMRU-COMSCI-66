@@ -47,3 +47,23 @@ body {
 	font-family: "LINE Seed Sans Heavy";
 	src: url("/fonts/LINESeedSansTH/Heavy.woff");
 }
+
+@media (max-width: 1020px) {
+	.absolute-position {
+		left: 50%;
+		transform: translateX(-50%);
+	}
+}
+.swiper-pagination-bullets {
+	display: none;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+input[type="number"] {
+	-moz-appearance: textfield;
+}

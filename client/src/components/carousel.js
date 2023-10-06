@@ -1,17 +1,14 @@
-// Components
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
 import Image from "next/image";
-// import required modules
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
 export default function CarouselComp() {
 	return (
-		<div className="">
+		<div>
 			<Swiper
 				spaceBetween={300}
 				centeredSlides={false}
@@ -24,7 +21,6 @@ export default function CarouselComp() {
 				}}
 				navigation={false}
 				modules={[Autoplay, Pagination, Navigation]}
-				className="mySwiper"
 			>
 				<SwiperSlide>
 					<Image

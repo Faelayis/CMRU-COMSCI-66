@@ -1,6 +1,5 @@
 import { Button, Card, Input, Select, SelectItem } from "@nextui-org/react";
 import Head from "next/head";
-import React from "react";
 
 export default function Finance() {
 	return (
@@ -27,17 +26,6 @@ export default function Finance() {
 					<p style={{ marginBottom: "15px" }}>
 						โปรดตรวจสอบข้อมูลของท่านก่อนส่งข้อมูล
 					</p>
-					{/**
-                        Ex
-                            <Select
-                            items={animals}
-                            label="Favorite Animal"
-                            placeholder="Select an animal"
-                            className="max-w-xs"
-                            >
-                            {(animal) => <SelectItem key={animal.value}>{animal.label}</SelectItem>}
-                            </Select>
-                     */}
 
 					<div className="flex w-full flex-col gap-4">
 						<Select label="Name" placeholder="ชื่อนามสกุล">

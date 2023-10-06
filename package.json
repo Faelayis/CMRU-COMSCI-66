@@ -62,7 +62,7 @@
 		"run-script-os": "1.1.6",
 		"ts-node": "10.9.1",
 		"tslib": "2.6.2",
-		"turbo": "1.10.14"
+		"turbo": "1.10.15"
 	},
 	"engines": {
 		"node": ">=18",

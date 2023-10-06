@@ -25,13 +25,13 @@ export default function NavbarComp() {
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
 	const menuItems = [
-		{ label: "Todo", url: "/contents/todo" },
-		{ label: "About", url: "/contents/about" },
-		{ label: "Gallery", url: "/contents/gallery" },
+		{ label: "แกลเลอรี่", url: "/contents/gallery", role: ["developer"] },
+		{ label: "สิ่งที่ต้องทำ", url: "/contents/todo", role: ["developer"] },
+		{ label: "เกี่ยวกับเรา", url: "/contents/about", role: ["developer"] },
 	];
 
 	return (
-		<Navbar onMenuOpenChange={setIsMenuOpen}>
+		<Navbar className="select-none" onMenuOpenChange={setIsMenuOpen}>
 			<NavbarContent>
 				<NavbarMenuToggle
 					aria-label={isMenuOpen ? "Close menu" : "Open menu"}
@@ -42,26 +42,22 @@ export default function NavbarComp() {
 				</Link>
 			</NavbarContent>
 
-			{/** center contents */}
 			<NavbarContent className="hidden gap-4 sm:flex" justify="center">
-				<NavbarItem isActive>
-					<Link href="/contents/about" aria-current="page" color="secondary">
-						About Us
-					</Link>
-				</NavbarItem>
-				<NavbarItem>
-					<Link href="/contents/gallery" color="foreground">
-						Gallery
-					</Link>
-				</NavbarItem>
-				<NavbarItem>
-					<Link color="foreground" href="/contents/todo">
-						Todo
-					</Link>
-				</NavbarItem>
+				{menuItems
+					.filter((item) =>
+						item.role.includes(
+							session?.user?.role ? session?.user?.role : null,
+						),
+					)
+					.map((item) => (
+						<NavbarItem key={item.url}>
+							<Link href={item.url} color="foreground">
+								<p>{item.label}</p>
+							</Link>
+						</NavbarItem>
+					))}
 			</NavbarContent>
 
-			{/** Profile and Login System */}
 			<NavbarContent as="div" justify="end">
 				{session ? (
 					<>
@@ -71,14 +67,18 @@ export default function NavbarComp() {
 								<Avatar
 									isBordered
 									as="button"
-									className="transition-transform"
+									className="select-none transition-transform"
 									color="secondary"
 									name="Profile"
 									size="md"
 									src={session.user.image}
 								/>
 							</DropdownTrigger>
-							<DropdownMenu aria-label="Profile Actions" variant="flat">
+							<DropdownMenu
+								aria-label="Actions"
+								selectionMode="single"
+								variant="flat"
+							>
 								<DropdownItem key="profile" className="h-14 gap-2">
 									<p className="font-semibold">
 										เข้าสู่ระบบโดย{" "}
@@ -101,7 +101,7 @@ export default function NavbarComp() {
 										</Link>
 									</DropdownItem>
 								)}
-								<DropdownItem key="help_and_feedback" color="warning">
+								<DropdownItem key="help_and_feedback">
 									<Link href="/help" color="foreground">
 										ความช่วยเหลือและข้อเสนอแนะ
 									</Link>
@@ -117,12 +117,11 @@ export default function NavbarComp() {
 						</Dropdown>
 					</>
 				) : (
-					// Login System (for mobile)
 					<>
 						<Button
 							color="primary"
 							variant="faded"
-							onClick={() => signIn("google")}
+							onClick={() => signIn("google", { redirect: false })}
 							startContent={
 								<FontAwesomeIcon icon={faGoogle} className="h-4 w-4" />
 							}
@@ -133,20 +132,25 @@ export default function NavbarComp() {
 				)}
 			</NavbarContent>
 
-			{/** open menu */}
 			<NavbarMenu>
-				{menuItems.map((item, index) => (
-					<NavbarMenuItem key={`${item.label}-${index}`}>
-						<Link
-							color="foreground"
-							className="w-full"
-							href={item.url}
-							size="lg"
-						>
-							{item.label}
-						</Link>
-					</NavbarMenuItem>
-				))}
+				{menuItems
+					.filter((item) =>
+						item.role.includes(
+							session?.user?.role ? session?.user?.role : null,
+						),
+					)
+					.map((item, index) => (
+						<NavbarMenuItem key={`${item.label}-${index}`}>
+							<Link
+								color="foreground"
+								className="w-full"
+								href={item.url}
+								size="lg"
+							>
+								{item.label}
+							</Link>
+						</NavbarMenuItem>
+					))}
 			</NavbarMenu>
 		</Navbar>
 	);

@@ -23,10 +23,12 @@ module.exports = {
 			jsx: false,
 		},
 		babelOptions: {
+			//@ts-ignore
 			presets: [require.resolve("next/babel")],
 		},
 	},
 	rules: {
+		"tailwindcss/no-custom-classname": "off",
 		"react/react-in-jsx-scope": "off",
 		"react/prop-types": "off",
 		"no-unused-vars": "warn",

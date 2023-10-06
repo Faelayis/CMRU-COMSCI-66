@@ -12,6 +12,7 @@ const { publicRuntimeConfig } = getConfig();
 
 export default function FooterComp() {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
+
 	return (
 		<footer className="bg-white dark:bg-gray-900">
 			<div className="mx-auto w-full max-w-screen-xl select-none p-4 py-6 lg:py-1">
@@ -87,7 +88,12 @@ export default function FooterComp() {
 						</p>
 					</span>
 
-					<Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+					<Modal
+						backdrop="blur"
+						placement="auto"
+						isOpen={isOpen}
+						onOpenChange={onOpenChange}
+					>
 						<ModalContent className="select-none">
 							{() => (
 								<>

@@ -3,7 +3,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card, Image } from "@nextui-org/react";
 import Head from "next/head";
 import Link from "next/link";
-import React from "react";
 
 export default function Leader() {
 	const leadersData = [

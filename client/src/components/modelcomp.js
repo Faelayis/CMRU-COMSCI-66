@@ -33,21 +33,13 @@ export default function ModelComp() {
 	const { data: session } = useSession();
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const [selectedFile, setSelectedFile] = useState();
-	const [fullname, setFullname] = useState(session.user?.email ?? "");
+	const [fullname, setFullname] = useState();
 	const [studentid, setStudentId] = useState(session.user?.studentId ?? "");
 	const [price, setPrice] = useState("");
 	const [pricePlace, setPricePlace] = useState();
 	const [note, setNote] = useState("");
-	const [event, setEvent] = useState("");
-
-	// const [tags, setTags] = useState([]);
-
-	// const handleClose = (tagToRemove) => {
-	// 	setTags(tags.filter((tag) => tag !== tagToRemove));
-	// 	if (tags.length === 1) {
-	// 		setTags(initialFruits);
-	// 	}
-	// };
+	const [event, setEvent] = useState();
+	// const [tags, setTags] = useState();
 
 	const inputRef = useRef(),
 		handleOpenFileInput = () => {
@@ -62,10 +54,14 @@ export default function ModelComp() {
 		const data = new Handle();
 		data.fullname = fullname;
 		data.studentid = studentid;
-		data.price = price;
+		data.price = price || (event?.price ?? pricePlace);
 		data.note = note;
 		data.event = event;
-		data.files = selectedFile;
+
+		if (data.files != selectedFile) {
+			data.files = selectedFile;
+		}
+
 		data.send();
 	};
 
@@ -80,6 +76,7 @@ export default function ModelComp() {
 			<Modal
 				backdrop="opaque"
 				isOpen={isOpen}
+				isDismissable={false}
 				onOpenChange={onOpenChange}
 				scrollBehavior="outside"
 				motionProps={{
@@ -115,8 +112,11 @@ export default function ModelComp() {
 										<div className="flex w-full flex-col gap-4">
 											<Select
 												disablePortal
-												label="ชื่อนามสกุล"
-												value={fullname}
+												isRequired={!fullname}
+												label="ชื่อ - นามสกุล"
+												disabledKeys={fullname ? [fullname] : []}
+												selectedKeys={fullname ? [fullname] : []}
+												disallowEmptySelection={false}
 												onChange={(e) => {
 													const checkStudent = student?.filter((d) =>
 														d.name.match(e.target.value),
@@ -139,6 +139,7 @@ export default function ModelComp() {
 
 											<Input
 												disablePortal
+												isRequired={!studentid}
 												label="รหัสนักศึกษา"
 												value={studentid}
 												onChange={(e) => {
@@ -153,113 +154,117 @@ export default function ModelComp() {
 													if (checkStudent && value) {
 														setFullname(checkStudent.name.toString());
 													} else {
-														setFullname("");
+														setFullname();
 													}
 												}}
 											/>
 										</div>
 									)}
-									{/* <div>
-										{tags.map((tag, index) => (
-											<Chip
-												className="gap-2"
-												key={index}
-												radius="sm"
-												onClose={() => handleClose(tag)}
-												variant="faded"
+
+									{fullname && studentid ? (
+										<>
+											<Select
+												isRequired={!event}
+												label="กิจกรรม"
+												defaultSelectedKeys={
+													event?.label ? [event?.label] : undefined
+												}
+												onChange={(e) => {
+													const value = billings.find(
+														(n) => n.label === e.target.value,
+													);
+
+													value
+														? (setPrice(value.price),
+														  setPricePlace(value.price))
+														: (setPrice(""), setPricePlace());
+
+													setEvent(value);
+												}}
 											>
-												{tag}
-											</Chip>
-										))}
-									</div>
+												{billings?.map((list) => (
+													<SelectItem key={list.label} value={list.label}>
+														{list.label}
+													</SelectItem>
+												))}
+											</Select>
 
-									<Button
-										className="bg-gradient-to-tr text-black "
-										radius="sm"
-										size="sm"
-										variant="faded"
-										onClick={() => {
-											tags.push("Dwa");
-											setTags(tags);
-										}}
-									>
-										<p className="font-extrabold">+</p>
-									</Button> */}
+											{event ? (
+												<Input
+													type="number"
+													min="0"
+													disablePortal
+													isRequired={price < 0}
+													label="จำนวนเงิน"
+													placeholder={event.price}
+													value={price}
+													onChange={(e) => {
+														if (!e.target.value) {
+															setPrice(pricePlace);
+														}
 
-									<Input
-										disablePortal
-										label="จำนวนเงิน"
-										placeholder={pricePlace}
-										value={price}
-										onChange={(e) => setPrice(e.target.value)}
-									/>
-									<Input
-										label="หมายเหตุ"
-										onChange={(e) => setNote(e.target.value)}
-									/>
-									<Select
-										label="กิจกรรม"
-										onChange={(e) => {
-											const value = billings.find(
-												(n) => n.label === e.target.value,
-											);
+														setPrice(e.target.value);
+													}}
+												/>
+											) : undefined}
 
-											value
-												? (setPrice(value.price), setPricePlace(value.price))
-												: (setPrice(""), setPricePlace());
-
-											setEvent(value);
-										}}
-									>
-										{billings?.map((list) => (
-											<SelectItem key={list.label} value={list.label}>
-												{list.label}
-											</SelectItem>
-										))}
-									</Select>
-
-									{selectedFile ? (
-										<Card className="relative col-span-12 h-[300px] sm:col-span-4">
-											<Image
-												removeWrapper
-												alt="slip"
-												className="z-0 h-full w-full object-contain"
-												src={URL.createObjectURL(selectedFile)}
-												width={300}
-												height={300}
+											<input
+												hidden
+												id="SelectedFile"
+												ref={inputRef}
+												type="file"
+												accept="image/*"
+												style={{ display: "none" }}
+												onChange={(e) => setSelectedFile(e.target.files[0])}
 											/>
-										</Card>
+
+											{event ? (
+												<>
+													<Input
+														label="หมายเหตุ"
+														value={note}
+														onChange={(e) => setNote(e.target.value)}
+													/>
+
+													{selectedFile ? (
+														<Card className="relative col-span-12 h-[350px] sm:col-span-4">
+															<Image
+																alt="slip"
+																className="z-0 h-full w-full object-contain"
+																src={URL.createObjectURL(selectedFile)}
+																width="0"
+																height="0"
+																style={{ width: "100%", height: "100%" }}
+															/>
+														</Card>
+													) : undefined}
+
+													<Button
+														htmlFor="SelectedFile"
+														onClick={handleOpenFileInput}
+														radius="full"
+														className="bg-gradient-to-tr text-black shadow-lg"
+													>
+														อัพโหลด สลิป
+													</Button>
+												</>
+											) : undefined}
+										</>
 									) : undefined}
-
-									<input
-										ref={inputRef}
-										type="file"
-										id="file-input"
-										accept="image/*"
-										hidden
-										onChange={(e) => setSelectedFile(e.target.files[0])}
-									/>
-
-									<Button
-										htmlFor="file-input"
-										onClick={handleOpenFileInput}
-										radius="full"
-										className="bg-gradient-to-tr text-black shadow-lg"
-									>
-										อัพโหลดสลิป
-									</Button>
 								</div>
 							</ModalBody>
 							<ModalFooter>
-								<Button color="danger" variant="light" onPress={onClose}>
-									ยกเลิก
-								</Button>
-								<Button
-									className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
-									onPress={handleSubmit}
-								>
-									ส่งข้อมูล
-								</Button>
+								<div>
+									<Button color="danger" variant="light" onPress={onClose}>
+										ยกเลิก
+									</Button>
+									<Button
+										className="bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"
+										onPress={handleSubmit}
+									>
+										ส่งข้อมูล
+									</Button>
+								</div>
 							</ModalFooter>
 						</>
 					)}

@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@cmru-comsci-66/client",
-	"version": "1.6.8",
+	"version": "1.7.0",
 	"scripts": {
 		"PORT": "3000",
 		"build": "next build",
@@ -16,9 +16,9 @@
 		"start": "next start"
 	},
 	"dependencies": {
-		"@cmru-comsci-66/api": "workspace:*",
+		"@cmru-comsci-66/api": "1.2.3",
 		"@cmru-comsci-66/database": "workspace:*",
-		"@cmru-comsci-66/utils": "workspace:*",
+		"@cmru-comsci-66/utils": "1.2.4",
 		"@fortawesome/fontawesome-svg-core": "6.4.2",
 		"@fortawesome/free-brands-svg-icons": "6.4.2",
 		"@fortawesome/free-solid-svg-icons": "6.4.2",
@@ -36,7 +36,7 @@
 		"react": "18.2.0",
 		"react-dom": "18.2.0",
 		"sharp": "0.32.6",
-		"sweetalert2": "11.7.31",
+		"sweetalert2": "11.7.32",
 		"swiper": "10.3.1",
 		"swr": "2.2.4",
 		"tailwindcss": "3.3.3"
