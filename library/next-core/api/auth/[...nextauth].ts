@@ -19,6 +19,9 @@ export default NextAuth({
 				},
 		  }
 		: undefined,
+	session: {
+		maxAge: 90 * 24 * 60 * 60, // 3 month
+	},
 	adapter: PrismaAdapter(prisma),
 	providers: [
 		GoogleProvider({
