@@ -35,7 +35,7 @@ export default function Gallery() {
 				return (
 					<div className="flex flex-col">
 						<p className="text-bold text-sm capitalize">{cellValue}</p>
-						<p className="text-bold text-default-400 text-sm capitalize">
+						<p className="text-bold text-sm capitalize text-default-400">
 							{user.note}
 						</p>
 					</div>
@@ -45,7 +45,7 @@ export default function Gallery() {
 				return (
 					<div className="flex flex-col">
 						<p className="text-bold text-sm capitalize">{cellValue}</p>
-						<p className="text-bold text-default-400 text-sm capitalize">
+						<p className="text-bold text-sm capitalize text-default-400">
 							{user.team}
 						</p>
 					</div>
