@@ -5,27 +5,27 @@ export default function Afinance() {
 		<div className="flex flex-col gap-4">
 			<div className="mb-6 flex w-full flex-wrap gap-4 md:mb-0 md:flex-nowrap">
 				<Input
-					type="event"
 					label="กิจกรรม"
-					placeholder="Enter Your Event"
 					labelPlacement="outside"
+					placeholder="Enter Your Event"
+					type="event"
 				/>
 				<Input
-					type="number"
 					label="จำนวนเงิน"
-					placeholder="0.00"
 					labelPlacement="outside"
+					placeholder="0.00"
 					startContent={
 						<div className="pointer-events-none flex items-center">
 							<span className="text-small text-default-400">$</span>
 						</div>
 					}
+					type="number"
 				/>
 				<Input
-					type="date"
 					label="ระยะเวลา"
-					placeholder="Date Time"
 					labelPlacement="outside"
+					placeholder="Date Time"
+					type="date"
 				/>
 			</div>
 			<div className="mb-6 flex w-full flex-wrap gap-4 md:mb-0 md:flex-nowrap">

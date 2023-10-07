@@ -1,4 +1,3 @@
-// Components
 import { Button, Select, user } from "@nextui-org/react";
 
 export default function Permis() {

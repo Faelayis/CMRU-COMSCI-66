@@ -4,7 +4,7 @@ import "@/styles/globals.css";
 import { NextUIProvider } from "@nextui-org/react";
 import { SessionProvider } from "next-auth/react";
 
-import PreviderComp from "@/components/previders";
+import PreviderComp from "@/components/layout";
 
 export default function App({
 	Component,

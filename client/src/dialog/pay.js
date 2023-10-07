@@ -1,4 +1,5 @@
 import { useBillings } from "@api/billings";
+// eslint-disable-next-line no-unused-vars
 import { ObjectTypes, useStudent } from "@api/student";
 import { Handle } from "@lib/base/finance/submit";
 import {
@@ -25,15 +26,16 @@ let checkStudent;
 
 export default function ModelComp() {
 	const {
-		billings,
-		isLoading: billingsIsLoading,
-		isError: billingsIsError,
-	} = useBillings();
-	const {
-		student,
-		isLoading: studentIsLoading,
-		isError: studentIsError,
-	} = useStudent();
+			billings,
+			isError: billingsIsError,
+			isLoading: billingsIsLoading,
+		} = useBillings(),
+		{
+			isError: studentIsError,
+			isLoading: studentIsLoading,
+			student,
+		} = useStudent();
+
 	const { data: session } = useSession();
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const [selectedFile, setSelectedFile] = useState();
@@ -51,7 +53,11 @@ export default function ModelComp() {
 		};
 
 	if (billingsIsLoading || studentIsLoading) {
-		return <CircularProgress />;
+		return <CircularProgress label="กำลังโหลดข้อมูล.." />;
+	}
+
+	if (billingsIsError || studentIsError) {
+		return <CircularProgress color="danger" label="ไม่สามารถโหลดข้อมูลได้" />;
 	}
 
 	if (session.user?.studentId) {
@@ -83,30 +89,30 @@ export default function ModelComp() {
 			</Button>
 			<Modal
 				backdrop="opaque"
-				isOpen={isOpen}
 				isDismissable={false}
-				onOpenChange={onOpenChange}
-				scrollBehavior="outside"
+				isOpen={isOpen}
 				motionProps={{
 					variants: {
 						enter: {
-							y: 0,
 							opacity: 1,
 							transition: {
 								duration: 0.3,
 								ease: "easeOut",
 							},
+							y: 0,
 						},
 						exit: {
-							y: -20,
 							opacity: 0,
 							transition: {
 								duration: 0.2,
 								ease: "easeIn",
 							},
+							y: -20,
 						},
 					},
 				}}
+				onOpenChange={onOpenChange}
+				scrollBehavior="outside"
 			>
 				<ModalContent>
 					{(onClose) => (
@@ -136,7 +142,7 @@ export default function ModelComp() {
 														<p className="text-tiny font-bold uppercase">
 															รหัส {checkStudent.id} ห้อง {checkStudent.section}
 														</p>
-														<small className="text-default-600">
+														<small className="text-default-600" color="default">
 															บัญชีนี้ได้เชื่อมต่อกับรหัสนักศึกษาแล้ว
 														</small>
 													</>
@@ -156,11 +162,10 @@ export default function ModelComp() {
 										<div className="flex w-full flex-col gap-4">
 											<Select
 												disablePortal
+												disabledKeys={fullname ? [fullname] : []}
+												disallowEmptySelection={false}
 												isRequired={!fullname}
 												label="ชื่อ - นามสกุล"
-												disabledKeys={fullname ? [fullname] : []}
-												selectedKeys={fullname ? [fullname] : []}
-												disallowEmptySelection={false}
 												onChange={(e) => {
 													const checkStudent = student?.filter((d) =>
 														d.name.match(e.target.value),
@@ -173,6 +178,7 @@ export default function ModelComp() {
 														setStudentId("");
 													}
 												}}
+												selectedKeys={fullname ? [fullname] : []}
 											>
 												{student?.map((list) => (
 													<SelectItem key={list.name} value={list.name}>
@@ -185,7 +191,6 @@ export default function ModelComp() {
 												disablePortal
 												isRequired={!studentid}
 												label="รหัสนักศึกษา"
-												value={studentid}
 												onChange={(e) => {
 													const value = e.target.value;
 													const checkStudent = student?.filter(
@@ -201,6 +206,7 @@ export default function ModelComp() {
 														setFullname();
 													}
 												}}
+												value={studentid}
 											/>
 										</div>
 									)}
@@ -209,11 +215,11 @@ export default function ModelComp() {
 									(fullname && studentid) ? (
 										<>
 											<Select
-												isRequired={!event}
-												label="กิจกรรม"
 												defaultSelectedKeys={
 													event?.label ? [event?.label] : undefined
 												}
+												isRequired={!event}
+												label="กิจกรรม"
 												onChange={(e) => {
 													const value = billings.find(
 														(n) => n.label === e.target.value,
@@ -236,13 +242,10 @@ export default function ModelComp() {
 
 											{event ? (
 												<Input
-													type="number"
-													min="0"
 													disablePortal
 													isRequired={price < 0}
 													label="จำนวนเงิน"
-													placeholder={event.price}
-													value={price}
+													min="0"
 													onChange={(e) => {
 														if (!e.target.value) {
 															setPrice(pricePlace);
@@ -250,25 +253,28 @@ export default function ModelComp() {
 
 														setPrice(e.target.value);
 													}}
+													placeholder={event.price}
+													type="number"
+													value={price}
 												/>
 											) : undefined}
 
 											<input
+												accept="image/*"
 												hidden
 												id="SelectedFile"
-												ref={inputRef}
-												type="file"
-												accept="image/*"
-												style={{ display: "none" }}
 												onChange={(e) => setSelectedFile(e.target.files[0])}
+												ref={inputRef}
+												style={{ display: "none" }}
+												type="file"
 											/>
 
 											{event ? (
 												<>
 													<Input
 														label="หมายเหตุ"
-														value={note}
 														onChange={(e) => setNote(e.target.value)}
+														value={note}
 													/>
 
 													{selectedFile ? (
@@ -276,19 +282,19 @@ export default function ModelComp() {
 															<Image
 																alt="slip"
 																className="z-0 h-full w-full object-contain"
-																src={URL.createObjectURL(selectedFile)}
-																width="0"
 																height="0"
-																style={{ width: "100%", height: "100%" }}
+																src={URL.createObjectURL(selectedFile)}
+																style={{ height: "100%", width: "100%" }}
+																width="0"
 															/>
 														</Card>
 													) : undefined}
 
 													<Button
+														className="bg-gradient-to-tr text-black shadow-lg"
 														htmlFor="SelectedFile"
 														onClick={handleOpenFileInput}
 														radius="full"
-														className="bg-gradient-to-tr text-black shadow-lg"
 													>
 														อัพโหลด สลิป
 													</Button>
@@ -300,7 +306,7 @@ export default function ModelComp() {
 							</ModalBody>
 							<ModalFooter>
 								<div>
-									<Button color="danger" variant="light" onPress={onClose}>
+									<Button color="danger" onPress={onClose} variant="light">
 										ยกเลิก
 									</Button>
 									{(session.user?.studentId && checkStudent) ||

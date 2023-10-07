@@ -7,114 +7,114 @@ import Link from "next/link";
 export default function Leader() {
 	const leadersData = [
 		{
-			name: "John Doe",
-			role: "Software Engineer",
-			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
 			facebookLink: "https://www.facebook.com/johndoe",
 			githubLink: "https://github.com/johndoe",
+			name: "John Doe",
+			role: "Software Engineer",
+			sharp: '"Never give up"',
 		},
 		{
-			name: "Jane Smith",
-			role: "Product Manager",
-			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
 			facebookLink: "https://www.facebook.com/janesmith",
 			githubLink: "https://github.com/janesmith",
-		},
-		{
-			name: "John Doe",
-			role: "Software Engineer",
-			sharp: '"Never give up"',
-			avatar: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
-			facebookLink: "https://www.facebook.com/johndoe",
-			githubLink: "https://github.com/johndoe",
-		},
-		{
 			name: "Jane Smith",
 			role: "Product Manager",
 			sharp: '"Never give up"',
-			avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-			facebookLink: "https://www.facebook.com/janesmith",
-			githubLink: "https://github.com/janesmith",
 		},
 		{
-			name: "John Doe",
-			role: "Software Engineer",
-			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
 			facebookLink: "https://www.facebook.com/johndoe",
 			githubLink: "https://github.com/johndoe",
+			name: "John Doe",
+			role: "Software Engineer",
+			sharp: '"Never give up"',
 		},
 		{
+			avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+			facebookLink: "https://www.facebook.com/janesmith",
+			githubLink: "https://github.com/janesmith",
 			name: "Jane Smith",
 			role: "Product Manager",
 			sharp: '"Never give up"',
-			avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
-			facebookLink: "https://www.facebook.com/janesmith",
-			githubLink: "https://github.com/janesmith",
 		},
 		{
-			name: "John Doe",
-			role: "Software Engineer",
-			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
 			facebookLink: "https://www.facebook.com/johndoe",
 			githubLink: "https://github.com/johndoe",
+			name: "John Doe",
+			role: "Software Engineer",
+			sharp: '"Never give up"',
+		},
+		{
+			avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
+			facebookLink: "https://www.facebook.com/janesmith",
+			githubLink: "https://github.com/janesmith",
+			name: "Jane Smith",
+			role: "Product Manager",
+			sharp: '"Never give up"',
+		},
+		{
+			avatar: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
+			facebookLink: "https://www.facebook.com/johndoe",
+			githubLink: "https://github.com/johndoe",
+			name: "John Doe",
+			role: "Software Engineer",
+			sharp: '"Never give up"',
 		},
 	];
 
 	const SecterleadersData = [
 		{
-			name: "John Doe",
-			role: "Software Engineer",
-			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
 			facebookLink: "https://www.facebook.com/johndoe",
 			githubLink: "https://github.com/johndoe",
+			name: "John Doe",
+			role: "Software Engineer",
+			sharp: '"Never give up"',
 		},
 		{
-			name: "Jane Smith",
-			role: "Product Manager",
-			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a042581f4e29026704d",
 			facebookLink: "https://www.facebook.com/janesmith",
 			githubLink: "https://github.com/janesmith",
+			name: "Jane Smith",
+			role: "Product Manager",
+			sharp: '"Never give up"',
 		},
 	];
 
 	const DeveloperData = [
 		{
-			name: "Faelayis",
-			role: "Fullstack Devpeloper",
-			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a04258a2462d826712d",
 			facebookLink: "https://www.facebook.com/johndoe",
 			githubLink: "https://github.com/Faelayis",
-		},
-		{
-			name: "Zismil",
+			name: "Faelayis",
 			role: "Fullstack Devpeloper",
 			sharp: '"Never give up"',
+		},
+		{
 			avatar: "https://i.pravatar.cc/150?u=a04258114e29026708c",
 			facebookLink: "https://www.facebook.com/janesmith",
 			githubLink: "https://github.com/zismaildev",
+			name: "Zismil",
+			role: "Fullstack Devpeloper",
+			sharp: '"Never give up"',
 		},
 		{
-			name: "Nin",
-			role: "UX|UI Devpeloper",
-			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a042581f4e29026024d",
 			facebookLink: "https://www.facebook.com/janesmith",
 			githubLink: "https://github.com/janesmith",
+			name: "Nin",
+			role: "UX|UI Devpeloper",
+			sharp: '"Never give up"',
 		},
 		{
-			name: "Guy",
-			role: "Contents",
-			sharp: '"Never give up"',
 			avatar: "https://i.pravatar.cc/150?u=a04258114e29026302d",
 			facebookLink: "https://www.facebook.com/janesmith",
 			githubLink: "https://github.com/janesmith",
+			name: "Guy",
+			role: "Contents",
+			sharp: '"Never give up"',
 		},
 	];
 
@@ -122,9 +122,6 @@ export default function Leader() {
 		<div>
 			<Head>
 				<title>7 Leaders</title>
-				<meta name="description" content="Generated by create next app" />
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
 				<Card>
@@ -134,13 +131,13 @@ export default function Leader() {
 						<div className="grid grid-cols-3 gap-8">
 							{leadersData.map((leader, index) => (
 								<div
-									key={index}
 									className="flex space-x-4 rounded-md bg-gray-100 p-4"
+									key={index}
 								>
 									<Image
-										src={leader.avatar}
 										alt={leader.name}
 										className="h-16 w-16 rounded-full"
+										src={leader.avatar}
 									/>
 									<div className="grow">
 										<h3 className="text-lg font-semibold">{leader.name}</h3>
@@ -149,19 +146,19 @@ export default function Leader() {
 									</div>
 									<div className="flex items-center space-x-2">
 										<Link
-											target="_blank"
-											pnpm
-											href={leader.facebookLink}
 											className="text-black hover:text-red-500"
+											href={leader.facebookLink}
+											pnpm
+											target="_blank"
 										>
-											<FontAwesomeIcon icon={faFacebookF} className="h-4 w-4" />
+											<FontAwesomeIcon className="h-4 w-4" icon={faFacebookF} />
 										</Link>
 										<Link
-											target="_blank"
-											href={leader.githubLink}
 											className="text-black hover:text-red-500"
+											href={leader.githubLink}
+											target="_blank"
 										>
-											<FontAwesomeIcon icon={faGithub} className="h-4 w-4" />
+											<FontAwesomeIcon className="h-4 w-4" icon={faGithub} />
 										</Link>
 									</div>
 								</div>
@@ -175,13 +172,13 @@ export default function Leader() {
 						<div className="grid grid-cols-3 gap-8">
 							{SecterleadersData.map((leader, index) => (
 								<div
-									key={index}
 									className="flex space-x-4 rounded-md bg-gray-100 p-4"
+									key={index}
 								>
 									<Image
-										src={leader.avatar}
 										alt={leader.name}
 										className="h-16 w-16 rounded-full"
+										src={leader.avatar}
 									/>
 									<div className="grow">
 										<h3 className="text-lg font-semibold">{leader.name}</h3>
@@ -190,18 +187,18 @@ export default function Leader() {
 									</div>
 									<div className="flex items-center space-x-2">
 										<Link
-											target="_blank"
-											href={leader.facebookLink}
 											className="text-black hover:text-red-500"
+											href={leader.facebookLink}
+											target="_blank"
 										>
-											<FontAwesomeIcon icon={faFacebookF} className="h-4 w-4" />
+											<FontAwesomeIcon className="h-4 w-4" icon={faFacebookF} />
 										</Link>
 										<Link
-											target="_blank"
-											href={leader.githubLink}
 											className="text-black hover:text-red-500"
+											href={leader.githubLink}
+											target="_blank"
 										>
-											<FontAwesomeIcon icon={faGithub} className="h-4 w-4" />
+											<FontAwesomeIcon className="h-4 w-4" icon={faGithub} />
 										</Link>
 									</div>
 								</div>
@@ -215,13 +212,13 @@ export default function Leader() {
 						<div className="grid grid-cols-3 gap-8">
 							{DeveloperData.map((leader, index) => (
 								<div
-									key={index}
 									className="flex space-x-4 rounded-md bg-gray-100 p-4"
+									key={index}
 								>
 									<Image
-										src={leader.avatar}
 										alt={leader.name}
 										className="h-16 w-16 rounded-full"
+										src={leader.avatar}
 									/>
 									<div className="grow">
 										<h3 className="text-lg font-semibold">{leader.name}</h3>
@@ -230,20 +227,20 @@ export default function Leader() {
 									</div>
 									<div className="flex items-center space-x-2">
 										<Link
-											target="_blank"
-											href={leader.facebookLink}
 											className="text-black hover:text-red-500"
+											href={leader.facebookLink}
 											rel="noreferrer"
+											target="_blank"
 										>
-											<FontAwesomeIcon icon={faFacebookF} className="h-4 w-4" />
+											<FontAwesomeIcon className="h-4 w-4" icon={faFacebookF} />
 										</Link>
 										<Link
-											target="_blank"
-											href={leader.githubLink}
 											className="text-black hover:text-red-500"
+											href={leader.githubLink}
 											rel="noreferrer"
+											target="_blank"
 										>
-											<FontAwesomeIcon icon={faGithub} className="h-4 w-4" />
+											<FontAwesomeIcon className="h-4 w-4" icon={faGithub} />
 										</Link>
 									</div>
 								</div>

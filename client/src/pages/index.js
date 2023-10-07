@@ -1,32 +1,26 @@
 import Head from "next/head";
 
-import CarouselComp from "@/components/carousel";
+import CarouselComp from "@/components/swiper";
 
 export default function index() {
 	return (
 		<div className="select-none">
 			<Head>
 				<title>CMRU COMSCI 66</title>
-				<meta
-					name="description"
-					content="Computer Science 66 - Chiang Mai Rajabhat University"
-				/>
-				<meta name="viewport" content="width=device-width, initial-scale=1" />
-				<link rel="icon" href="/favicon.ico" />
 			</Head>
 			<div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
 				<div className="relative isolate overflow-hidden bg-gray-900 px-6 pt-16 shadow-2xl sm:rounded-3xl sm:px-16 md:pt-24 lg:flex lg:gap-x-20 lg:px-24 lg:pt-0">
 					<svg
-						viewBox="0 0 2024 2024"
-						className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0"
 						aria-hidden="true"
+						className="absolute left-1/2 top-1/2 -z-10 h-[64rem] w-[64rem] -translate-y-1/2 [mask-image:radial-gradient(closest-side,white,transparent)] sm:left-full sm:-ml-80 lg:left-1/2 lg:ml-0 lg:-translate-x-1/2 lg:translate-y-0"
+						viewBox="0 0 2024 2024"
 					>
 						<circle
 							cx={512}
 							cy={512}
-							r={512}
 							fill="url(#759c1415-0410-454c-8f7c-9a820de03641)"
 							fillOpacity="0.7"
+							r={512}
 						/>
 						<defs>
 							<radialGradient id="759c1415-0410-454c-8f7c-9a820de03641">

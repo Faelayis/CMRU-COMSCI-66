@@ -1,20 +1,19 @@
 import { Card, CardBody, Tab, Tabs } from "@nextui-org/react";
 
-// Contents
 import Afinance from "@/pages/admin/afinance";
 import Permis from "@/pages/admin/apermisson";
 
 export default function UsageComp() {
-	let tabs = [
+	const tabs = [
 		{
+			content: <Afinance />,
 			id: "billings",
 			label: "Finance",
-			content: <Afinance />,
 		},
 		{
+			content: <Permis />,
 			id: "role",
 			label: "Permission",
-			content: <Permis />,
 		},
 	];
 

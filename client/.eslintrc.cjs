@@ -5,9 +5,10 @@ module.exports = {
 	root: true,
 	extends: [
 		"next/core-web-vitals",
-		"prettier",
+		"plugin:@next/next/recommended",
 		"plugin:react/recommended",
 		"plugin:tailwindcss/recommended",
+		"prettier",
 		"../.eslintrc",
 	],
 	overrides: [
@@ -15,8 +16,17 @@ module.exports = {
 			files: ["*.js", "*.jsx", "*.ts", "*.tsx"],
 			parser: "@typescript-eslint/parser",
 		},
+		{
+			files: ["./src/**"],
+			plugins: ["perfectionist"],
+			extends: ["plugin:perfectionist/recommended-natural"],
+			rules: {
+				"perfectionist/sort-imports": "off",
+				"perfectionist/sort-objects": "warn",
+			},
+		},
 	],
-	plugins: ["prettier", "react", "tailwindcss"],
+	plugins: ["react", "tailwindcss", "prettier"],
 	ignorePatterns: ["node_modules", "src/pages/api", "src/lib"],
 	parserOptions: {
 		ecmaFeatures: {

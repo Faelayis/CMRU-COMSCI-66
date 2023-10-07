@@ -10,6 +10,9 @@ const nextConfig = {
 				? process.env["npm_package_scripts_PORT"] || process.env["PORT"]
 				: null,
 	},
+	images: {
+		domains: ["images.unsplash.com"],
+	},
 	publicRuntimeConfig: {
 		appVersion: {
 			project: JSON.parse(fs.readFileSync("../package.json")).version,
@@ -47,9 +50,6 @@ const nextConfig = {
 			config.plugins = [...config.plugins, new PrismaPlugin()];
 		}
 		return config;
-	},
-	images: {
-		domains: ["images.unsplash.com"],
 	},
 };
 
