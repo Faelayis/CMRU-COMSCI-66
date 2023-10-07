@@ -172,16 +172,16 @@ export default function about() {
 													src={leader.avatar}
 												/>
 												<div className="flex flex-col items-start justify-center gap-1">
-													<h4 className="text-small text-default-600 font-semibold leading-none">
+													<h4 className="text-small font-semibold leading-none text-default-600">
 														{leader.name}
 													</h4>
-													<h5 className="text-small text-default-400 tracking-tight">
+													<h5 className="text-small tracking-tight text-default-400">
 														@zoeylang
 													</h5>
 												</div>
 											</div>
 										</CardHeader>
-										<CardBody className="text-small text-default-400 px-3 py-0">
+										<CardBody className="px-3 py-0 text-small text-default-400">
 											<p>
 												Frontend developer and UI/UX enthusiast. Join me on this
 												coding adventure!
@@ -190,7 +190,7 @@ export default function about() {
 										</CardBody>
 										<CardFooter className="gap-3">
 											<div className="flex gap-1">
-												<p className="text-small text-default-400 font-semibold">
+												<p className="text-small font-semibold text-default-400">
 													4
 												</p>
 												<p className=" text-small text-default-400">
@@ -198,7 +198,7 @@ export default function about() {
 												</p>
 											</div>
 											<div className="flex gap-1">
-												<p className="text-small text-default-400 font-semibold">
+												<p className="text-small font-semibold text-default-400">
 													97.1K
 												</p>
 												<p className="text-small text-default-400">Followers</p>
@@ -225,16 +225,16 @@ export default function about() {
 														src={secterleaders.avatar}
 													/>
 													<div className="flex flex-col items-start justify-center gap-1">
-														<h4 className="text-small text-default-600 font-semibold leading-none">
+														<h4 className="text-small font-semibold leading-none text-default-600">
 															{secterleaders.name}
 														</h4>
-														<h5 className="text-small text-default-400 tracking-tight">
+														<h5 className="text-small tracking-tight text-default-400">
 															@zoeylang
 														</h5>
 													</div>
 												</div>
 											</CardHeader>
-											<CardBody className="text-small text-default-400 px-3 py-0">
+											<CardBody className="px-3 py-0 text-small text-default-400">
 												<p>
 													Frontend developer and UI/UX enthusiast. Join me on
 													this coding adventure!
@@ -243,7 +243,7 @@ export default function about() {
 											</CardBody>
 											<CardFooter className="gap-3">
 												<div className="flex gap-1">
-													<p className="text-small text-default-400 font-semibold">
+													<p className="text-small font-semibold text-default-400">
 														4
 													</p>
 													<p className=" text-small text-default-400">
@@ -251,7 +251,7 @@ export default function about() {
 													</p>
 												</div>
 												<div className="flex gap-1">
-													<p className="text-small text-default-400 font-semibold">
+													<p className="text-small font-semibold text-default-400">
 														97.1K
 													</p>
 													<p className="text-small text-default-400">
@@ -282,16 +282,16 @@ export default function about() {
 														src={developer.avatar}
 													/>
 													<div className="flex flex-col items-start justify-center gap-1">
-														<h4 className="text-small text-default-600 font-semibold leading-none">
+														<h4 className="text-small font-semibold leading-none text-default-600">
 															{developer.name}
 														</h4>
-														<h5 className="text-small text-default-400 tracking-tight">
+														<h5 className="text-small tracking-tight text-default-400">
 															@zoeylang
 														</h5>
 													</div>
 												</div>
 											</CardHeader>
-											<CardBody className="text-small text-default-400 px-3 py-0">
+											<CardBody className="px-3 py-0 text-small text-default-400">
 												<p>
 													Frontend developer and UI/UX enthusiast. Join me on
 													this coding adventure!
@@ -309,7 +309,7 @@ export default function about() {
 											</CardBody>
 											<CardFooter className="gap-3">
 												<div className="flex gap-1">
-													<p className="text-small text-default-400 font-semibold">
+													<p className="text-small font-semibold text-default-400">
 														4
 													</p>
 													<p className="text-small text-default-400">
@@ -317,7 +317,7 @@ export default function about() {
 													</p>
 												</div>
 												<div className="flex gap-1">
-													<p className="text-small text-default-400 font-semibold">
+													<p className="text-small font-semibold text-default-400">
 														97.1K
 													</p>
 													<p className="text-small text-default-400">
