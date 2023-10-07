@@ -33,13 +33,81 @@ export default function NavbarComp() {
 	const isLogin = status === "authenticated" || status === "loading";
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-	const menuItems = [
+	const menuItems = filterRole([
 		{ label: "แกลเลอรี่", role: ["developer"], url: "/contents/gallery" },
 		{ label: "สิ่งที่ต้องทำ", role: ["developer"], url: "/contents/todo" },
 		{ label: "เกี่ยวกับเรา", role: ["developer"], url: "/contents/about" },
-	].filter((item) =>
-		item.role.includes(session?.user?.role ? session?.user?.role : null),
-	);
+	]);
+
+	const dropdownDisabled =
+		session?.user?.role === "developer"
+			? []
+			: [
+					"profile",
+					"payment_history",
+					"dashboard",
+					"settings",
+					"help_and_feedback",
+			  ];
+
+	const dropdownItem = {
+		1: filterRole([
+			{
+				key: "payment_history",
+				name: "ประวัติจ่ายเงิน",
+				roleExclude: ["unknown"],
+			},
+			{
+				key: "dashboard",
+				name: "แดชบอร์ด",
+				role: ["developer", "admin"],
+			},
+			{
+				key: "settings",
+				name: "การตั้งค่า",
+				role: false,
+			},
+		]),
+		2: filterRole([
+			{
+				key: "help_and_feedback",
+				name: "ความช่วยเหลือและข้อเสนอแนะ",
+				roleExclude: ["unknown"],
+			},
+		]),
+	};
+
+	function Actions(item) {
+		switch (item) {
+			case "payment_history":
+				openURL("/payment/history");
+				break;
+			case "dashboard":
+				openURL("/admin/dashboard");
+				break;
+			case "settings":
+				openURL("/");
+				break;
+			case "help_and_feedback":
+				openURL("/help");
+				break;
+			case "logout":
+				signOut();
+				break;
+		}
+	}
+
+	function filterRole(list) {
+		return list.filter((item) => {
+			if (item.role?.length) {
+				return item.role.includes(session?.user?.role);
+			} else if (item.roleExclude?.length) {
+				return !item.roleExclude?.includes(session?.user?.role);
+			} else if (item.role === false) {
+				return item;
+			}
+		});
+	}
 
 	return (
 		<Navbar className="select-none" onMenuOpenChange={setIsMenuOpen}>
@@ -94,23 +162,8 @@ export default function NavbarComp() {
 
 							<DropdownMenu
 								aria-label="Actions"
-								disabledKeys={["profile", "settings", "help_and_feedback"]}
-								onAction={(item) => {
-									switch (item) {
-										case "dashboard":
-											openURL("/admin/dashboard");
-											break;
-										case "settings":
-											openURL("/");
-											break;
-										case "help_and_feedback":
-											openURL("/help");
-											break;
-										case "logout":
-											signOut();
-											break;
-									}
-								}}
+								disabledKeys={dropdownDisabled}
+								onAction={(item) => Actions(item)}
 								selectionMode="none"
 								variant="flat"
 							>
@@ -134,15 +187,18 @@ export default function NavbarComp() {
 										/>
 									</DropdownItem>
 
-									<DropdownItem key="dashboard">แดชบอร์ด</DropdownItem>
-									<DropdownItem key="settings">การตั้งค่า</DropdownItem>
+									{dropdownItem[1]?.map((item) => (
+										<DropdownItem key={item.key}>{item.name}</DropdownItem>
+									))}
 								</DropdownSection>
 
-								<DropdownSection aria-label="Help & Feedback" showDivider>
-									<DropdownItem key="help_and_feedback">
-										ความช่วยเหลือและข้อเสนอแนะ
-									</DropdownItem>
-								</DropdownSection>
+								{dropdownItem[2]?.length ? (
+									<DropdownSection aria-label="Help & Feedback" showDivider>
+										{dropdownItem[2]?.map((item) => (
+											<DropdownItem key={item.key}>{item.name}</DropdownItem>
+										))}
+									</DropdownSection>
+								) : undefined}
 
 								<DropdownSection aria-label="Logout">
 									<DropdownItem

@@ -14,11 +14,10 @@ export default function FooterComp() {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
 	return (
-		<div className="mt-auto">
-			<footer className=" absolute bottom-0 w-full bg-white dark:bg-gray-900">
+		<div className="mt-52">
+			<footer className="absolute bottom-0 w-full bg-white">
 				<div className="mx-auto w-full max-w-screen-xl select-none p-4 py-6 lg:py-1">
 					<hr className="my-3 border-gray-200 dark:border-gray-700 sm:mx-auto lg:my-8" />
-
 					<div className="m-8 sm:flex sm:items-center sm:justify-between">
 						<span className="m-2 flex items-center justify-center space-x-5 text-center lg:my-5">
 							<a

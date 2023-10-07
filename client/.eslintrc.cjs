@@ -21,6 +21,7 @@ module.exports = {
 			plugins: ["perfectionist"],
 			extends: ["plugin:perfectionist/recommended-natural"],
 			rules: {
+				"perfectionist/sort-named-imports": "off",
 				"perfectionist/sort-imports": "off",
 				"perfectionist/sort-objects": "warn",
 			},
