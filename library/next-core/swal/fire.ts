@@ -4,7 +4,6 @@ import { HandleError } from "./error";
 
 export function alert(options?: SweetAlertOptions, event?: HandleError) {
 	if (event) {
-		console.log(event.name);
 		Swal.fire({
 			icon: "error",
 			title: `พบข้อผิดพลาด`,
