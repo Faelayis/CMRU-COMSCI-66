@@ -93,8 +93,8 @@ importers:
         specifier: workspace:*
         version: link:../library/database
       '@cmru-comsci-66/utils':
-        specifier: 1.2.5
-        version: 1.2.5
+        specifier: 1.2.6
+        version: link:../library/utils
       '@fortawesome/fontawesome-svg-core':
         specifier: 6.4.2
         version: 6.4.2
@@ -300,10 +300,6 @@ packages:
 
   /@cmru-comsci-66/utils@1.2.4:
     resolution: {integrity: sha512-oOVumPr96SagJm1S7dR+VYSaoIF39/vLzm52nBviQFIufGdAgbmr6kYt7wtO9lLCqFAF4UciXHavr2ITqSp/mg==}
-    dev: false
-
-  /@cmru-comsci-66/utils@1.2.5:
-    resolution: {integrity: sha512-EhkEM+oaMSyDUzhFgSfAxTQZaPh5YGdimF7Xq0HaRPkZQc+k1JiB7bbWdlhDDikuZWV0o12n8BOtyP7c32TShw==}
     dev: false
 
   /@cspotcode/source-map-support@0.8.1:
