@@ -47,7 +47,7 @@ export default async function handle(request: NextApiRequest, response: NextApiR
 								const data = await Promise.all(
 									Object.keys(metadata).map(async (key, index) => {
 										const data: Array<MetaDataObject> = await Promise.all(
-											metadata[key].map(async (item: MetaDataObject) => {
+											await metadata[key].map(async (item: MetaDataObject) => {
 												const apiUrl = `${process.env.API_ARCHIVE_URL}/${item.api.base}`,
 													responses = await fetch(apiUrl, {
 														method: "GET",
