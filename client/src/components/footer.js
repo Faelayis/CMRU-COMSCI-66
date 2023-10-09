@@ -78,7 +78,7 @@ export default function FooterComp() {
 							<p>© CMRU วิทยาการคอมพิวเตอร์ รุ่น 66 สงวนลิขสิทธิ์ พ.ศ.2566</p>
 						</span>
 						<span
-							className="m-1 cursor-pointer text-center  text-gray-500 dark:text-gray-400 sm:text-right  "
+							className="m-1 cursor-help text-center  text-gray-500 dark:text-gray-400 sm:text-right  "
 							href="#"
 							onClick={onOpen}
 						>

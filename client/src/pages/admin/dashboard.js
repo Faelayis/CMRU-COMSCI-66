@@ -14,21 +14,15 @@ export default function Dashboard() {
 			<Head>
 				<title>Dashboard</title>
 			</Head>
-			<div className="max-w-8xl mx-auto p-5 py-24 sm:px-6 sm:py-32 lg:px-8">
+			<div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
 				{allow ? (
-					<Card
-						style={{
-							alignItems: "center",
-							display: "flex",
-							marginTop: "15px",
-							minHeight: "200px",
-							padding: "5px",
-						}}
-					>
-						<h2 className="mt-3 select-none p-5 text-center text-3xl font-bold tracking-tight sm:text-4xl">
-							Dashboard
-						</h2>
-						<UsageComp />
+					<Card>
+						<div className="px-8 py-6">
+							<h2 className="mt-3 select-none p-5 text-center text-3xl font-bold tracking-tight sm:text-4xl">
+								Dashboard
+							</h2>
+							<UsageComp />
+						</div>
 					</Card>
 				) : (
 					<div className="text-center">

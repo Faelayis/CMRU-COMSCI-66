@@ -10,7 +10,7 @@ export default function Document() {
 			<meta content="width=device-width, initial-scale=1" name="viewport" />
 			<link href="/favicon.ico" rel="icon" />
 			<Head />
-			<body className="relative flex min-h-screen flex-col pb-20">
+			<body className="relative flex min-h-screen select-none flex-col pb-20">
 				<Main />
 				<NextScript />
 			</body>

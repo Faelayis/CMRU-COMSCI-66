@@ -42,13 +42,7 @@ export default function NavbarComp() {
 	const dropdownDisabled =
 		session?.user?.role === "developer"
 			? []
-			: [
-					"profile",
-					"payment_history",
-					"dashboard",
-					"settings",
-					"help_and_feedback",
-			  ];
+			: ["profile", "dashboard", "settings", "help_and_feedback"];
 
 	const dropdownItem = {
 		1: filterRole([
@@ -72,7 +66,7 @@ export default function NavbarComp() {
 			{
 				key: "help_and_feedback",
 				name: "ความช่วยเหลือและข้อเสนอแนะ",
-				roleExclude: ["unknown"],
+				role: false,
 			},
 		]),
 	};
@@ -89,7 +83,7 @@ export default function NavbarComp() {
 				openURL("/");
 				break;
 			case "help_and_feedback":
-				openURL("/help");
+				openURL("/");
 				break;
 			case "logout":
 				signOut();

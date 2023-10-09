@@ -22,7 +22,7 @@ const columns = [
 	{ name: "รายละเอียด", uid: "details" },
 ];
 
-export default function Gallery() {
+export default function PaymentHistory() {
 	const { data: session } = useSession();
 	const {
 		Payment: payment,
@@ -108,7 +108,7 @@ export default function Gallery() {
 					<div className="relative flex items-center gap-2" href={user.slip}>
 						<span className="cursor-pointer text-sm active:opacity-50">
 							<Link href={user.slip.link} target="_blank">
-								ดูสลิป ({user.slip.name})
+								{user.slip.name}
 							</Link>
 						</span>
 					</div>

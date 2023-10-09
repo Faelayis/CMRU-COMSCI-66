@@ -134,86 +134,31 @@ export default function about() {
 			<Head>
 				<title>About</title>
 			</Head>
-			<div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
+			<div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8 ">
 				<Card
 					style={{
 						alignItems: "center",
 						display: "flex",
 						flexDirection: "column",
 						justifyContent: "center",
-						marginTop: "15px",
 						minHeight: "200px",
 						padding: "5px",
 					}}
 				>
-					<h1 style={{ fontSize: "2.5rem", marginTop: "15px" }}>About Us</h1>
-					<div className="px-8 py-6">
-						<p style={{ marginBottom: "15px", textIndent: "2em" }}>
-							เว็บไซต์นี้สร้างขึ้นมาโดย Next.js Framework และใช้ NextUI
-							ในการตกแต่งและสร้าง Component ต่างๆในการตกแต่งและออกแบบ Interface
-							ของหน้า WebPage สร้างขึ้นโดยนักศึกษา คณะวิทยาศาสตร์และเทคโนโลยี
-							สาขาวิทยาการคอมพิวเตอร์
-						</p>
-					</div>
-					{/*  Leaders */}
-					<div className="px-8 py-6">
-						<h1 className="mb-4 text-2xl font-bold">Developers</h1>
-						<p className="mb-8 text-gray-500">Team Website Developers</p>
-						<div className="grid gap-8 sm:grid-cols-1 md:grid-cols-3">
-							{leadersData.map((leader, index) => (
-								<div key={index}>
-									<Card className="max-w-[340px]">
-										<CardHeader className="justify-between">
-											<div className="flex gap-5">
-												<Avatar
-													isBordered
-													radius="full"
-													size="md"
-													src={leader.avatar}
-												/>
-												<div className="flex flex-col items-start justify-center gap-1">
-													<h4 className="text-small font-semibold leading-none text-default-600">
-														{leader.name}
-													</h4>
-													<h5 className="text-small tracking-tight text-default-400">
-														@zoeylang
-													</h5>
-												</div>
-											</div>
-										</CardHeader>
-										<CardBody className="px-3 py-0 text-small text-default-400">
-											<p>
-												Frontend developer and UI/UX enthusiast. Join me on this
-												coding adventure!
-											</p>
-											<span className="pt-2">{leader.role}</span>
-										</CardBody>
-										<CardFooter className="gap-3">
-											<div className="flex gap-1">
-												<p className="text-small font-semibold text-default-400">
-													4
-												</p>
-												<p className=" text-small text-default-400">
-													Following
-												</p>
-											</div>
-											<div className="flex gap-1">
-												<p className="text-small font-semibold text-default-400">
-													97.1K
-												</p>
-												<p className="text-small text-default-400">Followers</p>
-											</div>
-										</CardFooter>
-									</Card>
-								</div>
-							))}
+					<div className="py-6">
+						<div className="px-8 py-6">
+							<p>
+								เว็บไซต์นี้สร้างขึ้นมาโดย Next.js Framework และใช้ NextUI
+								ในการตกแต่งแลสร้างขึ้นโดยนักศึกษา คณะวิทยาศาสตร์และเทคโนโลยี
+								สาขาวิทยาการคอมพิวเตอร์ รุ่น 2566
+							</p>
 						</div>
-						{/*  Secterleaders */}
-						<div className="mt-7">
-							<h1 className="mb-4 text-2xl font-bold">Section Leader</h1>
-							<p className="mb-8 text-gray-500">หัวหน้าหมู่เรียน</p>
+						{/*  Leaders */}
+						<div className="px-8 py-6">
+							<h1 className="mb-4 text-2xl font-bold">Developers</h1>
+							<p className="mb-8 text-gray-500">Team Website Developers</p>
 							<div className="grid gap-8 sm:grid-cols-1 md:grid-cols-3">
-								{SecterleadersData.map((secterleaders, index) => (
+								{leadersData.map((leader, index) => (
 									<div key={index}>
 										<Card className="max-w-[340px]">
 											<CardHeader className="justify-between">
@@ -222,28 +167,28 @@ export default function about() {
 														isBordered
 														radius="full"
 														size="md"
-														src={secterleaders.avatar}
+														src={leader.avatar}
 													/>
 													<div className="flex flex-col items-start justify-center gap-1">
-														<h4 className="text-small font-semibold leading-none text-default-600">
-															{secterleaders.name}
+														<h4 className="text-small text-default-600 font-semibold leading-none">
+															{leader.name}
 														</h4>
-														<h5 className="text-small tracking-tight text-default-400">
+														<h5 className="text-small text-default-400 tracking-tight">
 															@zoeylang
 														</h5>
 													</div>
 												</div>
 											</CardHeader>
-											<CardBody className="px-3 py-0 text-small text-default-400">
+											<CardBody className="text-small text-default-400 px-3 py-0">
 												<p>
 													Frontend developer and UI/UX enthusiast. Join me on
 													this coding adventure!
 												</p>
-												<span className="pt-2">{secterleaders.role}</span>
+												<span className="pt-2">{leader.role}</span>
 											</CardBody>
 											<CardFooter className="gap-3">
 												<div className="flex gap-1">
-													<p className="text-small font-semibold text-default-400">
+													<p className="text-small text-default-400 font-semibold">
 														4
 													</p>
 													<p className=" text-small text-default-400">
@@ -251,7 +196,7 @@ export default function about() {
 													</p>
 												</div>
 												<div className="flex gap-1">
-													<p className="text-small font-semibold text-default-400">
+													<p className="text-small text-default-400 font-semibold">
 														97.1K
 													</p>
 													<p className="text-small text-default-400">
@@ -263,71 +208,127 @@ export default function about() {
 									</div>
 								))}
 							</div>
-						</div>
-
-						{/* Developers */}
-						<div className="mt-7">
-							<h1 className="mb-4 text-2xl font-bold">Developers</h1>
-							<p className="mb-8 text-gray-500">Team Website Developers</p>
-							<div className="grid gap-8 sm:grid-cols-1 md:grid-cols-3">
-								{DeveloperData.map((developer, index) => (
-									<div key={index}>
-										<Card className="max-w-[340px]">
-											<CardHeader className="justify-between">
-												<div className="flex gap-5">
-													<Avatar
-														isBordered
-														radius="full"
-														size="md"
-														src={developer.avatar}
-													/>
-													<div className="flex flex-col items-start justify-center gap-1">
-														<h4 className="text-small font-semibold leading-none text-default-600">
-															{developer.name}
-														</h4>
-														<h5 className="text-small tracking-tight text-default-400">
-															@zoeylang
-														</h5>
+							{/*  Secterleaders */}
+							<div className="mt-7">
+								<h1 className="mb-4 text-2xl font-bold">Section Leader</h1>
+								<p className="mb-8 text-gray-500">หัวหน้าหมู่เรียน</p>
+								<div className="grid gap-8 sm:grid-cols-1 md:grid-cols-3">
+									{SecterleadersData.map((secterleaders, index) => (
+										<div key={index}>
+											<Card className="max-w-[340px]">
+												<CardHeader className="justify-between">
+													<div className="flex gap-5">
+														<Avatar
+															isBordered
+															radius="full"
+															size="md"
+															src={secterleaders.avatar}
+														/>
+														<div className="flex flex-col items-start justify-center gap-1">
+															<h4 className="text-small text-default-600 font-semibold leading-none">
+																{secterleaders.name}
+															</h4>
+															<h5 className="text-small text-default-400 tracking-tight">
+																@zoeylang
+															</h5>
+														</div>
 													</div>
-												</div>
-											</CardHeader>
-											<CardBody className="px-3 py-0 text-small text-default-400">
-												<p>
-													Frontend developer and UI/UX enthusiast. Join me on
-													this coding adventure!
-												</p>
-												<span className="pt-2">
-													{developer.role}
-													<span
-														aria-label="computer"
-														className="py-2"
-														role="img"
-													>
-														💻
+												</CardHeader>
+												<CardBody className="text-small text-default-400 px-3 py-0">
+													<p>
+														Frontend developer and UI/UX enthusiast. Join me on
+														this coding adventure!
+													</p>
+													<span className="pt-2">{secterleaders.role}</span>
+												</CardBody>
+												<CardFooter className="gap-3">
+													<div className="flex gap-1">
+														<p className="text-small text-default-400 font-semibold">
+															4
+														</p>
+														<p className=" text-small text-default-400">
+															Following
+														</p>
+													</div>
+													<div className="flex gap-1">
+														<p className="text-small text-default-400 font-semibold">
+															97.1K
+														</p>
+														<p className="text-small text-default-400">
+															Followers
+														</p>
+													</div>
+												</CardFooter>
+											</Card>
+										</div>
+									))}
+								</div>
+							</div>
+
+							{/* Developers */}
+							<div className="mt-7">
+								<h1 className="mb-4 text-2xl font-bold">Developers</h1>
+								<p className="mb-8 text-gray-500">Team Website Developers</p>
+								<div className="grid gap-8 sm:grid-cols-1 md:grid-cols-3">
+									{DeveloperData.map((developer, index) => (
+										<div key={index}>
+											<Card className="max-w-[340px]">
+												<CardHeader className="justify-between">
+													<div className="flex gap-5">
+														<Avatar
+															isBordered
+															radius="full"
+															size="md"
+															src={developer.avatar}
+														/>
+														<div className="flex flex-col items-start justify-center gap-1">
+															<h4 className="text-small text-default-600 font-semibold leading-none">
+																{developer.name}
+															</h4>
+															<h5 className="text-small text-default-400 tracking-tight">
+																@zoeylang
+															</h5>
+														</div>
+													</div>
+												</CardHeader>
+												<CardBody className="text-small text-default-400 px-3 py-0">
+													<p>
+														Frontend developer and UI/UX enthusiast. Join me on
+														this coding adventure!
+													</p>
+													<span className="pt-2">
+														{developer.role}
+														<span
+															aria-label="computer"
+															className="py-2"
+															role="img"
+														>
+															💻
+														</span>
 													</span>
-												</span>
-											</CardBody>
-											<CardFooter className="gap-3">
-												<div className="flex gap-1">
-													<p className="text-small font-semibold text-default-400">
-														4
-													</p>
-													<p className="text-small text-default-400">
-														Following
-													</p>
-												</div>
-												<div className="flex gap-1">
-													<p className="text-small font-semibold text-default-400">
-														97.1K
-													</p>
-													<p className="text-small text-default-400">
-														Followers
-													</p>
-												</div>
-											</CardFooter>
-										</Card>
-									</div>
-								))}
+												</CardBody>
+												<CardFooter className="gap-3">
+													<div className="flex gap-1">
+														<p className="text-small text-default-400 font-semibold">
+															4
+														</p>
+														<p className="text-small text-default-400">
+															Following
+														</p>
+													</div>
+													<div className="flex gap-1">
+														<p className="text-small text-default-400 font-semibold">
+															97.1K
+														</p>
+														<p className="text-small text-default-400">
+															Followers
+														</p>
+													</div>
+												</CardFooter>
+											</Card>
+										</div>
+									))}
+								</div>
 							</div>
 						</div>
 					</div>
