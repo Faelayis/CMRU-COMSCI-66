@@ -1,7 +1,9 @@
 import { useArchivePaymentById } from "@api/archive";
+import { PaymentMerge } from "@lib/utils/payment";
 import {
 	Card,
 	Chip,
+	Spinner,
 	Table,
 	TableBody,
 	TableCell,
@@ -34,54 +36,35 @@ export default function PaymentHistory() {
 
 	useEffect(() => {
 		if (payment?.length > 0) {
-			const firstCategory = payment[0];
-
-			if (firstCategory.data) {
-				const paymentStatusByMonth = firstCategory.data.map((monthData) => ({
-					amount: monthData.data.amount,
-					date: monthData.data.date,
-					name: monthData.name,
-					slip: monthData.data.slip,
-					status: monthData.data.status,
-				}));
-
-				setData(
-					paymentStatusByMonth
-						.map((item, index) => {
-							return { ...item, id: index };
-						})
-						.sort((a, b) => b.id - a.id),
-				);
-			}
+			return setData(...PaymentMerge(payment));
 		}
 	}, [payment]);
 
-	const renderCell = useCallback((user, columnKey) => {
-		const cellValue = user[columnKey];
+	const renderCell = useCallback((list, columnKey) => {
+		const cellValue = list[columnKey],
+			getStatusChip = () => {
+				const isPaid = cellValue,
+					isPending = !isPaid && list.amount;
 
-		const getStatusChip = () => {
-			const isPaid = cellValue,
-				isPending = !isPaid && user.amount;
+				let color, text;
 
-			let color, text;
+				if (isPaid) {
+					color = "success";
+					text = "จ่ายแล้ว";
+				} else if (isPending) {
+					color = "warning";
+					text = "รอตรวจสอบ";
+				} else {
+					color = "danger";
+					text = "ไม่ได้จ่าย";
+				}
 
-			if (isPaid) {
-				color = "success";
-				text = "จ่ายแล้ว";
-			} else if (isPending) {
-				color = "warning";
-				text = "รอตรวจสอบ";
-			} else {
-				color = "danger";
-				text = "ไม่ได้จ่าย";
-			}
-
-			return (
-				<Chip className="capitalize" color={color} size="sm" variant="flat">
-					{text}
-				</Chip>
-			);
-		};
+				return (
+					<Chip className="capitalize" color={color} size="sm" variant="flat">
+						{text}
+					</Chip>
+				);
+			};
 
 		switch (columnKey) {
 			case "date":
@@ -94,7 +77,7 @@ export default function PaymentHistory() {
 					</div>
 				);
 			case "name":
-				if (!user.name) return;
+				if (!list.name) return;
 				return (
 					<div className="flex flex-col">
 						<p className="text-bold text-sm capitalize">{cellValue}</p>
@@ -103,12 +86,12 @@ export default function PaymentHistory() {
 			case "status":
 				return getStatusChip();
 			case "details":
-				if (!user.slip.name) return "-";
+				if (!list.slip.name) return "-";
 				return (
-					<div className="relative flex items-center gap-2" href={user.slip}>
+					<div className="relative flex items-center gap-2" href={list.slip}>
 						<span className="cursor-pointer text-sm active:opacity-50">
-							<Link href={user.slip.link} target="_blank">
-								{user.slip.name}
+							<Link href={list.slip.link} target="_blank">
+								{list.slip.name}
 							</Link>
 						</span>
 					</div>
@@ -117,10 +100,6 @@ export default function PaymentHistory() {
 				return cellValue || "-";
 		}
 	}, []);
-
-	if (paymentIsLoading) {
-		return <></>;
-	}
 
 	return (
 		<div>
@@ -133,7 +112,34 @@ export default function PaymentHistory() {
 						<h2 className="mt-3 select-none p-5 text-center text-3xl font-bold tracking-tight sm:text-4xl">
 							ประวัติการจ่ายเงิน
 						</h2>
-						<Table className="select-none">
+
+						<Table
+							bottomContent={
+								!(!paymentIsLoading && payment?.length > 0) ? (
+									<>
+										<div className="flex w-full justify-center">
+											<div>
+												<Spinner
+													color={paymentIsError ? "danger" : undefined}
+												/>
+											</div>
+										</div>
+										{paymentIsError ? (
+											<div className="select-text text-center">
+												{`พบข้อผิดพลาด ${
+													paymentIsError?.message || paymentIsError
+												}`}
+											</div>
+										) : (
+											<div className="text-center">กำลังโหลดข้อมูล..</div>
+										)}
+									</>
+								) : !(payment?.length > 0) ? (
+									<div className="text-center">ไม่พบข้อมูล</div>
+								) : undefined
+							}
+							className="select-none"
+						>
 							<TableHeader columns={columns}>
 								{(column) => (
 									<TableColumn
@@ -144,7 +150,10 @@ export default function PaymentHistory() {
 									</TableColumn>
 								)}
 							</TableHeader>
-							<TableBody items={data}>
+							<TableBody
+								isLoading={!(!paymentIsLoading && payment?.length > 0)}
+								items={data}
+							>
 								{(item) => (
 									<TableRow key={item?.id}>
 										{(columnKey) => (

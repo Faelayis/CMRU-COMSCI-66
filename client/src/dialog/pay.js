@@ -6,7 +6,6 @@ import {
 	Button,
 	Card,
 	CardHeader,
-	CircularProgress,
 	Input,
 	Modal,
 	ModalBody,
@@ -15,6 +14,7 @@ import {
 	ModalHeader,
 	Select,
 	SelectItem,
+	Spinner,
 	useDisclosure,
 } from "@nextui-org/react";
 import Image from "next/image";
@@ -40,7 +40,7 @@ export default function ModelComp() {
 	const { isOpen, onOpen, onOpenChange } = useDisclosure();
 	const [selectedFile, setSelectedFile] = useState();
 	const [fullname, setFullname] = useState();
-	const [studentid, setStudentId] = useState(session.user?.studentId ?? "");
+	const [studentid, setStudentId] = useState(session.user?.studentId);
 	const [price, setPrice] = useState("");
 	const [pricePlace, setPricePlace] = useState();
 	const [note, setNote] = useState("");
@@ -53,11 +53,11 @@ export default function ModelComp() {
 		};
 
 	if (billingsIsLoading || studentIsLoading) {
-		return <CircularProgress label="กำลังโหลดข้อมูล.." />;
+		return <Spinner label="กำลังโหลดข้อมูล.." size="sm" />;
 	}
 
 	if (billingsIsError || studentIsError) {
-		return <CircularProgress color="danger" label="ไม่สามารถโหลดข้อมูลได้" />;
+		return <Spinner color="danger" label="ไม่สามารถโหลดข้อมูลได้" size="sm" />;
 	}
 
 	if (session.user?.studentId) {
