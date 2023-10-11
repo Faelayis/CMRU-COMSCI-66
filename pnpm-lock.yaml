@@ -93,7 +93,7 @@ importers:
         specifier: workspace:*
         version: link:../library/database
       '@cmru-comsci-66/utils':
-        specifier: 1.2.6
+        specifier: 1.3.0
         version: link:../library/utils
       '@fortawesome/fontawesome-svg-core':
         specifier: 6.4.2
