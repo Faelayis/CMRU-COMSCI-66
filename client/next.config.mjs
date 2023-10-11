@@ -11,7 +11,10 @@ const nextConfig = {
 				: null,
 	},
 	images: {
-		domains: ["images.unsplash.com"],
+		domains: [
+			process.env["API_ARCHIVE_URL"]?.replace("https://", ""),
+			"images.unsplash.com",
+		],
 	},
 	publicRuntimeConfig: {
 		appVersion: {

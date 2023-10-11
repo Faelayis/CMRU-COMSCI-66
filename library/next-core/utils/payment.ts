@@ -1,15 +1,21 @@
 import { PaymentById } from "@api/archive";
 
+function checksNameMatch(index: string, list: string): string {
+	if (index.toString() === list.toString()) return `${index}`;
+
+	return `${index} ${list}`;
+}
+
 export function PaymentMerge(payment: PaymentById) {
-	return Object.keys(payment).map((key) => {
-		const category = payment[Number(key)];
+	const merged = Object.keys(payment).map((key, index) => {
+		const category = payment[index];
 
 		if (category.data) {
 			return category.data
 				.map((list) => ({
-					amount: list.data.amount,
+					amount: list.data.amount ? `${list.data.amount} บาท` : list.data.amount,
 					date: list.data.date,
-					name: `${payment[Number(key)].name} ${list.name}`,
+					name: checksNameMatch(payment[index].name, list.name),
 					slip: list.data.slip,
 					status: list.data.status,
 				}))
@@ -19,4 +25,6 @@ export function PaymentMerge(payment: PaymentById) {
 				.sort((a, b) => b.id - a.id);
 		}
 	});
+
+	return merged.flat();
 }

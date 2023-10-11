@@ -1,8 +1,12 @@
 import { useArchivePaymentById } from "@api/archive";
+import { date } from "@cmru-comsci-66/utils";
 import { PaymentMerge } from "@lib/utils/payment";
 import {
 	Card,
 	Chip,
+	Popover,
+	PopoverContent,
+	PopoverTrigger,
 	Spinner,
 	Table,
 	TableBody,
@@ -36,7 +40,7 @@ export default function PaymentHistory() {
 
 	useEffect(() => {
 		if (payment?.length > 0) {
-			return setData(...PaymentMerge(payment));
+			return setData(PaymentMerge(payment));
 		}
 	}, [payment]);
 
@@ -70,10 +74,34 @@ export default function PaymentHistory() {
 			case "date":
 				return (
 					<div className="flex flex-col">
-						<p className="text-bold text-sm capitalize">{cellValue || "-"}</p>
-						{/* <p className="text-bold text-default-400 text-sm capitalize">
-							note
-						</p> */}
+						{cellValue ? (
+							<Popover placement="bottom-start" showArrow>
+								<PopoverTrigger>
+									<p className="text-bold cursor-pointer text-sm capitalize">
+										{date.get(
+											{
+												dateStyle: "medium",
+											},
+											cellValue,
+										)}
+									</p>
+								</PopoverTrigger>
+								<PopoverContent>
+									<div className="px-1 py-2">
+										<div className="text-sm">
+											{date.get(
+												{
+													dateStyle: "full",
+												},
+												cellValue,
+											)}
+										</div>
+									</div>
+								</PopoverContent>
+							</Popover>
+						) : (
+							"-"
+						)}
 					</div>
 				);
 			case "name":
@@ -88,6 +116,28 @@ export default function PaymentHistory() {
 			case "details":
 				if (!list.slip.name) return "-";
 				return (
+					// 	<div className="relative flex items-center gap-2">
+					// 	<Popover placement="right" showArrow>
+					// 		<PopoverTrigger>
+					// 			<span className="cursor-pointer text-sm active:opacity-50">
+					// 				{list.slip.name}
+					// 			</span>
+					// 		</PopoverTrigger>
+					// 		<PopoverContent>
+					// 			<div className="px-1 py-2">
+					// 				<div className="text-sm">
+					// 					<Image
+					// 						alt=""
+					// 						height="300"
+					// 						src={list.slip.link}
+					// 						style={{ height: "100%", width: "100%" }}
+					// 						width="300"
+					// 					/>
+					// 				</div>
+					// 			</div>
+					// 		</PopoverContent>
+					// 	</Popover>
+					// </div>
 					<div className="relative flex items-center gap-2" href={list.slip}>
 						<span className="cursor-pointer text-sm active:opacity-50">
 							<Link href={list.slip.link} target="_blank">
