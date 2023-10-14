@@ -20,8 +20,9 @@ export interface APIObject {
 	id: string;
 	name: string;
 	slip: {
-		link: string;
-		name: string;
+		name: string | null; // eslint-disable-next-line typescript-sort-keys/interface
+		link: string | null;
+		source: string | null;
 	};
 	status: string;
 	studentId: string;

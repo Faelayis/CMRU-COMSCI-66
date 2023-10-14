@@ -139,11 +139,15 @@ export default function PaymentHistory() {
 					// 	</Popover>
 					// </div>
 					<div className="relative flex items-center gap-2" href={list.slip}>
-						<span className="cursor-pointer text-sm active:opacity-50">
-							<Link href={list.slip.link} target="_blank">
-								{list.slip.name}
-							</Link>
-						</span>
+						{list.slip.link ? (
+							<span className="cursor-pointer text-sm active:opacity-50">
+								<Link href={list.slip.link} target="_blank">
+									{list.slip.name}
+								</Link>
+							</span>
+						) : (
+							list.slip.name
+						)}
 					</div>
 				);
 			default:

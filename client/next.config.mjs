@@ -2,6 +2,8 @@ import { date } from "@cmru-comsci-66/utils";
 import { PrismaPlugin } from "@prisma/nextjs-monorepo-workaround-plugin";
 import fs from "fs-extra";
 
+const envDomains = process.env["API_ARCHIVE_URL"]?.replace("https://", "");
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	env: {
@@ -11,10 +13,7 @@ const nextConfig = {
 				: null,
 	},
 	images: {
-		domains: [
-			process.env["API_ARCHIVE_URL"]?.replace("https://", ""),
-			"images.unsplash.com",
-		],
+		domains: ["images.unsplash.com"],
 	},
 	publicRuntimeConfig: {
 		appVersion: {
@@ -55,5 +54,9 @@ const nextConfig = {
 		return config;
 	},
 };
+
+if (envDomains) {
+	nextConfig.images.domains.push(envDomains);
+}
 
 export default nextConfig;
