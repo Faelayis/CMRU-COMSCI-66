@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@cmru-comsci-66/next-core",
-	"version": "2.5.2",
+	"version": "2.5.3",
 	"license": "apache-2.0",
 	"author": "Faelayis <48393914+Faelayis@users.noreply.github.com>",
 	"repository": {
@@ -26,7 +26,7 @@
 		"@cmru-comsci-66/api": "workspace:*",
 		"@cmru-comsci-66/database": "workspace:*",
 		"@cmru-comsci-66/utils": "workspace:*",
-		"@types/node": "20.8.4",
+		"@types/node": "20.8.6",
 		"@types/nodemailer": "6.4.4",
 		"@types/react": "18.2.28",
 		"@types/react-dom": "18.2.13",
