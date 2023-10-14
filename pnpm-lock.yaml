@@ -87,8 +87,8 @@ importers:
   client:
     dependencies:
       '@cmru-comsci-66/api':
-        specifier: 1.4.0
-        version: 1.4.0
+        specifier: 1.4.1
+        version: link:../library/api
       '@cmru-comsci-66/database':
         specifier: workspace:*
         version: link:../library/database
@@ -297,16 +297,6 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.0
-
-  /@cmru-comsci-66/api@1.4.0:
-    resolution: {integrity: sha512-Oz+law8LaSgXzMyVYjamQsUH/uOAB2jNHNhxs0fzJ6JFhbJ9oFcoyZvN3uM7Xcv5uuCbaPqc2VUb68zuqyad7g==}
-    dependencies:
-      '@cmru-comsci-66/utils': 1.2.4
-      axios: 1.5.1
-      discord-api-types: 0.37.60
-    transitivePeerDependencies:
-      - debug
-    dev: false
 
   /@cmru-comsci-66/utils@1.2.4:
     resolution: {integrity: sha512-oOVumPr96SagJm1S7dR+VYSaoIF39/vLzm52nBviQFIufGdAgbmr6kYt7wtO9lLCqFAF4UciXHavr2ITqSp/mg==}
