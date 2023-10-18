@@ -174,13 +174,13 @@ export default function about() {
 													/>
 								*/}
 													<div className="flex flex-col items-start justify-center gap-1">
-														<h4 className="text-small text-default-600 font-semibold leading-none">
+														<h4 className="text-small font-semibold leading-none text-default-600">
 															{leader.name}
 														</h4>
 													</div>
 												</div>
 											</CardHeader>
-											<CardBody className="text-small text-default-400 px-3 py-0">
+											<CardBody className="px-3 py-0 text-small text-default-400">
 												<span className="pt-2">{leader.role}</span>
 											</CardBody>
 											<CardFooter className="gap-3" />
@@ -206,13 +206,13 @@ export default function about() {
 														/>
 									*/}
 														<div className="flex flex-col items-start justify-center gap-1">
-															<h4 className="text-small text-default-600 font-semibold leading-none">
+															<h4 className="text-small font-semibold leading-none text-default-600">
 																{secterleaders.name}
 															</h4>
 														</div>
 													</div>
 												</CardHeader>
-												<CardBody className="text-small text-default-400 px-3 py-0">
+												<CardBody className="px-3 py-0 text-small text-default-400">
 													<span className="pt-2">{secterleaders.role}</span>
 												</CardBody>
 												<CardFooter className="gap-3" />
@@ -239,7 +239,7 @@ export default function about() {
 															src={developer.avatar}
 									/>*/}
 														<div className="flex flex-col items-start justify-center gap-1">
-															<h4 className="text-small text-default-600 font-semibold leading-none">
+															<h4 className="text-small font-semibold leading-none text-default-600">
 																{developer.name}
 															</h4>
 															{/**
@@ -250,7 +250,7 @@ export default function about() {
 														</div>
 													</div>
 												</CardHeader>
-												<CardBody className="text-small text-default-400 px-3 py-0">
+												<CardBody className="px-3 py-0 text-small text-default-400">
 													<span className="pt-2">
 														{developer.role}
 														<span
