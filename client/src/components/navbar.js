@@ -80,7 +80,7 @@ export default function NavbarComp() {
 				openURL("/admin/dashboard");
 				break;
 			case "settings":
-				openURL("/");
+				openURL("/contents/setting");
 				break;
 			case "help_and_feedback":
 				openURL("/");

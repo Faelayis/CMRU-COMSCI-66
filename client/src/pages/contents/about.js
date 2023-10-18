@@ -147,6 +147,9 @@ export default function about() {
 				>
 					<div className="py-6">
 						<div className="px-8 py-6">
+							<h2 className="mt-3 select-none p-5 text-center text-3xl font-bold tracking-tight sm:text-4xl">
+								เกี่ยวกับเรา
+							</h2>
 							<p>
 								เว็บไซต์นี้สร้างขึ้นมาโดย Next.js Framework และใช้ NextUI
 								ในการตกแต่งแลสร้างขึ้นโดยนักศึกษา คณะวิทยาศาสตร์และเทคโนโลยี
@@ -163,47 +166,24 @@ export default function about() {
 										<Card className="max-w-[340px]">
 											<CardHeader className="justify-between">
 												<div className="flex gap-5">
-													<Avatar
+													{/**<Avatar
 														isBordered
 														radius="full"
 														size="md"
 														src={leader.avatar}
 													/>
+								*/}
 													<div className="flex flex-col items-start justify-center gap-1">
-														<h4 className="text-small font-semibold leading-none text-default-600">
+														<h4 className="text-small text-default-600 font-semibold leading-none">
 															{leader.name}
 														</h4>
-														<h5 className="text-small tracking-tight text-default-400">
-															@zoeylang
-														</h5>
 													</div>
 												</div>
 											</CardHeader>
-											<CardBody className="px-3 py-0 text-small text-default-400">
-												<p>
-													Frontend developer and UI/UX enthusiast. Join me on
-													this coding adventure!
-												</p>
+											<CardBody className="text-small text-default-400 px-3 py-0">
 												<span className="pt-2">{leader.role}</span>
 											</CardBody>
-											<CardFooter className="gap-3">
-												<div className="flex gap-1">
-													<p className="text-small font-semibold text-default-400">
-														4
-													</p>
-													<p className=" text-small text-default-400">
-														Following
-													</p>
-												</div>
-												<div className="flex gap-1">
-													<p className="text-small font-semibold text-default-400">
-														97.1K
-													</p>
-													<p className="text-small text-default-400">
-														Followers
-													</p>
-												</div>
-											</CardFooter>
+											<CardFooter className="gap-3" />
 										</Card>
 									</div>
 								))}
@@ -218,47 +198,24 @@ export default function about() {
 											<Card className="max-w-[340px]">
 												<CardHeader className="justify-between">
 													<div className="flex gap-5">
-														<Avatar
+														{/**<Avatar
 															isBordered
 															radius="full"
 															size="md"
 															src={secterleaders.avatar}
 														/>
+									*/}
 														<div className="flex flex-col items-start justify-center gap-1">
-															<h4 className="text-small font-semibold leading-none text-default-600">
+															<h4 className="text-small text-default-600 font-semibold leading-none">
 																{secterleaders.name}
 															</h4>
-															<h5 className="text-small tracking-tight text-default-400">
-																@zoeylang
-															</h5>
 														</div>
 													</div>
 												</CardHeader>
-												<CardBody className="px-3 py-0 text-small text-default-400">
-													<p>
-														Frontend developer and UI/UX enthusiast. Join me on
-														this coding adventure!
-													</p>
+												<CardBody className="text-small text-default-400 px-3 py-0">
 													<span className="pt-2">{secterleaders.role}</span>
 												</CardBody>
-												<CardFooter className="gap-3">
-													<div className="flex gap-1">
-														<p className="text-small font-semibold text-default-400">
-															4
-														</p>
-														<p className=" text-small text-default-400">
-															Following
-														</p>
-													</div>
-													<div className="flex gap-1">
-														<p className="text-small font-semibold text-default-400">
-															97.1K
-														</p>
-														<p className="text-small text-default-400">
-															Followers
-														</p>
-													</div>
-												</CardFooter>
+												<CardFooter className="gap-3" />
 											</Card>
 										</div>
 									))}
@@ -275,27 +232,25 @@ export default function about() {
 											<Card className="max-w-[340px]">
 												<CardHeader className="justify-between">
 													<div className="flex gap-5">
-														<Avatar
+														{/**<Avatar
 															isBordered
 															radius="full"
 															size="md"
 															src={developer.avatar}
-														/>
+									/>*/}
 														<div className="flex flex-col items-start justify-center gap-1">
-															<h4 className="text-small font-semibold leading-none text-default-600">
+															<h4 className="text-small text-default-600 font-semibold leading-none">
 																{developer.name}
 															</h4>
-															<h5 className="text-small tracking-tight text-default-400">
+															{/**
+															 <h5 className="text-small text-default-400 tracking-tight">
 																@zoeylang
 															</h5>
+															 */}
 														</div>
 													</div>
 												</CardHeader>
-												<CardBody className="px-3 py-0 text-small text-default-400">
-													<p>
-														Frontend developer and UI/UX enthusiast. Join me on
-														this coding adventure!
-													</p>
+												<CardBody className="text-small text-default-400 px-3 py-0">
 													<span className="pt-2">
 														{developer.role}
 														<span
@@ -307,24 +262,7 @@ export default function about() {
 														</span>
 													</span>
 												</CardBody>
-												<CardFooter className="gap-3">
-													<div className="flex gap-1">
-														<p className="text-small font-semibold text-default-400">
-															4
-														</p>
-														<p className="text-small text-default-400">
-															Following
-														</p>
-													</div>
-													<div className="flex gap-1">
-														<p className="text-small font-semibold text-default-400">
-															97.1K
-														</p>
-														<p className="text-small text-default-400">
-															Followers
-														</p>
-													</div>
-												</CardFooter>
+												<CardFooter className="gap-3" />
 											</Card>
 										</div>
 									))}

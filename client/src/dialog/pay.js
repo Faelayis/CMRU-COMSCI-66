@@ -25,6 +25,9 @@ import { useRef, useState } from "react";
 let checkStudent;
 
 export default function ModelComp() {
+	const [cooldown, setCooldown] = useState(0);
+	const [isCooldown, setIsCooldown] = useState(false);
+
 	const {
 			billings,
 			isError: billingsIsError,
@@ -65,6 +68,10 @@ export default function ModelComp() {
 	}
 
 	const handleSubmit = async () => {
+		if (isCooldown) {
+			return;
+		}
+
 		const data = new Handle();
 		data.fullname = fullname || checkStudent.name;
 		data.studentid = studentid;
@@ -72,11 +79,25 @@ export default function ModelComp() {
 		data.note = note;
 		data.event = event;
 
-		if (data.files != selectedFile) {
+		if (data.files !== selectedFile) {
 			data.files = selectedFile;
 		}
 
+		// ส่งข้อมูลและกำหนดเวลาคูลดาว 5 วินาที
 		data.send();
+
+		// กำหนดคูลดาว
+		setIsCooldown(true);
+		setCooldown(60);
+
+		// หลังจาก 5 วินาทีให้รีเซ็ตคูลดาว
+		const cooldownInterval = setInterval(() => {
+			if (cooldown === 1) {
+				clearInterval(cooldownInterval);
+				setIsCooldown(false);
+			}
+			setCooldown(cooldown - 1);
+		}, 1000);
 	};
 
 	return (
@@ -143,13 +164,13 @@ export default function ModelComp() {
 															รหัส {checkStudent.id} ห้อง {checkStudent.section}
 														</p>
 														<small className="text-default-600" color="default">
-															บัญชีนี้ได้เชื่อมต่อกับรหัสนักศึกษาแล้ว
+															บัญชีนี้ได้เชื่อมต่อกับรหััสนักศึกษาแล้ว
 														</small>
 													</>
 												) : (
 													<>
 														<h4 className="text-large font-bold">
-															ข้อมูลที่เชื่อมต่อกับรหัสนักศึกษาไม่ถูกต้อง
+															ข้อมูลที่เชื่อมต่อกับรหััสนักศึกษาไม่ถูกต้อง
 														</h4>
 														<p className="text-tiny font-bold">
 															บัญชี {session.user?.email}
@@ -302,6 +323,15 @@ export default function ModelComp() {
 											) : undefined}
 										</>
 									) : undefined}
+									{isCooldown ? (
+										<div className="text-center text-red-500">
+											รออีก {cooldown} วินาทีก่อนสามารถส่งข้อมูลอีกครั้ง
+										</div>
+									) : (
+										<div className="text-center text-green-500">
+											สามารถส่งข้อมูลอีกครั้ง
+										</div>
+									)}
 								</div>
 							</ModalBody>
 							<ModalFooter>

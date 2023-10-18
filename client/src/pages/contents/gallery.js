@@ -13,6 +13,24 @@ export default function Gallery() {
 						<h2 className="mt-3 p-5 text-center text-3xl font-bold tracking-tight sm:text-4xl">
 							Gallery
 						</h2>
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<h2
+							className="mt-3 p-5 text-center text-3xl font-bold tracking-tight sm:text-4xl"
+							style={{ color: "red" }}
+						>
+							Coming soon
+						</h2>
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
 					</div>
 				</Card>
 			</div>

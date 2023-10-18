@@ -23,6 +23,24 @@ export default function Section2() {
 						งาน ที่ได้รับมอบหมาย
 						เว็บไซต์นี้สร้างขึ้นเพื่อติดตามงานที่ได้รับมอบหมายของ Section 2
 					</p>
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<h2
+						className="mt-3 p-5 text-center text-3xl font-bold tracking-tight sm:text-4xl"
+						style={{ color: "red" }}
+					>
+						Coming soon
+					</h2>
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
+					<br />
 				</Card>
 			</div>
 		</div>
