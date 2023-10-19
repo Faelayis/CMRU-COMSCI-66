@@ -19,7 +19,7 @@ export default function Setting() {
 						{session?.user ? (
 							<>
 								<Avatar
-									className="text-large h-20 w-20"
+									className="h-20 w-20 text-large"
 									isBordered
 									radius="full"
 									src={session.user?.image}
