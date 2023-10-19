@@ -3,5 +3,6 @@
 	"automerge": false,
 	"bumpVersion": "patch",
 	"dependencyDashboard": true,
-	"extends": ["config:base", "group:recommended", "group:monorepos", "packages:react", "packages:postcss", "packages:linters"]
+	"extends": ["config:base", "group:recommended", "group:monorepos", "packages:react", "packages:postcss", "packages:linters"],
+	"ignoreDeps": ["@types/nodemailer"]
 }
