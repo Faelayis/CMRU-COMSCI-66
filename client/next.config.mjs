@@ -2,16 +2,14 @@ import { date } from "@cmru-comsci-66/utils";
 import { PrismaPlugin } from "@prisma/nextjs-monorepo-workaround-plugin";
 import fs from "fs-extra";
 
-const envDomains = process.env["API_ARCHIVE_URL"]?.replace("https://", "");
+const envDomains = process.env["API_ARCHIVE_URL"]?.replace("https://", ""),
+	envPort =
+		process.env.NODE_ENV === "development"
+			? process.env["npm_package_scripts_PORT"] || process.env["PORT"]
+			: 3000;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-	env: {
-		port:
-			process.env.NODE_ENV === "development"
-				? process.env["npm_package_scripts_PORT"] || process.env["PORT"]
-				: null,
-	},
 	images: {
 		domains: ["images.unsplash.com"],
 	},
@@ -57,6 +55,14 @@ const nextConfig = {
 
 if (envDomains) {
 	nextConfig.images.domains.push(envDomains);
+}
+
+if (envPort) {
+	nextConfig.env = Object.assign(
+		{},
+		{ port: envPort.toString() },
+		nextConfig.env,
+	);
 }
 
 export default nextConfig;
