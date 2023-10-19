@@ -27,7 +27,7 @@
 		"@cmru-comsci-66/database": "workspace:*",
 		"@cmru-comsci-66/utils": "workspace:*",
 		"@types/node": "20.8.7",
-		"@types/nodemailer": "6.4.13",
+		"@types/nodemailer": "6.4.4",
 		"@types/react": "18.2.29",
 		"@types/react-dom": "18.2.14",
 		"typescript": "5.2.2"
