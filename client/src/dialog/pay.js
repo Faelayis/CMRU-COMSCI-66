@@ -19,14 +19,13 @@ import {
 } from "@nextui-org/react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /** @type {ObjectTypes} */
 let checkStudent;
 
 export default function ModelComp() {
-	const [cooldown, setCooldown] = useState(0);
-	const [isCooldown, setIsCooldown] = useState(false);
+	// Cooldown system
 
 	const {
 			billings,
@@ -68,10 +67,6 @@ export default function ModelComp() {
 	}
 
 	const handleSubmit = async () => {
-		if (isCooldown) {
-			return;
-		}
-
 		const data = new Handle();
 		data.fullname = fullname || checkStudent.name;
 		data.studentid = studentid;
@@ -83,21 +78,7 @@ export default function ModelComp() {
 			data.files = selectedFile;
 		}
 
-		// ส่งข้อมูลและกำหนดเวลาคูลดาว 5 วินาที
 		data.send();
-
-		// กำหนดคูลดาว
-		setIsCooldown(true);
-		setCooldown(60);
-
-		// หลังจาก 5 วินาทีให้รีเซ็ตคูลดาว
-		const cooldownInterval = setInterval(() => {
-			if (cooldown === 1) {
-				clearInterval(cooldownInterval);
-				setIsCooldown(false);
-			}
-			setCooldown(cooldown - 1);
-		}, 1000);
 	};
 
 	return (
@@ -323,15 +304,6 @@ export default function ModelComp() {
 											) : undefined}
 										</>
 									) : undefined}
-									{isCooldown ? (
-										<div className="text-center text-red-500">
-											รออีก {cooldown} วินาทีก่อนสามารถส่งข้อมูลอีกครั้ง
-										</div>
-									) : (
-										<div className="text-center text-green-500">
-											สามารถส่งข้อมูลอีกครั้ง
-										</div>
-									)}
 								</div>
 							</ModalBody>
 							<ModalFooter>
