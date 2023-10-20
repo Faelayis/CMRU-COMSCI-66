@@ -115,7 +115,7 @@ export default function about() {
 			avatar: "https://i.pravatar.cc/150?u=a04258114e29026302d",
 			facebookLink: "https://www.facebook.com/janesmith",
 			githubLink: "https://github.com/janesmith",
-			name: "Guy",
+			name: "GAUAYA",
 			role: "Contents",
 			sharp: '"Never give up"',
 		},
