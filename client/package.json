@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@cmru-comsci-66/client",
-	"version": "1.12.2",
+	"version": "1.12.3",
 	"scripts": {
 		"PORT": "3000",
 		"build": "next build",
@@ -41,7 +41,7 @@
 		"@prisma/nextjs-monorepo-workaround-plugin": "5.4.2",
 		"@types/node": "20.8.7",
 		"autoprefixer": "10.4.16",
-		"eslint": "8.51.0",
+		"eslint": "8.52.0",
 		"eslint-config-next": "13.5.6",
 		"eslint-plugin-perfectionist": "2.2.0",
 		"eslint-plugin-react": "7.33.2",
