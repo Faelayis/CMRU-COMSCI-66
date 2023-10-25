@@ -135,8 +135,8 @@ importers:
         specifier: 11.7.32
         version: 11.7.32
       swiper:
-        specifier: 11.0.1
-        version: 11.0.1
+        specifier: 11.0.2
+        version: 11.0.2
       swr:
         specifier: 2.2.4
         version: 2.2.4(react@18.2.0)
@@ -7357,8 +7357,8 @@ packages:
     resolution: {integrity: sha512-44tNNe2oLe7T94mT6dus4hc9G7qg6jZU/K5qZzpNS6e5HGPrSF6Kie6oZ7B5puIJydB34V2h/8f5EhIFivYo4A==}
     dev: false
 
-  /swiper@11.0.1:
-    resolution: {integrity: sha512-pxVygCS5CVL2pRYSnv8RbjlOC/nN+JrAn5/JM0WBQzIWisv9FYe1s69KEB82TOeqh/T3zc9zks/gxctY6G/XMg==}
+  /swiper@11.0.2:
+    resolution: {integrity: sha512-JMHZYdUDG0V5ZdzWJkQicW4F7u4edmS4vlOhciTDhcZokDL2N8EE2uP4INxqIgpiJMoeHlwATqZk2yEAW7F6Dw==}
     engines: {node: '>= 4.7.0'}
     dev: false
 
