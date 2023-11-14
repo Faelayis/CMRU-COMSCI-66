@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@cmru-comsci-66/database",
-	"version": "1.5.13",
+	"version": "1.5.14",
 	"license": "apache-2.0",
 	"author": "Faelayis <48393914+Faelayis@users.noreply.github.com>",
 	"repository": {
@@ -40,8 +40,8 @@
 	},
 	"typings": "./esm/core.d.ts",
 	"dependencies": {
-		"@prisma/client": "5.5.2",
-		"prisma": "5.5.2"
+		"@prisma/client": "5.6.0",
+		"prisma": "5.6.0"
 	},
 	"devDependencies": {
 		"@types/node": "20.9.0",
