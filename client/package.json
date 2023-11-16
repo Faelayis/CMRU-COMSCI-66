@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@cmru-comsci-66/client",
-	"version": "1.12.12",
+	"version": "1.12.13",
 	"scripts": {
 		"PORT": "3000",
 		"build": "next build",
@@ -43,7 +43,7 @@
 		"autoprefixer": "10.4.16",
 		"eslint": "8.52.0",
 		"eslint-config-next": "13.5.6",
-		"eslint-plugin-perfectionist": "2.2.0",
+		"eslint-plugin-perfectionist": "2.4.0",
 		"eslint-plugin-react": "7.33.2",
 		"eslint-plugin-tailwindcss": "3.13.0",
 		"fs-extra": "11.1.1",
