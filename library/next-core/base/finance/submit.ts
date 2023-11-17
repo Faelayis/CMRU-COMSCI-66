@@ -31,6 +31,8 @@ export class Handle {
 		studentid: string;
 	};
 
+	public IsSend = false;
+
 	constructor() {
 		this.initialize();
 	}
@@ -81,6 +83,14 @@ export class Handle {
 	}
 
 	public send() {
+		if (this.IsSend) {
+			return alert({
+				icon: "warning",
+				title: "กำลังส่งข้อมูล",
+				text: "โปรดรอสักครู่..",
+			});
+		}
+
 		if (!this.value.file || !this.value.fullname || !this.value.studentid || !this.value.price) {
 			return alert({
 				icon: "warning",
@@ -94,6 +104,8 @@ export class Handle {
 		}
 
 		try {
+			this.IsSend = true;
+
 			return (
 				this.webhook
 					.Send(this.value.file, {
@@ -114,6 +126,8 @@ export class Handle {
 					})
 			);
 		} catch (error) {
+			this.IsSend = false;
+
 			return alert(undefined, new Finance_Submit_Error("FINANCE_SUBMIT_SEND_ERROR", undefined, error));
 		}
 	}

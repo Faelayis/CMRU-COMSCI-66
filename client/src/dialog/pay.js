@@ -19,14 +19,12 @@ import {
 } from "@nextui-org/react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 
 /** @type {ObjectTypes} */
 let checkStudent;
 
 export default function ModelComp() {
-	// Cooldown system
-
 	const {
 			billings,
 			isError: billingsIsError,
@@ -47,7 +45,6 @@ export default function ModelComp() {
 	const [pricePlace, setPricePlace] = useState();
 	const [note, setNote] = useState("");
 	const [event, setEvent] = useState();
-	// const [tags, setTags] = useState();
 
 	const inputRef = useRef(),
 		handleOpenFileInput = () => {
@@ -68,6 +65,7 @@ export default function ModelComp() {
 
 	const handleSubmit = async () => {
 		const data = new Handle();
+
 		data.fullname = fullname || checkStudent.name;
 		data.studentid = studentid;
 		data.price = price || (event?.price ?? pricePlace);

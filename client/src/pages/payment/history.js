@@ -37,6 +37,23 @@ export default function PaymentHistory() {
 	} = useArchivePaymentById(session?.user?.studentId);
 
 	const [data, setData] = useState([]);
+	const [isDesktop, setIsDesktop] = useState(true);
+
+	useEffect(() => {
+		try {
+			const handleResize = () => {
+				setIsDesktop(window.innerWidth > 768);
+			};
+			handleResize();
+			window.addEventListener("resize", handleResize);
+
+			return () => {
+				window.removeEventListener("resize", handleResize);
+			};
+		} catch (error) {
+			undefined;
+		}
+	}, []);
 
 	useEffect(() => {
 		if (payment?.length > 0) {
@@ -49,19 +66,12 @@ export default function PaymentHistory() {
 			getStatusChip = () => {
 				const isPaid = cellValue,
 					isPending = !isPaid && list.amount;
-
-				let color, text;
-
-				if (isPaid) {
-					color = "success";
-					text = "จ่ายแล้ว";
-				} else if (isPending) {
-					color = "warning";
-					text = "รอตรวจสอบ";
-				} else {
-					color = "danger";
-					text = "ไม่ได้จ่าย";
-				}
+				const color = isPaid ? "success" : isPending ? "warning" : "danger";
+				const text = isPaid
+					? "จ่ายแล้ว"
+					: isPending
+					  ? "รอตรวจสอบ"
+					  : "ไม่ได้จ่าย";
 
 				return (
 					<Chip className="capitalize" color={color} size="sm" variant="flat">
@@ -194,7 +204,7 @@ export default function PaymentHistory() {
 							}
 							className="select-none"
 						>
-							<TableHeader columns={columns}>
+							<TableHeader columns={isDesktop ? columns : columns.slice(1, 4)}>
 								{(column) => (
 									<TableColumn
 										align={column.uid === "actions" ? "center" : "start"}
