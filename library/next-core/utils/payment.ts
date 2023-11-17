@@ -21,8 +21,7 @@ export function PaymentMerge(payment: PaymentById) {
 				}))
 				.map((item, index) => {
 					return { ...item, id: index };
-				})
-				.sort((a, b) => b.id - a.id);
+				}); //.sort((a, b) => b.id - a.id);
 		}
 	});
 

@@ -148,7 +148,7 @@ export default function NavbarComp() {
 									className="select-none transition-transform"
 									color="default"
 									isBordered
-									name="Profile"
+									name={session.user.nickname || session.user.name}
 									size="md"
 									src={session.user.image}
 								/>

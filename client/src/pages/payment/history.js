@@ -173,60 +173,83 @@ export default function PaymentHistory() {
 			<div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
 				<Card>
 					<div className="px-8 py-6">
-						<h2 className="mt-3 select-none p-5 text-center text-3xl font-bold tracking-tight sm:text-4xl">
-							ประวัติการจ่ายเงิน
-						</h2>
-
-						<Table
-							bottomContent={
-								!(!paymentIsLoading && payment?.length > 0) ? (
-									<>
-										<div className="flex w-full justify-center">
-											<div>
-												<Spinner
-													color={paymentIsError ? "danger" : undefined}
-												/>
-											</div>
-										</div>
-										{paymentIsError ? (
-											<div className="select-text text-center">
-												{`พบข้อผิดพลาด ${
-													paymentIsError?.message || paymentIsError
-												}`}
-											</div>
-										) : (
-											<div className="text-center">กำลังโหลดข้อมูล..</div>
-										)}
-									</>
-								) : !(payment?.length > 0) ? (
-									<div className="text-center">ไม่พบข้อมูล</div>
-								) : undefined
-							}
-							className="select-none"
-						>
-							<TableHeader columns={isDesktop ? columns : columns.slice(1, 4)}>
-								{(column) => (
-									<TableColumn
-										align={column.uid === "actions" ? "center" : "start"}
-										key={column.uid}
+						{session?.user ? (
+							<>
+								<h2 className="mt-3 select-none p-5 text-center text-3xl font-bold tracking-tight sm:text-4xl">
+									ประวัติการจ่ายเงิน
+								</h2>
+								<Table
+									bottomContent={
+										!(!paymentIsLoading && payment?.length > 0) ? (
+											<>
+												<div className="flex w-full justify-center">
+													<div>
+														<Spinner
+															color={paymentIsError ? "danger" : undefined}
+														/>
+													</div>
+												</div>
+												{paymentIsError ? (
+													<div className="select-text text-center">
+														{`พบข้อผิดพลาด ${
+															paymentIsError?.message || paymentIsError
+														}`}
+													</div>
+												) : (
+													<div className="text-center">กำลังโหลดข้อมูล..</div>
+												)}
+											</>
+										) : !(payment?.length > 0) ? (
+											<div className="text-center">ไม่พบข้อมูล</div>
+										) : undefined
+									}
+									className="select-none"
+								>
+									{isDesktop ? (
+										<TableHeader columns={columns}>
+											{(column) => (
+												<TableColumn
+													align={column.uid === "actions" ? "center" : "start"}
+													key={column.uid}
+												>
+													{column.name}
+												</TableColumn>
+											)}
+										</TableHeader>
+									) : (
+										<TableHeader columns={columns.slice(1, 4)}>
+											{(column) => (
+												<TableColumn
+													align={column.uid === "actions" ? "center" : "start"}
+													key={column.uid}
+												>
+													{column.name}
+												</TableColumn>
+											)}
+										</TableHeader>
+									)}
+									<TableBody
+										isLoading={!(!paymentIsLoading && payment?.length > 0)}
+										items={data}
 									>
-										{column.name}
-									</TableColumn>
-								)}
-							</TableHeader>
-							<TableBody
-								isLoading={!(!paymentIsLoading && payment?.length > 0)}
-								items={data}
-							>
-								{(item) => (
-									<TableRow key={item?.id}>
-										{(columnKey) => (
-											<TableCell>{renderCell(item, columnKey)}</TableCell>
+										{(item) => (
+											<TableRow key={item?.id}>
+												{(columnKey) => (
+													<TableCell>{renderCell(item, columnKey)}</TableCell>
+												)}
+											</TableRow>
 										)}
-									</TableRow>
-								)}
-							</TableBody>
-						</Table>
+									</TableBody>
+								</Table>
+							</>
+						) : (
+							<>
+								<div className="mt-3 select-none p-5 text-center text-2xl font-bold tracking-tight">
+									โปรดเข้าสู่ระบบด้วยอีเมลนักศึกษา{" "}
+								</div>
+								<div className="text-1 text-center">เข้าสู่ระบบด้วย Google</div>
+							</>
+						)}
 					</div>
 				</Card>
 			</div>
