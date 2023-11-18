@@ -29,13 +29,13 @@ const columns = [
 ];
 
 export default function PaymentHistory() {
-	const { data: session } = useSession();
+	const { data: session, status } = useSession();
 	const {
 		Payment: payment,
 		isError: paymentIsError,
 		isLoading: paymentIsLoading,
 	} = useArchivePaymentById(session?.user?.studentId);
-
+	const isLogin = status === "authenticated" || status === "loading";
 	const [data, setData] = useState([]);
 	const [isDesktop, setIsDesktop] = useState(true);
 
@@ -173,7 +173,7 @@ export default function PaymentHistory() {
 			<div className="mx-auto max-w-7xl py-24 sm:px-6 sm:py-32 lg:px-8">
 				<Card>
 					<div className="px-8 py-6">
-						{session?.user ? (
+						{isLogin || session?.user ? (
 							<>
 								<h2 className="mt-3 select-none p-5 text-center text-3xl font-bold tracking-tight sm:text-4xl">
 									ประวัติการจ่ายเงิน
