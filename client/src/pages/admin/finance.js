@@ -66,7 +66,7 @@ const INITIAL_VISIBLE_COLUMNS = [
 	"actions",
 ];
 
-export default function App() {
+export default function Finances() {
 	const {
 		billings,
 		isError: billingsIsError,

@@ -1,11 +1,11 @@
 import { Card, CardBody, Tab, Tabs } from "@nextui-org/react";
 
-import finance from "@/pages/admin/finance";
+import Finance from "@/pages/admin/finance";
 
 export default function UsageComp() {
 	const tabs = [
 		{
-			content: <finance />,
+			content: <Finance />,
 			id: "billings",
 			label: "การเงิน",
 		},
