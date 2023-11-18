@@ -1,4 +1,4 @@
-import { useBillings } from "@api/billings";
+import { useBillings } from "@api/dialog/billings";
 // eslint-disable-next-line no-unused-vars
 import { ObjectTypes, useStudent } from "@api/student";
 import { Handle } from "@lib/base/finance/submit";
@@ -29,7 +29,9 @@ export default function ModelComp() {
 			billings,
 			isError: billingsIsError,
 			isLoading: billingsIsLoading,
-		} = useBillings(),
+		} = useBillings({
+			"use-webhook": "true",
+		}),
 		{
 			isError: studentIsError,
 			isLoading: studentIsLoading,

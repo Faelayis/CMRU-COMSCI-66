@@ -1,3 +1,4 @@
+export const locale: string = "th-th";
 export const timeZone: Intl.DateTimeFormatOptions["timeZone"] = "Asia/Bangkok";
 
 export const get = (options?: Intl.DateTimeFormatOptions, dateString?: string): string => {
@@ -27,4 +28,22 @@ export const get = (options?: Intl.DateTimeFormatOptions, dateString?: string): 
 	}
 
 	return timeFormat.format();
+};
+
+export const formatDateTime = (date, options?: Intl.DateTimeFormatOptions, Locale = locale) => {
+	return new Date(date).toLocaleString(
+		Locale,
+		Object.assign(
+			{
+				dateStyle: "medium",
+				timeStyle: "short",
+				timeZone: timeZone,
+			} as Intl.DateTimeFormatOptions,
+			options,
+		),
+	);
+};
+
+export const formatDateString = (startDate, endDate) => {
+	return endDate ? `${formatDateTime(startDate)} ถึง ${formatDateTime(endDate)}` : formatDateTime(startDate) || "";
 };

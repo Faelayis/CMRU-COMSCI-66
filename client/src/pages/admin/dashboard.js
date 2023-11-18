@@ -19,14 +19,8 @@ export default function Dashboard() {
 					<Card>
 						<div className="px-8 py-6">
 							<h2 className="mt-3 select-none p-5 text-center text-3xl font-bold tracking-tight sm:text-4xl">
-								Dashboard
+								แดชบอร์ด
 							</h2>
-							<h2 className="mt-3 select-none p-5 text-3xl font-bold tracking-tight sm:text-4xl">
-								ยินดีต้อนรับ
-							</h2>
-							<h1 className="mb-3 select-none p-5 text-2xl font-bold tracking-tight sm:text-2xl">
-								{session.user.role} {session.user.name}
-							</h1>
 							<UsageComp />
 						</div>
 					</Card>

@@ -37,6 +37,16 @@ enum ContentType {
    Online
 }
 
+enum PaymentStatusType {
+   waiting
+   pending_approval
+   cancelled
+   chargeback
+   failed
+   succeed
+   refunded
+}
+
 model User {
    id       String   @id @default(cuid())
    name     String?
@@ -121,6 +131,9 @@ model Billing {
    start_at DateTime?
    end_at   DateTime?
 
+   payment   Payment? @relation(fields: [paymentId], references: [id])
+   paymentId String?
+
    discord_webhook   DiscordWebhook? @relation(fields: [discord_webhookId], references: [id])
    discord_webhookId BigInt?
 
@@ -136,6 +149,9 @@ model StudentList {
    paid    Billing[]
 
    connectedUser User[]
+
+   payment   Payment? @relation(fields: [paymentId], references: [id])
+   paymentId String?
 
    update_at DateTime? @updatedAt
 
@@ -183,4 +199,38 @@ model Content {
 
    metadataId Int?
    metadata   Subject? @relation(fields: [metadataId], references: [id])
+}
+
+model Payment {
+   id String @id @default(cuid())
+
+   billing Billing[]
+   amount  Int           @default(0)
+   details String?
+   slip    String[]
+   by      StudentList[]
+
+   approval   PaymentApproval @relation(fields: [approvalId], references: [id])
+   approvalId String
+
+   created_at DateTime  @default(now())
+   update_at  DateTime? @updatedAt
+
+   @@map("Payment")
+}
+
+model PaymentApproval {
+   id      String    @id
+   payment Payment[]
+
+   description String?
+   details     String?
+   status      PaymentStatusType @default(waiting)
+
+   by Int?
+
+   created_at DateTime  @default(now())
+   update_at  DateTime? @updatedAt
+
+   @@map("Payment Approval")
 }

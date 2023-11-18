@@ -1,33 +1,34 @@
 import { Card, CardBody, Tab, Tabs } from "@nextui-org/react";
 
-import Afinance from "@/pages/admin/afinance";
-import Permis from "@/pages/admin/apermisson";
+import finance from "@/pages/admin/finance";
 
 export default function UsageComp() {
 	const tabs = [
 		{
-			content: <Afinance />,
+			content: <finance />,
 			id: "billings",
-			label: "Finance",
+			label: "การเงิน",
 		},
-		{
-			content: <Permis />,
-			id: "role",
-			label: "Permission",
-		},
+		// {
+		// 	content: undefined,
+		// 	id: "role",
+		// 	label: "คำขออนุมัติ",
+		// },
 	];
 
 	return (
 		<div className="flex w-full flex-col">
-			<Tabs aria-label="Dynamic tabs" items={tabs}>
-				{(item) => (
-					<Tab key={item.id} title={item.label}>
-						<Card>
-							<CardBody>{item.content}</CardBody>
-						</Card>
-					</Tab>
-				)}
-			</Tabs>
+			<div>
+				<Tabs items={tabs}>
+					{(item) => (
+						<Tab key={item.id} title={item.label}>
+							<Card>
+								<CardBody>{item.content}</CardBody>
+							</Card>
+						</Tab>
+					)}
+				</Tabs>
+			</div>
 		</div>
 	);
 }

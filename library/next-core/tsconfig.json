@@ -31,6 +31,9 @@
 			"swr": [
 				"../../client/node_modules/swr"
 			],
+			"swr/*": [
+				"../../client/node_modules/swr/*"
+			],
 			"next": [
 				"../../client/node_modules/next"
 			],
