@@ -135,7 +135,7 @@ export default function Finances() {
 					return (
 						<div className="flex flex-col">
 							<p className="text-bold text-small capitalize">{cellValue}</p>
-							<p className="text-bold text-tiny text-default-500 capitalize">
+							<p className="text-bold text-tiny capitalize text-default-500">
 								{List.team}
 							</p>
 						</div>
@@ -155,7 +155,7 @@ export default function Finances() {
 				case "status":
 					return (
 						<Chip
-							className="text-default-600 gap-1 border-none capitalize"
+							className="gap-1 border-none capitalize text-default-600"
 							color={statusColorMap[List.status]}
 							size="sm"
 							variant="dot"
@@ -295,10 +295,10 @@ export default function Finances() {
 							มีทั้งหมด {billings?.length || 0} รายการ
 						</span>
 						{billings?.length <= rowsPerPage ? (
-							<label className="text-small text-default-400 flex items-center">
+							<label className="flex items-center text-small text-default-400">
 								แถวต่อหน้า:
 								<select
-									className="text-small text-default-400 bg-transparent outline-none"
+									className="bg-transparent text-small text-default-400 outline-none"
 									onChange={onRowsPerPageChange}
 								>
 									<option value="10">10</option>
