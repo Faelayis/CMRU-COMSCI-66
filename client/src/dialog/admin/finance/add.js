@@ -15,7 +15,7 @@ import {
 } from "@nextui-org/react";
 import { useState } from "react";
 
-import { PlusIcon } from "../../icon/PlusIcon";
+import { PlusIcon } from "../../../icon/PlusIcon";
 
 export default function ModelComp() {
 	const { trigger } = postBillings();
@@ -36,6 +36,12 @@ export default function ModelComp() {
 				start_at: startDate,
 			}).then(() => {
 				onClose();
+
+				setName();
+				setPrice();
+				setDescription();
+				setStartDate();
+				setEndDate();
 			});
 		} catch (error) {
 			console.error(error);
@@ -46,7 +52,6 @@ export default function ModelComp() {
 			<Button
 				className="bg-foreground text-background"
 				endContent={<PlusIcon />}
-				isDisabled={true}
 				onPress={onOpen}
 				size="sm"
 			>

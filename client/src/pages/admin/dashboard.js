@@ -21,7 +21,9 @@ export default function Dashboard() {
 							<h2 className="mt-3 select-none p-5 text-center text-3xl font-bold tracking-tight sm:text-4xl">
 								แดชบอร์ด
 							</h2>
-							<UsageComp />
+							<div>
+								<UsageComp />
+							</div>
 						</div>
 					</Card>
 				) : (

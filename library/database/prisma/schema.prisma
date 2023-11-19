@@ -131,8 +131,7 @@ model Billing {
    start_at DateTime?
    end_at   DateTime?
 
-   payment   Payment? @relation(fields: [paymentId], references: [id])
-   paymentId String?
+   payment Payment[]
 
    discord_webhook   DiscordWebhook? @relation(fields: [discord_webhookId], references: [id])
    discord_webhookId BigInt?
@@ -147,11 +146,9 @@ model StudentList {
    name    String
    status  String?
    paid    Billing[]
+   payment Payment[]
 
    connectedUser User[]
-
-   payment   Payment? @relation(fields: [paymentId], references: [id])
-   paymentId String?
 
    update_at DateTime? @updatedAt
 
@@ -204,14 +201,18 @@ model Content {
 model Payment {
    id String @id @default(cuid())
 
-   billing Billing[]
-   amount  Int           @default(0)
+   amount  Int      @default(0)
    details String?
    slip    String[]
-   by      StudentList[]
 
-   approval   PaymentApproval @relation(fields: [approvalId], references: [id])
-   approvalId String
+   billing   Billing? @relation(fields: [billingId], references: [id])
+   billingId Int?
+
+   student   StudentList? @relation(fields: [studentId], references: [id])
+   studentId Int?
+
+   approval   PaymentApproval? @relation(fields: [approvalId], references: [id])
+   approvalId String?
 
    created_at DateTime  @default(now())
    update_at  DateTime? @updatedAt

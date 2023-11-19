@@ -1,19 +1,20 @@
 import { Card, CardBody, Tab, Tabs } from "@nextui-org/react";
 
 import Finance from "@/pages/admin/finance";
+import Approval_Payment from "@/pages/admin/payment";
 
 export default function UsageComp() {
 	const tabs = [
 		{
 			content: <Finance />,
-			id: "billings",
+			id: "finance",
 			label: "การเงิน",
 		},
-		// {
-		// 	content: undefined,
-		// 	id: "role",
-		// 	label: "คำขออนุมัติ",
-		// },
+		{
+			content: <Approval_Payment />,
+			id: "approval_request",
+			label: "คำขออนุมัติ",
+		},
 	];
 
 	return (

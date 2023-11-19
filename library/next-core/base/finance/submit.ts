@@ -1,5 +1,5 @@
 /* eslint-disable unicorn/custom-error-definition */
-import type { ObjectTypes } from "@api/billings";
+import type { ObjectTypes } from "@api/dialog/billings";
 import { DiscordWebHook } from "@cmru-comsci-66/api";
 import { student } from "@cmru-comsci-66/utils";
 import { alert } from "@lib/swal/fire";

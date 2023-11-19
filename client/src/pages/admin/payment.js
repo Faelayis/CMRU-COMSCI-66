@@ -1,5 +1,4 @@
-import { deleteBillings, useBillings } from "@api/billings";
-import { date } from "@cmru-comsci-66/utils";
+import { deletePayment, usePayment } from "@api/payment";
 import { useFilteredPaginatedSortedItems } from "@lib/utils/filtered";
 import { capitalize } from "@lib/utils/finance";
 import {
@@ -20,8 +19,8 @@ import {
 } from "@nextui-org/react";
 import { useCallback, useMemo, useState } from "react";
 
+import DatePopover from "@/components/popover/date";
 import LoadingSpinner from "@/components/spinner/loading";
-import Model_AddFinance from "@/dialog/admin/finance/add";
 
 import { ChevronDownIcon } from "../../icon/ChevronDownIcon";
 import { SearchIcon } from "../../icon/SearchIcon";
@@ -29,23 +28,24 @@ import { VerticalDotsIcon } from "../../icon/VerticalDotsIcon";
 
 const columns = [
 	{ name: "ไอดี", sortable: true, uid: "id" },
-	{ name: "ชื่อ", sortable: true, uid: "name" },
+	{ name: "รายการ", sortable: true, uid: "billing.name" },
 	{ name: "คำอธิบาย", uid: "description" },
-	{ name: "จำนวนเงิน", sortable: true, uid: "price" },
-	{ name: "ประเภท", sortable: true, uid: "types" },
-	{ name: "เริ่มต้น", sortable: true, uid: "start_at" },
-	{ name: "สิ้นสุด", sortable: true, uid: "end_at" },
+	{ name: "จำนวนเงิน", uid: "amount" },
+	{ name: "สถานะ", sortable: true, uid: "status" },
+	{ name: "โดย", uid: "student.name" },
+	{ name: "สร้าง", sortable: true, uid: "created_at" },
+	{ name: "อัปเดต", sortable: true, uid: "update_at" },
 	{ name: "ตัวเลือก", uid: "actions" },
 ];
 
 const statusOptions = [
-	{ name: "Active", uid: "waiting" },
-	{ name: "Succeed", uid: "succeed" },
-	{ name: "Failed", uid: "failed" },
-	{ name: "Refunded", uid: "refunded" },
-	{ name: "Pending Approval", uid: "pending_approval" },
-	{ name: "Cancelled", uid: "cancelled" },
-	{ name: "Chargeback", uid: "chargeback" },
+	{ name: "เสร็จสิ้น ", uid: "succeed" },
+	{ name: "รอ", uid: "waiting" },
+	{ name: "รอการอนุมัติ", uid: "pending_approval" },
+	{ name: "ยกเลิก", uid: "cancelled" },
+	{ name: "ล้มเหลว", uid: "failed" },
+	{ name: "คืนเงินแล้ว", uid: "refunded" },
+	{ name: "ปฏิเสธการชำระเงิน", uid: "chargeback" },
 ];
 
 const statusColorMap = {
@@ -55,31 +55,31 @@ const statusColorMap = {
 	pending_approval: "default",
 	refunded: "default",
 	succeed: "danger",
-	waiting: "success",
+	waiting: "danger",
 };
 
 const INITIAL_VISIBLE_COLUMNS = [
-	"name",
-	"description",
-	"price",
-	"start_at",
-	"end_at",
+	"billing.name",
+	"amount",
+	"status",
 	"actions",
+	"student.name",
 ];
 
-export default function Finances() {
+export default function App() {
 	const {
-			billings,
-			isError: billingsIsError,
-			isLoading: billingsIsLoading,
-		} = useBillings(undefined, {
+			isError: paymentIsError,
+			isLoading: paymentIsLoading,
+			payment,
+		} = usePayment(undefined, {
 			refreshInterval: 1000,
 			revalidateIfStale: false,
 			revalidateOnFocus: false,
 			revalidateOnReconnect: false,
 		}),
-		{ trigger } = deleteBillings();
+		{ trigger } = deletePayment();
 
+	console.log(payment);
 	const [filterValue, setFilterValue] = useState(""),
 		[selectedKeys, setSelectedKeys] = useState(new Set([])),
 		[visibleColumns, setVisibleColumns] = useState(
@@ -88,11 +88,11 @@ export default function Finances() {
 		[statusFilter, setStatusFilter] = useState("all"),
 		[rowsPerPage, setRowsPerPage] = useState(10),
 		[sortDescriptor, setSortDescriptor] = useState({
-			column: "id",
+			column: "status",
 			direction: "ascending",
 		}),
 		[page, setPage] = useState(1),
-		pages = Math.ceil((billings?.length ?? 0) / rowsPerPage),
+		pages = Math.ceil(payment?.length / rowsPerPage),
 		hasSearchFilter = Boolean(filterValue),
 		headerColumns = useMemo(() => {
 			if (visibleColumns === "all") return columns;
@@ -105,7 +105,7 @@ export default function Finances() {
 	const sortedItems = useFilteredPaginatedSortedItems({
 		filterValue,
 		hasSearchFilter,
-		item: billings,
+		item: payment,
 		page,
 		rowsPerPage,
 		sortDescriptor,
@@ -125,42 +125,36 @@ export default function Finances() {
 	);
 
 	const renderCell = useCallback(
-		(List, columnKey) => {
-			const cellValue = List[columnKey];
+		(payment, columnKey) => {
+			const cellValue = payment[columnKey];
 
 			switch (columnKey) {
-				case "name":
-					return List.name;
+				case "billing.name":
+					return payment.billing?.name;
+				case "student.name":
+					return payment.student?.name;
 				case "role":
 					return (
 						<div className="flex flex-col">
 							<p className="text-bold text-small capitalize">{cellValue}</p>
 							<p className="text-bold text-tiny text-default-500 capitalize">
-								{List.team}
+								{payment.team}
 							</p>
 						</div>
 					);
-				case "start_at":
-					return cellValue
-						? date.formatDateTime(cellValue, {
-								dateStyle: "long",
-						  })
-						: "-";
-				case "end_at":
-					return cellValue
-						? date.formatDateTime(cellValue, {
-								dateStyle: "long",
-						  })
-						: "-";
+				case "created_at":
+					return <DatePopover value={cellValue} />;
+				case "update_at":
+					return <DatePopover value={cellValue} />;
 				case "status":
 					return (
 						<Chip
 							className="text-default-600 gap-1 border-none capitalize"
-							color={statusColorMap[List.status]}
+							color={statusColorMap[payment.approval.status]}
 							size="sm"
 							variant="dot"
 						>
-							{cellValue}
+							{payment.approval.status}
 						</Chip>
 					);
 				case "actions":
@@ -174,7 +168,7 @@ export default function Finances() {
 								</DropdownTrigger>
 								<DropdownMenu
 									disabledKeys={["edit"]}
-									onAction={(item) => handleDropdownAction(item, List.id)}
+									onAction={(item) => handleDropdownAction(item, payment.id)}
 								>
 									<DropdownItem key="edit">แก้ไข</DropdownItem>
 									<DropdownItem
@@ -189,7 +183,7 @@ export default function Finances() {
 						</div>
 					);
 				default:
-					return cellValue === 0 ? cellValue : cellValue ? cellValue : "-";
+					return cellValue;
 			}
 		},
 		[handleDropdownAction],
@@ -219,6 +213,7 @@ export default function Finances() {
 							inputWrapper: "border-1",
 						}}
 						isClearable
+						isDisabled={!payment?.length}
 						onClear={() => setFilterValue("")}
 						onValueChange={onSearchChange}
 						placeholder="ค้นหาตามชื่อ..."
@@ -229,10 +224,7 @@ export default function Finances() {
 					/>
 					<div className="flex gap-3">
 						<Dropdown>
-							<DropdownTrigger
-								aria-label="Dropdown Trigger"
-								className="hidden sm:flex"
-							>
+							<DropdownTrigger className="hidden sm:flex">
 								<Button
 									endContent={<ChevronDownIcon className="text-small" />}
 									isDisabled={true}
@@ -258,10 +250,7 @@ export default function Finances() {
 							</DropdownMenu>
 						</Dropdown>
 						<Dropdown>
-							<DropdownTrigger
-								aria-label="dropdown-label"
-								className="hidden sm:flex"
-							>
+							<DropdownTrigger className="hidden sm:flex">
 								<Button
 									endContent={<ChevronDownIcon className="text-small" />}
 									size="sm"
@@ -285,16 +274,15 @@ export default function Finances() {
 								))}
 							</DropdownMenu>
 						</Dropdown>
-						<Model_AddFinance />
 					</div>
 				</div>
 
-				{billings?.length ? (
+				{payment?.length ? (
 					<div className="flex items-center justify-between">
 						<span className="text-small text-default-400">
-							มีทั้งหมด {billings?.length || 0} รายการ
+							มีทั้งหมด {payment?.length} คำขอ
 						</span>
-						{billings?.length <= rowsPerPage ? (
+						{payment?.length >= rowsPerPage ? (
 							<label className="text-small text-default-400 flex items-center">
 								แถวต่อหน้า:
 								<select
@@ -317,12 +305,14 @@ export default function Finances() {
 		filterValue,
 		statusFilter,
 		visibleColumns,
-		billings?.length,
+		payment?.length,
 		rowsPerPage,
 		onRowsPerPageChange,
 	]);
 
 	const bottomContent = useMemo(() => {
+		if (!payment?.length) return;
+
 		return (
 			<div className="flex items-center justify-between p-2">
 				<Pagination
@@ -337,9 +327,14 @@ export default function Finances() {
 					total={pages}
 					variant="light"
 				/>
+				{/* <span className="text-small text-default-400">
+					{selectedKeys === "all"
+						? "All items selected"
+						: `${selectedKeys.size} จาก ${items.length} เลือกแล้ว`}
+				</span> */}
 			</div>
 		);
-	}, [page, pages, hasSearchFilter]);
+	}, [payment?.length, hasSearchFilter, page, pages]);
 
 	const classNames = useMemo(
 		() => ({
@@ -356,15 +351,14 @@ export default function Finances() {
 		[],
 	);
 
-	if (billingsIsError || billingsIsLoading) {
+	if (paymentIsError || paymentIsLoading) {
 		return (
-			<LoadingSpinner isError={billingsIsError} isLoading={billingsIsLoading} />
+			<LoadingSpinner isError={paymentIsError} isLoading={paymentIsLoading} />
 		);
 	}
 
 	return (
 		<Table
-			aria-label="Example table with custom cells, pagination and sorting"
 			bottomContent={bottomContent}
 			bottomContentPlacement="outside"
 			checkboxesProps={{
@@ -394,7 +388,10 @@ export default function Finances() {
 					</TableColumn>
 				)}
 			</TableHeader>
-			<TableBody emptyContent={"ไม่พบ"} items={sortedItems}>
+			<TableBody
+				emptyContent={"ไม่พบการชำระเงินหรือคำขอใดๆ"}
+				items={sortedItems}
+			>
 				{(item) => (
 					<TableRow key={item.id}>
 						{(columnKey) => (

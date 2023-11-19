@@ -1,5 +1,5 @@
 import prisma from "@cmru-comsci-66/database";
-import type { Billing, Prisma } from "@cmru-comsci-66/database/node_modules/@prisma/client/index";
+import type { Payment } from "@cmru-comsci-66/database/node_modules/@prisma/client/index";
 import type { NextApiRequest, NextApiResponse } from "next";
 import type { SWRConfiguration } from "swr";
 import SWR from "swr";
@@ -8,16 +8,16 @@ import useSWRMutation from "swr/mutation";
 const defaultHeaders: HeadersInit = { "Content-Type": "application/json" };
 
 /**
- * @desc Get billings data
+ * @desc Get payment data
  * @example
  * await findBilling();
  * @returns {Promise<NextApiResponse>}
  */
-async function findBilling(select?: Prisma.BillingSelect) {
+async function findBilling() {
 	try {
-		return prisma.billing
+		return prisma.payment
 			.findMany({
-				select: select || undefined,
+				include: { billing: true, student: true, approval: true },
 				orderBy: {
 					id: "asc",
 				},
@@ -33,25 +33,24 @@ async function findBilling(select?: Prisma.BillingSelect) {
 }
 
 /**
- * @desc GET /api/billings
+ * @desc GET /api/payment
  * @example
- * fetch("/api/billings")
+ * fetch("/api/payment")
  *	.then((response) => response.json())
  *	.then((data) => data);
  * @returns {Promise<void>}
- * @link http://localhost:3000/api/billings
+ * @link http://localhost:3000/api/payment
  */
 export default async function handle(request: NextApiRequest, response: NextApiResponse) {
 	try {
 		switch (request.method) {
 			case "GET": {
-				const result = await findBilling(),
-					resultBillingStringified = result.map((item) => ({
-						...item,
-						discord_webhookId: item.discord_webhookId ? BigInt(item.discord_webhookId).toString() : "",
-					}));
+				const result = await findBilling();
+				const resultpaymenttringified = result.map((item) => {
+					return JSON.parse(JSON.stringify(item, (key, value) => (typeof value === "bigint" ? value.toString() : value)));
+				});
 
-				return response.status(200).json(resultBillingStringified);
+				return response.status(200).json(resultpaymenttringified);
 			}
 
 			default: {
@@ -59,24 +58,24 @@ export default async function handle(request: NextApiRequest, response: NextApiR
 			}
 		}
 	} catch (error) {
-		console.error("Error fetching billing data:", error);
+		console.error("Error fetching payment data:", error);
 		return response.status(500).json({ error: "Internal Server Error" });
 	}
 }
 
 /**
- * Get all billings data using SWR
+ * Get all payment data using SWR
  *
  * @returns {{
- *   billings: StringTypes[],
+ *   payment: StringTypes[],
  *   isLoading: Boolean,
  *   isError: Error
  * }}
  */
-export function useBillings(headers?: HeadersInit, options?: SWRConfiguration) {
+export function usePayment(headers?: HeadersInit, options?: SWRConfiguration) {
 	try {
 		const { data, error, isLoading } = SWR(
-			"/api/billings",
+			"/api/payment",
 			(...arguments_) =>
 				fetch(...arguments_, {
 					method: "get",
@@ -86,7 +85,7 @@ export function useBillings(headers?: HeadersInit, options?: SWRConfiguration) {
 		);
 
 		return {
-			billings: data as StringTypes[],
+			payment: data as StringTypes[],
 			isLoading,
 			isError: error,
 		};
@@ -96,11 +95,11 @@ export function useBillings(headers?: HeadersInit, options?: SWRConfiguration) {
 }
 
 /**
- * post billings data using useSWRMutation
+ * post payment data using useSWRMutation
  */
-export function postBillings() {
+export function postPayment() {
 	try {
-		return useSWRMutation("/api/post/billings", (url, { arg }: { arg: Billing }) =>
+		return useSWRMutation("/api/post/payment", (url, { arg }: { arg: Payment }) =>
 			fetch(url, { method: "post", body: JSON.stringify(arg), headers: defaultHeaders }).then((response) => response.json()),
 		);
 	} catch (error) {
@@ -109,11 +108,11 @@ export function postBillings() {
 }
 
 /**
- * delete billings data using useSWRMutation
+ * delete payment data using useSWRMutation
  */
-export function deleteBillings() {
+export function deletePayment() {
 	try {
-		return useSWRMutation("/api/post/billings/id:", (url, { arg }: { arg: string }) =>
+		return useSWRMutation("/api/post/payment/id:", (url, { arg }: { arg: string }) =>
 			fetch(url.replace("id:", arg), { method: "DELETE", headers: defaultHeaders }).then((response) => response.json()),
 		);
 	} catch (error) {
@@ -121,5 +120,5 @@ export function deleteBillings() {
 	}
 }
 
-export type Types = Billing[];
-export type StringTypes = Array<{ [K in keyof Billing]: string }>;
+export type Types = Payment[];
+export type StringTypes = Array<{ [K in keyof Payment]: string }>;

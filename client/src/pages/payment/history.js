@@ -1,13 +1,8 @@
 import { useArchivePaymentById } from "@api/archive";
-import { date } from "@cmru-comsci-66/utils";
 import { PaymentMerge } from "@lib/utils/payment";
 import {
 	Card,
 	Chip,
-	Popover,
-	PopoverContent,
-	PopoverTrigger,
-	Spinner,
 	Table,
 	TableBody,
 	TableCell,
@@ -19,6 +14,9 @@ import Head from "next/head";
 import Link from "next/link";
 import { useSession } from "next-auth/react";
 import { useCallback, useEffect, useState } from "react";
+
+import DatePopover from "@/components/popover/date";
+import LoadingSpinner from "@/components/spinner/loading";
 
 const columns = [
 	{ name: "วันที่", uid: "date" },
@@ -82,38 +80,7 @@ export default function PaymentHistory() {
 
 		switch (columnKey) {
 			case "date":
-				return (
-					<div className="flex flex-col">
-						{cellValue ? (
-							<Popover placement="bottom-start" showArrow>
-								<PopoverTrigger>
-									<p className="text-bold cursor-pointer text-sm capitalize">
-										{date.get(
-											{
-												dateStyle: "medium",
-											},
-											cellValue,
-										)}
-									</p>
-								</PopoverTrigger>
-								<PopoverContent>
-									<div className="px-1 py-2">
-										<div className="text-sm">
-											{date.get(
-												{
-													dateStyle: "full",
-												},
-												cellValue,
-											)}
-										</div>
-									</div>
-								</PopoverContent>
-							</Popover>
-						) : (
-							"-"
-						)}
-					</div>
-				);
+				return <DatePopover value={cellValue} />;
 			case "name":
 				if (!list.name) return;
 				return (
@@ -180,27 +147,15 @@ export default function PaymentHistory() {
 								</h2>
 								<Table
 									bottomContent={
-										!(!paymentIsLoading && payment?.length > 0) ? (
+										paymentIsLoading || paymentIsError ? (
 											<>
 												<div className="flex w-full justify-center">
-													<div>
-														<Spinner
-															color={paymentIsError ? "danger" : undefined}
-														/>
-													</div>
+													<LoadingSpinner
+														isError={paymentIsError}
+														isLoading={paymentIsLoading}
+													/>
 												</div>
-												{paymentIsError ? (
-													<div className="select-text text-center">
-														{`พบข้อผิดพลาด ${
-															paymentIsError?.message || paymentIsError
-														}`}
-													</div>
-												) : (
-													<div className="text-center">กำลังโหลดข้อมูล..</div>
-												)}
 											</>
-										) : !(payment?.length > 0) ? (
-											<div className="text-center">ไม่พบข้อมูล</div>
 										) : undefined
 									}
 									className="select-none"
@@ -229,6 +184,12 @@ export default function PaymentHistory() {
 										</TableHeader>
 									)}
 									<TableBody
+										emptyContent={
+											!(!paymentIsLoading && payment?.length > 0)
+												? undefined
+												: "ไม่พบข้อมูล"
+										}
+										hidden={paymentIsLoading}
 										isLoading={!(!paymentIsLoading && payment?.length > 0)}
 										items={data}
 									>
