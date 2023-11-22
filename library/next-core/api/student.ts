@@ -1,5 +1,5 @@
+import type { Prisma, StudentList } from "@cmru-comsci-66/database";
 import prisma from "@cmru-comsci-66/database";
-import type { Prisma, StudentList } from "@cmru-comsci-66/database/node_modules/@prisma/client/index";
 import type { NextApiRequest, NextApiResponse } from "next";
 import SWR from "swr";
 

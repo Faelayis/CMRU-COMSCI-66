@@ -24,4 +24,4 @@ if (typeof window === "undefined") {
 }
 
 export default prisma;
-export type * as PrismaTypes from "@prisma/client";
+export type * from "@prisma/client";

@@ -1,5 +1,5 @@
+import type { Billing, Prisma } from "@cmru-comsci-66/database";
 import prisma from "@cmru-comsci-66/database";
-import type { Billing, Prisma } from "@cmru-comsci-66/database/node_modules/@prisma/client/index";
 import { convert } from "@cmru-comsci-66/utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 import SWR from "swr";

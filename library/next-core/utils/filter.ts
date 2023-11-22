@@ -1,6 +1,7 @@
+import type { RoleType, User } from "@cmru-comsci-66/database";
 import { useMemo } from "react";
 
-export function useFilteredPaginatedSortedItems({ filterValue, hasSearchFilter, item, page, rowsPerPage, sortDescriptor, statusFilter, statusOptions }) {
+export function useFilterPaginatedSortedItems({ filterValue, hasSearchFilter, item, page, rowsPerPage, sortDescriptor, statusFilter, statusOptions }) {
 	const filteredItems = useMemo(() => {
 		let filteredItem = item ? [...item] : [];
 
@@ -34,4 +35,16 @@ export function useFilteredPaginatedSortedItems({ filterValue, hasSearchFilter, 
 	}, [sortDescriptor, items]);
 
 	return sortedItems;
+}
+
+export function useFilterRoles(list: { role: RoleType[] | false; roleExclude: RoleType[] }[], session?: { user: User }) {
+	return list.filter((item) => {
+		if (Array.isArray(item.role)) {
+			return item.role.includes(session?.user.role);
+		} else if (Array.isArray(item.roleExclude)) {
+			return !item.roleExclude.includes(session?.user.role);
+		} else if (item.role === false) {
+			return item;
+		}
+	});
 }

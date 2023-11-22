@@ -1,6 +1,6 @@
 import { deleteBillings, useBillings } from "@api/billings";
 import { date } from "@cmru-comsci-66/utils";
-import { useFilteredPaginatedSortedItems } from "@lib/utils/filtered";
+import { useFilterPaginatedSortedItems } from "@lib/utils/filter";
 import { capitalize } from "@lib/utils/finance";
 import {
 	Button,
@@ -21,51 +21,18 @@ import {
 import { useCallback, useMemo, useState } from "react";
 
 import LoadingSpinner from "@/components/spinner/loading";
+import {
+	Columns,
+	INITIAL_VISIBLE_COLUMNS,
+	StatusColorMap,
+	StatusOptions,
+} from "@/config/admin/finance";
+import { TableRowsPerPage } from "@/config/default";
 import Model_AddFinance from "@/dialog/admin/finance/add";
 
 import { ChevronDownIcon } from "../../icon/ChevronDownIcon";
 import { SearchIcon } from "../../icon/SearchIcon";
 import { VerticalDotsIcon } from "../../icon/VerticalDotsIcon";
-
-const columns = [
-	{ name: "ไอดี", sortable: true, uid: "id" },
-	{ name: "ชื่อ", sortable: true, uid: "name" },
-	{ name: "คำอธิบาย", uid: "description" },
-	{ name: "จำนวนเงิน", sortable: true, uid: "price" },
-	{ name: "ประเภท", sortable: true, uid: "types" },
-	{ name: "เริ่มต้น", sortable: true, uid: "start_at" },
-	{ name: "สิ้นสุด", sortable: true, uid: "end_at" },
-	{ name: "ตัวเลือก", uid: "actions" },
-];
-
-const statusOptions = [
-	{ name: "Active", uid: "waiting" },
-	{ name: "Succeed", uid: "succeed" },
-	{ name: "Failed", uid: "failed" },
-	{ name: "Refunded", uid: "refunded" },
-	{ name: "Pending Approval", uid: "pending_approval" },
-	{ name: "Cancelled", uid: "cancelled" },
-	{ name: "Chargeback", uid: "chargeback" },
-];
-
-const statusColorMap = {
-	cancelled: "default",
-	chargeback: "default",
-	failed: "warning",
-	pending_approval: "default",
-	refunded: "default",
-	succeed: "danger",
-	waiting: "success",
-};
-
-const INITIAL_VISIBLE_COLUMNS = [
-	"name",
-	"description",
-	"price",
-	"start_at",
-	"end_at",
-	"actions",
-];
 
 export default function Finances() {
 	const {
@@ -86,7 +53,7 @@ export default function Finances() {
 			new Set(INITIAL_VISIBLE_COLUMNS),
 		),
 		[statusFilter, setStatusFilter] = useState("all"),
-		[rowsPerPage, setRowsPerPage] = useState(10),
+		[rowsPerPage, setRowsPerPage] = useState(TableRowsPerPage),
 		[sortDescriptor, setSortDescriptor] = useState({
 			column: "id",
 			direction: "ascending",
@@ -95,14 +62,14 @@ export default function Finances() {
 		pages = Math.ceil((billings?.length ?? 0) / rowsPerPage),
 		hasSearchFilter = Boolean(filterValue),
 		headerColumns = useMemo(() => {
-			if (visibleColumns === "all") return columns;
+			if (visibleColumns === "all") return Columns;
 
-			return columns.filter((column) =>
+			return Columns.filter((column) =>
 				Array.from(visibleColumns).includes(column.uid),
 			);
 		}, [visibleColumns]);
 
-	const sortedItems = useFilteredPaginatedSortedItems({
+	const sortedItems = useFilterPaginatedSortedItems({
 		filterValue,
 		hasSearchFilter,
 		item: billings,
@@ -110,7 +77,7 @@ export default function Finances() {
 		rowsPerPage,
 		sortDescriptor,
 		statusFilter,
-		statusOptions,
+		statusOptions: StatusOptions,
 	});
 
 	const handleDropdownAction = useCallback(
@@ -135,7 +102,7 @@ export default function Finances() {
 					return (
 						<div className="flex flex-col">
 							<p className="text-bold text-small capitalize">{cellValue}</p>
-							<p className="text-bold text-tiny capitalize text-default-500">
+							<p className="text-bold text-tiny text-default-500 capitalize">
 								{List.team}
 							</p>
 						</div>
@@ -155,8 +122,8 @@ export default function Finances() {
 				case "status":
 					return (
 						<Chip
-							className="gap-1 border-none capitalize text-default-600"
-							color={statusColorMap[List.status]}
+							className="text-default-600 gap-1 border-none capitalize"
+							color={StatusColorMap[List.status]}
 							size="sm"
 							variant="dot"
 						>
@@ -250,7 +217,7 @@ export default function Finances() {
 								selectedKeys={statusFilter}
 								selectionMode="multiple"
 							>
-								{statusOptions.map((status) => (
+								{StatusOptions.map((status) => (
 									<DropdownItem className="capitalize" key={status.uid}>
 										{capitalize(status.name)}
 									</DropdownItem>
@@ -278,7 +245,7 @@ export default function Finances() {
 								selectedKeys={visibleColumns}
 								selectionMode="multiple"
 							>
-								{columns.map((column) => (
+								{Columns.map((column) => (
 									<DropdownItem className="capitalize" key={column.uid}>
 										{capitalize(column.name)}
 									</DropdownItem>
@@ -295,10 +262,10 @@ export default function Finances() {
 							มีทั้งหมด {billings?.length || 0} รายการ
 						</span>
 						{billings?.length <= rowsPerPage ? (
-							<label className="flex items-center text-small text-default-400">
+							<label className="text-small text-default-400 flex items-center">
 								แถวต่อหน้า:
 								<select
-									className="bg-transparent text-small text-default-400 outline-none"
+									className="text-small text-default-400 bg-transparent outline-none"
 									onChange={onRowsPerPageChange}
 								>
 									<option value="10">10</option>

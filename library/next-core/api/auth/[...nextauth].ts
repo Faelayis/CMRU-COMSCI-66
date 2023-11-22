@@ -1,5 +1,5 @@
+import type { RoleType, User } from "@cmru-comsci-66/database";
 import prisma from "@cmru-comsci-66/database";
-import type { $Enums, User } from "@cmru-comsci-66/database/node_modules/@prisma/client/index";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import NextAuth from "next-auth";
 import GoogleProvider, { GoogleProfile } from "next-auth/providers/google";
@@ -40,14 +40,14 @@ export default NextAuth({
 				};
 
 				if (profile.hd === "g.cmru.ac.th") {
-					user.role = "viewer" as $Enums.RoleType;
+					user.role = "viewer" as RoleType;
 
 					try {
 						const studentId = Number(profile.email?.split("@")[0] || 0),
 							student = await prisma.studentList.findUniqueOrThrow({ where: { id: studentId } });
 
 						if (studentId && student) {
-							user.role = "user" as $Enums.RoleType;
+							user.role = "user" as RoleType;
 							user.studentId = studentId;
 						}
 					} catch (error) {

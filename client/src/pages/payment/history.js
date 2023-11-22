@@ -17,14 +17,7 @@ import { useCallback, useEffect, useState } from "react";
 
 import DatePopover from "@/components/popover/date";
 import LoadingSpinner from "@/components/spinner/loading";
-
-const columns = [
-	{ name: "วันที่", uid: "date" },
-	{ name: "รายการ", uid: "name" },
-	{ name: "จำนวนเงิน", uid: "amount" },
-	{ name: "สถานะ", uid: "status" },
-	{ name: "รายละเอียด", uid: "details" },
-];
+import { Columns } from "@/config/payment";
 
 export default function PaymentHistory() {
 	const { data: session, status } = useSession();
@@ -161,7 +154,7 @@ export default function PaymentHistory() {
 									className="select-none"
 								>
 									{isDesktop ? (
-										<TableHeader columns={columns}>
+										<TableHeader columns={Columns}>
 											{(column) => (
 												<TableColumn
 													align={column.uid === "actions" ? "center" : "start"}
@@ -172,7 +165,7 @@ export default function PaymentHistory() {
 											)}
 										</TableHeader>
 									) : (
-										<TableHeader columns={columns.slice(1, 4)}>
+										<TableHeader columns={Columns.slice(1, 4)}>
 											{(column) => (
 												<TableColumn
 													align={column.uid === "actions" ? "center" : "start"}

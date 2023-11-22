@@ -1,5 +1,5 @@
 import { deletePayment, usePayment } from "@api/payment";
-import { useFilteredPaginatedSortedItems } from "@lib/utils/filtered";
+import { useFilterPaginatedSortedItems } from "@lib/utils/filter";
 import { capitalize } from "@lib/utils/finance";
 import {
 	Button,
@@ -21,50 +21,17 @@ import { useCallback, useMemo, useState } from "react";
 
 import DatePopover from "@/components/popover/date";
 import LoadingSpinner from "@/components/spinner/loading";
+import {
+	Columns,
+	INITIAL_VISIBLE_COLUMNS,
+	StatusColorMap,
+	StatusOptions,
+} from "@/config/admin/payment";
+import { TableRowsPerPage } from "@/config/default";
 
 import { ChevronDownIcon } from "../../icon/ChevronDownIcon";
 import { SearchIcon } from "../../icon/SearchIcon";
 import { VerticalDotsIcon } from "../../icon/VerticalDotsIcon";
-
-const columns = [
-	{ name: "ไอดี", sortable: true, uid: "id" },
-	{ name: "รายการ", sortable: true, uid: "billing.name" },
-	{ name: "คำอธิบาย", uid: "description" },
-	{ name: "จำนวนเงิน", uid: "amount" },
-	{ name: "สถานะ", sortable: true, uid: "status" },
-	{ name: "โดย", uid: "student.name" },
-	{ name: "สร้าง", sortable: true, uid: "created_at" },
-	{ name: "อัปเดต", sortable: true, uid: "update_at" },
-	{ name: "ตัวเลือก", uid: "actions" },
-];
-
-const statusOptions = [
-	{ name: "เสร็จสิ้น ", uid: "succeed" },
-	{ name: "รอ", uid: "waiting" },
-	{ name: "รอการอนุมัติ", uid: "pending_approval" },
-	{ name: "ยกเลิก", uid: "cancelled" },
-	{ name: "ล้มเหลว", uid: "failed" },
-	{ name: "คืนเงินแล้ว", uid: "refunded" },
-	{ name: "ปฏิเสธการชำระเงิน", uid: "chargeback" },
-];
-
-const statusColorMap = {
-	cancelled: "default",
-	chargeback: "default",
-	failed: "warning",
-	pending_approval: "default",
-	refunded: "default",
-	succeed: "danger",
-	waiting: "danger",
-};
-
-const INITIAL_VISIBLE_COLUMNS = [
-	"billing.name",
-	"amount",
-	"status",
-	"actions",
-	"student.name",
-];
 
 export default function App() {
 	const {
@@ -86,7 +53,7 @@ export default function App() {
 			new Set(INITIAL_VISIBLE_COLUMNS),
 		),
 		[statusFilter, setStatusFilter] = useState("all"),
-		[rowsPerPage, setRowsPerPage] = useState(10),
+		[rowsPerPage, setRowsPerPage] = useState(TableRowsPerPage),
 		[sortDescriptor, setSortDescriptor] = useState({
 			column: "status",
 			direction: "ascending",
@@ -95,14 +62,14 @@ export default function App() {
 		pages = Math.ceil(payment?.length / rowsPerPage),
 		hasSearchFilter = Boolean(filterValue),
 		headerColumns = useMemo(() => {
-			if (visibleColumns === "all") return columns;
+			if (visibleColumns === "all") return Columns;
 
-			return columns.filter((column) =>
+			return Columns.filter((column) =>
 				Array.from(visibleColumns).includes(column.uid),
 			);
 		}, [visibleColumns]);
 
-	const sortedItems = useFilteredPaginatedSortedItems({
+	const sortedItems = useFilterPaginatedSortedItems({
 		filterValue,
 		hasSearchFilter,
 		item: payment,
@@ -110,7 +77,7 @@ export default function App() {
 		rowsPerPage,
 		sortDescriptor,
 		statusFilter,
-		statusOptions,
+		statusOptions: StatusOptions,
 	});
 
 	const handleDropdownAction = useCallback(
@@ -137,7 +104,7 @@ export default function App() {
 					return (
 						<div className="flex flex-col">
 							<p className="text-bold text-small capitalize">{cellValue}</p>
-							<p className="text-bold text-tiny capitalize text-default-500">
+							<p className="text-bold text-tiny text-default-500 capitalize">
 								{payment.team}
 							</p>
 						</div>
@@ -149,8 +116,8 @@ export default function App() {
 				case "status":
 					return (
 						<Chip
-							className="gap-1 border-none capitalize text-default-600"
-							color={statusColorMap[payment.approval.status]}
+							className="text-default-600 gap-1 border-none capitalize"
+							color={StatusColorMap[payment.approval.status]}
 							size="sm"
 							variant="dot"
 						>
@@ -242,7 +209,7 @@ export default function App() {
 								selectedKeys={statusFilter}
 								selectionMode="multiple"
 							>
-								{statusOptions.map((status) => (
+								{StatusOptions.map((status) => (
 									<DropdownItem className="capitalize" key={status.uid}>
 										{capitalize(status.name)}
 									</DropdownItem>
@@ -267,7 +234,7 @@ export default function App() {
 								selectedKeys={visibleColumns}
 								selectionMode="multiple"
 							>
-								{columns.map((column) => (
+								{Columns.map((column) => (
 									<DropdownItem className="capitalize" key={column.uid}>
 										{capitalize(column.name)}
 									</DropdownItem>
@@ -283,10 +250,10 @@ export default function App() {
 							มีทั้งหมด {payment?.length} คำขอ
 						</span>
 						{payment?.length >= rowsPerPage ? (
-							<label className="flex items-center text-small text-default-400">
+							<label className="text-small text-default-400 flex items-center">
 								แถวต่อหน้า:
 								<select
-									className="bg-transparent text-small text-default-400 outline-none"
+									className="text-small text-default-400 bg-transparent outline-none"
 									onChange={onRowsPerPageChange}
 								>
 									<option value="10">10</option>

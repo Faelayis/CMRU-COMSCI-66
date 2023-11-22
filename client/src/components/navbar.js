@@ -1,5 +1,8 @@
 import { faGoogle } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// eslint-disable-next-line no-unused-vars
+import { DropdownItemKeyTypes } from "@lib/types/navbar";
+import { useFilterRoles } from "@lib/utils/filter";
 import {
 	Avatar,
 	Button,
@@ -21,7 +24,8 @@ import { useRouter } from "next/router";
 import { signIn, signOut, useSession } from "next-auth/react";
 import React from "react";
 
-import ModelComp from "@/dialog/pay";
+import { dropdownItem, navigationItem } from "@/config/navbar";
+import ModelDialogPay from "@/dialog/pay";
 
 export default function NavbarComp() {
 	const router = useRouter(),
@@ -32,47 +36,17 @@ export default function NavbarComp() {
 	const { data: session, status } = useSession();
 	const isLogin = status === "authenticated" || status === "loading";
 	const [isMenuOpen, setIsMenuOpen] = React.useState(false);
-
-	const menuItems = filterRole([
-		{ label: "แกลเลอรี่", role: ["developer"], url: "/contents/gallery" },
-		{ label: "สิ่งที่ต้องทำ", role: ["developer"], url: "/contents/todo" },
-		{ label: "เกี่ยวกับเรา", role: ["developer"], url: "/contents/about" },
-	]);
-
-	const dropdownDisabled =
-		session?.user?.role === "developer"
-			? []
-			: ["profile", "dashboard", "settings", "help_and_feedback"];
-
-	const dropdownItem = {
-		1: filterRole([
-			{
-				key: "payment_history",
-				name: "ประวัติจ่ายเงิน",
-				roleExclude: ["unknown"],
-			},
-			{
-				key: "dashboard",
-				name: "แดชบอร์ด",
-				role: ["developer", "admin"],
-			},
-			{
-				key: "settings",
-				name: "การตั้งค่า",
-				role: false,
-			},
-		]),
-		2: filterRole([
-			{
-				key: "help_and_feedback",
-				name: "ความช่วยเหลือและข้อเสนอแนะ",
-				role: false,
-			},
-		]),
+	const menuItems = useFilterRoles(navigationItem, session);
+	const dropdownItems = {
+		1: useFilterRoles(dropdownItem[1], session),
+		2: useFilterRoles(dropdownItem[2], session),
 	};
 
-	function Actions(item) {
-		switch (item) {
+	/**
+	 * @param {DropdownItemKeyTypes} key
+	 */
+	function Actions(key) {
+		switch (key) {
 			case "payment_history":
 				openURL("/payment/history");
 				break;
@@ -89,18 +63,6 @@ export default function NavbarComp() {
 				signOut();
 				break;
 		}
-	}
-
-	function filterRole(list) {
-		return list.filter((item) => {
-			if (item.role?.length) {
-				return item.role.includes(session?.user?.role);
-			} else if (item.roleExclude?.length) {
-				return !item.roleExclude?.includes(session?.user?.role);
-			} else if (item.role === false) {
-				return item;
-			}
-		});
 	}
 
 	return (
@@ -140,7 +102,7 @@ export default function NavbarComp() {
 			<NavbarContent as="div" justify="end">
 				{session ? (
 					<>
-						<ModelComp />
+						<ModelDialogPay />
 						<Dropdown placement="bottom-end">
 							<DropdownTrigger>
 								<Avatar
@@ -156,7 +118,11 @@ export default function NavbarComp() {
 
 							<DropdownMenu
 								aria-label="Actions"
-								disabledKeys={dropdownDisabled}
+								disabledKeys={
+									session?.user.role === "developer"
+										? []
+										: dropdownItem.disabled
+								}
 								onAction={(item) => Actions(item)}
 								selectionMode="none"
 								variant="flat"
@@ -181,14 +147,14 @@ export default function NavbarComp() {
 										/>
 									</DropdownItem>
 
-									{dropdownItem[1]?.map((item) => (
+									{dropdownItems[1]?.map((item) => (
 										<DropdownItem key={item.key}>{item.name}</DropdownItem>
 									))}
 								</DropdownSection>
 
-								{dropdownItem[2]?.length ? (
+								{dropdownItems[2]?.length ? (
 									<DropdownSection aria-label="Help & Feedback" showDivider>
-										{dropdownItem[2]?.map((item) => (
+										{dropdownItems[2]?.map((item) => (
 											<DropdownItem key={item.key}>{item.name}</DropdownItem>
 										))}
 									</DropdownSection>

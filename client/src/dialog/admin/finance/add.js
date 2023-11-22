@@ -34,9 +34,8 @@ export default function ModelComp() {
 				name: name,
 				price: price,
 				start_at: startDate,
-			}).then(() => {
+			})?.then(() => {
 				onClose();
-
 				setName();
 				setPrice();
 				setDescription();

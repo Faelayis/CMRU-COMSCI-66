@@ -1,5 +1,5 @@
+import type { Subject } from "@cmru-comsci-66/database";
 import prisma from "@cmru-comsci-66/database";
-import type { Subject } from "@cmru-comsci-66/database/node_modules/@prisma/client/index";
 import type { GetServerSidePropsResult, NextApiRequest, NextApiResponse } from "next";
 
 /**

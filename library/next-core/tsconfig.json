@@ -16,6 +16,9 @@
 		"incremental": true,
 		"sourceMap": true,
 		"paths": {
+			"@lib/types/*": [
+				"../../client/src/lib/types/*"
+			],
 			"@lib/base/*": [
 				"../../client/src/lib/base/*"
 			],
@@ -82,6 +85,9 @@
 		]
 	},
 	"references": [
+		{
+			"path": "./types/tsconfig.json"
+		},
 		{
 			"path": "./swal/tsconfig.json"
 		},

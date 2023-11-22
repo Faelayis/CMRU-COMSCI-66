@@ -14,12 +14,13 @@ import {
 	ModalHeader,
 	Select,
 	SelectItem,
-	Spinner,
 	useDisclosure,
 } from "@nextui-org/react";
 import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { useRef, useState } from "react";
+
+import LoadingSpinner from "@/components/spinner/loading";
 
 /** @type {ObjectTypes} */
 let checkStudent;
@@ -39,7 +40,7 @@ export default function ModelComp() {
 		} = useStudent();
 
 	const { data: session } = useSession();
-	const { isOpen, onOpen, onOpenChange } = useDisclosure();
+	const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
 	const [selectedFile, setSelectedFile] = useState();
 	const [fullname, setFullname] = useState();
 	const [studentid, setStudentId] = useState(session.user?.studentId);
@@ -53,12 +54,13 @@ export default function ModelComp() {
 			inputRef.current.click();
 		};
 
-	if (billingsIsLoading || studentIsLoading) {
-		return <Spinner label="กำลังโหลดข้อมูล.." size="sm" />;
-	}
-
-	if (billingsIsError || studentIsError) {
-		return <Spinner color="danger" label="ไม่สามารถโหลดข้อมูลได้" size="sm" />;
+	if (studentIsLoading || billingsIsLoading) {
+		return (
+			<LoadingSpinner
+				isError={studentIsError || billingsIsError}
+				isLoading={billingsIsLoading || studentIsLoading}
+			/>
+		);
 	}
 
 	if (session.user?.studentId) {
@@ -66,19 +68,30 @@ export default function ModelComp() {
 	}
 
 	const handleSubmit = async () => {
-		const data = new Handle();
+		try {
+			const forms = new Handle();
 
-		data.fullname = fullname || checkStudent.name;
-		data.studentid = studentid;
-		data.price = price || (event?.price ?? pricePlace);
-		data.note = note;
-		data.event = event;
+			forms.fullname = fullname || checkStudent.name;
+			forms.studentid = studentid;
+			forms.price = price || (event?.price ?? pricePlace);
+			forms.note = note;
+			forms.event = event;
 
-		if (data.files !== selectedFile) {
-			data.files = selectedFile;
+			if (forms.files !== selectedFile) {
+				forms.files = selectedFile;
+			}
+
+			forms.send()?.then(() => {
+				onClose();
+				setSelectedFile();
+				setPrice();
+				setPricePlace();
+				setNote();
+				setEvent();
+			});
+		} catch (error) {
+			console.error(error);
 		}
-
-		data.send();
 	};
 
 	return (
