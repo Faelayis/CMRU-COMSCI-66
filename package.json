@@ -2,7 +2,7 @@
 	"$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/package.json",
 	"private": true,
 	"name": "cmru-comsci-66",
-	"version": "1.9.4",
+	"version": "1.9.5",
 	"license": "apache-2.0",
 	"type": "module",
 	"scripts": {
@@ -31,6 +31,7 @@
 		"prepare:windows": "husky install",
 		"prettier": "pnpm -w --filter=* format --list-different",
 		"prettier:json": "pnpm prettier-package-json --write **/package.json --use-tabs false",
+		"rebuild": "pnpm run clean && pnpm run lib:build",
 		"start": "dotenv -e .env -- turbo run start"
 	},
 	"workspaces": [
@@ -91,6 +92,11 @@
 		"peerDependencyRules": {
 			"allowAny": [
 				"@typescript-eslint/parser"
+			]
+		},
+		"updateConfig": {
+			"ignoreDependencies": [
+				"@types/nodemailer"
 			]
 		}
 	},
