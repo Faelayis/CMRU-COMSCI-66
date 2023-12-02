@@ -10,12 +10,12 @@ on:
             notest:
                 description: "Skip (Test & Fix Problems)"
                 required: false
-                default: false
+                default: true
                 type: boolean
             nobumpversion:
                 description: "Skip (Bump version)"
                 required: false
-                default: false
+                default: true
                 type: boolean
             bumpversion:
                 type: choice
