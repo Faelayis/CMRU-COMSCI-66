@@ -19,6 +19,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
               with:
+                  token: ${{ secrets.GH_TOKEN_SUBMODULES }}
                   submodules: true
 
             - name: Setup PNPM

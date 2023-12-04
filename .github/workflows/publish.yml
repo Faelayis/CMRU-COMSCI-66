@@ -46,6 +46,7 @@ jobs:
             - name: Checkout
               uses: actions/checkout@v4
               with:
+                  token: ${{ secrets.GH_TOKEN_SUBMODULES }}
                   submodules: true
 
             - name: Setup PNPM
@@ -150,6 +151,8 @@ jobs:
               uses: actions/checkout@v4
               with:
                   ref: ${{ github.ref }}
+                  token: ${{ secrets.GH_TOKEN_SUBMODULES }}
+                  submodules: true
 
             - name: Deploy to Vercel
               uses: amondnet/vercel-action@v25
