@@ -18,7 +18,7 @@
 	"dependencies": {
 		"@cmru-comsci-66/api": "1.4.13",
 		"@cmru-comsci-66/database": "workspace:*",
-		"@cmru-comsci-66/utils": "1.4.4",
+		"@cmru-comsci-66/utils": "1.4.5",
 		"@fortawesome/fontawesome-svg-core": "6.5.1",
 		"@fortawesome/free-brands-svg-icons": "6.5.1",
 		"@fortawesome/free-solid-svg-icons": "6.5.1",
