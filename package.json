@@ -2,13 +2,12 @@
 	"$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/package.json",
 	"private": true,
 	"name": "cmru-comsci-66",
-	"version": "1.9.9",
+	"version": "1.9.10",
 	"license": "apache-2.0",
 	"type": "module",
 	"scripts": {
 		"build": "pnpm lib:build && pnpm --parallel --filter=./client build",
 		"clean": "node ./script/clean-temp.js && pnpm --filter=* clean",
-		"clear": "git clean -f -d",
 		"client": "pnpm --filter=client",
 		"copy": "copyfiles .env ./library/database",
 		"dev": "dotenv -e .env -- turbo run dev",
@@ -55,15 +54,15 @@
 		"eslint-plugin-unicorn": "49.0.0",
 		"git-pull-run": "1.4.0",
 		"husky": "8.0.3",
-		"lint-staged": "15.1.0",
+		"lint-staged": "15.2.0",
 		"open-cli": "7.2.0",
 		"prettier": "3.1.0",
 		"prettier-package-json": "2.8.0",
 		"prettier-plugin-sort-json": "3.1.0",
 		"run-script-os": "1.1.6",
-		"ts-node": "10.9.1",
+		"ts-node": "10.9.2",
 		"tslib": "2.6.2",
-		"turbo": "1.10.16"
+		"turbo": "1.11.1"
 	},
 	"engines": {
 		"node": ">=18",
