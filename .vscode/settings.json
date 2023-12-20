@@ -7,8 +7,8 @@
 	},
 	"debug.console.closeOnEnd": true,
 	"editor.codeActionsOnSave": {
-		"source.organizeImports": false,
-		"source.fixAll.eslint": true
+		"source.organizeImports": "explicit",
+		"source.fixAll.eslint": "explicit"
 	},
 	"editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
 	"editor.formatOnSave": true,
