@@ -1,14 +1,8 @@
 {
-	"[javascript]": {
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
-	},
-	"[typescript]": {
-		"editor.defaultFormatter": "dbaeumer.vscode-eslint"
-	},
 	"debug.console.closeOnEnd": true,
 	"editor.codeActionsOnSave": {
-		"source.organizeImports": "explicit",
-		"source.fixAll.eslint": "explicit"
+		"source.organizeImports": false,
+		"source.fixAll.eslint": "always"
 	},
 	"editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
 	"editor.formatOnSave": true,
