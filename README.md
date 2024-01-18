@@ -8,7 +8,7 @@
 
 ## 📝 License
 
-Copyright © 2023 [Faelayis](https://github.com/Faelayis) & [zismaildev](https://github.com/ZismailDev).<br>
+Copyright © 2024 CMRU Computer Science 2023AY<br>
 This project is [Apache License 2.0](https://github.com/Faelayis/CMRU-COMSCI-66/blob/main/LICENSE) licensed.
 
 ---
