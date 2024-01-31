@@ -1,9 +1,9 @@
 {
-	"debug.console.closeOnEnd": true,
-   "[typescript]": {
+	"[typescript]": {
 		"editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
 	},
-   "editor.codeActionsOnSave": {
+	"debug.console.closeOnEnd": true,
+	"editor.codeActionsOnSave": {
 		"source.fixAll.eslint": "always",
 		"source.organizeImports": "never"
 	},
