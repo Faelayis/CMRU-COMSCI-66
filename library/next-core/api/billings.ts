@@ -44,6 +44,7 @@ async function findBilling(select?: Prisma.BillingSelect) {
 export default async function handle(request: NextApiRequest, response: NextApiResponse) {
 	try {
 		switch (request.method) {
+			case "HEAD":
 			case "GET": {
 				const result = await findBilling(),
 					resultBillingStringified = result.map((item) => ({
