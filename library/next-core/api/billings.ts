@@ -43,7 +43,7 @@ async function findBilling(select?: Prisma.BillingSelect) {
  */
 export default async function handle(request: NextApiRequest, response: NextApiResponse) {
 	try {
-		switch (request.method) {
+		switch (request.method.toUpperCase()) {
 			case "HEAD":
 			case "GET": {
 				const result = await findBilling(),
