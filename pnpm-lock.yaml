@@ -88,7 +88,7 @@ importers:
     dependencies:
       '@cmru-comsci-66/api':
         specifier: 1.4.15
-        version: link:../library/api
+        version: 1.4.15
       '@cmru-comsci-66/database':
         specifier: workspace:*
         version: link:../library/database
@@ -187,8 +187,8 @@ importers:
         specifier: 1.4.7
         version: link:../utils
       axios:
-        specifier: 1.6.2
-        version: 1.6.2
+        specifier: 1.6.8
+        version: 1.6.8
       discord-api-types:
         specifier: 0.37.66
         version: 0.37.66
@@ -295,6 +295,20 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.0
+
+  /@cmru-comsci-66/api@1.4.15:
+    resolution: {integrity: sha512-dSVyk/JDcHLUWXVF6lnfuczBr016DsJWj8GHr4NI2NoqxBaAcGl5eM2r2oE1rQWIwnnLyVD2dQMLsYBO02zOiw==}
+    dependencies:
+      '@cmru-comsci-66/utils': 1.4.7
+      axios: 1.6.2
+      discord-api-types: 0.37.66
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@cmru-comsci-66/utils@1.4.7:
+    resolution: {integrity: sha512-UnFIFVBsicrdo8BKLGoJ9fX4STd1pRBsHlg4FUzm7lI220sF+ve9FcXUwr6eyX+BsNhKpow1Zh5E193a0dQqUA==}
+    dev: false
 
   /@cspotcode/source-map-support@0.8.1:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
@@ -3822,6 +3836,16 @@ packages:
       - debug
     dev: false
 
+  /axios@1.6.8:
+    resolution: {integrity: sha512-v/ZHtJDU39mDpyBoFVkETcd/uNdxrWRrg3bKpOKzXFA6Bvqopts6ALSMU3y6ijYxbw2B+wPrIv46egTzJXCLGQ==}
+    dependencies:
+      follow-redirects: 1.15.6
+      form-data: 4.0.0
+      proxy-from-env: 1.1.0
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
   /axobject-query@3.2.1:
     resolution: {integrity: sha512-jsyHu61e6N4Vbz/v18DHwWYKK0bSWLqn47eeDSKPB7m8tqMHF9YJ+mhIk2lVteyZrY8tnSj/jHOv4YiTCuCJgg==}
     dependencies:
@@ -5224,6 +5248,16 @@ packages:
 
   /follow-redirects@1.15.3:
     resolution: {integrity: sha512-1VzOtuEM8pC9SFU1E+8KfTjZyMztRsgEfwQl44z8A25uy13jSzTj6dyK2Df52iV0vgHCfBwLhDWevLn95w5v6Q==}
+    engines: {node: '>=4.0'}
+    peerDependencies:
+      debug: '*'
+    peerDependenciesMeta:
+      debug:
+        optional: true
+    dev: false
+
+  /follow-redirects@1.15.6:
+    resolution: {integrity: sha512-wWN62YITEaOpSK584EZXJafH1AGpO8RVgElfkuXbTOrPX4fIfOyEpW/CsiNd8JdYrAoOvafRTOEnvsO++qCqFA==}
     engines: {node: '>=4.0'}
     peerDependencies:
       debug: '*'
