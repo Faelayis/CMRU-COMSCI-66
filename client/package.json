@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@cmru-comsci-66/client",
-	"version": "1.11.7",
+	"version": "1.11.8",
 	"scripts": {
 		"PORT": "3000",
 		"build": "next build",
@@ -47,7 +47,7 @@
 		"eslint-plugin-react": "7.33.2",
 		"eslint-plugin-tailwindcss": "3.13.0",
 		"fs-extra": "11.2.0",
-		"postcss": "8.4.32",
+		"postcss": "8.4.38",
 		"react-dom": "18.2.0"
 	},
 	"publishConfig": {
