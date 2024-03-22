@@ -242,7 +242,7 @@ export default function ModelComp() {
 
 													value
 														? (setPrice(value.price),
-														  setPricePlace(value.price))
+															setPricePlace(value.price))
 														: (setPrice(), setPricePlace());
 
 													setEvent(value);

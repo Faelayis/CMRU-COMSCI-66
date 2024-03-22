@@ -111,13 +111,13 @@ export default function Finances() {
 					return cellValue
 						? date.formatDateTime(cellValue, {
 								dateStyle: "long",
-						  })
+							})
 						: "-";
 				case "end_at":
 					return cellValue
 						? date.formatDateTime(cellValue, {
 								dateStyle: "long",
-						  })
+							})
 						: "-";
 				case "status":
 					return (

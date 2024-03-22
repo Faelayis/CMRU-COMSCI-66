@@ -17,7 +17,7 @@ export default NextAuth({
 				debug(code, metadata) {
 					console.debug(code, metadata);
 				},
-		  }
+			}
 		: undefined,
 	session: {
 		maxAge: 90 * 24 * 60 * 60, // 3 month

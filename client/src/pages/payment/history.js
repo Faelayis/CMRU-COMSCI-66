@@ -61,8 +61,8 @@ export default function PaymentHistory() {
 				const text = isPaid
 					? "จ่ายแล้ว"
 					: isPending
-					  ? "รอตรวจสอบ"
-					  : "ไม่ได้จ่าย";
+						? "รอตรวจสอบ"
+						: "ไม่ได้จ่าย";
 
 				return (
 					<Chip className="capitalize" color={color} size="sm" variant="flat">
