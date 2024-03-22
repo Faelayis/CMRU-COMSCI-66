@@ -1,7 +1,7 @@
 {
 	"private": false,
 	"name": "@cmru-comsci-66/api",
-	"version": "1.4.16",
+	"version": "1.4.17",
 	"license": "apache-2.0",
 	"author": "Faelayis <48393914+Faelayis@users.noreply.github.com>",
 	"repository": {
@@ -39,7 +39,7 @@
 	"dependencies": {
 		"@cmru-comsci-66/utils": "1.4.7",
 		"axios": "1.6.8",
-		"discord-api-types": "0.37.66"
+		"discord-api-types": "0.37.76"
 	},
 	"devDependencies": {
 		"@types/node": "20.10.4",
