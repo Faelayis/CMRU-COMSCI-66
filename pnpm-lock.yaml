@@ -88,7 +88,7 @@ importers:
     dependencies:
       '@cmru-comsci-66/api':
         specifier: 1.4.17
-        version: link:../library/api
+        version: 1.4.17
       '@cmru-comsci-66/database':
         specifier: workspace:*
         version: link:../library/database
@@ -295,6 +295,20 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.0
+
+  /@cmru-comsci-66/api@1.4.17:
+    resolution: {integrity: sha512-HZqRBeD28/y6ykp1iUPRsoGEyB0rUAVvX6nEjyctLNtb5nKq5nHXVdN/Hz/erWUyAPbU2FOkGtSe+WImEh/4uw==}
+    dependencies:
+      '@cmru-comsci-66/utils': 1.4.7
+      axios: 1.6.8
+      discord-api-types: 0.37.76
+    transitivePeerDependencies:
+      - debug
+    dev: false
+
+  /@cmru-comsci-66/utils@1.4.7:
+    resolution: {integrity: sha512-UnFIFVBsicrdo8BKLGoJ9fX4STd1pRBsHlg4FUzm7lI220sF+ve9FcXUwr6eyX+BsNhKpow1Zh5E193a0dQqUA==}
+    dev: false
 
   /@cspotcode/source-map-support@0.8.1:
     resolution: {integrity: sha512-IchNf6dN4tHoMFIn/7OE8LWZ19Y6q/67Bmf6vnGREv8RSbBVb9LPJxEcnwrcwX6ixSvaiGoomAUvu4YSxXrVgw==}
