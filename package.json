@@ -25,7 +25,7 @@
 		"lint": "pnpm --filter=* lint",
 		"pkg:clean": "pnpx del-cli@latest ./**/node_modules",
 		"pkg:update": "pnpm up --latest --recursive --interactive",
-		"prepare": "run-script-os && pnpm run --silent copy && pnpm turbo daemon clean",
+		"prepare": "run-script-os && pnpm run --silent copy",
 		"prepare:nix": "husky install && chmod ug+x .husky/*",
 		"prepare:windows": "husky install",
 		"prettier": "pnpm -w --filter=* format --list-different",
