@@ -2,7 +2,7 @@
 	"$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/package.json",
 	"private": true,
 	"name": "cmru-comsci-66",
-	"version": "1.9.14",
+	"version": "1.9.15",
 	"license": "apache-2.0",
 	"type": "module",
 	"scripts": {
@@ -62,7 +62,7 @@
 		"run-script-os": "1.1.6",
 		"ts-node": "10.9.2",
 		"tslib": "2.6.2",
-		"turbo": "1.11.1"
+		"turbo": "1.13.0"
 	},
 	"engines": {
 		"node": ">=18",
