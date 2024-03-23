@@ -296,7 +296,7 @@ export default function ModelComp() {
 														<Card className="relative col-span-12 h-[350px] sm:col-span-4">
 															<Image
 																alt="slip"
-																className="z-0 h-full w-full object-contain"
+																className="z-0 size-full object-contain"
 																height="0"
 																src={URL.createObjectURL(selectedFile)}
 																style={{ height: "100%", width: "100%" }}

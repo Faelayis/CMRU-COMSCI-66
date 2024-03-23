@@ -26,7 +26,7 @@ export default function FooterComp() {
 							>
 								<svg
 									aria-hidden="true"
-									className="h-4 w-4"
+									className="size-4"
 									fill="currentColor"
 									viewBox="0 0 8 19"
 									xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@ export default function FooterComp() {
 							>
 								<svg
 									aria-hidden="true"
-									className="h-4 w-4"
+									className="size-4"
 									fill="currentColor"
 									viewBox="0 0 21 16"
 									xmlns="http://www.w3.org/2000/svg"
@@ -60,7 +60,7 @@ export default function FooterComp() {
 							>
 								<svg
 									aria-hidden="true"
-									className="h-4 w-4"
+									className="size-4"
 									fill="currentColor"
 									viewBox="0 0 20 20"
 									xmlns="http://www.w3.org/2000/svg"

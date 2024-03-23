@@ -136,7 +136,7 @@ export default function Leader() {
 								>
 									<Image
 										alt={leader.name}
-										className="h-16 w-16 rounded-full"
+										className="size-16 rounded-full"
 										src={leader.avatar}
 									/>
 									<div className="grow">
@@ -151,14 +151,14 @@ export default function Leader() {
 											pnpm
 											target="_blank"
 										>
-											<FontAwesomeIcon className="h-4 w-4" icon={faFacebookF} />
+											<FontAwesomeIcon className="size-4" icon={faFacebookF} />
 										</Link>
 										<Link
 											className="text-black hover:text-red-500"
 											href={leader.githubLink}
 											target="_blank"
 										>
-											<FontAwesomeIcon className="h-4 w-4" icon={faGithub} />
+											<FontAwesomeIcon className="size-4" icon={faGithub} />
 										</Link>
 									</div>
 								</div>
@@ -177,7 +177,7 @@ export default function Leader() {
 								>
 									<Image
 										alt={leader.name}
-										className="h-16 w-16 rounded-full"
+										className="size-16 rounded-full"
 										src={leader.avatar}
 									/>
 									<div className="grow">
@@ -191,14 +191,14 @@ export default function Leader() {
 											href={leader.facebookLink}
 											target="_blank"
 										>
-											<FontAwesomeIcon className="h-4 w-4" icon={faFacebookF} />
+											<FontAwesomeIcon className="size-4" icon={faFacebookF} />
 										</Link>
 										<Link
 											className="text-black hover:text-red-500"
 											href={leader.githubLink}
 											target="_blank"
 										>
-											<FontAwesomeIcon className="h-4 w-4" icon={faGithub} />
+											<FontAwesomeIcon className="size-4" icon={faGithub} />
 										</Link>
 									</div>
 								</div>
@@ -217,7 +217,7 @@ export default function Leader() {
 								>
 									<Image
 										alt={leader.name}
-										className="h-16 w-16 rounded-full"
+										className="size-16 rounded-full"
 										src={leader.avatar}
 									/>
 									<div className="grow">
@@ -232,7 +232,7 @@ export default function Leader() {
 											rel="noreferrer"
 											target="_blank"
 										>
-											<FontAwesomeIcon className="h-4 w-4" icon={faFacebookF} />
+											<FontAwesomeIcon className="size-4" icon={faFacebookF} />
 										</Link>
 										<Link
 											className="text-black hover:text-red-500"
@@ -240,7 +240,7 @@ export default function Leader() {
 											rel="noreferrer"
 											target="_blank"
 										>
-											<FontAwesomeIcon className="h-4 w-4" icon={faGithub} />
+											<FontAwesomeIcon className="size-4" icon={faGithub} />
 										</Link>
 									</div>
 								</div>

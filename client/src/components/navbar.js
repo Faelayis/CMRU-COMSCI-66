@@ -179,7 +179,7 @@ export default function NavbarComp() {
 							disabled={isLogin}
 							onClick={() => signIn("google", { redirect: false })}
 							startContent={
-								<FontAwesomeIcon className="h-4 w-4" icon={faGoogle} />
+								<FontAwesomeIcon className="size-4" icon={faGoogle} />
 							}
 							variant="faded"
 						>
