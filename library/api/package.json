@@ -1,7 +1,7 @@
 {
 	"private": false,
 	"name": "@cmru-comsci-66/api",
-	"version": "1.4.17",
+	"version": "1.4.18",
 	"license": "apache-2.0",
 	"author": "Faelayis <48393914+Faelayis@users.noreply.github.com>",
 	"repository": {
@@ -42,8 +42,8 @@
 		"discord-api-types": "0.37.76"
 	},
 	"devDependencies": {
-		"@types/node": "20.10.4",
-		"typescript": "5.3.3"
+		"@types/node": "20.11.30",
+		"typescript": "5.4.3"
 	},
 	"publishConfig": {
 		"access": "public",
