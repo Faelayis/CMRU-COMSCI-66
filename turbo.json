@@ -3,7 +3,7 @@
 	"pipeline": {
 		"build": {
 			"dependsOn": ["^build:cjs", "^build:esm", "^build"],
-			"outputs": ["cjs/**", "esm/**", "/**", ".next/**", "!.next/cache/**"],
+			"outputs": ["cjs/**", "esm/**", ".next/**", "!.next/cache/**"],
 			"cache": false
 		},
 		"build:cjs": {
