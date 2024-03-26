@@ -2,7 +2,7 @@
 	"$schema": "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/schemas/json/package.json",
 	"private": true,
 	"name": "cmru-comsci-66",
-	"version": "1.9.15",
+	"version": "1.9.16",
 	"license": "apache-2.0",
 	"type": "module",
 	"scripts": {
@@ -39,8 +39,8 @@
 	],
 	"devDependencies": {
 		"@jsdevtools/version-bump-prompt": "6.1.0",
-		"@typescript-eslint/eslint-plugin": "7.3.1",
-		"@typescript-eslint/parser": "7.3.1",
+		"@typescript-eslint/eslint-plugin": "7.4.0",
+		"@typescript-eslint/parser": "7.4.0",
 		"copyfiles": "2.4.1",
 		"del": "7.1.0",
 		"del-cli": "5.1.0",
