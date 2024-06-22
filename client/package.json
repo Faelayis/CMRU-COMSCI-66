@@ -1,7 +1,7 @@
 {
 	"private": true,
 	"name": "@cmru-comsci-66/client",
-	"version": "1.11.15",
+	"version": "1.11.16",
 	"scripts": {
 		"PORT": "3000",
 		"build": "next build",
@@ -16,7 +16,7 @@
 		"start": "next start"
 	},
 	"dependencies": {
-		"@cmru-comsci-66/api": "1.4.19",
+		"@cmru-comsci-66/api": "1.4.20",
 		"@cmru-comsci-66/database": "workspace:*",
 		"@cmru-comsci-66/utils": "1.4.8",
 		"@fortawesome/fontawesome-svg-core": "6.5.1",
