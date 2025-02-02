@@ -88,7 +88,7 @@ importers:
     dependencies:
       '@cmru-comsci-66/api':
         specifier: 1.4.20
-        version: link:../library/api
+        version: 1.4.20
       '@cmru-comsci-66/database':
         specifier: workspace:*
         version: link:../library/database
@@ -190,8 +190,8 @@ importers:
         specifier: 1.6.8
         version: 1.6.8
       discord-api-types:
-        specifier: 0.37.87
-        version: 0.37.87
+        specifier: 0.37.119
+        version: 0.37.119
     devDependencies:
       '@types/node':
         specifier: 20.11.30
@@ -295,6 +295,16 @@ packages:
     engines: {node: '>=6.9.0'}
     dependencies:
       regenerator-runtime: 0.14.0
+
+  /@cmru-comsci-66/api@1.4.20:
+    resolution: {integrity: sha512-3Vt/Oogj9SyxMX7waGP8FNzhqVorobKvsuTEDAhyOygmlcW34AYyL/wFx/snOKBg0AACnbfkUxp/D19ILK4wJg==}
+    dependencies:
+      '@cmru-comsci-66/utils': 1.4.7
+      axios: 1.6.8
+      discord-api-types: 0.37.87
+    transitivePeerDependencies:
+      - debug
+    dev: false
 
   /@cmru-comsci-66/utils@1.4.7:
     resolution: {integrity: sha512-UnFIFVBsicrdo8BKLGoJ9fX4STd1pRBsHlg4FUzm7lI220sF+ve9FcXUwr6eyX+BsNhKpow1Zh5E193a0dQqUA==}
@@ -4342,6 +4352,10 @@ packages:
     dependencies:
       path-type: 4.0.0
     dev: true
+
+  /discord-api-types@0.37.119:
+    resolution: {integrity: sha512-WasbGFXEB+VQWXlo6IpW3oUv73Yuau1Ig4AZF/m13tXcTKnMpc/mHjpztIlz4+BM9FG9BHQkEXiPto3bKduQUg==}
+    dev: false
 
   /discord-api-types@0.37.87:
     resolution: {integrity: sha512-9KfluFS1J22RuezzouGs2t5X/Yu3jNpmRJrG+dvu1R9R+wfxlhq1RXr/OjjVL6d4rr7Ez92yNWiImf/qX3GV1g==}
